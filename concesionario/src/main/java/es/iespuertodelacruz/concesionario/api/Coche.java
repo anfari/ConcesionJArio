@@ -4,7 +4,6 @@ package es.iespuertodelacruz.concesionario.api;
  */
 public class Coche extends Vehiculo{
 
-    
     /**
      * Constructor de coche con parametros
      * @param matricula matricula de vehiculo
@@ -22,5 +21,6 @@ public class Coche extends Vehiculo{
         super(matricula, marca, modelo, color, precio, extrasInstalados, estado,numeroBastidor);
         
     }
+    
     
 }

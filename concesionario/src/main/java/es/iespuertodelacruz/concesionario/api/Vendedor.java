@@ -23,5 +23,15 @@ public class Vendedor extends Persona{
         super(nombre, apellidos, dni, fechaNacimiento, telefono, direccion);
         this.codigoVendedor=codigoVendedor;
     }
+
+    public String getCodigoVendedor() {
+        return this.codigoVendedor;
+    }
+
+    public void setCodigoVendedor(String codigoVendedor) {
+        this.codigoVendedor = codigoVendedor;
+    }
+
+
     
 }

@@ -27,6 +27,22 @@ public class Cliente extends Persona{
         this.codigoCliente=codigoCliente;
     }
 
+    public Set<Vehiculo> getHistorial() {
+        return this.historial;
+    }
+
+    public void setHistorial(Set<Vehiculo> historial) {
+        this.historial = historial;
+    }
+
+    public int getCodigoCliente() {
+        return this.codigoCliente;
+    }
+
+    public void setCodigoCliente(int codigoCliente) {
+        this.codigoCliente = codigoCliente;
+    }
+
     
     
 }
