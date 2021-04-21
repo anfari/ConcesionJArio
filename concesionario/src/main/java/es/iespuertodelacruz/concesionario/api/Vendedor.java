@@ -23,7 +23,7 @@ public class Vendedor extends Persona{
         super(nombre, apellidos, dni, fechaNacimiento, telefono, direccion);
         this.codigoVendedor=codigoVendedor;
     }
-
+    //Aqui van los getter y setter
     public String getCodigoVendedor() {
         return this.codigoVendedor;
     }

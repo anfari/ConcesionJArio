@@ -28,7 +28,7 @@ public class Persona {
         this.telefono = telefono;
         this.direccion = direccion;
     }
-
+    //Aqui van los getter y setter
     public String getNombre() {
         return this.nombre;
     }

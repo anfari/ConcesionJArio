@@ -25,7 +25,7 @@ public class Direccion {
         this.provincia = provincia;
         this.poblacion = poblacion;
     }
-
+    //Aqui van los getter y setter
     public String getCalle() {
         return this.calle;
     }

@@ -35,5 +35,74 @@ public class Vehiculo {
         this.estado = estado;
         this.numeroBastidor=numeroBastidor;
     }
+    //Aqui van los getter y setter
+    public String getMatricula() {
+        return this.matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getMarca() {
+        return this.marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return this.modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getColor() {
+        return this.color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public double getPrecio() {
+        return this.precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public String getExtrasInstalados() {
+        return this.extrasInstalados;
+    }
+
+    public void setExtrasInstalados(String extrasInstalados) {
+        this.extrasInstalados = extrasInstalados;
+    }
+
+    public boolean isEstado() {
+        return this.estado;
+    }
+
+    public boolean getEstado() {
+        return this.estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public String getNumeroBastidor() {
+        return this.numeroBastidor;
+    }
+
+    public void setNumeroBastidor(String numeroBastidor) {
+        this.numeroBastidor = numeroBastidor;
+    }
+
 
 }
