@@ -10,6 +10,7 @@ public class Vehiculo {
     double precio;
     String extrasInstalados;
     boolean estado;
+    String numeroBastidor;
 
     /**
      * Contructor de vehiculo con parametros 
@@ -20,9 +21,11 @@ public class Vehiculo {
      * @param precio preciodel vehiculo
      * @param extrasInstalados extras instalados del vehiculo
      * @param estado estado del vehiculo
+     * @param numeroBastidor numero de bastidor del vehiculo
      */
     public Vehiculo(String matricula, String marca, String modelo, 
-    String color, double precio, String extrasInstalados, boolean estado) {
+    String color, double precio, String extrasInstalados, boolean estado,
+    String numeroBastidor) {
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
@@ -30,6 +33,7 @@ public class Vehiculo {
         this.precio = precio;
         this.extrasInstalados = extrasInstalados;
         this.estado = estado;
+        this.numeroBastidor=numeroBastidor;
     }
 
 }

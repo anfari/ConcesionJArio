@@ -14,10 +14,12 @@ public class Coche extends Vehiculo{
      * @param precio preciodel vehiculo
      * @param extrasInstalados extras instalados del vehiculo
      * @param estado estado del vehiculo
+     * @param numeroBastidor numero de bastidor del vehiculo
      */
-    public Coche(String matricula, String marca, String modelo, String color, double precio, String extrasInstalados,
-            boolean estado) {
-        super(matricula, marca, modelo, color, precio, extrasInstalados, estado);
+    public Coche(String matricula, String marca, String modelo, 
+    String color, double precio, String extrasInstalados,
+            boolean estado, String numeroBastidor) {
+        super(matricula, marca, modelo, color, precio, extrasInstalados, estado,numeroBastidor);
         
     }
     
