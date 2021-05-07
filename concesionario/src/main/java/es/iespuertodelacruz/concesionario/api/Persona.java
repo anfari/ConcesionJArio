@@ -28,50 +28,109 @@ public class Persona {
         this.telefono = telefono;
         this.direccion = direccion;
     }
-    //Aqui van los getter y setter
+    
+    
+    /**
+     * Getter de la clase Persona
+     * @return nombre de la persona
+     */
     public String getNombre() {
         return this.nombre;
     }
 
+    /**
+     * Setter de la clase Persona
+     * @param nombre de la persona
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Getter de la clase Persona
+     * @return apellidos de la persona
+     */
     public String getApellidos() {
         return this.apellidos;
     }
 
+    
+    /**
+     * Setter de la clase Persona
+     * @param apellidos de la persona
+     */
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
 
+    /**
+     * Getter de la clase Persona
+     * @return dni de la persona
+     */
     public String getDni() {
         return this.dni;
     }
 
+    
+    /**
+     * Setter de la clase Persona
+     * @param dni de la persona
+     */
     public void setDni(String dni) {
         this.dni = dni;
     }
 
+    /**
+     * Getter de la clase Persona
+     * @return fecha de nacimiento de la persona
+     */
     public String getFechaNacimiento() {
         return this.fechaNacimiento;
     }
 
+    
+    /**
+     * Setter de la clase Persona
+     * @param fechaNacimiento de la persona
+     */
     public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    /**
+     * Getter de la clase Persona
+     * @return telefono de la persona
+     */
     public String getTelefono() {
         return this.telefono;
     }
 
+    
+    /**
+     * Setter de la clase Persona
+     * @param relefono de la persona
+     */
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
+    /**
+     * Getter de la clase Persona
+     * @return direccion de la persona
+     */
     public Direccion getDireccion() {
         return this.direccion;
     }
+
+    
+    /**
+     * Setter de la clase Persona
+     * @param direccion de la persona
+     */
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
+    }
+
 
 
 

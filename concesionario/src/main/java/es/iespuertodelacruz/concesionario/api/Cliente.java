@@ -26,19 +26,35 @@ public class Cliente extends Persona{
         historial = new  HashSet<>();
         this.codigoCliente=codigoCliente;
     }
-    //Aqui van los getter y setter
+    
+    /**
+     * Getter de la clase Cliente
+     * @return historial de compras del cliente
+     */
     public Set<Vehiculo> getHistorial() {
         return this.historial;
     }
 
+    /**
+     * Setter de la clase Cliente
+     * @param historial de compras del cliente
+     */
     public void setHistorial(Set<Vehiculo> historial) {
         this.historial = historial;
     }
 
+    /**
+     * Getter de la clase Cliente
+     * @return codigo de cliente
+     */
     public int getCodigoCliente() {
         return this.codigoCliente;
     }
 
+    /**
+     * Setter de la clase Cliente
+     * @param codigoCliente codigo de cliente
+     */
     public void setCodigoCliente(int codigoCliente) {
         this.codigoCliente = codigoCliente;
     }
