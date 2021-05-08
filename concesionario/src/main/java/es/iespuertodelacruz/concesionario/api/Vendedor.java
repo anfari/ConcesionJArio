@@ -5,7 +5,6 @@ package es.iespuertodelacruz.concesionario.api;
  */
 public class Vendedor extends Persona{
     String codigoVendedor;
-    //Set <String> historialVentas = new  HashSet<Cliente>()
     
     /**
      * Constructor de vendedor con parametros
@@ -23,11 +22,20 @@ public class Vendedor extends Persona{
         super(nombre, apellidos, dni, fechaNacimiento, telefono, direccion);
         this.codigoVendedor=codigoVendedor;
     }
-    //Aqui van los getter y setter
+    
+    
+    /**
+     * Getter de la clase Vendedor
+     * @return codigo de vendedor del vendedor
+     */
     public String getCodigoVendedor() {
         return this.codigoVendedor;
     }
 
+    /**
+     * Setter de la clase Vendedor
+     * @param codigoVendedor codigo de vendedor del vendedor
+     */
     public void setCodigoVendedor(String codigoVendedor) {
         this.codigoVendedor = codigoVendedor;
     }

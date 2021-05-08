@@ -5,22 +5,22 @@ package es.iespuertodelacruz.concesionario.api;
 public class Coche extends Vehiculo{
 
     /**
-     * Constructor de coche con parametros
-     * @param matricula matricula de vehiculo
+     * Constructor con todos los parametros de la clase Vehiculo
+     * @param bastidor numero de bastidor del vehiculo
+     * @param matricula matricula del vehiculo
      * @param marca marca del vehiculo
      * @param modelo modelo del vehiculo
      * @param color color del vehiculo
-     * @param precio preciodel vehiculo
-     * @param extrasInstalados extras instalados del vehiculo
-     * @param estado estado del vehiculo
-     * @param numeroBastidor numero de bastidor del vehiculo
+     * @param precio precio en euros del vehiculo
+     * @param extrasInstalados extras que tiene el vehiculo
+     * @param motor tipo de motor del vehiculo
+     * @param potencia potencia expresada en CV del vehiculo
+     * @param cilindrada cilindrada expresada en CC del vehiculo
      */
-    public Coche(String matricula, String marca, String modelo, 
-    String color, double precio, String extrasInstalados,
-            boolean estado, String numeroBastidor) {
-        super(matricula, marca, modelo, color, precio, extrasInstalados, estado,numeroBastidor);
-        
-    }
+    public Coche(String bastidor, String matricula, String marca, String modelo, String color, double precio,
+            String extrasInstalados, String motor, int potencia, String cilindrada) {
+        super(bastidor, matricula, marca, modelo, color, precio, extrasInstalados, motor, potencia, cilindrada);
+    }   
     
     
 }

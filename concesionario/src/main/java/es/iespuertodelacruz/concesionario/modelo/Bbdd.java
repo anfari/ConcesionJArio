@@ -29,7 +29,7 @@ public class Bbdd {
      * @return la conexion
      * @throws BbddException error controlado
      */
-    private Connection getConnection() throws BbddException {
+    public Connection getConnection() throws BbddException {
         Connection connection = null;
 
         try {
@@ -46,23 +46,6 @@ public class Bbdd {
         return connection;
     }
 
-    
-    
-
-
-/** 
-    //CRUD
-    public void insertar(Fruta fruta) {
-        
-    }
-
-    public void eliminar(Fruta fruta) {
-
-    }
-
-    public void modificar(Fruta fruta) {
-
-    }*/
 
     /**
      * Funcion que realiza la consulta sobre la BBDD y la tabla Fruta
@@ -123,7 +106,7 @@ public class Bbdd {
 
 
 
-    private void closeConnection (Connection connection, Statement statement, ResultSet resultSet) throws BbddException {
+    public void closeConnection (Connection connection, Statement statement, ResultSet resultSet) throws BbddException {
         try {
             if (resultSet != null) {
                 resultSet.close();

@@ -3,106 +3,204 @@ package es.iespuertodelacruz.concesionario.api;
  * Clase vehiculo contiene las caracteristicas de un vehiculo
  */
 public class Vehiculo {
+    String bastidor;
     String matricula;
     String marca;
     String modelo;
     String color;
     double precio;
     String extrasInstalados;
-    boolean estado;
-    String numeroBastidor;
+    String motor;
+    int potencia;
+    String cilindrada;
+
 
     /**
-     * Contructor de vehiculo con parametros 
-     * @param matricula matricula de vehiculo
+     * Constructor con todos los parametros de la clase Vehiculo
+     * @param bastidor numero de bastidor del vehiculo
+     * @param matricula matricula del vehiculo
      * @param marca marca del vehiculo
      * @param modelo modelo del vehiculo
      * @param color color del vehiculo
-     * @param precio preciodel vehiculo
-     * @param extrasInstalados extras instalados del vehiculo
-     * @param estado estado del vehiculo
-     * @param numeroBastidor numero de bastidor del vehiculo
+     * @param precio precio en euros del vehiculo
+     * @param extrasInstalados extras que tiene el vehiculo
+     * @param motor tipo de motor del vehiculo
+     * @param potencia potencia expresada en CV del vehiculo
+     * @param cilindrada cilindrada expresada en CC del vehiculo
      */
-    public Vehiculo(String matricula, String marca, String modelo, 
-    String color, double precio, String extrasInstalados, boolean estado,
-    String numeroBastidor) {
+    public Vehiculo(String bastidor, String matricula, String marca, String modelo, String color, double precio, String extrasInstalados, String motor, int potencia, String cilindrada) {
+        this.bastidor = bastidor;
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
         this.color = color;
         this.precio = precio;
         this.extrasInstalados = extrasInstalados;
-        this.estado = estado;
-        this.numeroBastidor=numeroBastidor;
+        this.motor = motor;
+        this.potencia = potencia;
+        this.cilindrada = cilindrada;
     }
-    //Aqui van los getter y setter
+
+    
+    /**
+     * Getter de la clase Vehiculo
+     * @return numero de bastidor del vehiculo
+     */
+    public String getBastidor() {
+        return this.bastidor;
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param bastidor numero de bastidor del vehiculo
+     */
+    public void setBastidor(String bastidor) {
+        this.bastidor = bastidor;
+    }
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return matricula del vehiculo
+     */
     public String getMatricula() {
         return this.matricula;
     }
 
+    /**
+     * Setter de la clase Vehiculo
+     * @param matricula matricula del vehiculo
+     */
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 
+    /**
+     * Getter de la clase Vehiculo
+     * @return marca del vehiculo
+     */
     public String getMarca() {
         return this.marca;
     }
 
+    /**
+     * Setter de la clase Vehiculo
+     * @param marca marca del vehiculo
+     */
     public void setMarca(String marca) {
         this.marca = marca;
     }
 
+    /**
+     * Getter de la clase Vehiculo
+     * @return modelo del vehiculo
+     */
     public String getModelo() {
         return this.modelo;
     }
 
+    /**
+     * Setter de la clase Vehiculo
+     * @param modelo modelo del vehiculo
+     */
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
 
+    /**
+     * Getter de la clase Vehiculo
+     * @return color del vehiculo
+     */
     public String getColor() {
         return this.color;
     }
 
+    /**
+     * Setter de la clase Vehiculo
+     * @param color color del vehiculo
+     */
     public void setColor(String color) {
         this.color = color;
     }
 
+    /**
+     * Getter de la clase Vehiculo
+     * @return precio del vehiculo
+     */
     public double getPrecio() {
         return this.precio;
     }
 
+    /**
+     * Setter de la clase Vehiculo
+     * @param precio precio del vehiculo
+     */
     public void setPrecio(double precio) {
         this.precio = precio;
     }
 
+    /**
+     * Getter de la clase Vehiculo
+     * @return extras del vehiculo
+     */
     public String getExtrasInstalados() {
         return this.extrasInstalados;
     }
 
+    /**
+     * Setter de la clase Vehiculo
+     * @param extrasInstalados extras del vehiculo
+     */
     public void setExtrasInstalados(String extrasInstalados) {
         this.extrasInstalados = extrasInstalados;
     }
 
-    public boolean isEstado() {
-        return this.estado;
+    /**
+     * Getter de la clase Vehiculo
+     * @return motor del vehiculo
+     */
+    public String getMotor() {
+        return this.motor;
     }
 
-    public boolean getEstado() {
-        return this.estado;
+    /**
+     * Setter de la clase Vehiculo
+     * @param motor motor del vehiculo
+     */
+    public void setMotor(String motor) {
+        this.motor = motor;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    /**
+     * Getter de la clase Vehiculo
+     * @return potencia del vehiculo
+     */
+    public int getPotencia() {
+        return this.potencia;
     }
 
-    public String getNumeroBastidor() {
-        return this.numeroBastidor;
+    /**
+     * Setter de la clase Vehiculo
+     * @param potencia potencia del vehiculo
+     */
+    public void setPotencia(int potencia) {
+        this.potencia = potencia;
     }
 
-    public void setNumeroBastidor(String numeroBastidor) {
-        this.numeroBastidor = numeroBastidor;
+    /**
+     * Getter de la clase Vehiculo
+     * @return cilindrada del vehiculo
+     */
+    public String getCilindrada() {
+        return this.cilindrada;
     }
-    
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param cilindrada cilindrada del vehiculo
+     */
+    public void setCilindrada(String cilindrada) {
+        this.cilindrada = cilindrada;
+    }
+
 
 }

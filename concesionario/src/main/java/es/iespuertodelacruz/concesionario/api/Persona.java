@@ -53,7 +53,6 @@ public class Persona {
     public String getApellidos() {
         return this.apellidos;
     }
-
     
     /**
      * Setter de la clase Persona
@@ -70,7 +69,6 @@ public class Persona {
     public String getDni() {
         return this.dni;
     }
-
     
     /**
      * Setter de la clase Persona
@@ -87,7 +85,6 @@ public class Persona {
     public String getFechaNacimiento() {
         return this.fechaNacimiento;
     }
-
     
     /**
      * Setter de la clase Persona
@@ -104,7 +101,6 @@ public class Persona {
     public String getTelefono() {
         return this.telefono;
     }
-
     
     /**
      * Setter de la clase Persona
@@ -121,7 +117,6 @@ public class Persona {
     public Direccion getDireccion() {
         return this.direccion;
     }
-
     
     /**
      * Setter de la clase Persona

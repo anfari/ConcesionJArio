@@ -1,13 +1,9 @@
 package es.iespuertodelacruz.concesionario.api;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Contiene las caracteristicas extendidas de persona
  */
 public class Cliente extends Persona{
-    Set <Vehiculo> historial;
     int codigoCliente;
 
     /**
@@ -23,25 +19,9 @@ public class Cliente extends Persona{
     public Cliente(int codigoCliente,String nombre, String apellidos, 
     String dni, String fechaNacimiento, String telefono, Direccion direccion) {
         super(nombre, apellidos, dni, fechaNacimiento, telefono, direccion);
-        historial = new  HashSet<>();
         this.codigoCliente=codigoCliente;
     }
     
-    /**
-     * Getter de la clase Cliente
-     * @return historial de compras del cliente
-     */
-    public Set<Vehiculo> getHistorial() {
-        return this.historial;
-    }
-
-    /**
-     * Setter de la clase Cliente
-     * @param historial de compras del cliente
-     */
-    public void setHistorial(Set<Vehiculo> historial) {
-        this.historial = historial;
-    }
 
     /**
      * Getter de la clase Cliente
