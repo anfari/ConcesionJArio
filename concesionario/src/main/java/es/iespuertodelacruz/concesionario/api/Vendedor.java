@@ -4,7 +4,7 @@ package es.iespuertodelacruz.concesionario.api;
  * Clase vendedor contiene los datos de un vendedor
  */
 public class Vendedor extends Persona{
-    String codigoVendedor;
+    int codigoVendedor;
     
     /**
      * Constructor de vendedor con parametros
@@ -16,7 +16,7 @@ public class Vendedor extends Persona{
      * @param telefono teledono del cliente
      * @param direccion objeto direccion del vendedor
      */
-    public Vendedor(String codigoVendedor, String nombre, String apellidos, 
+    public Vendedor(int codigoVendedor, String nombre, String apellidos, 
     String dni, String fechaNacimiento, String telefono,
             Direccion direccion) {
         super(nombre, apellidos, dni, fechaNacimiento, telefono, direccion);
@@ -28,7 +28,7 @@ public class Vendedor extends Persona{
      * Getter de la clase Vendedor
      * @return codigo de vendedor del vendedor
      */
-    public String getCodigoVendedor() {
+    public int getCodigoVendedor() {
         return this.codigoVendedor;
     }
 
@@ -36,7 +36,7 @@ public class Vendedor extends Persona{
      * Setter de la clase Vendedor
      * @param codigoVendedor codigo de vendedor del vendedor
      */
-    public void setCodigoVendedor(String codigoVendedor) {
+    public void setCodigoVendedor(int codigoVendedor) {
         this.codigoVendedor = codigoVendedor;
     }
 
