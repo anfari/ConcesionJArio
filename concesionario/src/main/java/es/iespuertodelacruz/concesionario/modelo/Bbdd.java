@@ -378,7 +378,7 @@ public class Bbdd {
      * @return Coche encotrado
      * @throws BbddException error controlado
      */
-    public Coche obtenerCoche(int bastidor) throws BbddException {
+    public Coche obtenerCoche(String bastidor) throws BbddException {
         Coche coche = null;
         ArrayList<Coche> listaCoches = null;
         String sql = "SELECT * FROM Coche where bastidor =";
