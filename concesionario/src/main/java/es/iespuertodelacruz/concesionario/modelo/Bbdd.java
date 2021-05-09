@@ -1,14 +1,13 @@
 package es.iespuertodelacruz.concesionario.modelo;
-
 import java.sql.*;
 import java.util.ArrayList;
 
-import es.iespuertodelacruz.concesionario.api.Cliente;
-import es.iespuertodelacruz.concesionario.api.Coche;
-import es.iespuertodelacruz.concesionario.api.Direccion;
-import es.iespuertodelacruz.concesionario.api.Vendedor;
+import es.iespuertodelacruz.concesionario.api.*;
 import es.iespuertodelacruz.concesionario.exception.BbddException;
-
+/**
+ * /**
+ * Clase BDbd, va a contener los datos para la base de datos
+ */
 public class Bbdd {
     
     private String driver;
@@ -16,8 +15,13 @@ public class Bbdd {
     private String usuario;
     private String password;
 
-
-
+    /**
+     * Constructor por defecto, para crear la conexion a la basede datos
+     * @param driver driver para cargar la bd
+     * @param url url con el puerto incluido de la bd
+     * @param usuario usuario de la bd
+     * @param password contraseña de la bd
+     */
     public Bbdd(String driver, String url, String usuario, String password) {
         this.driver = driver;
         this.url = url;
@@ -378,7 +382,7 @@ public class Bbdd {
      * @return Coche encotrado
      * @throws BbddException error controlado
      */
-    public Coche obtenerCoche(int bastidor) throws BbddException {
+    public Coche obtenerCoche(String bastidor) throws BbddException {
         Coche coche = null;
         ArrayList<Coche> listaCoches = null;
         String sql = "SELECT * FROM Coche where bastidor =";
@@ -521,7 +525,13 @@ public class Bbdd {
         }
     }
 
-
+      /**
+     * Metodo privado encargado de cerrar la conexion con la base de datos
+     * @param conexion de la BD
+     * @param statement de la BD
+     * @param resultado de la BD
+     * @throws BDbdException error controlado
+     */
     private void closeConnection (Connection connection, Statement statement, ResultSet resultSet) throws BbddException {
         try {
             if (resultSet != null) {

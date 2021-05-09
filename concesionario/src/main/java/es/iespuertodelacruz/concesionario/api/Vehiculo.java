@@ -28,7 +28,9 @@ public class Vehiculo {
      * @param potencia potencia expresada en CV del vehiculo
      * @param cilindrada cilindrada expresada en CC del vehiculo
      */
-    public Vehiculo(String bastidor, String matricula, String marca, String modelo, String color, double precio, String extrasInstalados, String motor, int potencia, String cilindrada) {
+    public Vehiculo(String bastidor, String matricula, String marca, 
+    String modelo, String color, double precio, String extrasInstalados, 
+    String motor, int potencia, String cilindrada) {
         this.bastidor = bastidor;
         this.matricula = matricula;
         this.marca = marca;

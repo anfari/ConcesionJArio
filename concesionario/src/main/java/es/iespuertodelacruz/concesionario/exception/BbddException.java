@@ -1,5 +1,7 @@
 package es.iespuertodelacruz.concesionario.exception;
-
+/**
+ * Clase BbddException encargada de controlar todas las excepciones
+ */
 public class BbddException extends Exception {
    private static final long serialVersionUID = 1L;
 
