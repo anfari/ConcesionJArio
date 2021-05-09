@@ -6,6 +6,7 @@ import es.iespuertodelacruz.concesionario.exception.BbddException;
 /**
  * Clase DireccionModelo contiene los datos de direccion de un cliente
  */
+
 public class DireccionModelo {
     Bbdd persistencia;
 
@@ -52,5 +53,4 @@ public class DireccionModelo {
     public void eliminar(Direccion direccion) throws BbddException{
         persistencia.eliminarDireccion(direccion);
     }
- 
 }

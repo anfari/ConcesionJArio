@@ -8,7 +8,7 @@ import es.iespuertodelacruz.concesionario.exception.BbddException;
 public class VendedorModelo {
     Bbdd persistencia;
 
-      /**
+    /**
      * Constructor de la Clase VendedorModelo
      */
     public VendedorModelo() {
