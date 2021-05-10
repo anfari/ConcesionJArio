@@ -40,7 +40,7 @@ public class VendedorModelo {
      * @throws BbddException error controlado
      */
     public void buscar(Vendedor vendedor) throws BbddException{
-        persistencia.obtenerVendedor(vendedor.getCodigoVendedor());
+        persistencia.obtenerVendedor(vendedor.getDni());
     }
 
      /**

@@ -37,11 +37,11 @@ public class ClienteModelo {
 
      /**
      * Metodo que busca un cliente
-     * @param codigoCliente codigo del cliente a buscar
+     * @param dni dni del cliente
      * @throws BbddException error controlado
      */
-    public Cliente buscar(int codigoCliente) throws BbddException{
-        return persistencia.obtenerCliente(codigoCliente);
+    public Cliente buscar(String dni) throws BbddException{
+        return persistencia.obtenerCliente(dni);
     }
 
      /**

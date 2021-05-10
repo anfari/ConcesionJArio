@@ -30,9 +30,6 @@ public class ClienteController {
             mensaje = "Se esta intentando validar un objeto vacio";
             throw new ClienteException(mensaje);
         }
-        if (cliente.getCodigoCliente() <= 0) {
-            mensaje = "El codigo de cliente es 0 o menor\n";
-        }
         if (cliente.getNombre() == null || cliente.getNombre().isEmpty()) {
             mensaje += "El nombre del cliente es nulo o vacio\n";
         }
@@ -84,13 +81,13 @@ public class ClienteController {
 
     /**
      * Metodo encargado de eliminar utilizando el codigo de cliente
-     * @param codigoCliente codigo del cliente a eliminar
+     * @param dni dni del cliente
      * @throws ClienteException error controlado
      * @throws BbddException error controlado
      */
-    public void eliminar(int codigoCliente) throws ClienteException, BbddException {
+    public void eliminar(String dni) throws ClienteException, BbddException {
         Cliente cliente;
-        cliente = buscar(codigoCliente);
+        cliente = buscar(dni);
         eliminar(cliente);
     }
 
@@ -103,7 +100,7 @@ public class ClienteController {
     public void modificar(Cliente cliente) throws ClienteException, BbddException {
         Cliente clienteAlmacenado;
         validarCliente(cliente);
-        clienteAlmacenado = buscar(cliente.getCodigoCliente());
+        clienteAlmacenado = buscar(cliente.getDni());
         if (clienteAlmacenado == null) {
             throw new ClienteException("El cliente indicado no existe");
         }
@@ -112,13 +109,13 @@ public class ClienteController {
 
     /**
      * Metodo encargado de buscar por codigo de cliente
-     * @param codigoCliente codigo del cliente a buscar
+     * @param dni dni del cliente
      * @return cliente encontrado
      * @throws BbddException error controlado
      */
-    public Cliente buscar(int codigoCliente) throws BbddException {
+    public Cliente buscar(String dni) throws BbddException {
         Cliente cliente = null;
-        cliente = clienteModelo.buscar(codigoCliente);
+        cliente = clienteModelo.buscar(dni);
         return cliente;
     }
 
@@ -132,7 +129,7 @@ public class ClienteController {
         boolean encontrado = false;
         Cliente clienteEncontrado;
 
-        clienteEncontrado = buscar(cliente.getCodigoCliente());
+        clienteEncontrado = buscar(cliente.getDni());
         if (clienteEncontrado != null) {
             encontrado = true;
         }

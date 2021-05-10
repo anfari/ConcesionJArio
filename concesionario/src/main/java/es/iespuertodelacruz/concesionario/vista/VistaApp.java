@@ -1,8 +1,9 @@
 package es.iespuertodelacruz.concesionario.vista;
 
 
-
-import org.codehaus.plexus.util.Scanner;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import es.iespuertodelacruz.concesionario.api.*;
 import es.iespuertodelacruz.concesionario.exception.BbddException;
@@ -152,9 +153,9 @@ public class VistaApp {
                     System.out.println("Coche"+ "insertado");
                     break;
                 case 2:
-                    System.out.println("Introduce el codigo del cliente");
-                    int codigoCliente=teclado.nextInt();
-                    clientes=bd.obtenerCliente(codigoCliente);
+                    System.out.println("Introduce el dni del cliente");
+                    String dni=teclado.next();
+                    clientes=bd.obtenerCliente(dni);
                     break;
                 case 3:
                     break;
@@ -181,9 +182,6 @@ public class VistaApp {
      * @return devuelve un nuevo cliente
      */
     private static Cliente generarDatosClientes(Scanner teclado){
-        
-        System.out.println("Introduzca el valor de codigo cliente");
-        int codigoCliente1 = teclado.nextInt();
 
         System.out.println("Introduzca el valor de nombre");
         String nombre1 = teclado.next();
@@ -200,7 +198,7 @@ public class VistaApp {
         System.out.println("Introduzca el valor de telefono");
         String telefono1 = teclado.next();
 
-        Cliente cliente= new Cliente(codigoCliente1, nombre1, apellidos1, dni1, fechaNacimiento1, telefono1, generarDatosDireccion(teclado));
+        Cliente cliente= new Cliente(nombre1, apellidos1, dni1, fechaNacimiento1, telefono1, generarDatosDireccion(teclado));
         return cliente;
     }
       /**
