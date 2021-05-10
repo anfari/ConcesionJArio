@@ -226,4 +226,89 @@ public class VistaApp {
         return direccion;
     }
 
+        /**
+     * Metodo estatico privado que contiene el menu principal 
+     * @throws BbddException error controlado
+     */
+    private static void menuPrincipal() throws BbddException{
+        Scanner teclado = new Scanner(System.in);
+        boolean salir = false;
+        int opcion; //Guardaremos la opcion del usuario
+        while (!salir) {
+
+        System.out.println("1. Realizar ventas");
+        System.out.println("2. Usuarios");
+        System.out.println("3. Empleado");
+        System.out.println("4. Salir");
+        try {
+
+            System.out.println("Escribe una de las opciones");
+            opcion = teclado.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    generarDatosCoche(teclado);
+                    break;
+                case 2:
+                   generarDatosClientes(teclado);
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    ArrayList<Cliente> lista=bd.obtenerListadoClientes();
+                    String listado=lista.toString();
+                    System.out.println("Lista de clientes: "+listado);
+                    break;
+                case 5:
+                    salir = true;
+                    break;
+                default:
+                    System.out.println("Solo números entre 1 y 5");
+            }
+            } catch (InputMismatchException e) {
+                System.out.println("Debes insertar una opcion correcta");
+                teclado.next();
+            }
+       }
+    }
+
+    private static void menuVentas() throws BbddException{
+        Scanner teclado = new Scanner(System.in);
+        boolean salir = false;
+        int opcion; //Guardaremos la opcion del usuario
+        Coche coche;
+        while (!salir) {
+        System.out.println("1. Vender coche");
+        System.out.println("2. Coche vendidos");
+        System.out.println("3. Listado de vehiculos");
+        System.out.println("4. Salir");
+        coche=null;
+        try {
+
+            System.out.println("Escribe una de las opciones");
+            opcion = teclado.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    generarDatosCoche(teclado);
+                    break;
+                case 2:
+                   generarDatosClientes(teclado);
+                    break;
+                case 3:
+                    break;
+                    case 5:
+                    salir = true;
+                    break;
+                default:
+                    System.out.println("Solo números entre 1 y 5");
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Debes insertar una opcion correcta");
+            teclado.next();
+        }
+    }
+    //otro menu gerente
+    copia y pega de cliente->Vendodor
+}
 }
