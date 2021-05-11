@@ -257,15 +257,10 @@ public class VistaApp {
                 menuGerente();
                     break;
                 case 4:
-                    ArrayList<Cliente> lista=bd.obtenerListadoClientes();
-                    String listado=lista.toString();
-                    System.out.println("Lista de clientes: "+listado);
-                    break;
-                case 5:
                     salir = true;
                     break;
                 default:
-                    System.out.println("Solo números entre 1 y 5");
+                    System.out.println("Solo números entre 1 y 4");
             }
             } catch (InputMismatchException e) {
                 System.out.println("Debes insertar una opcion correcta");

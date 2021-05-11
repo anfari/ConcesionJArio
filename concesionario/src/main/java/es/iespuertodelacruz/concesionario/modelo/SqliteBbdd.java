@@ -4,7 +4,6 @@ package es.iespuertodelacruz.concesionario.modelo;
  * Clase SqliteBbdd
  */
 public class SqliteBbdd extends Bbdd {
-
     /**
      * Constructor con todos los parametros de la clase SqliteBbdd
      * @param driver driver necesario
