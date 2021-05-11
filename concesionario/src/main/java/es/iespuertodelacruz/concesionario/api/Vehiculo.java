@@ -13,6 +13,7 @@ public class Vehiculo {
     String motor;
     int potencia;
     String cilindrada;
+    String tipo;
 
 
     /**
@@ -27,10 +28,11 @@ public class Vehiculo {
      * @param motor tipo de motor del vehiculo
      * @param potencia potencia expresada en CV del vehiculo
      * @param cilindrada cilindrada expresada en CC del vehiculo
+     * @param tipo tipo de vehiculo
      */
     public Vehiculo(String bastidor, String matricula, String marca, 
     String modelo, String color, double precio, String extrasInstalados, 
-    String motor, int potencia, String cilindrada) {
+    String motor, int potencia, String cilindrada,String tipo) {
         this.bastidor = bastidor;
         this.matricula = matricula;
         this.marca = marca;
@@ -41,6 +43,7 @@ public class Vehiculo {
         this.motor = motor;
         this.potencia = potencia;
         this.cilindrada = cilindrada;
+        this.tipo=tipo;
     }
 
     
@@ -202,6 +205,20 @@ public class Vehiculo {
      */
     public void setCilindrada(String cilindrada) {
         this.cilindrada = cilindrada;
+    }
+    /**
+     * Getter de la clase Vehiculo
+     * @return tipo de vehiculo
+     */
+    public String getTipo() {
+        return this.tipo;
+    }
+     /**
+     * Setter de la clase Vehiculo
+     * @param tipo tipo de vehiculo
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
 

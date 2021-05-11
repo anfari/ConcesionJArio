@@ -270,7 +270,8 @@ public class VistaApp {
                 teclado.next();
             }
        }
-    }
+    
+}
 
     private static void menuVentas() throws BbddException{
         Scanner teclado = new Scanner(System.in);
@@ -310,5 +311,58 @@ public class VistaApp {
     }
     //otro menu gerente
     copia y pega de cliente->Vendodor
-}
+    /**
+     * Metodo estatico privado que contiene el menu
+     * @throws BbddException error controlado
+     */
+    private static void menuGerente() throws BbddException{
+        Scanner teclado = new Scanner(System.in);
+        boolean salir = false;
+        int opcion; //Guardaremos la opcion del usuario
+        Cliente clientes;
+        while (!salir) {
+
+        System.out.println("1. Insertar empleado");
+        System.out.println("2. Modificar empleado");
+        System.out.println("3. Elimininar empleados");
+        System.out.println("4. Listado de empleados");
+        System.out.println("5. Obtener datos empleado");
+        System.out.println("6. Salir");
+        clientes = null;
+        try {
+
+            System.out.println("Escribe una de las opciones");
+            opcion = teclado.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    clientes=generarDatosClientes(teclado);
+                    bd.insertarCliente(clientes);
+                    System.out.println("Coche"+ "insertado");
+                    break;
+                case 2:
+                    System.out.println("Introduce el dni del cliente");
+                    String dni=teclado.next();
+                    clientes=bd.obtenerCliente(dni);
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    ArrayList<Cliente> lista=bd.obtenerListadoClientes();
+                    String listado=lista.toString();
+                    System.out.println("Lista de clientes: "+listado);
+                    break;
+                case 5:
+                    salir = true;
+                    break;
+                default:
+                    System.out.println("Solo números entre 1 y 5");
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Debes insertar una opcion correcta");
+            teclado.next();
+        }
+    }
+
+    }
 }

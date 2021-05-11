@@ -269,57 +269,58 @@ public class Bbdd {
 
 
 
-    //CRUD de Coche
+    //CRUD de vehiculo
 
     /**
-     * Metodo encargado de realizar la insercion de un coche
-     * @param coche coche a insertar
+     * Metodo encargado de realizar la insercion de un vehiculo
+     * @param vehiculo vehiculo a insertar
      * @throws BbddException error controlado
      */
-    public void insertarCoche(Coche coche) throws BbddException {
-        String sql ="INSERT INTO Coche (bastidor, matricula, marca, modelo, color, precio, " + 
-        "extrasInstalados, motor, potencia, cilindrada) VALUES ('" + coche.getBastidor() + 
-        "', '" + coche.getMatricula() + "', '" + coche.getMarca() + "', '" + coche.getModelo() + 
-        "', '" + coche.getColor() + "', '" + coche.getPrecio() + "', '" + coche.getExtrasInstalados() + 
-        "', '" + coche.getMotor() + "', '" + coche.getPotencia() + "', '" + coche.getCilindrada() + "'";
+    public void insertarVehiculo(Vehiculo vehiculo) throws BbddException {
+        String sql ="INSERT INTO Vehiculo (bastidor, matricula, marca, modelo, color, precio, " + 
+        "extrasInstalados, motor, potencia, cilindrada,tipo) VALUES ('" + vehiculo.getBastidor() + 
+        "', '" + vehiculo.getMatricula() + "', '" + vehiculo.getMarca() + "', '" + vehiculo.getModelo() + 
+        "', '" + vehiculo.getColor() + "', '" + vehiculo.getPrecio() + "', '" + vehiculo.getExtrasInstalados() + 
+        "', '" + vehiculo.getMotor() + "', '" + vehiculo.getPotencia() + "', '" + vehiculo.getCilindrada()+ 
+        "', '" + vehiculo.getTipo() + "'";
         actualizar(sql);
     }
 
     /**
-     * Metodo encargado de realizar la eliminacion de un coche
-     * @param coche coche a eliminar
+     * Metodo encargado de realizar la eliminacion de un vehiculo
+     * @param vehiculo vehiculo a eliminar
      * @throws BbddException error controlado
      */
-    public void eliminarCoche(Coche coche) throws BbddException {
-        String sql = "DELETE from Coche where bastidor = '" + coche.getBastidor() + "'";
+    public void eliminarVehiculo(Vehiculo vehiculo) throws BbddException {
+        String sql = "DELETE from Vehiculo where bastidor = '" + vehiculo.getBastidor() + "'";
         actualizar(sql);
     }
 
     /**
-     * Metodo encargado de realizar la modificacion de un coche
-     * @param coche coche a modificar
+     * Metodo encargado de realizar la modificacion de un vehiculo
+     * @param vehiculo vehiculo a modificar
      * @throws BbddException error controlado
      */
-    public void modificarCoche(Coche coche) throws BbddException {
-        String sql = "UPDATE Coche SET matricula = '" + coche.getMatricula() +
-        "', marca = '" + coche.getMarca() + "', modelo = '" + coche.getModelo() +
-        "', color = '" + coche.getColor() + "', precio = '" + coche.getPrecio() + 
-        "', extrasInstalados = '" + coche.getExtrasInstalados() +
-        "', motor = '" + coche.getMotor() + "', potencia = '" + coche.getPotencia() + 
-        "', cilindrada = '" + coche.getCilindrada() + 
-        "' WHERE codigoCliente = '" + coche.getBastidor() + "'";
+    public void modificarVehiculo(Vehiculo vehiculo) throws BbddException {
+        String sql = "UPDATE Vehiculo SET matricula = '" + vehiculo.getMatricula() +
+        "', marca = '" + vehiculo.getMarca() + "', modelo = '" + vehiculo.getModelo() +
+        "', color = '" + vehiculo.getColor() + "', precio = '" + vehiculo.getPrecio() + 
+        "', extrasInstalados = '" + vehiculo.getExtrasInstalados() +
+        "', motor = '" + vehiculo.getMotor() + "', potencia = '" + vehiculo.getPotencia() + 
+        "', cilindrada = '" + vehiculo.getCilindrada() + 
+        "' WHERE bastidor = '" + vehiculo.getBastidor() + "'";
         actualizar(sql);
     }
 
     /**
-     * Funcion que realiza la consulta sobre la BBDD y la tabla Coche
+     * Funcion que realiza la consulta sobre la BBDD y la tabla vehiculo
      * @param sql a ejecutar
      * @return lista de resultado
      * @throws BbddException error controlado
      */
-    public ArrayList<Coche> obtenerListadoCoches(String sql) throws BbddException {
-        ArrayList<Coche> listaCoches = new ArrayList<>();
-        Coche coche = null;
+    public ArrayList<Vehiculo> obtenerListadovehiculos(String sql) throws BbddException {
+        ArrayList<Vehiculo> listavehiculos = new ArrayList<>();
+        Vehiculo vehiculo = null;
         Statement statement = null;
         ResultSet resultSet = null;
         Connection connection = null;
@@ -339,45 +340,46 @@ public class Bbdd {
                 String motor = resultSet.getString("motor");
                 int potencia = resultSet.getInt("potencia");
                 String cilindrada = resultSet.getString("cilindrada");
-                coche = new Coche(bastidor, matricula, marca, modelo, color, precio, extrasInstalados, motor, potencia, cilindrada);
-                listaCoches.add(coche);
+                String tipo= resultSet.getString("tipo");
+                vehiculo = new Vehiculo(bastidor, matricula, marca, modelo, color,
+                precio, extrasInstalados, motor, potencia, cilindrada,tipo);
+                listavehiculos.add(vehiculo);
             }
         } catch (Exception exception) {
             throw new BbddException("Se ha producido un error realizando la consulta", exception);
         } finally {
             closeConnection(connection, statement, resultSet);
         }
-        
-        return listaCoches;
+        return listavehiculos;
     }
 
     /**
-     * Funcion busca todos los coches guardados
-     * @return lista de todos los coches
+     * Funcion busca todos los vehiculos guardados
+     * @return lista de todos los vehiculos
      * @throws BbddException error controlado
      */
-    public ArrayList<Coche> obtenerListadoCoches() throws BbddException {
-        String sql = "SELECT * FROM Coche";
-        return obtenerListadoCoches(sql);
+    public ArrayList<Vehiculo> obtenerListadovehiculos() throws BbddException {
+        String sql = "SELECT * FROM Vehiculo";
+        return obtenerListadovehiculos(sql);
     }
 
     /**
-     * Funcion que busca un coche especifico
-     * @param bastidor numero de bastidor del coche a buscar
-     * @return Coche encotrado
+     * Funcion que busca un vehiculo especifico
+     * @param bastidor numero de bastidor del vehiculo a buscar
+     * @return vehiculo encotrado
      * @throws BbddException error controlado
      */
-    public Coche obtenerCoche(String bastidor) throws BbddException {
-        Coche coche = null;
-        ArrayList<Coche> listaCoches = null;
-        String sql = "SELECT * FROM Coche where bastidor =";
+    public Vehiculo obtenerVehiculo(String bastidor) throws BbddException {
+        Vehiculo vehiculo = null;
+        ArrayList<Vehiculo> listavehiculos = null;
+        String sql = "SELECT * FROM Vehiculo where bastidor =";
         sql = sql + "'" + bastidor + "'";
-        listaCoches = obtenerListadoCoches(sql);
-        if (!listaCoches.isEmpty()) {
-            coche = listaCoches.get(0);
+        listavehiculos = obtenerListadovehiculos(sql);
+        if (!listavehiculos.isEmpty()) {
+            vehiculo = listavehiculos.get(0);
         }
 
-        return coche;
+        return vehiculo;
     }
 
 
@@ -469,7 +471,7 @@ public class Bbdd {
 
     /**
      * Funcion que busca una direccion especifica
-     * @param unknown numero de bastidor del coche a buscar
+     * @param unknown numero de bastidor del vehiculo a buscar
      * @return Direccion encotrada
      * @throws BbddException error controlado
      */
