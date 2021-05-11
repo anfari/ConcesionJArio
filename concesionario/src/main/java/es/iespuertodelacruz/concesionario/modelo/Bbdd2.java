@@ -8,7 +8,7 @@ import es.iespuertodelacruz.concesionario.exception.BbddException;
  * /**
  * Clase BDbd, va a contener los datos para la base de datos
  */
-public class Bbdd {
+public class Bbdd2  {
     
     private String driver;
     private String url;
@@ -262,7 +262,7 @@ public class Bbdd {
         if (!listaVendedores.isEmpty()) {
             vendedor = listaVendedores.get(0);
         }
-        return vendedor;
+        return vendedor; 
     }
 
 
@@ -533,6 +533,6 @@ public class Bbdd {
         } catch (Exception exception) {
             throw new BbddException("Se ha producido un error cerando la conexion", exception);
         }
-    }
+    } 
 
 }
