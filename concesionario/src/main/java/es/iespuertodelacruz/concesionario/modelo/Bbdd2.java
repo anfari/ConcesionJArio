@@ -22,7 +22,7 @@ public class Bbdd2  {
      * @param usuario usuario de la bd
      * @param password contraseña de la bd
      */
-    public Bbdd(String driver, String url, String usuario, String password) {
+    public Bbdd2(String driver, String url, String usuario, String password) {
         this.driver = driver;
         this.url = url;
         this.usuario = usuario;
@@ -352,6 +352,7 @@ public class Bbdd2  {
         }
         return listavehiculos;
     }
+
 
     /**
      * Funcion busca todos los vehiculos guardados
