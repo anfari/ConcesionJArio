@@ -17,7 +17,7 @@ public class VistaApp {
         if(bd==null){
             bd=new Bbdd(null, null, null, null);
         }
-        menuCoche();
+        menuPrincipal();
 
 
     }
@@ -247,12 +247,14 @@ public class VistaApp {
 
             switch (opcion) {
                 case 1:
-                    generarDatosCoche(teclado);
+                    menuCoche();
                     break;
                 case 2:
-                   generarDatosClientes(teclado);
+                   menuClientes();
+                   
                     break;
                 case 3:
+                menuGerente();
                     break;
                 case 4:
                     ArrayList<Cliente> lista=bd.obtenerListadoClientes();
@@ -304,14 +306,13 @@ public class VistaApp {
                 default:
                     System.out.println("Solo números entre 1 y 5");
             }
-        } catch (InputMismatchException e) {
-            System.out.println("Debes insertar una opcion correcta");
-            teclado.next();
+            } catch (InputMismatchException e) {
+                System.out.println("Debes insertar una opcion correcta");
+                teclado.next();
+            }
         }
     }
-    //otro menu gerente
-    copia y pega de cliente->Vendodor
-    /**
+    /*
      * Metodo estatico privado que contiene el menu
      * @throws BbddException error controlado
      */
@@ -353,6 +354,9 @@ public class VistaApp {
                     System.out.println("Lista de clientes: "+listado);
                     break;
                 case 5:
+                    salir = true;
+                    break;
+                case 6:
                     salir = true;
                     break;
                 default:
