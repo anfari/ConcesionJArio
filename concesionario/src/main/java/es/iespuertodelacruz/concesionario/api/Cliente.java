@@ -7,7 +7,6 @@ public class Cliente extends Persona{
 
     /**
      * Contructor de cliente con parametros
-     * @param codigoCliente codigo del cliente
      * @param nombre nombre del cliente
      * @param apellidos apellidos del cliente
      * @param dni dni del cliente
