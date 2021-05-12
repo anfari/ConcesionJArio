@@ -40,8 +40,8 @@ public class DireccionController {
         if (direccion.getCodigoPostal() == null || direccion.getCodigoPostal().isEmpty()) {
             mensaje += "El codigo postal es nulo o vacio\n";
         }
-        if (direccion.getPoblacion() == null || direccion.getPoblacion().isEmpty()) {
-            mensaje += "La poblacion es nula o vacia\n";
+        if (direccion.getCiudad() == null || direccion.getCiudad().isEmpty()) {
+            mensaje += "La ciudad es nula o vacia\n";
         }
         if (direccion.getProvincia() == null || direccion.getProvincia().isEmpty()) {
             mensaje += "La provincia es nula o vacia";
@@ -73,9 +73,17 @@ public class DireccionController {
         direccionModelo.eliminar(direccion);
     }
 
-    //TODO: eliminar por PK
-
-    //TODO: buscar por pk
+    /**
+     * Metodo encargado de eliminar utilizando el identificador de la direccion
+     * @param dni dni del cliente
+     * @throws BbddException error controlado
+     * @throws DireccionException error controlado
+     */
+    public void eliminar(String identificador) throws BbddException, DireccionException {
+        Direccion direccion;
+        direccion = buscar(identificador);
+        eliminar(direccion);
+    }
 
     /**
      * Metodo encargado de modificar
@@ -86,11 +94,23 @@ public class DireccionController {
     public void modificar(Direccion direccion) throws DireccionException, BbddException {
         Direccion direccionAlmacenada;
         validarDireccion(direccion);
-        direccionAlmacenada = null; //buscar(direccion.PK);
+        direccionAlmacenada = buscar(direccion.getIdentificador());
         if (direccionAlmacenada == null) {
             throw new DireccionException("La direccion indicada no existe");
         }
         direccionModelo.modificar(direccion);
+    }
+
+    /**
+     * Metodo encargado de buscar por codigo de cliente
+     * @param dni dni del cliente
+     * @return cliente encontrado
+     * @throws BbddException error controlado
+     */
+    public Direccion buscar(String identificador) throws BbddException {
+        Direccion direccion = null;
+        direccion = direccionModelo.buscar(identificador);
+        return direccion;
     }
 
     /**

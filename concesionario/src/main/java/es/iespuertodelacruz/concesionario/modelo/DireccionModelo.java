@@ -27,7 +27,7 @@ public class DireccionModelo {
         persistencia.insertarDireccion(direccion);
     }
 
-     /**
+    /**
      * Metodo que modifica una direccion
      * @param direccion direccion a modificar
      * @throws BbddException error controlado
@@ -36,16 +36,17 @@ public class DireccionModelo {
         persistencia.modificarDireccion(direccion);
     }
 
-     /**
+    /**
      * Metodo que busca una direccion
-     * @param direccion direccion a buscar
+     * @param identificador identificador de la direccion a buscar
+     * @return direccion encontrada
      * @throws BbddException error controlado
      */
-    public void buscar(Direccion direccion) throws BbddException{
-        persistencia.obtenerDireccion(direccion.getCodigoPostal());
+    public Direccion buscar(String identificador) throws BbddException{
+        return persistencia.obtenerDireccion(identificador);
     }
 
-     /**
+    /**
      * Metodo que elimina una direccion
      * @param direccion direccion a eliminar
      * @throws BbddException error controlado

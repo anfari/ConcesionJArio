@@ -77,7 +77,7 @@ public class VistaApp {
     private static void menuVentas() throws BbddException {
         boolean salir = false;
         int opcion;
-        Coche coche;
+        Vehiculo vehiculo;
 
         while (!salir) {
             System.out.println("1. Vender Vehiculo");
@@ -289,39 +289,42 @@ public class VistaApp {
      * Funcion privada encarga de generar vehiculos
      * @return devuelve un objeto de tipo vehiculo
      */
-    private static Coche generarDatosVehiculo(){
+    private static Vehiculo generarDatosVehiculo(){
         
-        System.out.print("Introduzca el valor de bastidor: ");
-        String bastidor1 = teclado.next();
-
-        System.out.print("Introduzca el valor de marca: ");
-        String marca1 = teclado.next();
+        System.out.print("Introduzca el numero de bastidor: ");
+        String bastidor = teclado.next();
 
         System.out.print("Introduzca el valor de matricula: ");
-        String matricula1 = teclado.next();
+        String matricula = teclado.next();
 
-        System.out.print("Introduzca el valor de modelo: ");
-        String modelo1 = teclado.next();
+        System.out.print("Introduzca la marca: ");
+        String marca = teclado.next();
 
-        System.out.print("Introduzca el valor de color: ");
-        String color1 = teclado.next();
+        System.out.print("Introduzca el modelo: ");
+        String modelo = teclado.next();
 
-        System.out.print("Introduzca el valor de cilindrada: ");
-        String cilindrada1 = teclado.next();
+        System.out.print("Introduzca el color: ");
+        String color = teclado.next();
 
-        System.out.print("Introduzca el valor de motor: ");
-        String motor1 = teclado.next();
+        System.out.print("Introduzca la cilindrada: ");
+        String cilindrada = teclado.next();
 
-        System.out.print("Introduzca el valor de extras instalados: ");
-        String extras1 = teclado.next();
+        System.out.print("Introduzca el tipo de motor: ");
+        String motor = teclado.next();
 
-        System.out.print("Introduzca el valor de la potencia: ");
-        int potencia1 = teclado.nextInt();
+        System.out.print("Introduzca la potencia: ");
+        int potencia = teclado.nextInt();
 
-        System.out.print("Introduzca el valor de precio: ");
-        double precio1 = teclado.nextDouble();
+        System.out.print("Introduzca los extras instalados: ");
+        String extras = teclado.next();
 
-        return new Coche(bastidor1, matricula1, marca1, modelo1, color1, precio1, extras1, motor1, potencia1, cilindrada1);
+        System.out.print("Introduzca el precio: ");
+        double precio = teclado.nextDouble();
+
+        System.out.print("Introduzca el tipo de vehiculo: ");
+        String tipo = teclado.next();
+
+        return new Vehiculo(bastidor, matricula, marca, modelo, color, precio, extras, motor, potencia, cilindrada, tipo);
     }
 
     /**

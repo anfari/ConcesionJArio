@@ -1,18 +1,18 @@
 package es.iespuertodelacruz.concesionario.modelo;
 
-import es.iespuertodelacruz.concesionario.api.Coche;
+import es.iespuertodelacruz.concesionario.api.Vehiculo;
 import es.iespuertodelacruz.concesionario.exception.BbddException;
 
 /**
  * Clase VehiculoModelo 
  */
-public class CocheModelo {
+public class VehiculoModelo {
     Bbdd persistencia;
 
     /**
      * Constructor de la clase CocheModelo
      */
-    public CocheModelo() {
+    public VehiculoModelo() {
         persistencia = new Bbdd("org.sqlite.JDBC", "jdbc:sqlite:test.db", null, null);
     }
 
@@ -22,31 +22,31 @@ public class CocheModelo {
      * @param vehiculo inserta el vehiculo
      * @throws BbddException error controlado
      */
-    public void insertar(Coche coche) throws BbddException{
-        persistencia.insertarCoche(coche);
+    public void insertar(Vehiculo vehiculo) throws BbddException{
+        persistencia.insertarVehiculo(vehiculo);
     }
      /**
      * Metodo que modifica en una lista
-     * @param coche coche a modificar
+     * @param vehiculo vehiculo a modificar
      * @throws BbddException error controlado
      */
-    public void modificar(Coche coche) throws BbddException{
-        persistencia.modificarCoche(coche);
+    public void modificar(Vehiculo vehiculo) throws BbddException{
+        persistencia.modificarVehiculo(vehiculo);
     }
      /**
      * Metodo que busca un vehiculo en la lista
      * @param vehiculo a buscar
      * @throws BbddException error controlado
      */
-    public void buscar(Coche coche) throws BbddException{
-        persistencia.obtenerCoche(coche.getBastidor());
+    public void buscar(Vehiculo vehiculo) throws BbddException{
+        persistencia.obtenerVehiculo(vehiculo.getBastidor());
     }
      /**
      * Metodo que elimina un vehiculo de la lista
      * @param vehiculo vehiculo a eliminar
      * @throws BbddException error controlado
      */
-    public void eliminar(Coche coche) throws BbddException{
-        persistencia.eliminarCoche(coche);
+    public void eliminar(Vehiculo vehiculo) throws BbddException{
+        persistencia.eliminarVehiculo(vehiculo);
     }
 }

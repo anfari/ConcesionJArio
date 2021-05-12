@@ -32,7 +32,7 @@ public class Vehiculo {
      */
     public Vehiculo(String bastidor, String matricula, String marca, 
     String modelo, String color, double precio, String extrasInstalados, 
-    String motor, int potencia, String cilindrada,String tipo) {
+    String motor, int potencia, String cilindrada, String tipo) {
         this.bastidor = bastidor;
         this.matricula = matricula;
         this.marca = marca;
