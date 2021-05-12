@@ -275,12 +275,12 @@ public class Bbdd2  {
     public void insertarVendedor(Empleado empleado) throws BbddException {
         String sql ="INSERT INTO Empleado (dni, nombre, apellidos " + 
         "fechaNacimiento, telefono, direccion,codigoEmpleado"+
-        "+,rango,contraseña) VALUES ('" + empleado.getDni()+ 
+        "+,rango,contrasenia) VALUES ('" + empleado.getDni()+ 
         "', '" + empleado.getNombre() + "', '" + empleado.getApellidos() + "', '"
          + empleado.getFechaNacimiento() + "', '" + 
         empleado.getTelefono() + "', '" + empleado.getDireccion() + 
          "', '" + empleado.getCodigoEmpleado() + "', '" + empleado.getRango() +
-         "', '" + empleado.getContraseña() +"'";
+         "', '" + empleado.getContrasenia() +"'";
         actualizar(sql);
     }
 
@@ -306,7 +306,7 @@ public class Bbdd2  {
         "', fechaNacimiento = '" + empleado.getFechaNacimiento() + "', telefono = '" + 
         empleado.getTelefono() + "', direccion = '" + empleado.getDireccion() +
         "', dni = '" + empleado.getDni()+"', rango = '" + empleado.getRango()+
-        "', contraseña = '" + empleado.getContraseña()+
+        "', contrasenia = '" + empleado.getContrasenia()+
         "' WHERE codigoEmpleado = '" + empleado.getCodigoEmpleado() + "'";
         actualizar(sql);
     }
@@ -508,12 +508,12 @@ public class Bbdd2  {
      * @throws BbddException error controlado
      */
     public void insertarDireccion(Direccion direccion) throws BbddException {
-        String sql ="INSERT INTO Direccion (calle, numero, codigoPostal, provincia, poblacion) " + 
-        "VALUES ('" + direccion.getCalle() + "', '" + direccion.getNumero() + 
+        String sql ="INSERT INTO Direccion (identificador, calle, numero, codigoPostal"
+        +", provincia, ciudad,pais) " + 
+        "VALUES ('"+ direccion.getIdentificador() + "', '"  + direccion.getCalle() + "', '" + direccion.getNumero() + 
         "', '" + direccion.getCodigoPostal() + "', '" + direccion.getProvincia() + 
-        "', '" + direccion.getPoblacion() + "'";
+        "', '" + direccion.getCiudad() + "', '" + direccion.getPais() + "'";
         actualizar(sql);
-        
     }
 
     /**
@@ -534,8 +534,9 @@ public class Bbdd2  {
     public void modificarDireccion(Direccion direccion) throws BbddException {
         String sql = "UPDATE Direccion SET calle = '" + direccion.getCalle() +
         "', numero = '" + direccion.getNumero() + "', codigoPostal = '" + direccion.getCodigoPostal() +
-        "', provincia = '" + direccion.getProvincia() + "', poblacion = '" + direccion.getPoblacion() + 
-        "' WHERE codigoCliente = '" + direccion.getCodigoPostal() + "'";
+        "', provincia = '" + direccion.getProvincia() + "', pais = '" + direccion.getPais() + 
+        "', ciudad = '" + direccion.getCiudad() + 
+        "' WHERE identificador = '" + direccion.getIdentificador() + "'";
         actualizar(sql);
     }
 
@@ -557,12 +558,15 @@ public class Bbdd2  {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
+                String identificador=resultSet.getString("identificador");
                 String calle = resultSet.getString("calle");
                 int numero = resultSet.getInt("numero");
                 String codigoPostal = resultSet.getString("codigoPostal");
                 String provincia = resultSet.getString("provincia");
-                String poblacion = resultSet.getString("poblacion");
-                direccion = new Direccion(calle, numero, codigoPostal, provincia, poblacion);
+                String ciudad = resultSet.getString("ciudad");
+                String pais = resultSet.getString("pais");
+                direccion = new Direccion(identificador, calle, numero, codigoPostal,
+                 provincia, ciudad, pais);
                 listaDirecciones.add(direccion);
             }
         } catch (Exception exception) {

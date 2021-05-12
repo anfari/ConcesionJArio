@@ -333,6 +333,9 @@ public class VistaApp {
      */
     private static Cliente generarDatosCliente() {
 
+        System.out.print("Introduzca el valor de el codigo de cliente: ");
+        String codigoCliente = teclado.next();
+
         System.out.print("Introduzca el valor de dni: ");
         String dni = teclado.next();
 
@@ -348,7 +351,7 @@ public class VistaApp {
         System.out.print("Introduzca el valor de telefono: ");
         String telefono = teclado.next();
 
-        return new Cliente(nombre, apellidos, dni, fechaNacimiento, telefono, generarDatosDireccion(dni));
+        return new Cliente(codigoCliente, nombre, apellidos, dni, fechaNacimiento, telefono, generarDatosDireccion(dni));
     }
 
     /**
@@ -357,6 +360,9 @@ public class VistaApp {
      */
     private static Empleado generarDatosEmpleado() {
 
+        System.out.print("Introduzca el valor de el codigo del empleado ");
+        String codigoEmpleado = teclado.next();
+
         System.out.print("Introduzca el valor de dni: ");
         String dni = teclado.next();
 
@@ -372,7 +378,13 @@ public class VistaApp {
         System.out.print("Introduzca el valor de telefono: ");
         String telefono = teclado.next();
 
-        return new Empleado(nombre, apellidos, dni, fechaNacimiento, telefono, generarDatosDireccion(dni));
+        System.out.print("Introduzca el rango del empleado: ");
+        String rango = teclado.next();
+
+        System.out.print("Introduzca el valor de contraseña: ");
+        String contraseña = teclado.next();
+
+        return new Empleado(nombre, apellidos, dni, fechaNacimiento, telefono, generarDatosDireccion(dni), codigoEmpleado, rango, contraseña);
     }
 
     /**

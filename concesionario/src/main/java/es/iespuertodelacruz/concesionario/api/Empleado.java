@@ -6,7 +6,7 @@ package es.iespuertodelacruz.concesionario.api;
 public class Empleado extends Persona{
     String codigoEmpleado;
     String rango;
-    String contraseña;
+    String contrasenia;
     
     /**
      * Constructor de vendedor con parametros
@@ -18,40 +18,58 @@ public class Empleado extends Persona{
      * @param direccion objeto direccion del vendedor
      * @param codigoEmpleado identidicador de empleado
      * @param rango cargo que ocupa el empleado
-     * @param contraseña contraseña del empleado
+     * @param contrasenia contraseña del empleado
      */
     public Empleado(String nombre, String apellidos, 
     String dni, String fechaNacimiento, String telefono,
     Direccion direccion, 
-    String codigoEmpleado, String rango, String contraseña) {
+    String codigoEmpleado, String rango, String contrasenia) {
         super(nombre, apellidos, dni, fechaNacimiento, telefono, direccion);
         this.codigoEmpleado = codigoEmpleado;
         this.rango = rango;
-        this.contraseña = contraseña;
+        this.contrasenia = contrasenia;
     }
-
+     /**
+     * Getter de la clase Empleado
+     * @return codigoEmpleado codigo del empleado
+     */
     public String getCodigoEmpleado() {
         return this.codigoEmpleado;
     }
-
+    /**
+     * Setter de la clase Empleado
+     * @param codigoEmpleado codigo del empleado
+     */
     public void setCodigoEmpleado(String codigoEmpleado) {
         this.codigoEmpleado = codigoEmpleado;
     }
-
+     /**
+     * Getter de la clase Empleado
+     * @return rango de el empleado
+     */
     public String getRango() {
         return this.rango;
     }
-
+     /**
+     * Setter de la clase Empleado
+     * @param rango del empleado
+     */
     public void setRango(String rango) {
         this.rango = rango;
     }
-
-    public String getContraseña() {
-        return this.contraseña;
+     /**
+     * Getter de la clase Empleado
+     * @return contraseña de el empleado 
+     */
+    public String getContrasenia() {
+        return this.contrasenia;
     }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+     /**
+     * Setter de la clase Empleado
+     * @param contrasenia del empleado
+     */
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
 }
