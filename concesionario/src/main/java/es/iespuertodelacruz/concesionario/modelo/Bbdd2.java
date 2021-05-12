@@ -52,7 +52,110 @@ public class Bbdd2  {
         
         return connection;
     }
+    //CRUD de Persona
+    /**
+     * Metodo encargado de realizar la insercion de una persona
+     * @param persona persona a insertar
+     * @throws BbddException error controlado
+     */
+    
+    public void insertarPersona(Persona persona) throws BbddException {
+        String sql ="INSERT INTO Persona (dni,nombre, apellidos" + 
+        "fechaNacimiento, telefono, direccion) VALUES ('" + persona.getDni() + 
+        "', '" + persona.getNombre() + "', '" + persona.getApellidos() +
+         "', '" + persona.getFechaNacimiento() + "', '" + 
+        persona.getTelefono() + "', '" + persona.getDireccion() + "'";
+        actualizar(sql);
+    }
+    /**
+     * Metodo encargado de realizar la eliminacion de una persona
+     * @param persona persona a eliminar
+     * @throws BbddException error controlado
+     */
+    public void eliminarPersona(Persona persona) throws BbddException {
+        String sql = "DELETE from Persona where dni = '" + persona.getDni() + "'";
+        actualizar(sql);
+    }
+    
+    /**
+     * Metodo encargado de realizar la modificacion de una Persona
+     * @param persona persona a modificar
+     * @throws BbddException error controlado
+     */
+    public void modificarPersona(Persona persona) throws BbddException {
+        String sql = "UPDATE Persona SET nombre = '" + persona.getNombre() +
+        "', apellidos = '" + persona.getApellidos() +
+        "', fechaNacimiento = '" + persona.getFechaNacimiento() + "', telefono = '" + 
+        persona.getTelefono() + "', direccion = '" + persona.getDireccion() +
+        "' WHERE dni = '" + persona.getDni()  + "'";
+        actualizar(sql);
+    }
 
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Persona
+     * @param sql a ejecutar
+     * @return lista de personas
+     * @throws BbddException error controlado
+     */
+    public ArrayList<Persona> obtenerListadoPersonas(String sql) throws BbddException {
+        ArrayList<Persona> listaPersonas = new ArrayList<>();
+        Persona persona = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String nombre = resultSet.getString("nombre");
+                String apellidos = resultSet.getString("apellidos");
+                String dni = resultSet.getString("dni");
+                String fechaNacimiento = resultSet.getString("fechaNacimiento");
+                String telefono = resultSet.getString("telefono");
+                Direccion direccion = null; //TODO: Modificar cuando se tenga PK
+                persona = new Persona(nombre, apellidos, dni, fechaNacimiento, telefono, direccion);
+                listaPersonas.add(persona);
+            }
+        } catch (Exception exception) {
+            throw new BbddException("Se ha producido un error realizando la consulta", exception);
+        } finally {
+            closeConnection(connection, statement, resultSet);
+        }
+        return listaPersonas;
+    }
+
+    /**
+     * Funcion busca todos las personas guardados
+     * @return lista de todas las personas
+     * @throws BbddException error controlado
+     */
+    public ArrayList<Persona> obtenerListadoPersonas() throws BbddException {
+        String sql = "SELECT * FROM Persona";
+        return obtenerListadoPersonas(sql);
+    }
+
+    /**
+     * Funcion que busca una persona especifica
+     * @param dni dni de la persona
+     * @return Persona encontrada
+     * @throws BbddException error controlado
+     */
+    public Persona obtenerPersona(String dni) throws BbddException {
+        Persona persona = null;
+        ArrayList<Persona> listaPersonas = null;
+        String sql = "SELECT * FROM Persona where dni =";
+        sql = sql + "'" + dni + "'";
+        listaPersonas = obtenerListadoPersonas(sql);
+        if (!listaPersonas.isEmpty()) {
+            persona = listaPersonas.get(0);
+        }
+        return persona;
+    }
+
+
+    
     
     //CRUD de Cliente
     
@@ -112,13 +215,14 @@ public class Bbdd2  {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
+                String codigoCliente = resultSet.getString("codigoCliente");
                 String nombre = resultSet.getString("nombre");
                 String apellidos = resultSet.getString("apellidos");
                 String dni = resultSet.getString("dni");
                 String fechaNacimiento = resultSet.getString("fechaNacimiento");
                 String telefono = resultSet.getString("telefono");
                 Direccion direccion = null; //TODO: Modificar cuando se tenga PK
-                cliente = new Cliente(nombre, apellidos, dni, fechaNacimiento, telefono, direccion);
+                cliente = new Cliente(codigoCliente, nombre, apellidos, dni, fechaNacimiento, telefono, direccion);
                 listaClientes.add(cliente);
             }
         } catch (Exception exception) {
@@ -161,55 +265,61 @@ public class Bbdd2  {
 
 
 
-    //CRUD de Vendedor
+    //CRUD de Empleado
 
     /**
-     * Metodo encargado de realizar la insercion de un vendedor
-     * @param vendedor vendedor a insertar
+     * Metodo encargado de realizar la insercion de un empleado
+     * @param empleado empleado a insertar
      * @throws BbddException error controlado
      */
-    public void insertarVendedor(Vendedor vendedor) throws BbddException {
-        String sql ="INSERT INTO Vendedor (dni, nombre, apellidos " + 
-        "fechaNacimiento, telefono, direccion) VALUES ('" + vendedor.getDni()+ 
-        "', '" + vendedor.getNombre() + "', '" + vendedor.getApellidos() + "', '"
-         + vendedor.getFechaNacimiento() + "', '" + 
-        vendedor.getTelefono() + "', '" + vendedor.getDireccion() + "'";
+    public void insertarVendedor(Empleado empleado) throws BbddException {
+        String sql ="INSERT INTO Empleado (dni, nombre, apellidos " + 
+        "fechaNacimiento, telefono, direccion,codigoEmpleado"+
+        "+,rango,contraseña) VALUES ('" + empleado.getDni()+ 
+        "', '" + empleado.getNombre() + "', '" + empleado.getApellidos() + "', '"
+         + empleado.getFechaNacimiento() + "', '" + 
+        empleado.getTelefono() + "', '" + empleado.getDireccion() + 
+         "', '" + empleado.getCodigoEmpleado() + "', '" + empleado.getRango() +
+         "', '" + empleado.getContraseña() +"'";
         actualizar(sql);
     }
 
     /**
-     * Metodo encargado de realizar la eliminacion de un vendedor
-     * @param vendedor vendedor a eliminar
+     * Metodo encargado de realizar la eliminacion de un empleado
+     * @param empleado empleado a eliminar
      * @throws BbddException error controlado
      */
-    public void eliminarVendedor(Vendedor vendedor) throws BbddException {
-        String sql = "DELETE from Vendedor where dni = '" + vendedor.getDni() + "'";
+    public void eliminarEmpleado(Empleado empleado) throws BbddException {
+        String sql = "DELETE from Empleado where codigoEmpleado = '" + 
+        empleado.getCodigoEmpleado() + "'";
         actualizar(sql);
     }
 
     /**
-     * Metodo encargado de realizar la modificacion de un vendedor
-     * @param vendedor vendedor a modificar
+     * Metodo encargado de realizar la modificacion de un empleado
+     * @param empleado empleado a modificar
      * @throws BbddException error controlado
      */
-    public void modificarVendedor(Vendedor vendedor) throws BbddException {
-        String sql = "UPDATE Vendedor SET nombre = '" + vendedor.getNombre() +
-        "', apellidos = '" + vendedor.getApellidos() +
-        "', fechaNacimiento = '" + vendedor.getFechaNacimiento() + "', telefono = '" + 
-        vendedor.getTelefono() + "', direccion = '" + vendedor.getDireccion() +
-        "' WHERE dni = '" + vendedor.getDni() + "'";
+    public void modificarEmpleado(Empleado empleado) throws BbddException {
+        String sql = "UPDATE Empleado SET nombre = '" + empleado.getNombre() +
+        "', apellidos = '" + empleado.getApellidos() +
+        "', fechaNacimiento = '" + empleado.getFechaNacimiento() + "', telefono = '" + 
+        empleado.getTelefono() + "', direccion = '" + empleado.getDireccion() +
+        "', dni = '" + empleado.getDni()+"', rango = '" + empleado.getRango()+
+        "', contraseña = '" + empleado.getContraseña()+
+        "' WHERE codigoEmpleado = '" + empleado.getCodigoEmpleado() + "'";
         actualizar(sql);
     }
 
     /**
-     * Funcion que realiza la consulta sobre la BBDD y la tabla Vendedor
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Empleado
      * @param sql a ejecutar
      * @return lista de resultado
      * @throws BbddException error controlado
      */
-    public ArrayList<Vendedor> obtenerListadoVendedores(String sql) throws BbddException {
-        ArrayList<Vendedor> listaVendedores = new ArrayList<>();
-        Vendedor vendedor = null;
+    public ArrayList<Empleado> obtenerListadoEmpleados(String sql) throws BbddException {
+        ArrayList<Empleado> listaEmpleados = new ArrayList<>();
+        Empleado empleado = null;
         Statement statement = null;
         ResultSet resultSet = null;
         Connection connection = null;
@@ -219,14 +329,17 @@ public class Bbdd2  {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
+                String codigoEmpleado=resultSet.getString("codigoEmpleado");
+                String rango=resultSet.getString("rango");
+                String contraseña=resultSet.getString("contraseña");
                 String nombre = resultSet.getString("nombre");
                 String apellidos = resultSet.getString("apellidos");
                 String dni = resultSet.getString("dni");
                 String fechaNacimiento = resultSet.getString("fechaNacimiento");
                 String telefono = resultSet.getString("telefono");
                 Direccion direccion = null; //TODO: Modificar cuando se tenga PK
-                vendedor = new Vendedor(nombre, apellidos, dni, fechaNacimiento, telefono, direccion);
-                listaVendedores.add(vendedor);
+                empleado = new Empleado(nombre, apellidos, dni, fechaNacimiento, telefono, direccion, codigoEmpleado, rango, contraseña);
+                listaEmpleados.add(empleado);
             }
         } catch (Exception exception) {
             throw new BbddException("Se ha producido un error realizando la consulta", exception);
@@ -234,35 +347,35 @@ public class Bbdd2  {
             closeConnection(connection, statement, resultSet);
         }
         
-        return listaVendedores;
+        return listaEmpleados;
     }
 
     /**
-     * Funcion busca todos los vendedores guardados
-     * @return lista de todos los vendedores
+     * Funcion busca todos los empleados guardados
+     * @return lista de todos los empleados
      * @throws BbddException error controlado
      */
-    public ArrayList<Vendedor> obtenerListadoVendedores() throws BbddException {
-        String sql = "SELECT * FROM Vendedor";
-        return obtenerListadoVendedores(sql);
+    public ArrayList<Empleado> obtenerListadoEmpleados() throws BbddException {
+        String sql = "SELECT * FROM Empleado";
+        return obtenerListadoEmpleados(sql);
     }
 
     /**
-     * Funcion que busca un vendedor especifico
-     * @param codigoVendedor codigo del vendedor a buscar
-     * @return Vendedor encotrado
+     * Funcion que busca un empleado especifico
+     * @param codigoEmpleado codigo del empleado a buscar
+     * @return Empleado encotrado
      * @throws BbddException error controlado
      */
-    public Vendedor obtenerVendedor(String dni) throws BbddException {
-        Vendedor vendedor = null;
-        ArrayList<Vendedor> listaVendedores = null;
-        String sql = "SELECT * FROM Vendedor where dni =";
-        sql = sql + "'" + dni + "'";
-        listaVendedores = obtenerListadoVendedores(sql);
-        if (!listaVendedores.isEmpty()) {
-            vendedor = listaVendedores.get(0);
+    public Empleado obtenerEmpleados(String codigoEmpleado) throws BbddException {
+        Empleado empleado = null;
+        ArrayList<Empleado> listaEmpleados = null;
+        String sql = "SELECT * FROM Empleado where dni =";
+        sql = sql + "'" + codigoEmpleado + "'";
+        listaEmpleados = obtenerListadoEmpleados(sql);
+        if (!listaEmpleados.isEmpty()) {
+            empleado = listaEmpleados.get(0);
         }
-        return vendedor; 
+        return empleado; 
     }
 
 
@@ -400,6 +513,7 @@ public class Bbdd2  {
         "', '" + direccion.getCodigoPostal() + "', '" + direccion.getProvincia() + 
         "', '" + direccion.getPoblacion() + "'";
         actualizar(sql);
+        
     }
 
     /**

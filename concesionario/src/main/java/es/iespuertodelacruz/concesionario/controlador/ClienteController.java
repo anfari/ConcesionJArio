@@ -30,6 +30,9 @@ public class ClienteController {
             mensaje = "Se esta intentando validar un objeto vacio";
             throw new ClienteException(mensaje);
         }
+        if (cliente.getCodigoCliente() == null || cliente.getCodigoCliente().isEmpty()) {
+            mensaje += "El codigo del cliente es nulo o vacio\n";
+        }
         if (cliente.getNombre() == null || cliente.getNombre().isEmpty()) {
             mensaje += "El nombre del cliente es nulo o vacio\n";
         }
@@ -85,9 +88,9 @@ public class ClienteController {
      * @throws ClienteException error controlado
      * @throws BbddException error controlado
      */
-    public void eliminar(String dni) throws ClienteException, BbddException {
+    public void eliminar(String codigoCliente) throws ClienteException, BbddException {
         Cliente cliente;
-        cliente = buscar(dni);
+        cliente = buscar(codigoCliente);
         eliminar(cliente);
     }
 

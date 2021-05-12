@@ -1,6 +1,8 @@
 package es.iespuertodelacruz.concesionario.modelo;
 
+import es.iespuertodelacruz.concesionario.api.Cliente;
 import es.iespuertodelacruz.concesionario.api.Persona;
+import es.iespuertodelacruz.concesionario.exception.BbddException;
 
 /**
  * Clase PersonaModelo

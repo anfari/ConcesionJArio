@@ -4,54 +4,49 @@ package es.iespuertodelacruz.concesionario.api;
  * Clase Venta
  */
 public class Venta {
-    String dniEmpleado;
-    String dniCliente;
+    String codigoEmpleado;
+    String codigoCliente;
     String bastidor;
 
 
     /**
      * Constructor de la clase Venta
-     * @param dniEmpleado dni del empleado que realiza la venta
-     * @param dniCliente dni del cliente que realiza la compra
+     * @param codigoEmpleado codigo del empleado que realiza la venta
+     * @param codigoCliente codigo del cliente que realiza la compra
      * @param bastidor numero de bastidor del vehiculo vendido
      */
-    public Venta(String dniEmpleado, String dniCliente, String bastidor) {
-        this.dniEmpleado = dniEmpleado;
-        this.dniCliente = dniCliente;
+    public Venta(String codigoEmpleado, String codigoCliente, String bastidor) {
+        this.codigoEmpleado = codigoEmpleado;
+        this.codigoCliente = codigoCliente;
         this.bastidor = bastidor;
     }
-
-
-    /**
+     /**
      * Getter de la clase Venta
      * @return dni del empleado
      */
-    public String getDniEmpleado() {
-        return this.dniEmpleado;
+    public String getCodigoEmpleado() {
+        return this.codigoEmpleado;
     }
-
     /**
      * Setter de la clase Venta
      * @param dniEmpleado dni del empleado
      */
-    public void setDniEmpleado(String dniEmpleado) {
-        this.dniEmpleado = dniEmpleado;
+    public void setCodigoEmpleado(String codigoEmpleado) {
+        this.codigoEmpleado = codigoEmpleado;
     }
-
     /**
      * Getter de la clase Venta
      * @return dni del cliente
      */
-    public String getDniCliente() {
-        return this.dniCliente;
+    public String getCodigoCliente() {
+        return this.codigoCliente;
     }
-
-    /**
+     /**
      * Setter de la clase Venta
      * @param dniCliente dni del cliente
      */
-    public void setDniCliente(String dniCliente) {
-        this.dniCliente = dniCliente;
+    public void setCodigoCliente(String codigoCliente) {
+        this.codigoCliente = codigoCliente;
     }
 
     /**
