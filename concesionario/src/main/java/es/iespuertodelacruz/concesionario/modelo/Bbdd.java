@@ -392,10 +392,10 @@ public class Bbdd {
      * @throws BbddException error controlado
      */
     public void insertarDireccion(Direccion direccion) throws BbddException {
-        String sql ="INSERT INTO Direccion (calle, numero, codigoPostal, provincia, poblacion) " + 
-        "VALUES ('" + direccion.getCalle() + "', '" + direccion.getNumero() + 
-        "', '" + direccion.getCodigoPostal() + "', '" + direccion.getProvincia() + 
-        "', '" + direccion.getPoblacion() + "'";
+        String sql ="INSERT INTO Direccion (identificador, calle, numero, codigoPostal, provincia, poblacion, pais) " + 
+        "VALUES ('" + direccion.getIdentificador() + "', '" + direccion.getCalle() + "', '" + direccion.getNumero() + 
+        "', '" + direccion.getCodigoPostal() + "', '" + direccion.getProvincia() + "', '" + direccion.getCiudad() + 
+        "', '" + direccion.getPais() + "'";
         actualizar(sql);
     }
 
@@ -405,7 +405,7 @@ public class Bbdd {
      * @throws BbddException error controlado
      */
     public void eliminarDireccion(Direccion direccion) throws BbddException {
-        String sql = "DELETE from Direccion where unknown = '" + direccion.getCodigoPostal() + "'";  //TODO: cambiar cuando sepamos PK de direccion
+        String sql = "DELETE from Direccion where identificador = '" + direccion.getIdentificador() + "'";
         actualizar(sql);
     }
 
@@ -417,8 +417,8 @@ public class Bbdd {
     public void modificarDireccion(Direccion direccion) throws BbddException {
         String sql = "UPDATE Direccion SET calle = '" + direccion.getCalle() +
         "', numero = '" + direccion.getNumero() + "', codigoPostal = '" + direccion.getCodigoPostal() +
-        "', provincia = '" + direccion.getProvincia() + "', poblacion = '" + direccion.getPoblacion() + 
-        "' WHERE codigoCliente = '" + direccion.getCodigoPostal() + "'";
+        "', provincia = '" + direccion.getProvincia() + "', ciudad = '" + direccion.getCiudad() + 
+        "', pais = '" + direccion.getPais() + "' WHERE identificador = '" + direccion.getIdentificador() + "'";
         actualizar(sql);
     }
 
@@ -440,12 +440,14 @@ public class Bbdd {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
+                String identificador = resultSet.getString("identificador");
                 String calle = resultSet.getString("calle");
                 int numero = resultSet.getInt("numero");
                 String codigoPostal = resultSet.getString("codigoPostal");
                 String provincia = resultSet.getString("provincia");
-                String poblacion = resultSet.getString("poblacion");
-                direccion = new Direccion(calle, numero, codigoPostal, provincia, poblacion);
+                String ciudad = resultSet.getString("ciudad");
+                String pais = resultSet.getString("pais");
+                direccion = new Direccion(identificador, calle, numero, codigoPostal, provincia, ciudad, pais);
                 listaDirecciones.add(direccion);
             }
         } catch (Exception exception) {
@@ -473,11 +475,11 @@ public class Bbdd {
      * @return Direccion encotrada
      * @throws BbddException error controlado
      */
-    public Direccion obtenerDireccion(String unknown) throws BbddException {
+    public Direccion obtenerDireccion(String identificador) throws BbddException {
         Direccion direccion = null;
         ArrayList<Direccion> listaDirecciones = null;
-        String sql = "SELECT * FROM Direccion where bastidor =";
-        sql = sql + "'" + unknown + "'";
+        String sql = "SELECT * FROM Direccion where identificador =";
+        sql = sql + "'" + identificador + "'";
         listaDirecciones = obtenerListadoDirecciones(sql);
         if (!listaDirecciones.isEmpty()) {
             direccion = listaDirecciones.get(0);

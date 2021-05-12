@@ -8,7 +8,8 @@ public class Direccion {
     int numero;
     String codigoPostal;
     String provincia;
-    String poblacion;
+    String ciudad;
+    String pais;
 
     /**
      * Constructor de direccion con parametros
@@ -17,16 +18,18 @@ public class Direccion {
      * @param numero numeo de la casa
      * @param codigoPostal codigo postal 
      * @param provincia provincia de residencia
-     * @param poblacion poblacion de residencia
+     * @param ciudad ciudad de residencia
+     * @param pais pais de residencia
      */
     public Direccion(String identificador, String calle, int numero, String codigoPostal, 
-    String provincia, String poblacion) {
+    String provincia, String ciudad, String pais) {
         this.identificador = identificador;
         this.calle = calle;
         this.numero = numero;
         this.codigoPostal = codigoPostal;
         this.provincia = provincia;
-        this.poblacion = poblacion;
+        this.ciudad = ciudad;
+        this.pais = pais;
     }
 
    
@@ -70,7 +73,7 @@ public class Direccion {
         return this.numero;
     }
 
-     /**
+    /**
      * Setter de la clase Direccion
      * @param numero numero de la casa
      */
@@ -103,29 +106,54 @@ public class Direccion {
     }
 
     /**
-     * setter de la clase Direccion
-     * @param provincia del cliente
+     * Setter de la clase Direccion
+     * @param provincia provincia
      */
     public void setProvincia(String provincia) {
         this.provincia = provincia;
     }
 
     /**
-     * getter de la clase Direccion
-     * @return  poblacion 
+     * Getter de la clase Direccion
+     * @return cuidad
      */
-    public String getPoblacion() {
-        return this.poblacion;
+    public String getCiudad() {
+        return this.ciudad;
     }
 
     /**
-     * setter de la clase Direccion
-     * @param poblacion nombre
+     * Setter de la clase Direccion
+     * @param ciudad ciudad
      */
-    public void setPoblacion(String poblacion) {
-        this.poblacion = poblacion;
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
 
+    /**
+     * Getter de la clase Direccion
+     * @return pais
+     */
+    public String getPais() {
+        return this.pais;
+    }
+
+    /**
+     * Setter de la clase Direccion
+     * @param pais pais
+     */
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+
+    /**
+     * Funcion toString de la clase Direccion
+     */
+    @Override
+    public String toString() {
+        return getCalle() + " " + getNumero() + ", " + getCiudad() + 
+        ", " + getProvincia() + ", " + getPais() + ", " + getCodigoPostal();
+    }
 
     
 }

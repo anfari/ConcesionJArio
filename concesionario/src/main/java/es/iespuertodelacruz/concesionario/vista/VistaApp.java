@@ -12,7 +12,9 @@ import es.iespuertodelacruz.concesionario.modelo.Bbdd;
  * Clase principal que contiene el menu de opciones de la app
  */
 public class VistaApp {
+    static Scanner teclado = new Scanner(System.in);
     static Bbdd bd;
+
     public static void main(String[] args) throws BbddException {
         if(bd==null){
             bd=new Bbdd(null, null, null, null);
@@ -21,347 +23,384 @@ public class VistaApp {
 
 
     }
+
+
     /**
-     * Metodo estatico privado que contiene el menu
-     * @throws BbddException
+     * Metodo estatico privado que contiene el menu principal 
+     * @throws BbddException error controlado
      */
-    private static void menuCoche() throws BbddException{
-        Scanner teclado = new Scanner(System.in);
+    private static void menuPrincipal() throws BbddException {
         boolean salir = false;
-        int opcion; //Guardaremos la opcion del usuario
-        Coche coche;
+        int opcion;
+
         while (!salir) {
- 
-            System.out.println("1. Insertar vehiculo nuevo");
-            System.out.println("2. Modificar vehiculo");
-            System.out.println("3. Elimininar vehiculo");
-            System.out.println("4. Listado de vehiculos");
-            System.out.println("5. Salir");
-            coche = null;
+            System.out.println("1. Realizar ventas");
+            System.out.println("2. Gestionar clientes");
+            System.out.println("3. Gestionar empleados");
+            System.out.println("4. Gestionar vehiculos");
+            System.out.println("5. Salir\n");
+
             try {
- 
-                System.out.println("Escribe una de las opciones");
+                System.out.print("Introduzca una de las opciones: ");
                 opcion = teclado.nextInt();
- 
+
                 switch (opcion) {
                     case 1:
-                        coche=generarDatosCoche(teclado);
-                        bd.insertarCoche(coche);
-                        System.out.println("Coche"+ "insertado");
+                        menuVentas();
                         break;
                     case 2:
-                        System.out.println("Introduce el numero de bastidor");
-                        String numBastidor=teclado.next();
-                        coche=bd.obtenerCoche(numBastidor);
-                        bd.modificarCoche(coche);
-                        System.out.println("Coche"+ "modificado");
+                        menuClientes();
                         break;
                     case 3:
-                        System.out.println("Introduce el numero de bastidor");
-                        String numBastidor1=teclado.next();
-                        coche=bd.obtenerCoche(numBastidor1);
-                        bd.eliminarCoche(coche);
-                        System.out.println("Coche"+ "eliminado");
+                        menuEmpleados();
                         break;
                     case 4:
-                        ArrayList<Coche> lista=bd.obtenerListadoCoches();
-                        String listado=lista.toString();
-                        System.out.println("Lista de coches: "+listado);
+                        menuVehiculos();
                         break;
                     case 5:
                         salir = true;
                         break;
                     default:
-                        System.out.println("Solo números entre 1 y 5");
+                        System.out.println("Solo numeros entre 1 y 5");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Debes insertar una opcion correcta");
+                System.out.println("Debe insertar una opcion correcta");
                 teclado.next();
             }
         }
- 
     }
+    
     /**
-     * Funcion privada encarga de generar nuevos coches
-     * @param teclado variable a leer
-     * @return devuelve un nuevo coche
+     * Metodo estatico privado que contiene el menu de ventas
+     * @throws BbddException error controlado
+    */
+    private static void menuVentas() throws BbddException {
+        boolean salir = false;
+        int opcion;
+        Coche coche;
+
+        while (!salir) {
+            System.out.println("1. Vender Vehiculo");
+            System.out.println("2. Vehiculos vendidos");
+            System.out.println("3. Listado de vehiculos");
+            System.out.println("4. Salir\n");
+            coche=null;
+
+            try {
+                System.out.print("Introduzca una de las opciones: ");
+                opcion = teclado.nextInt();
+
+                switch (opcion) {
+                    case 1:
+                        //TODO: Eliminar un coche del  modelo deseado de la BBDD
+                        break;
+                    case 2:
+                        //TODO: Mostrar lista de vehiculos vendidos por orden de ventas
+                        break;
+                    case 3:
+                        //TODO: Mostrar lista de vehiculos disponibles
+                        break;
+                    case 4:
+                        salir = true;
+                        break;
+                    default:
+                        System.out.println("Solo numeros entre 1 y 4");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Debe insertar una opcion correcta");
+                teclado.next();
+            }
+        }
+    }
+
+
+    /**
+     * Metodo estatico privado que contiene el menu de gestion de clientes
      */
-    private static Coche generarDatosCoche(Scanner teclado){
+    private static void menuClientes() {
+        boolean salir = false;
+        int opcion;
+        Cliente cliente;
+
+        while (!salir) {
+            System.out.println("1. Insertar nuevo cliente");
+            System.out.println("2. Modificar cliente");
+            System.out.println("3. Eliminar cliente");
+            System.out.println("4. Listado de clientes");
+            System.out.println("5. Salir\n");
+            cliente = null;
+
+            try {
+                System.out.print("Intrduzca una de las opciones: ");
+                opcion = teclado.nextInt();
+
+                switch (opcion) {
+                    case 1:
+                        cliente = generarDatosCliente();
+                        //TODO: Insertar el cliente desde controlador
+                        System.out.println("\nCliente insertado");
+                        break;
+                    case 2:
+                        System.out.println("Proceda a introducir los datos, el DNI debe mantenerse igual");
+                        cliente = generarDatosCliente();
+                        //TODO: Modificar el cliente desde controlador
+                        System.out.println("\nCliente modificado");
+                        break;
+                    case 3:
+                        System.out.print("Introduzca el dni del cliente: ");
+                        //TODO: Eliminar el cliente desde controlador
+                        System.out.println("\nCliente eliminado");
+                        break;
+                    case 4:
+                        System.out.println("Lista de clientes: ");
+                        //TODO: Mostrar lista de clientes
+                        break;
+                    case 5:
+                        salir = true;
+                        break;
+                    default:
+                        System.out.println("Solo numeros entre 1 y 5");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Debe insertar una opcion correcta");
+                teclado.next();
+            }
+        }
+    }
+
+
+    /**
+     * Metodo estatico que contiene el menu de gestion de empleados
+     */
+    private static void menuEmpleados() {
+        boolean salir = false;
+        int opcion;
+        Empleado empleado;
+
+        while (!salir) {
+            System.out.println("1. Insertar empleado");
+            System.out.println("2. Modificar empleado");
+            System.out.println("3. Eliminar empleado");
+            System.out.println("4. Listado de empleados");
+            System.out.println("5. Obtener datos empleado");
+            System.out.println("6. Salir\n");
+            empleado = null;
+
+            try {
+
+                System.out.print("Introduzca una de las opciones: ");
+                opcion = teclado.nextInt();
+
+                switch (opcion) {
+                    case 1:
+                        empleado = generarDatosEmpleado();
+                        //TODO: Insertar el empleado desde controlador
+                        System.out.println("\nEmpleado insertado");
+                        break;
+                    case 2:
+                        System.out.println("Proceda a introducir los datos, el DNI debe mantenerse igual");
+                        empleado = generarDatosEmpleado();
+                        //TODO: Modificar el empleado desde controlador
+                        System.out.println("\nCliente modificado");
+                        break;
+                    case 3:
+                        System.out.print("Introduzca el dni del empleado: ");
+                        //TODO: Eliminar el empleado desde controlador
+                        System.out.println("\nEmpleado eliminado");                    
+                        break;
+                    case 4:
+                        System.out.println("Lista de empleados: ");
+                        //TODO: Mostrar lista de empleados
+                        break;
+                    case 5:
+                        System.out.print("Introduzca el dni del empleado: ");
+                        //TODO: Mostrar informacion del empleado desde controlador
+                        break;
+                    case 6:
+                        salir = true;
+                        break;
+                    default:
+                        System.out.println("Solo numeros entre 1 y 6");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Debe insertar una opcion correcta");
+                teclado.next();
+            }
+        }
+    }    
+
+    /**
+     * Metodo estatico privado que contiene el menu
+     * @throws BbddException error controlado
+     */
+    private static void menuVehiculos() throws BbddException{
+        boolean salir = false;
+        int opcion;
+        Vehiculo vehiculo;
+
+        while (!salir) {
+            System.out.println("1. Insertar vehiculo nuevo");
+            System.out.println("2. Modificar vehiculo");
+            System.out.println("3. Elimininar vehiculo");
+            System.out.println("4. Listado de vehiculos");
+            System.out.println("5. Salir\n");
+            vehiculo = null;
+
+            try {
+                System.out.print("Introduzca una de las opciones: ");
+                opcion = teclado.nextInt();
+ 
+                switch (opcion) {
+                    case 1:
+                        vehiculo = generarDatosVehiculo();
+                        //TODO: Insertar el vehiculo desde controlador
+                        System.out.println("\nVehiculo insertado");
+                        break;
+                    case 2:
+                        System.out.println("Proceda a introducir los datos, el numero de bastidor debe mantenerse igual");
+                        vehiculo = generarDatosVehiculo();
+                        //TODO: Modificar el vehiculo desde controlador
+                        System.out.println("\nVehiculo modificado");
+                        break;
+                    case 3:
+                        System.out.print("Introduzca el numero de bastidor del vehiculo: ");
+                        //TODO: Eliminar el vehiculo desde controlador
+                        System.out.println("\nVehiculo eliminado");  
+                        break;
+                    case 4:
+                        System.out.println("Lista de vehiculos: ");
+                        //TODO: Mostrar lista de vehiculos
+                        break;
+                    case 5:
+                        salir = true;
+                        break;
+                    default:
+                        System.out.println("Solo numeros entre 1 y 5");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Debe insertar una opcion correcta");
+                teclado.next();
+            }
+        }
+    }
+
+
+    /**
+     * Funcion privada encarga de generar vehiculos
+     * @return devuelve un objeto de tipo vehiculo
+     */
+    private static Coche generarDatosVehiculo(){
         
-        System.out.println("Introduzca el valor de bastidor");
+        System.out.print("Introduzca el valor de bastidor: ");
         String bastidor1 = teclado.next();
 
-        System.out.println("Introduzca el valor de marca");
+        System.out.print("Introduzca el valor de marca: ");
         String marca1 = teclado.next();
 
-        System.out.println("Introduzca el valor de matricula");
+        System.out.print("Introduzca el valor de matricula: ");
         String matricula1 = teclado.next();
 
-        System.out.println("Introduzca el valor de modelo");
+        System.out.print("Introduzca el valor de modelo: ");
         String modelo1 = teclado.next();
 
-        System.out.println("Introduzca el valor de color");
+        System.out.print("Introduzca el valor de color: ");
         String color1 = teclado.next();
 
-        System.out.println("Introduzca el valor de cilindrada");
+        System.out.print("Introduzca el valor de cilindrada: ");
         String cilindrada1 = teclado.next();
 
-        System.out.println("Introduzca el valor de motor");
+        System.out.print("Introduzca el valor de motor: ");
         String motor1 = teclado.next();
 
-        System.out.println("Introduzca el valor de extras instalados");
+        System.out.print("Introduzca el valor de extras instalados: ");
         String extras1 = teclado.next();
 
-        System.out.println("Introduzca el valor de la potencia");
+        System.out.print("Introduzca el valor de la potencia: ");
         int potencia1 = teclado.nextInt();
 
-        System.out.println("Introduzca el valor de precio");
+        System.out.print("Introduzca el valor de precio: ");
         double precio1 = teclado.nextDouble();
 
-        Coche coche= new Coche(bastidor1, matricula1, marca1, modelo1, color1, precio1, extras1, motor1, potencia1, cilindrada1);
-        return coche;
+        return new Coche(bastidor1, matricula1, marca1, modelo1, color1, precio1, extras1, motor1, potencia1, cilindrada1);
     }
-
-
 
     /**
-     * Metodo estatico privado que contiene el menu
-     * @throws BbddException error controlado
+     * Funcion privada encarga de generar clientes
+     * @return un cliente
      */
-    private static void menuClientes() throws BbddException{
-        Scanner teclado = new Scanner(System.in);
-        boolean salir = false;
-        int opcion; //Guardaremos la opcion del usuario
-        Cliente clientes;
-        while (!salir) {
+    private static Cliente generarDatosCliente() {
 
-        System.out.println("1. Insertar cliente nuevo");
-        System.out.println("2. Modificar cliente");
-        System.out.println("3. Elimininar cliente");
-        System.out.println("4. Listado de clientes");
-        System.out.println("5. Salir");
-        clientes = null;
-        try {
+        System.out.print("Introduzca el valor de dni: ");
+        String dni = teclado.next();
 
-            System.out.println("Escribe una de las opciones");
-            opcion = teclado.nextInt();
+        System.out.print("Introduzca el valor de nombre: ");
+        String nombre = teclado.next();
 
-            switch (opcion) {
-                case 1:
-                    clientes=generarDatosClientes(teclado);
-                    bd.insertarCliente(clientes);
-                    System.out.println("Coche"+ "insertado");
-                    break;
-                case 2:
-                    System.out.println("Introduce el dni del cliente");
-                    String dni=teclado.next();
-                    clientes=bd.obtenerCliente(dni);
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    ArrayList<Cliente> lista=bd.obtenerListadoClientes();
-                    String listado=lista.toString();
-                    System.out.println("Lista de clientes: "+listado);
-                    break;
-                case 5:
-                    salir = true;
-                    break;
-                default:
-                    System.out.println("Solo números entre 1 y 5");
-            }
-        } catch (InputMismatchException e) {
-            System.out.println("Debes insertar una opcion correcta");
-            teclado.next();
-        }
+        System.out.print("Introduzca el valor de apellidos: ");
+        String apellidos = teclado.next();
+
+        System.out.print("Introduzca el valor de fechaNacimiento: ");
+        String fechaNacimiento = teclado.next();
+
+        System.out.print("Introduzca el valor de telefono: ");
+        String telefono = teclado.next();
+
+        return new Cliente(nombre, apellidos, dni, fechaNacimiento, telefono, generarDatosDireccion(dni));
     }
 
-}
     /**
-     * Funcion privada encarga de generar nuevos clientes
-     * @return devuelve un nuevo cliente
+     * Funcion privada encarga de generar empleados
+     * @return un empleado
      */
-    private static Cliente generarDatosClientes(Scanner teclado){
+    private static Empleado generarDatosEmpleado() {
 
-        System.out.println("Introduzca el valor de nombre");
-        String nombre1 = teclado.next();
+        System.out.print("Introduzca el valor de dni: ");
+        String dni = teclado.next();
 
-        System.out.println("Introduzca el valor de fechaNacimiento");
-        String fechaNacimiento1 = teclado.next();
+        System.out.print("Introduzca el valor de nombre: ");
+        String nombre = teclado.next();
 
-        System.out.println("Introduzca el valor de apellidos");
-        String apellidos1 = teclado.next();
+        System.out.print("Introduzca el valor de apellidos: ");
+        String apellidos = teclado.next();
 
-        System.out.println("Introduzca el valor de dni");
-        String dni1 = teclado.next();
+        System.out.print("Introduzca el valor de fechaNacimiento: ");
+        String fechaNacimiento = teclado.next();
 
-        System.out.println("Introduzca el valor de telefono");
-        String telefono1 = teclado.next();
+        System.out.print("Introduzca el valor de telefono: ");
+        String telefono = teclado.next();
 
-        Cliente cliente= new Cliente(nombre1, apellidos1, dni1, fechaNacimiento1, telefono1, generarDatosDireccion(teclado));
-        return cliente;
+        return new Empleado(nombre, apellidos, dni, fechaNacimiento, telefono, generarDatosDireccion(dni));
     }
-      /**
+
+    /**
      * Funcion privada encarga de generar nuevas direcciones
-     * @return devuelve una neuva direccion
+     * @return una direccion
      */
-    private static Direccion generarDatosDireccion(Scanner teclado){
+    private static Direccion generarDatosDireccion(String identificador){
 
-        System.out.println("Introduzca el valor del nuemro de la calle");
-        int numero1 = teclado.nextInt();
+        System.out.print("Introduzca el pais: ");
+        String pais = teclado.next();
 
-        System.out.println("Introduzca el valor de calle");
-        String calle1 = teclado.next();
+        System.out.print("Introduzca la provincia: ");
+        String provincia = teclado.next();
 
-        System.out.println("Introduzca el valor de codigoPostal");
-        String codigoPostal1 = teclado.next();
+        System.out.print("Introduzca la ciudad: ");
+        String ciudad = teclado.next();
 
-        System.out.println("Introduzca el valor de provincia");
-        String provincia1 = teclado.next();
+        System.out.print("Introduzca el valor de calle: ");
+        String calle = teclado.next();
 
-        System.out.println("Introduzca el valor de poblacion");
-        String poblacion1 = teclado.next();
+        System.out.print("Introduzca el numero de la vivienda: ");
+        int numero = teclado.nextInt();
 
-        Direccion direccion=new Direccion(calle1, numero1, codigoPostal1, provincia1, poblacion1);
-        return direccion;
+        System.out.print("Introduzca el codigo postal: ");
+        String codigoPostal = teclado.next();
+
+        return new Direccion(identificador, calle, numero, codigoPostal, provincia, ciudad, pais);
     }
 
-        /**
-     * Metodo estatico privado que contiene el menu principal 
-     * @throws BbddException error controlado
-     */
-    private static void menuPrincipal() throws BbddException{
-        Scanner teclado = new Scanner(System.in);
-        boolean salir = false;
-        int opcion; //Guardaremos la opcion del usuario
-        while (!salir) {
 
-        System.out.println("1. Realizar ventas");
-        System.out.println("2. Usuarios");
-        System.out.println("3. Empleado");
-        System.out.println("4. Salir");
-        try {
 
-            System.out.println("Escribe una de las opciones");
-            opcion = teclado.nextInt();
 
-            switch (opcion) {
-                case 1:
-                    menuCoche();
-                    break;
-                case 2:
-                   menuClientes();
-                   
-                    break;
-                case 3:
-                menuGerente();
-                    break;
-                case 4:
-                    salir = true;
-                    break;
-                default:
-                    System.out.println("Solo números entre 1 y 4");
-            }
-            } catch (InputMismatchException e) {
-                System.out.println("Debes insertar una opcion correcta");
-                teclado.next();
-            }
-       }
-    
-}
 
-    private static void menuVentas() throws BbddException{
-        Scanner teclado = new Scanner(System.in);
-        boolean salir = false;
-        int opcion; //Guardaremos la opcion del usuario
-        Coche coche;
-        while (!salir) {
-        System.out.println("1. Vender coche");
-        System.out.println("2. Coche vendidos");
-        System.out.println("3. Listado de vehiculos");
-        System.out.println("4. Salir");
-        coche=null;
-        try {
-
-            System.out.println("Escribe una de las opciones");
-            opcion = teclado.nextInt();
-
-            switch (opcion) {
-                case 1:
-                    generarDatosCoche(teclado);
-                    break;
-                case 2:
-                   generarDatosClientes(teclado);
-                    break;
-                case 3:
-                    break;
-                    case 5:
-                    salir = true;
-                    break;
-                default:
-                    System.out.println("Solo números entre 1 y 5");
-            }
-            } catch (InputMismatchException e) {
-                System.out.println("Debes insertar una opcion correcta");
-                teclado.next();
-            }
-        }
-    }
-    /*
-     * Metodo estatico privado que contiene el menu
-     * @throws BbddException error controlado
-     */
-    private static void menuGerente() throws BbddException{
-        Scanner teclado = new Scanner(System.in);
-        boolean salir = false;
-        int opcion; //Guardaremos la opcion del usuario
-        Cliente clientes;
-        while (!salir) {
-
-        System.out.println("1. Insertar empleado");
-        System.out.println("2. Modificar empleado");
-        System.out.println("3. Elimininar empleados");
-        System.out.println("4. Listado de empleados");
-        System.out.println("5. Obtener datos empleado");
-        System.out.println("6. Salir");
-        clientes = null;
-        try {
-
-            System.out.println("Escribe una de las opciones");
-            opcion = teclado.nextInt();
-
-            switch (opcion) {
-                case 1:
-                    clientes=generarDatosClientes(teclado);
-                    bd.insertarCliente(clientes);
-                    System.out.println("Coche"+ "insertado");
-                    break;
-                case 2:
-                    System.out.println("Introduce el dni del cliente");
-                    String dni=teclado.next();
-                    clientes=bd.obtenerCliente(dni);
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    ArrayList<Cliente> lista=bd.obtenerListadoClientes();
-                    String listado=lista.toString();
-                    System.out.println("Lista de clientes: "+listado);
-                    break;
-                case 5:
-                    salir = true;
-                    break;
-                case 6:
-                    salir = true;
-                    break;
-                default:
-                    System.out.println("Solo números entre 1 y 5");
-            }
-        } catch (InputMismatchException e) {
-            System.out.println("Debes insertar una opcion correcta");
-            teclado.next();
-        }
-    }
-
-    }
 }
