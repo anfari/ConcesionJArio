@@ -16,7 +16,6 @@ public class ClienteModelo {
         persistencia = new Bbdd("org.sqlite.JDBC", "jdbc:sqlite:test.db", null, null);
     }
 
-
     /**
      * Metodo que inserta un cliente
      * @param cliente cliente a insertar
