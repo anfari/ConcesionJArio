@@ -29,7 +29,6 @@ public class Bbdd {
         this.password = password;
     }
 
-    //TODO: Modificar Direccion cuando sepamos PK
 
     /**
      * Funcion encargada de realizar la conexion con la BBDD

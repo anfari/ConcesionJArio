@@ -84,8 +84,8 @@ public class VistaApp {
             System.out.println("2. Vehiculos vendidos");
             System.out.println("3. Listado de vehiculos");
             System.out.println("4. Salir\n");
-            vehiculo=null;
 
+            vehiculo=null;
             try {
                 System.out.print("Introduzca una de las opciones: ");
                 opcion = teclado.nextInt();
