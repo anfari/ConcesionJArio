@@ -20,6 +20,8 @@ public class Venta {
         this.codigoCliente = codigoCliente;
         this.bastidor = bastidor;
     }
+
+
      /**
      * Getter de la clase Venta
      * @return dni del empleado
@@ -27,6 +29,7 @@ public class Venta {
     public String getCodigoEmpleado() {
         return this.codigoEmpleado;
     }
+
     /**
      * Setter de la clase Venta
      * @param dniEmpleado dni del empleado
@@ -34,6 +37,7 @@ public class Venta {
     public void setCodigoEmpleado(String codigoEmpleado) {
         this.codigoEmpleado = codigoEmpleado;
     }
+    
     /**
      * Getter de la clase Venta
      * @return dni del cliente
@@ -41,6 +45,7 @@ public class Venta {
     public String getCodigoCliente() {
         return this.codigoCliente;
     }
+    
      /**
      * Setter de la clase Venta
      * @param dniCliente dni del cliente

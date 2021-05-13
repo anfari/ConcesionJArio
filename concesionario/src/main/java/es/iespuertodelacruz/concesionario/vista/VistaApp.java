@@ -127,7 +127,8 @@ public class VistaApp {
             System.out.println("2. Modificar cliente");
             System.out.println("3. Eliminar cliente");
             System.out.println("4. Listado de clientes");
-            System.out.println("5. Salir\n");
+            System.out.println("5. Buscar cliente");
+            System.out.println("6. Salir\n");
             cliente = null;
 
             try {
@@ -156,10 +157,12 @@ public class VistaApp {
                         //TODO: Mostrar lista de clientes
                         break;
                     case 5:
+                        //TODO: mostrar cliente
+                    case 6:
                         salir = true;
                         break;
                     default:
-                        System.out.println("Solo numeros entre 1 y 5");
+                        System.out.println("Solo numeros entre 1 y 6");
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Debe insertar una opcion correcta");

@@ -1,6 +1,5 @@
 package es.iespuertodelacruz.concesionario.modelo;
 
-import es.iespuertodelacruz.concesionario.api.Cliente;
 import es.iespuertodelacruz.concesionario.api.Persona;
 import es.iespuertodelacruz.concesionario.exception.BbddException;
 
@@ -24,33 +23,33 @@ public class PersonaModelo {
      * @throws BbddException error controlado
      */
     public void insertar(Persona persona) throws BbddException{
-        persistencia.insertarCliente(persona);
+        persistencia.insertarPersona(persona);
     }
 
      /**
-     * Metodo que modifica un cliente
-     * @param cliente cliente a modificar
+     * Metodo que modifica una persona
+     * @param persona persona a modificar
      * @throws BbddException error controlado
      */
-    public void modificar(Cliente cliente) throws BbddException{
-        persistencia.modificarCliente(cliente);
+    public void modificar(Persona persona) throws BbddException{
+        persistencia.modificarPersona(persona);
     }
 
      /**
-     * Metodo que busca un cliente
-     * @param dni dni del cliente
+     * Metodo que busca una persona
+     * @param dni dni de la persona
      * @throws BbddException error controlado
      */
-    public Cliente buscar(String dni) throws BbddException{
-        return persistencia.obtenerCliente(dni);
+    public Persona buscar(String dni) throws BbddException{
+        return persistencia.obtenerPersona(dni);
     }
 
      /**
-     * Metodo que elimina un cliente
-     * @param cliente cliente a eliminar
+     * Metodo que elimina una persona
+     * @param persona persona a eliminar
      * @throws BbddException error controlado
      */
-    public void eliminar(Cliente cliente) throws BbddException{
-        persistencia.eliminarCliente(cliente);
+    public void eliminar(Persona persona) throws BbddException{
+        persistencia.eliminarPersona(persona);
     }  
 }

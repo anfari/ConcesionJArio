@@ -29,6 +29,7 @@ public class Bbdd {
         this.password = password;
     }
 
+    //TODO: Modificar crud cliente, empleado para leer direccion
 
     /**
      * Funcion encargada de realizar la conexion con la BBDD
@@ -52,6 +53,133 @@ public class Bbdd {
         return connection;
     }
 
+
+    //CRUD de Persona
+    
+    /**
+     * Metodo encargado de realizar la insercion de una persona
+     * @param persona persona a insertar
+     * @throws BbddException error controlado
+     */
+    public void insertarPersona(Persona persona) throws BbddException {
+        String sql ="INSERT INTO persona (nombre, apellidos, dni, fechaNacimiento, " + 
+        "telefono, direccion) VALUES ('" + persona.getNombre() + 
+        "', '" + persona.getApellidos() + "', '" + persona.getDni() + 
+        "', '" + persona.getFechaNacimiento() + 
+        "', '" + persona.getTelefono() + "', '" + persona.getDireccion() + "'";
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de realizar la eliminacion de una persona
+     * @param persona persona a eliminar
+     * @throws BbddException error controlado
+     */
+    public void eliminarPersona(Persona persona) throws BbddException {
+        String sql = "DELETE from persona where dni = '" + persona.getDni() + "'";
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de realizar la modificacion de una persona
+     * @param persona persona a modificar
+     * @throws BbddException error controlado
+     */
+    public void modificarPersona(Persona persona) throws BbddException {
+        String sql = "UPDATE persona SET nombre = '" + persona.getNombre() + 
+        "', apellidos = '" + persona.getApellidos() +
+        "', fechaNacimiento = '" + persona.getFechaNacimiento() + 
+        "', telefono = '" + persona.getTelefono() + "', direccion = '" + persona.getDireccion() +
+        "' WHERE dni = '" + persona.getDni()  + "'";
+        actualizar(sql);
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Persona
+     * @param sql a ejecutar
+     * @return lista de resultado
+     * @throws BbddException error controlado
+     */
+    public ArrayList<Persona> obtenerListadoPersonas(String sql) throws BbddException {
+        ArrayList<Persona> listaPersonas = new ArrayList<>();
+        Persona persona = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String nombre = resultSet.getString("nombre");
+                String apellidos = resultSet.getString("apellidos");
+                String dni = resultSet.getString("dni");
+                String fechaNacimiento = resultSet.getString("fechaNacimiento");
+                String telefono = resultSet.getString("telefono");
+                Direccion direccion = null; //TODO: Modificar cuando se tenga PK
+                persona= new Persona(nombre, apellidos, dni, fechaNacimiento, telefono, direccion);
+                listaPersonas.add(persona);
+            }
+        } catch (Exception exception) {
+            throw new BbddException("Se ha producido un error realizando la consulta", exception);
+        } finally {
+            closeConnection(connection, statement, resultSet);
+        }
+        
+        return listaPersonas;
+    }
+
+    /**
+     * Funcion busca todas las persona guardadas
+     * @return lista de todas las personaa
+     * @throws BbddException error controlado
+     */
+    public ArrayList<Persona> obtenerListadoPersonas() throws BbddException {
+        String sql = "SELECT * FROM persona";
+        return obtenerListadoPersonas(sql);
+    }
+
+    /**
+     * Funcion que busca una persona especifica
+     * @param dni dni de la persona
+     * @return persona encotrada
+     * @throws BbddException error controlado
+     */
+    public Persona obtenerPersona(String dni) throws BbddException {
+        Persona persona = null;
+        ArrayList<Persona> listaPersonas = null;
+        String sql = "SELECT * FROM persona where dni =";
+        sql = sql + "'" + dni + "'";
+        listaPersonas = obtenerListadoPersonas(sql);
+        if (!listaPersonas.isEmpty()) {
+            persona = listaPersonas.get(0);
+        }
+
+        return persona;
+    }
+
+    /**
+     * Funcion que genera una persona a partir de los datos de un cliente
+     * @param cliente cliente desde el que generar persona
+     * @return persona creada
+     */
+    private Persona generarPersona(Cliente cliente) {
+        return new Persona(cliente.getNombre(), cliente.getApellidos(), cliente.getDni(), 
+        cliente.getFechaNacimiento(), cliente.getFechaNacimiento(), cliente.getDireccion());
+    }
+
+    /**
+     * Funcion que genera una persona a partir de los datos de un empleado
+     * @param empleado empleado desde el que generar persona
+     * @return persona creada
+     */
+    private Persona generarPersona(Empleado empleado) {
+        return new Persona(empleado.getNombre(), empleado.getApellidos(), empleado.getDni(), 
+        empleado.getFechaNacimiento(), empleado.getFechaNacimiento(), empleado.getDireccion());
+    }
+
+
     //CRUD de Cliente
     
     /**
@@ -60,12 +188,15 @@ public class Bbdd {
      * @throws BbddException error controlado
      */
     public void insertarCliente(Cliente cliente) throws BbddException {
-        String sql ="INSERT INTO Cliente (codigoCliente,dni,nombre, apellidos" + 
-        "fechaNacimiento, telefono, direccion) VALUES ('"+cliente.getCodigoCliente()+
-        "','"+ cliente.getDni() + 
-        "', '" + cliente.getNombre() + "', '" + cliente.getApellidos() +
-         "', '" + cliente.getFechaNacimiento() + "', '" + 
-        cliente.getTelefono() + "', '" + cliente.getDireccion() + "'";
+        String sql = "INSERT INTO Cliente (codigoCliente, dni) VALUES ('" + 
+        cliente.getCodigoCliente() + "', '" + cliente.getDni() + "'";
+        insertarPersona(generarPersona(cliente));
+        /**
+        String sql = "INSERT INTO Cliente (codigoCliente, nombre, apellidos, dni, " + 
+        "fechaNacimiento, telefono, direccion) VALUES ('" + cliente.getCodigoCliente() +
+        "','" + cliente.getNombre() + "', '" + cliente.getApellidos() + 
+        "', '" + cliente.getDni() + "', '" + cliente.getFechaNacimiento() + 
+        "', '" + cliente.getTelefono() + "', '" + cliente.getDireccion() + "'";*/
         actualizar(sql);
     }
 
@@ -75,8 +206,8 @@ public class Bbdd {
      * @throws BbddException error controlado
      */
     public void eliminarCliente(Cliente cliente) throws BbddException {
-        String sql = "DELETE from Cliente where codigoCliente = '" + 
-        cliente.getCodigoCliente() + "'";
+        String sql = "DELETE from Cliente where dni = '" + cliente.getDni() + "'";
+        eliminarPersona(generarPersona(cliente));
         actualizar(sql);
     }
 
@@ -86,11 +217,11 @@ public class Bbdd {
      * @throws BbddException error controlado
      */
     public void modificarCliente(Cliente cliente) throws BbddException {
-        String sql = "UPDATE Cliente SET codigoCliente = '"+cliente.getCodigoCliente()+"', nombre = '" + cliente.getNombre() +
-        "', apellidos = '" + cliente.getApellidos() +
-        "', fechaNacimiento = '" + cliente.getFechaNacimiento() + "', telefono = '" + 
-        cliente.getTelefono() + "', direccion = '" + cliente.getDireccion() +
-        "' WHERE dni = '" + cliente.getDni()  + "'";
+        String sql = "UPDATE Cliente SET nombre = '" + cliente.getNombre() + 
+        "', apellidos = '" + cliente.getApellidos() + "', dni = '" + cliente.getDni() +
+        "', fechaNacimiento = '" + cliente.getFechaNacimiento() + 
+        "', telefono = '" + cliente.getTelefono() + "', direccion = '" + cliente.getDireccion() +
+        "' WHERE codigoCliente = '" + cliente.getCodigoCliente()  + "'";
         actualizar(sql);
     }
 
@@ -143,15 +274,15 @@ public class Bbdd {
 
     /**
      * Funcion que busca un cliente especifico
-     * @param codigoCliente codigoCliente del cliente
+     * @param dni dni del cliente
      * @return Cliente encotrado
      * @throws BbddException error controlado
      */
-    public Cliente obtenerCliente(String codigoCliente) throws BbddException {
+    public Cliente obtenerCliente(String dni) throws BbddException {
         Cliente cliente = null;
         ArrayList<Cliente> listaClientes = null;
-        String sql = "SELECT * FROM Cliente where codigoCliente =";
-        sql = sql + "'" + codigoCliente + "'";
+        String sql = "SELECT * FROM Cliente where dni =";
+        sql = sql + "'" + dni + "'";
         listaClientes = obtenerListadoClientes(sql);
         if (!listaClientes.isEmpty()) {
             cliente = listaClientes.get(0);
@@ -170,11 +301,13 @@ public class Bbdd {
      * @throws BbddException error controlado
      */
     public void insertarEmpleado(Empleado empleado) throws BbddException {
-        String sql ="INSERT INTO empleado (dni, nombre, apellidos " + 
-        "fechaNacimiento, telefono, direccion) VALUES ('" + empleado.getDni()+ 
-        "', '" + empleado.getNombre() + "', '" + empleado.getApellidos() + "', '"
-         + empleado.getFechaNacimiento() + "', '" + 
-        empleado.getTelefono() + "', '" + empleado.getDireccion() + "'";
+        String sql ="INSERT INTO empleado (codigoEmpleado, nombre, apellidos, dni, " + 
+        "fechaNacimiento, telefono, direccion, rango, contrasenia) " + 
+        "VALUES ('" + empleado.getCodigoEmpleado()+ "', '" + empleado.getNombre() + 
+        "', '" + empleado.getApellidos() + "', '" + empleado.getDni() + 
+        "', '" + empleado.getFechaNacimiento() + "', '" + empleado.getTelefono() + 
+        "', '" + empleado.getDireccion() + "', '" + empleado.getRango() + 
+        "', '" + empleado.getContrasenia() + "'";
         actualizar(sql);
     }
 
@@ -195,10 +328,11 @@ public class Bbdd {
      */
     public void modificarEmpleado(Empleado empleado) throws BbddException {
         String sql = "UPDATE empleado SET nombre = '" + empleado.getNombre() +
-        "', apellidos = '" + empleado.getApellidos() +
-        "', fechaNacimiento = '" + empleado.getFechaNacimiento() + "', telefono = '" + 
-        empleado.getTelefono() + "', direccion = '" + empleado.getDireccion() +
-        "' WHERE dni = '" + empleado.getDni() + "'";
+        "', apellidos = '" + empleado.getApellidos() + "', dni = '" + empleado.getDni() + 
+        "', fechaNacimiento = '" + empleado.getFechaNacimiento() + 
+        "', telefono = '" + empleado.getTelefono() + "', direccion = '" + empleado.getDireccion() +
+        "', rango = '" + empleado.getRango() + "', contrasenia = '" + empleado.getContrasenia() +
+        "' WHERE codigoEmpleado = '" + empleado.getCodigoEmpleado() + "'";
         actualizar(sql);
     }
 
@@ -309,7 +443,7 @@ public class Bbdd {
         "', extrasInstalados = '" + vehiculo.getExtrasInstalados() +
         "', motor = '" + vehiculo.getMotor() + "', potencia = '" + vehiculo.getPotencia() + 
         "', cilindrada = '" + vehiculo.getCilindrada() + "', tipo = '" + vehiculo.getTipo() + 
-        "' WHERE codigoCliente = '" + vehiculo.getBastidor() + "'";
+        "' WHERE bastidor = '" + vehiculo.getBastidor() + "'";
         actualizar(sql);
     }
 

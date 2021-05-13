@@ -5,6 +5,8 @@ package es.iespuertodelacruz.concesionario.api;
  */
 public class Cliente extends Persona{
     String codigoCliente;
+
+
     /**
      * Contructor de cliente con parametros
      * @param nombre nombre del cliente
@@ -20,14 +22,17 @@ public class Cliente extends Persona{
         super(nombre, apellidos, dni, fechaNacimiento, telefono, direccion);
         this.codigoCliente= codigoCliente;
     }
-     /**
+
+
+    /**
      * Getter de la clase Cliente
      * @return codigo del cliente
      */
     public String getCodigoCliente() {
         return this.codigoCliente;
     }
-     /**
+
+    /**
      * Setter de la clase Cliente
      * @param codigoCliente codigo del cliente
      */

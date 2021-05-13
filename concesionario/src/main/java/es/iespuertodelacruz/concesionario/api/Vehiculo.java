@@ -206,6 +206,7 @@ public class Vehiculo {
     public void setCilindrada(String cilindrada) {
         this.cilindrada = cilindrada;
     }
+
     /**
      * Getter de la clase Vehiculo
      * @return tipo de vehiculo
@@ -213,6 +214,7 @@ public class Vehiculo {
     public String getTipo() {
         return this.tipo;
     }
+    
      /**
      * Setter de la clase Vehiculo
      * @param tipo tipo de vehiculo
