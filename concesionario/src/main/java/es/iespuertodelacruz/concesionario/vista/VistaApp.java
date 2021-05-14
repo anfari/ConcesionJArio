@@ -85,13 +85,14 @@ public class VistaApp {
             System.out.println("3. Listado de vehiculos");
             System.out.println("4. Salir\n");
 
-            vehiculo=null;
+            vehiculo = null;
             try {
                 System.out.print("Introduzca una de las opciones: ");
                 opcion = teclado.nextInt();
 
                 switch (opcion) {
                     case 1:
+                        pedirDatosVenta();
                         //TODO: Eliminar un coche del  modelo deseado de la BBDD
                         break;
                     case 2:
@@ -149,6 +150,7 @@ public class VistaApp {
                         break;
                     case 3:
                         System.out.print("Introduzca el dni del cliente: ");
+                        String dni = teclado.next();
                         //TODO: Eliminar el cliente desde controlador
                         System.out.println("\nCliente eliminado");
                         break;
@@ -157,6 +159,7 @@ public class VistaApp {
                         //TODO: Mostrar lista de clientes
                         break;
                     case 5:
+                        
                         //TODO: mostrar cliente
                     case 6:
                         salir = true;
@@ -415,6 +418,20 @@ public class VistaApp {
         String codigoPostal = teclado.next();
 
         return new Direccion(identificador, calle, numero, codigoPostal, provincia, ciudad, pais);
+    }
+
+
+    private static void pedirDatosVenta() {
+
+        System.out.print("Introduzca el dni del empleado: ");
+        String dniEmpleado = teclado.next();
+
+        System.out.print("Introduzca el dni del cliente: ");
+        String dniCliente = teclado.next();
+
+        System.out.print("Introduzca el numero de bastidor del vehiculo: ");
+        String bastidor = teclado.next();
+
     }
 
 
