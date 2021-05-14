@@ -1,7 +1,6 @@
 package es.iespuertodelacruz.concesionario.vista;
 
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -34,7 +33,7 @@ public class VistaApp {
         int opcion;
 
         while (!salir) {
-            System.out.println("1. Realizar ventas");
+            System.out.println("\n1. Realizar ventas");
             System.out.println("2. Gestionar clientes");
             System.out.println("3. Gestionar empleados");
             System.out.println("4. Gestionar vehiculos");
@@ -43,6 +42,7 @@ public class VistaApp {
             try {
                 System.out.print("Introduzca una de las opciones: ");
                 opcion = teclado.nextInt();
+                System.out.println("");
 
                 switch (opcion) {
                     case 1:
@@ -80,7 +80,7 @@ public class VistaApp {
         Vehiculo vehiculo;
 
         while (!salir) {
-            System.out.println("1. Vender Vehiculo");
+            System.out.println("\n1. Vender Vehiculo");
             System.out.println("2. Vehiculos vendidos");
             System.out.println("3. Listado de vehiculos");
             System.out.println("4. Salir\n");
@@ -89,6 +89,7 @@ public class VistaApp {
             try {
                 System.out.print("Introduzca una de las opciones: ");
                 opcion = teclado.nextInt();
+                System.out.println("");
 
                 switch (opcion) {
                     case 1:
@@ -124,7 +125,7 @@ public class VistaApp {
         Cliente cliente;
 
         while (!salir) {
-            System.out.println("1. Insertar nuevo cliente");
+            System.out.println("\n1. Insertar nuevo cliente");
             System.out.println("2. Modificar cliente");
             System.out.println("3. Eliminar cliente");
             System.out.println("4. Listado de clientes");
@@ -135,6 +136,7 @@ public class VistaApp {
             try {
                 System.out.print("Intrduzca una de las opciones: ");
                 opcion = teclado.nextInt();
+                System.out.println("");
 
                 switch (opcion) {
                     case 1:
@@ -184,7 +186,7 @@ public class VistaApp {
         Empleado empleado;
 
         while (!salir) {
-            System.out.println("1. Insertar empleado");
+            System.out.println("\n1. Insertar empleado");
             System.out.println("2. Modificar empleado");
             System.out.println("3. Eliminar empleado");
             System.out.println("4. Listado de empleados");
@@ -196,6 +198,7 @@ public class VistaApp {
 
                 System.out.print("Introduzca una de las opciones: ");
                 opcion = teclado.nextInt();
+                System.out.println("");
 
                 switch (opcion) {
                     case 1:
@@ -245,7 +248,7 @@ public class VistaApp {
         Vehiculo vehiculo;
 
         while (!salir) {
-            System.out.println("1. Insertar vehiculo nuevo");
+            System.out.println("\n1. Insertar vehiculo nuevo");
             System.out.println("2. Modificar vehiculo");
             System.out.println("3. Elimininar vehiculo");
             System.out.println("4. Listado de vehiculos");
@@ -255,6 +258,7 @@ public class VistaApp {
             try {
                 System.out.print("Introduzca una de las opciones: ");
                 opcion = teclado.nextInt();
+                System.out.println("");
  
                 switch (opcion) {
                     case 1:
@@ -390,7 +394,7 @@ public class VistaApp {
         System.out.print("Introduzca el valor de contraseña: ");
         String contraseña = teclado.next();
 
-        return new Empleado(nombre, apellidos, dni, fechaNacimiento, telefono, generarDatosDireccion(dni), codigoEmpleado, rango, contraseña);
+        return new Empleado(codigoEmpleado, nombre, apellidos, dni, fechaNacimiento, telefono, generarDatosDireccion(dni), rango, contraseña);
     }
 
     /**
