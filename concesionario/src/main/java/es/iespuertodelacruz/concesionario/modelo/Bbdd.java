@@ -106,7 +106,7 @@ public class Bbdd {
         "telefono, direccion) VALUES ('" + persona.getNombre() + 
         "', '" + persona.getApellidos() + "', '" + persona.getDni() + 
         "', '" + persona.getFechaNacimiento() + 
-        "', '" + persona.getTelefono() + "', '" + persona.getDireccion() + "'";
+        "', '" + persona.getTelefono() + "', '" + persona.getDireccion() + "')";
         actualizar(sql);
     }
 
@@ -229,7 +229,7 @@ public class Bbdd {
      */
     public void insertarCliente(Cliente cliente) throws BbddException {
         String sql = "INSERT INTO Cliente (codigoCliente, dni) VALUES ('" + 
-        cliente.getCodigoCliente() + "', '" + cliente.getDni() + "'";
+        cliente.getCodigoCliente() + "', '" + cliente.getDni() + "')";
         insertarPersona(generarPersona(cliente));
         /**
         String sql = "INSERT INTO Cliente (codigoCliente, nombre, apellidos, dni, " + 

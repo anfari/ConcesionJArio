@@ -39,8 +39,8 @@ public class EmpleadoModelo {
      * @param empleado empleado a buscar
      * @throws BbddException error controlado
      */
-    public void buscar(String dni) throws BbddException{
-        persistencia.obtenerEmpleado(dni);
+    public Empleado buscar(String dni) throws BbddException{
+        return persistencia.obtenerEmpleado(dni);
     }
 
      /**

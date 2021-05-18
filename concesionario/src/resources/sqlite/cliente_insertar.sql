@@ -1,0 +1,1 @@
+INSERT INTO Cliente (codigoCliente, dni) VALUES (0, '11111111A');
