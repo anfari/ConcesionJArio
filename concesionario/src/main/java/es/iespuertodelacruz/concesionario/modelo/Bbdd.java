@@ -1,15 +1,20 @@
 package es.iespuertodelacruz.concesionario.modelo;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import es.iespuertodelacruz.concesionario.api.*;
 import es.iespuertodelacruz.concesionario.exception.BbddException;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 /**
  * /**
  * Clase BDbd, va a contener los datos para la base de datos
  */
 public class Bbdd {
     
+    Fichero fichero;
+    private static final String NOMBRE_TABLAS = "persona,cliente,empleado,direccion,vehiculo,venta";
     private String driver;
     private String url;
     private String usuario;
@@ -52,6 +57,41 @@ public class Bbdd {
         
         return connection;
     }
+
+
+    private void init() throws PersistenciaException, BbddException {
+        DatabaseMetaData databaseMetaData;
+        Connection connection = null;
+        ResultSet resultSet = null;
+        ArrayList<String> listaTablas = new ArrayList<>();
+
+        String[] convertir = NOMBRE_TABLAS.split(",");
+        List<String> nombreTablas = Arrays.asList(convertir);
+
+        try {
+            connection = getConnection();
+            databaseMetaData = connection.getMetaData();
+            resultSet = databaseMetaData.getTables(null, null, null, new String[] {"TABLE"});
+            while (resultSet.next()) {
+                listaTablas.add(resultSet.getString("TABLE_NAME"));
+            }
+            for (String tabla : nombreTablas) {
+                if (!listaTablas.contains(tabla)) {
+                    String sqlCrearTabla = fichero.leer(tabla + "_crear.sql");
+                    actualizar(sqlCrearTabla);
+                    String sqlInsertarDatos = fichero.leer(tabla + "_insertar.sql");
+                    actualizar(sqlInsertarDatos);
+                }
+            }
+        } catch (Exception e) {
+            throw new PersistenciaException("Se ha producido un error en la inicializacion de la BBDD", e);
+        } finally {
+            closeConnection(connection, null, resultSet);
+        }
+
+
+    }
+
 
 
     //CRUD de Persona
