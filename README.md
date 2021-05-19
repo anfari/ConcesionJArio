@@ -5,7 +5,7 @@
 
 ## Indice
 
-[[Manual|Manual de Usuario]]
+[Manual de usuario](Manual de usuario)
 
 <a href="https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario">I</a>
 
