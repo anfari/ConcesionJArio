@@ -30,21 +30,21 @@
 - <p align="justify">Contiene la cobertura de código que se a testeado, indicando que los métodos y funciones, se verifican correctamente.</p>
 
 
-#### <img src="https://user-images.githubusercontent.com/73592097/118860293-213a2100-b8d3-11eb-94d0-5f28ca0d8dd6.png" alt="logo entidad relacion" width="30px" height="30px">  [Diagramas de actividad](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Actividad)
+#### <img src="https://user-images.githubusercontent.com/73592097/118895699-91aa6780-b8fe-11eb-9542-cb5e1bc6d25d.png" alt="logo entidad relacion" width="30px" height="30px">  [Diagramas de actividad](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Actividad)
 
 <hr>
 
 - <p align="justify">Representación gráfica de el algoritmo o proceso de nuestra aplicación, mostrando el flujo de trabajo desde el punto de inicio hasta el punto final detallando muchas de las rutas de decisiones que existen en el progreso de eventos contenidos en la actividad. </p>
 
 
-#### <img src="https://user-images.githubusercontent.com/73592097/118860293-213a2100-b8d3-11eb-94d0-5f28ca0d8dd6.png" alt="logo entidad relacion" width="30px" height="30px">  [Diagramas de casos de uso](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Caso-de-Uso)
+#### <img src="https://user-images.githubusercontent.com/73592097/118895536-47c18180-b8fe-11eb-9414-120195f46c32.png" alt="logo entidad relacion" width="30px" height="30px">  [Diagramas de casos de uso](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Caso-de-Uso)
 
 <hr>
 
 - <p align="justify"></p>
 
 
-#### <img src="https://user-images.githubusercontent.com/73592097/118860293-213a2100-b8d3-11eb-94d0-5f28ca0d8dd6.png" alt="logo entidad relacion" width="30px" height="30px">  [Diagramas de estado](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Estado)
+#### <img src="https://user-images.githubusercontent.com/73592097/118895433-147ef280-b8fe-11eb-8d21-5300c9cd5aeb.png" alt="logo entidad relacion" width="30px" height="30px">  [Diagramas de estado](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Estado)
 
 <hr>
 
