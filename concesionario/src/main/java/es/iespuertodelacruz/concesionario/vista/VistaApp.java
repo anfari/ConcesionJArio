@@ -21,13 +21,88 @@ public class VistaApp {
         menuPrincipal();
 
     }
-
-
     /**
      * Metodo estatico privado que contiene el menu principal 
      * @throws BbddException error controlado
      */
     private static void menuPrincipal() throws BbddException {
+        boolean salir = false;
+        int opcion;
+
+        while (!salir) {
+            System.out.println("\n1. Acceso Gerente");
+            System.out.println("2. Acceso Empleado");
+            System.out.println("3. Salir\n");
+
+            try {
+                System.out.print("Introduzca una de las opciones: ");
+                opcion = teclado.nextInt();
+                System.out.println("");
+
+                switch (opcion) {
+                    case 1:
+                        menuGerente();
+                        break;
+                    case 2:
+                        menuEmpleado();
+                        break;
+                    case 3:
+                        salir = true;
+                        System.out.println("Usted a salido correctamente del programa");
+                        break;
+                    default:
+                        System.out.println("Solo numeros entre 1 y 3");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Debe insertar una opcion correcta");
+                teclado.next();
+            }
+        }
+    }
+
+     /**
+     * Metodo estatico privado que contiene el menu de empleado
+     * @throws BbddException error controlado
+     */
+    private static void menuEmpleado() throws BbddException {
+        boolean salir = false;
+        int opcion;
+
+        while (!salir) {
+            System.out.println("\n1. Realizar ventas");
+            System.out.println("2. Gestionar vehiculos");
+            System.out.println("3. Salir\n");
+
+            try {
+                System.out.print("Introduzca una de las opciones: ");
+                opcion = teclado.nextInt();
+                System.out.println("");
+
+                switch (opcion) {
+                    case 1:
+                        menuVentas();
+                        break;
+                    case 2:
+                        menuVehiculos();
+                        break;
+                    case 3:
+                        salir = true;
+                        break;
+                    default:
+                        System.out.println("Solo numeros entre 1 y 3");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Debe insertar una opcion correcta");
+                teclado.next();
+            }
+        }
+    }
+
+    /**
+     * Metodo estatico privado que contiene el menu de gerente
+     * @throws BbddException error controlado
+     */
+    private static void menuGerente() throws BbddException {
         boolean salir = false;
         int opcion;
 
