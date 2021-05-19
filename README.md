@@ -5,7 +5,6 @@
 
 ## <img src="https://user-images.githubusercontent.com/73592097/118824884-2175f480-b8b2-11eb-8c75-905b7e15f1cb.png" alt="dedo Indice" width="30px" height="30px"> Indice 
 
-
 <p align="align">Aquí es donde vamos a especificar, cada una de las cosas que hace nuestro programa, si pulsamos en cada enlace nos dirige a cada página. Nuestro indice es el siguiente: </p>
 <br>
 
