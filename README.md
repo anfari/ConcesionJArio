@@ -5,12 +5,28 @@
 
 ## Indice
 
-[Manual- Manual de usuario][Manual de usuario]
 
 [Manual de usuario](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario)
 
+[Manual de instalación](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario)
 
-<a href="https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario">I</a>
+[Pruebas Unitarias](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario)
+
+[Diagramas de actividad](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario)
+
+[Diagramas de casos de uso](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario)
+
+[Diagramas de estado](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario)
+
+[Diagrama de entidad relacion](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario)
+
+
+
+
+
+
+
+
 
 ## Acerca de 
 ## Licencia
