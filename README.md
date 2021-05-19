@@ -8,17 +8,17 @@
 
 [Manual de usuario](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario)
 
-[Manual de instalación](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario)
+[Manual de instalación](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-instalaci%C3%B3n)
 
-[Pruebas Unitarias](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario)
+[Pruebas Unitarias](https://github.com/anfari/ConcesionJArio/wiki/Pruebas-Unitarias)
 
-[Diagramas de actividad](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario)
+[Diagramas de actividad](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Actividad)
 
-[Diagramas de casos de uso](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario)
+[Diagramas de casos de uso](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Caso-de-Uso)
 
-[Diagramas de estado](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario)
+[Diagramas de estado](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Estado)
 
-[Diagrama de entidad relacion](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario)
+[Diagrama de entidad relacion](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-Entidad-Relacion)
 
 
 
