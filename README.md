@@ -26,7 +26,7 @@
 
 #### <img src="https://user-images.githubusercontent.com/73592097/118860293-213a2100-b8d3-11eb-94d0-5f28ca0d8dd6.png" alt="logo entidad relacion" width="30px" height="30px">  [Diagramas de actividad](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Actividad)
 
-<p align="justify">Representación gráfica de el algoritmo o proceso de nuestra aplicación.</p>
+<p align="justify">Representación gráfica de el algoritmo o proceso de nuestra aplicación, mostrando el flujo de trabajo desde el punto de inicio hasta el punto final detallando muchas de las rutas de decisiones que existen en el progreso de eventos contenidos en la actividad. </p>
 
 
 #### <img src="https://user-images.githubusercontent.com/73592097/118860293-213a2100-b8d3-11eb-94d0-5f28ca0d8dd6.png" alt="logo entidad relacion" width="30px" height="30px">  [Diagramas de casos de uso](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Caso-de-Uso)
