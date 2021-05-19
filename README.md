@@ -41,14 +41,14 @@
 
 <hr>
 
-- <p align="justify"></p>
+- <p align="justify">Representacion de la comunicación y el comportamiento de un sistema mediante su interacción con los usuarios y/u otros sistemas.</p>
 
 
 #### <img src="https://user-images.githubusercontent.com/73592097/118895433-147ef280-b8fe-11eb-8d21-5300c9cd5aeb.png" alt="logo entidad relacion" width="30px" height="30px">  [Diagramas de estado](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Estado)
 
 <hr>
 
-- <p align="justify"></p>
+- <p align="justify">Representación de la secuencia de los estados por los que pasa cada objeto de la aplicación ConcesionJario. </p>
 
 
 #### <img src="https://user-images.githubusercontent.com/73592097/118860293-213a2100-b8d3-11eb-94d0-5f28ca0d8dd6.png" alt="logo entidad relacion" width="30px" height="30px"> [Diagrama de entidad relacion](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-Entidad-Relacion)
