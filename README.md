@@ -3,14 +3,54 @@
 # Proyecto consecionJario
 <img src="https://user-images.githubusercontent.com/73592097/118132364-87b4d000-b3f7-11eb-8e28-f9abd13bd7f4.png"> 
 
-## Indice
-
-[Manual- Manual de usuario][Manual de usuario]
-
-[Manual de usuario](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario)
+## <img src="https://user-images.githubusercontent.com/73592097/118824884-2175f480-b8b2-11eb-8c75-905b7e15f1cb.png" alt="dedo Indice" width="30px" height="30px"> Indice 
 
 
-<a href="https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario">I</a>
+<p align="align">Aquí es donde vamos a especificar, cada una de las cosas que hace nuestro programa, si pulsamos en cada enlace nos dirige a cada página. Nuestro indice es el siguiente: </p>
+<br>
+
+#### <img src="https://user-images.githubusercontent.com/73592097/118827449-49feee00-b8b4-11eb-8143-a8c9dac6fe63.png" alt="logo usuario" height="30px" width="30px" > [Manual de usuario](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario)
+
+<p align="justify" style="color: red; "> Contiene las intrucciones de como funciona nuestro programa, de que se encarga cada opción, los valores que tienes que introducir, y también los errores que puede ocasionar.</p>
+
+
+
+#### <img src="https://user-images.githubusercontent.com/73592097/118827092-f68ca000-b8b3-11eb-820b-29233374c9dd.png" alt="logo instalacion" height="30px" width="30px">  [Manual de instalación](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-instalaci%C3%B3n) 
+
+<p align="justify">Contiene las características que tiene que tener nuestro equipo informático, así como los requisitos que se requiere para la aplicación, dispone de los enlaces respectivos para la descarga del software requerido.</p>
+
+#### 
+<img src="https://user-images.githubusercontent.com/73592097/118838251-70755700-b8bd-11eb-87f7-727cdde73437.png" alt="testing" width="30px" height="30px">  [Pruebas Unitarias](https://github.com/anfari/ConcesionJArio/wiki/Pruebas-Unitarias)
+
+<p align="justify"></p>
+
+
+#### [Diagramas de actividad](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Actividad)
+
+<p align="justify"></p>
+
+
+#### [Diagramas de casos de uso](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Caso-de-Uso)
+
+<p align="justify"></p>
+
+
+#### [Diagramas de estado](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Estado)
+
+<p align="justify"></p>
+
+
+#### [Diagrama de entidad relacion](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-Entidad-Relacion)
+
+<p align="justify"></p>
+
+
+
+
+
+
+
+
 
 ## Acerca de 
 ## Licencia
