@@ -5,7 +5,7 @@
 
 ## <img src="https://user-images.githubusercontent.com/73592097/118824884-2175f480-b8b2-11eb-8c75-905b7e15f1cb.png" alt="dedo Indice" width="30px" height="30px"> Indice 
 
-- <p align="align">Aquí es donde vamos a especificar, cada una de las cosas que hace nuestro programa, si pulsamos en cada enlace nos dirige a cada página. Nuestro indice es el siguiente: </p>
+<p align="align">Aquí es donde vamos a especificar, cada una de las cosas que hace nuestro programa, si pulsamos en cada enlace nos dirige a cada página. Nuestro indice es el siguiente: </p>
 <br>
 
 #### <img src="https://user-images.githubusercontent.com/73592097/118827449-49feee00-b8b4-11eb-8143-a8c9dac6fe63.png" alt="logo usuario" height="30px" width="30px" > [Manual de usuario](https://github.com/anfari/ConcesionJArio/wiki/Manual-de-usuario)
