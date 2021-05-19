@@ -22,27 +22,27 @@
 #### 
 <img src="https://user-images.githubusercontent.com/73592097/118838251-70755700-b8bd-11eb-87f7-727cdde73437.png" alt="testing" width="30px" height="30px">  [Pruebas Unitarias](https://github.com/anfari/ConcesionJArio/wiki/Pruebas-Unitarias)
 
-<p align="justify"></p>
+<p align="justify">Contiene la cobertura de código que se a testeado, indicando que los métodos y funciones, se verifican correctamente.</p>
 
 
-#### [Diagramas de actividad](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Actividad)
+#### <img src="https://user-images.githubusercontent.com/73592097/118860293-213a2100-b8d3-11eb-94d0-5f28ca0d8dd6.png" alt="logo entidad relacion" width="30px" height="30px">  [Diagramas de actividad](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Actividad)
 
-<p align="justify"></p>
-
-
-#### [Diagramas de casos de uso](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Caso-de-Uso)
-
-<p align="justify"></p>
+<p align="justify">Representación gráfica de el algoritmo o proceso de nuestra aplicación.</p>
 
 
-#### [Diagramas de estado](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Estado)
+#### <img src="https://user-images.githubusercontent.com/73592097/118860293-213a2100-b8d3-11eb-94d0-5f28ca0d8dd6.png" alt="logo entidad relacion" width="30px" height="30px">  [Diagramas de casos de uso](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Caso-de-Uso)
 
 <p align="justify"></p>
 
 
-#### [Diagrama de entidad relacion](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-Entidad-Relacion)
+#### <img src="https://user-images.githubusercontent.com/73592097/118860293-213a2100-b8d3-11eb-94d0-5f28ca0d8dd6.png" alt="logo entidad relacion" width="30px" height="30px">  [Diagramas de estado](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-de-Estado)
 
 <p align="justify"></p>
+
+
+#### <img src="https://user-images.githubusercontent.com/73592097/118860293-213a2100-b8d3-11eb-94d0-5f28ca0d8dd6.png" alt="logo entidad relacion" width="30px" height="30px"> [Diagrama de entidad relacion](https://github.com/anfari/ConcesionJArio/wiki/Diagrama-Entidad-Relacion)
+
+<p align="justify"> Muestra el diseño que tendrá la base de datos.</p>
 
 
 
