@@ -1,0 +1,10 @@
+INSERT INTO Empleado (codigoEmpleado,rango,contrasenia, dni) VALUES ("10234567D","Empleado","empleado00?", '11111111B');
+INSERT INTO Empleado (codigoEmpleado,rango,contrasenia, dni) VALUES ("11234567D","Empleado","empleado01?", '11111111B');
+INSERT INTO Empleado (codigoEmpleado,rango,contrasenia, dni) VALUES ("12234567D","Empleado","empleado02?", '11111111B');
+INSERT INTO Empleado (codigoEmpleado,rango,contrasenia, dni) VALUES ("13234567D","Empleado","empleado03?", '11111111B');
+INSERT INTO Empleado (codigoEmpleado,rango,contrasenia, dni) VALUES ("14234567D","Empleado","empleado04?", '11111111B');
+INSERT INTO Empleado (codigoEmpleado,rango,contrasenia, dni) VALUES ("15234567D","Empleado","empleado05?", '11111111B');
+INSERT INTO Empleado (codigoEmpleado,rango,contrasenia, dni) VALUES ("16234567D","Empleado","empleado06?", '11111111B');
+INSERT INTO Empleado (codigoEmpleado,rango,contrasenia, dni) VALUES ("17234567D","Empleado","empleado07?", '11111111B');
+INSERT INTO Empleado (codigoEmpleado,rango,contrasenia, dni) VALUES ("18234567D","Empleado","empleado08?", '11111111B');
+INSERT INTO Empleado (codigoEmpleado,rango,contrasenia, dni) VALUES ("19234567D","Empleado","empleado09?", '11111111B');
