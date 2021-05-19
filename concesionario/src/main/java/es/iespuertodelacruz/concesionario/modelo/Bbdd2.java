@@ -221,7 +221,7 @@ public class Bbdd2  {
                 String dni = resultSet.getString("dni");
                 String fechaNacimiento = resultSet.getString("fechaNacimiento");
                 String telefono = resultSet.getString("telefono");
-                Direccion direccion = null; //TODO: Modificar cuando se tenga PK
+                Direccion direccion = obtenerDireccion("codigoCliente");//TODO: Modificar cuando se tenga PK
                 cliente = new Cliente(codigoCliente, nombre, apellidos, dni, fechaNacimiento, telefono, direccion);
                 listaClientes.add(cliente);
             }
@@ -230,7 +230,6 @@ public class Bbdd2  {
         } finally {
             closeConnection(connection, statement, resultSet);
         }
-        
         return listaClientes;
     }
 
@@ -331,14 +330,14 @@ public class Bbdd2  {
             while (resultSet.next()) {
                 String codigoEmpleado=resultSet.getString("codigoEmpleado");
                 String rango=resultSet.getString("rango");
-                String contraseña=resultSet.getString("contraseña");
+                String contrasenia=resultSet.getString("contraseña");
                 String nombre = resultSet.getString("nombre");
                 String apellidos = resultSet.getString("apellidos");
                 String dni = resultSet.getString("dni");
                 String fechaNacimiento = resultSet.getString("fechaNacimiento");
                 String telefono = resultSet.getString("telefono");
-                Direccion direccion = null; //TODO: Modificar cuando se tenga PK
-                empleado = new Empleado(nombre, apellidos, dni, fechaNacimiento, telefono, direccion, codigoEmpleado, rango, contraseña);
+                Direccion direccion = obtenerDireccion("codigoEmpleado"); //TODO: Modificar cuando se tenga PK
+                empleado = new Empleado(codigoEmpleado, nombre, apellidos, dni, fechaNacimiento, telefono, direccion, rango, contrasenia);
                 listaEmpleados.add(empleado);
             }
         } catch (Exception exception) {
@@ -349,7 +348,7 @@ public class Bbdd2  {
         
         return listaEmpleados;
     }
-
+    
     /**
      * Funcion busca todos los empleados guardados
      * @return lista de todos los empleados
@@ -522,7 +521,7 @@ public class Bbdd2  {
      * @throws BbddException error controlado
      */
     public void eliminarDireccion(Direccion direccion) throws BbddException {
-        String sql = "DELETE from Direccion where unknown = '" + direccion.getCodigoPostal() + "'";  //TODO: cambiar cuando sepamos PK de direccion
+        String sql = "DELETE from Direccion where identificador = '" + direccion.getIdentificador() + "'"; 
         actualizar(sql);
     }
 
@@ -566,7 +565,7 @@ public class Bbdd2  {
                 String ciudad = resultSet.getString("ciudad");
                 String pais = resultSet.getString("pais");
                 direccion = new Direccion(identificador, calle, numero, codigoPostal,
-                 provincia, ciudad, pais);
+                provincia, ciudad, pais);
                 listaDirecciones.add(direccion);
             }
         } catch (Exception exception) {
@@ -594,22 +593,22 @@ public class Bbdd2  {
      * @return Direccion encotrada
      * @throws BbddException error controlado
      */
-    public Direccion obtenerDireccion(String unknown) throws BbddException {
+    public Direccion obtenerDireccion(String identidicador) throws BbddException {
         Direccion direccion = null;
         ArrayList<Direccion> listaDirecciones = null;
-        String sql = "SELECT * FROM Direccion where bastidor =";
-        sql = sql + "'" + unknown + "'";
+        String sql = "SELECT * FROM Direccion where identificador =";
+        sql = sql + "'" + identidicador + "'";
         listaDirecciones = obtenerListadoDirecciones(sql);
         if (!listaDirecciones.isEmpty()) {
             direccion = listaDirecciones.get(0);
         }
 
         return direccion;
+
+
+
+
     }
-
-
-
-
 
 
 
