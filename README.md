@@ -57,13 +57,4 @@
 
 - <p align="justify"> Muestra el diseño que tendrá la base de datos.</p>
 
-
-
-
-
-
-
-
-
-## Acerca de 
 ## Licencia
