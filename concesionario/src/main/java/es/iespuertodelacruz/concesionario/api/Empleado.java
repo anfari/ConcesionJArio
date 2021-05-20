@@ -8,6 +8,11 @@ public class Empleado extends Persona{
     String rango;
     String contrasenia;
     
+    /**
+     * Constructor por defecto
+     */
+    public Empleado() {
+    }
 
     /**
      * Constructor de vendedor con parametros

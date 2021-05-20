@@ -11,6 +11,11 @@ public class Direccion {
     String ciudad;
     String pais;
 
+    /**
+     * Constructor por defecto
+     */
+    public Direccion() {
+    }
     
     /**
      * Constructor de direccion con parametros

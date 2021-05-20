@@ -6,6 +6,11 @@ package es.iespuertodelacruz.concesionario.api;
 public class Cliente extends Persona{
     String codigoCliente;
 
+    /**
+     * Constructor por defecto
+     */
+    public Cliente() {
+    }
 
     /**
      * Contructor de cliente con parametros

@@ -2,56 +2,73 @@ package es.iespuertodelacruz.concesionario.modelo;
 
 import es.iespuertodelacruz.concesionario.api.Direccion;
 import es.iespuertodelacruz.concesionario.exception.BbddException;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 
 /**
  * Clase DireccionModelo contiene los datos de direccion de un cliente
  */
 
 public class DireccionModelo {
-    Bbdd persistencia;
+    SqliteBbdd persistencia;
+
+    private static final String TABLA  = "CUENTA";
+    private static final String CLAVE  = "CODIGO";
 
     /**
      * Constructor de la Clase DireccionModelo
+     * @throws BbddException
+     * @throws PersistenciaException
      */
-    public DireccionModelo() {
-        persistencia = new Bbdd("org.sqlite.JDBC", "jdbc:sqlite:test.db", null, null);
+    public DireccionModelo() throws PersistenciaException {
+        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);
     }
-
 
     /**
      * Metodo que inserta una direccion
      * @param direccion direccion a insertar
+     * @throws PersistenciaException
      * @throws BbddException error controlado
      */
-    public void insertar(Direccion direccion) throws BbddException{
-        persistencia.insertarDireccion(direccion);
+    public void insertar(Direccion direccion) throws PersistenciaException {
+        String sql ="INSERT INTO Direccion (identificador, calle, numero, codigoPostal"
+        +", provincia, ciudad,pais) " + 
+        "VALUES ('"+ direccion.getIdentificador() + "', '"  + direccion.getCalle() + "', '" + direccion.getNumero() + 
+        "', '" + direccion.getCodigoPostal() + "', '" + direccion.getProvincia() + 
+        "', '" + direccion.getCiudad() + "', '" + direccion.getPais() + "'";
+        persistencia.actualizar(sql);
     }
 
     /**
      * Metodo que modifica una direccion
      * @param direccion direccion a modificar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public void modificar(Direccion direccion) throws BbddException{
-        persistencia.modificarDireccion(direccion);
+    public void actualizar(Direccion direccion) throws PersistenciaException {
+        String sql = "UPDATE Direccion SET calle = '" + direccion.getCalle() +
+        "', numero = '" + direccion.getNumero() + "', codigoPostal = '" + direccion.getCodigoPostal() +
+        "', provincia = '" + direccion.getProvincia() + "', pais = '" + direccion.getPais() + 
+        "', ciudad = '" + direccion.getCiudad() + 
+        "' WHERE identificador = '" + direccion.getIdentificador() + "'";
+        persistencia.actualizar(sql);
     }
 
     /**
      * Metodo que busca una direccion
      * @param identificador identificador de la direccion a buscar
      * @return direccion encontrada
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public Direccion buscar(String identificador) throws BbddException{
-        return persistencia.obtenerDireccion(identificador);
+    public Direccion buscar(String identificador) throws PersistenciaException {
+        return (Direccion)persistencia.obtenerDireccion(identificador);
     }
 
     /**
      * Metodo que elimina una direccion
      * @param direccion direccion a eliminar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public void eliminar(Direccion direccion) throws BbddException{
-        persistencia.eliminarDireccion(direccion);
+    public void eliminar(Direccion direccion) throws PersistenciaException {
+        String sql = "DELETE from Direccion where identificador = '" + direccion.getIdentificador() + "'"; 
+        persistencia.actualizar(sql);
     }
 }

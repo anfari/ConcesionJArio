@@ -10,6 +10,9 @@ public class Persona {
     String telefono;
     Direccion direccion;
 
+    public Persona() {
+    }
+
     /**
      * Constructor de persona con parametros 
      * @param nombre nombre del cliente
@@ -117,6 +120,7 @@ public class Persona {
     public Direccion getDireccion() {
         return this.direccion;
     }
+    
     
     /**
      * Setter de la clase Persona

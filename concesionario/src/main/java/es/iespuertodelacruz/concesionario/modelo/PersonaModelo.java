@@ -1,55 +1,67 @@
 package es.iespuertodelacruz.concesionario.modelo;
 
 import es.iespuertodelacruz.concesionario.api.Persona;
-import es.iespuertodelacruz.concesionario.exception.BbddException;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 
 /**
  * Clase PersonaModelo
  */
 public class PersonaModelo {
-    Bbdd persistencia;
+    SqliteBbdd persistencia;
+    private static final String TABLA  = "CUENTA";
+    private static final String CLAVE  = "CODIGO";
 
-    /**
-     * Constructor de la Clase PersonaModelo
-     */
-    public PersonaModelo() {
-        persistencia = new Bbdd("org.sqlite.JDBC", "jdbc:sqlite:test.db", null, null);
-    }
-
+   //ModeloCliente
+   
+   public PersonaModelo() throws PersistenciaException  {
+      persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);
+      
+   }
 
     /**
      * Metodo que inserta una persona
      * @param persona persona a insertar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public void insertar(Persona persona) throws BbddException{
-        persistencia.insertarPersona(persona);
+    public void insertar(Persona persona) throws PersistenciaException {
+        String sql ="INSERT INTO Persona (dni,nombre, apellidos" + 
+        "fechaNacimiento, telefono, direccion) VALUES ('" + persona.getDni() + 
+        "', '" + persona.getNombre() + "', '" + persona.getApellidos() +
+         "', '" + persona.getFechaNacimiento() + "', '" + 
+        persona.getTelefono() + "', '" + persona.getDireccion() + "'";
+        persistencia.actualizar(sql);
     }
 
      /**
      * Metodo que modifica una persona
      * @param persona persona a modificar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public void modificar(Persona persona) throws BbddException{
-        persistencia.modificarPersona(persona);
+    public void actualizar(Persona persona) throws PersistenciaException {
+        String sql = "UPDATE Persona SET nombre = '" + persona.getNombre() +
+        "', apellidos = '" + persona.getApellidos() +
+        "', fechaNacimiento = '" + persona.getFechaNacimiento() + "', telefono = '" + 
+        persona.getTelefono() + "', direccion = '" + persona.getDireccion() +
+        "' WHERE dni = '" + persona.getDni()  + "'";
+        persistencia.actualizar(sql);
     }
 
      /**
      * Metodo que busca una persona
      * @param dni dni de la persona
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public Persona buscar(String dni) throws BbddException{
-        return persistencia.obtenerPersona(dni);
+    public Persona buscar(String dni) throws PersistenciaException {
+        return (Persona)persistencia.obtenerPersona(dni);
     }
 
      /**
      * Metodo que elimina una persona
      * @param persona persona a eliminar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public void eliminar(Persona persona) throws BbddException{
-        persistencia.eliminarPersona(persona);
+    public void eliminar(Persona persona) throws PersistenciaException {
+        String sql = "DELETE from Persona where dni = '" + persona.getDni() + "'";
+        persistencia.actualizar(sql);
     }  
 }
