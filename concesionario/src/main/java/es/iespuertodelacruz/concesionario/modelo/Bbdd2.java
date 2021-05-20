@@ -114,7 +114,7 @@ public class Bbdd2  {
                 String dni = resultSet.getString("dni");
                 String fechaNacimiento = resultSet.getString("fechaNacimiento");
                 String telefono = resultSet.getString("telefono");
-                Direccion direccion = null; //TODO: Modificar cuando se tenga PK
+                Direccion direccion = obtenerDireccion("dni"); //TODO: Modificar cuando se tenga PK
                 persona = new Persona(nombre, apellidos, dni, fechaNacimiento, telefono, direccion);
                 listaPersonas.add(persona);
             }
