@@ -1,6 +1,8 @@
-Create table Empleado(
- codigoEmpleado varchar(20) auto_increment primary key,
- rango varchar(20) not null,
- contraseña varchar(20) not null,
- foreing key(codigoEmpleado) references Persona(dni)
+CREATE TABLE IF NOT EXISTS "Empleado" (
+	"codigoEmpleado"	INTEGER NOT NULL,
+	"rango"	varchar(20) NOT NULL,
+	"contrasenia"	varchar(20) NOT NULL,
+	"dni"	varchar(9) NOT NULL,
+	PRIMARY KEY("codigoEmpleado" AUTOINCREMENT),
+	FOREIGN KEY("dni") REFERENCES "Persona"("dni")
 );
