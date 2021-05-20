@@ -4,6 +4,7 @@ package es.iespuertodelacruz.concesionario.api;
  * Clase Venta
  */
 public class Venta {
+    String identificador;
     String codigoEmpleado;
     String codigoCliente;
     String bastidor;
@@ -14,13 +15,28 @@ public class Venta {
      * @param codigoEmpleado codigo del empleado que realiza la venta
      * @param codigoCliente codigo del cliente que realiza la compra
      * @param bastidor numero de bastidor del vehiculo vendido
+     * @param identificador identificador de venta
      */
-    public Venta(String codigoEmpleado, String codigoCliente, String bastidor) {
+    public Venta(String identificador,String codigoEmpleado, String codigoCliente, String bastidor) {
         this.codigoEmpleado = codigoEmpleado;
         this.codigoCliente = codigoCliente;
         this.bastidor = bastidor;
+        this.identificador=identificador;
     }
-
+    /**
+     * Getter de la clase Venta
+     * @return identificador del empleado
+     */
+    public String getIdentificador() {
+        return this.identificador;
+    }
+    /**
+     * Setter de la clase Venta
+     * @param identificador identificador del empleado
+     */
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
+    }
 
      /**
      * Getter de la clase Venta

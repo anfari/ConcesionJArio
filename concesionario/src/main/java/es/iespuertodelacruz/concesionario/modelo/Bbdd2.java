@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import es.iespuertodelacruz.concesionario.api.*;
 import es.iespuertodelacruz.concesionario.exception.BbddException;
 /**
- * /**
+ * 
  * Clase BDbd, va a contener los datos para la base de datos
  */
 public class Bbdd2  {
@@ -154,8 +154,6 @@ public class Bbdd2  {
         return persona;
     }
 
-
-    
     
     //CRUD de Cliente
     
