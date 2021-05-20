@@ -20,6 +20,7 @@ public class VistaApp {
         }
         menuPrincipal();
 
+<<<<<<< Updated upstream
     }
     /**
      * Metodo estatico privado que contiene el menu principal 
@@ -58,6 +59,8 @@ public class VistaApp {
                 teclado.next();
             }
         }
+=======
+>>>>>>> Stashed changes
     }
 
      /**
