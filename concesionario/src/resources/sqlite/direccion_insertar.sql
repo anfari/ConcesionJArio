@@ -1,23 +1,23 @@
 INSERT INTO Direccion (identificador, calle, numero, codigoPostal, 
-provincia, ciudad,pais) VALUES ("I000","rodriguez ala",0,"","","","");
+provincia, ciudad,pais) VALUES ("11111111A","rodriguez ala",0,"","","","");
 INSERT INTO Direccion (identificador, calle, numero, codigoPostal, 
-provincia, ciudad,pais) VALUES ("I001","principaldo de ",2,"","","","");
+provincia, ciudad,pais) VALUES ("11111112A","principaldo de ",2,"","","","");
 INSERT INTO Direccion (identificador, calle, numero, codigoPostal, 
-provincia, ciudad,pais) VALUES ("I002"," la esquina",3,"","","","");
+provincia, ciudad,pais) VALUES ("11111113A"," la esquina",3,"","","","");
 INSERT INTO Direccion (identificador, calle, numero, codigoPostal, 
-provincia, ciudad,pais) VALUES ("I003","",4,"","","","");
+provincia, ciudad,pais) VALUES ("11111114A","",4,"","","","");
 INSERT INTO Direccion (identificador, calle, numero, codigoPostal, 
-provincia, ciudad,pais) VALUES ("I004","",5,"","","","");
+provincia, ciudad,pais) VALUES ("11111115A","",5,"","","","");
 INSERT INTO Direccion (identificador, calle, numero, codigoPostal, 
-provincia, ciudad,pais) VALUES ("I005","",6,"","","","");
+provincia, ciudad,pais) VALUES ("11111116A","",6,"","","","");
 INSERT INTO Direccion (identificador, calle, numero, codigoPostal, 
-provincia, ciudad,pais) VALUES ("I006","",4,"","","","");
+provincia, ciudad,pais) VALUES ("11111117A","",4,"","","","");
 INSERT INTO Direccion (identificador, calle, numero, codigoPostal, 
-provincia, ciudad,pais) VALUES ("I007","",2,"","","","");
+provincia, ciudad,pais) VALUES ("11111118A","",2,"","","","");
 INSERT INTO Direccion (identificador, calle, numero, codigoPostal, 
-provincia, ciudad,pais) VALUES ("I008","",1,"","","","");
+provincia, ciudad,pais) VALUES ("11111119A","",1,"","","","");
 INSERT INTO Direccion (identificador, calle, numero, codigoPostal, 
-provincia, ciudad,pais) VALUES ("I009","",8,"","","","");
+provincia, ciudad,pais) VALUES ("11111110A","",8,"","","","");
 
 INSERT INTO Direccion (identificador, calle, numero, codigoPostal, 
 provincia, ciudad,pais) VALUES ("I010","",10,"","","","");

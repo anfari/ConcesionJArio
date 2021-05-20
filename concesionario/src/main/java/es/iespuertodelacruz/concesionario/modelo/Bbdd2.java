@@ -589,8 +589,8 @@ public class Bbdd2  {
 
     /**
      * Funcion que busca una direccion especifica
-     * @param unknown numero de bastidor del vehiculo a buscar
-     * @return Direccion encotrada
+     * @param identificador dni de la persona
+     * @return Direccion encontrada
      * @throws BbddException error controlado
      */
     public Direccion obtenerDireccion(String identidicador) throws BbddException {
