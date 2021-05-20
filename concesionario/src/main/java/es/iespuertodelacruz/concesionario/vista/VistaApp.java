@@ -70,7 +70,7 @@ public class VistaApp {
 
         while (!salir) {
             System.out.println("\n1. Realizar ventas");
-            System.out.println("2. Gestionar vehiculos");
+            System.out.println("2. Gestionar clientes");
             System.out.println("3. Salir\n");
 
             try {
@@ -83,7 +83,7 @@ public class VistaApp {
                         menuVentas();
                         break;
                     case 2:
-                        menuVehiculos();
+                        menuClientes();
                         break;
                     case 3:
                         salir = true;
