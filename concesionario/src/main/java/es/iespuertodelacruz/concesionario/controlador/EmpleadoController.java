@@ -1,10 +1,9 @@
 package es.iespuertodelacruz.concesionario.controlador;
 
-import es.iespuertodelacruz.concesionario.api.Cliente;
+
 import es.iespuertodelacruz.concesionario.api.Empleado;
-import es.iespuertodelacruz.concesionario.exception.BbddException;
-import es.iespuertodelacruz.concesionario.exception.ClienteException;
 import es.iespuertodelacruz.concesionario.exception.EmpleadoException;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 import es.iespuertodelacruz.concesionario.modelo.EmpleadoModelo;
 
 /**
@@ -15,8 +14,9 @@ public class EmpleadoController {
 
     /**
      * Constructor de la clase EmpleadoModelo
+     * @throws PersistenciaException
      */
-    public EmpleadoController() {
+    public EmpleadoController() throws PersistenciaException {
         empleadoModelo = new EmpleadoModelo();
     }
 
@@ -64,10 +64,10 @@ public class EmpleadoController {
     /**
      * Metodo encargado de insertar
      * @param empleado empleado a insertar
-     * @throws BbddException error controlado
      * @throws EmpleadoException
+     * @throws PersistenciaException
      */
-    public void insertar(Empleado empleado) throws BbddException, EmpleadoException {
+    public void insertar(Empleado empleado) throws  EmpleadoException, PersistenciaException {
         validarEmpleado(empleado);
         if (existe(empleado)) {
             throw new EmpleadoException("El empleado indicado ya existe");
@@ -79,9 +79,9 @@ public class EmpleadoController {
      * Metodo encargado de elimianr
      * @param empleado empleado a eliminar
      * @throws EmpleadoException error controlado
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public void eliminar(Empleado empleado) throws BbddException, EmpleadoException {
+    public void eliminar(Empleado empleado) throws EmpleadoException, PersistenciaException {
         validarEmpleado(empleado);
         if (!existe(empleado)) {
             throw new EmpleadoException("El empleado indicado no existe");
@@ -93,9 +93,9 @@ public class EmpleadoController {
      * Metodo encargado de eliminar utilizando el codigo de empleado
      * @param dni dni del empleado
      * @throws EmpleadoException error controlado
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public void eliminar(String dni) throws EmpleadoException, BbddException {
+    public void eliminar(String dni) throws EmpleadoException, PersistenciaException {
         Empleado empleado;
         empleado = buscar(dni);
         eliminar(empleado);
@@ -105,25 +105,25 @@ public class EmpleadoController {
      * Metodo encargado de modificar
      * @param empleado empleado a modificar
      * @throws EmpleadoException error controlado
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public void modificar(Empleado empleado) throws EmpleadoException, BbddException {
+    public void modificar(Empleado empleado) throws EmpleadoException, PersistenciaException {
         Empleado empleadoAlmacenado;
         validarEmpleado(empleado);
         empleadoAlmacenado = buscar(empleado.getDni());
         if (empleadoAlmacenado == null) {
             throw new EmpleadoException("El empleado indicado no existe");
         }
-        empleadoModelo.modificar(empleado);
+        empleadoModelo.actualizar(empleado);
     }
 
     /**
      * Metodo encargado de buscar por codigo de empleado
      * @param dni dni del empleado
      * @return empleado encontrado
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public Empleado buscar(String dni) throws BbddException {
+    public Empleado buscar(String dni) throws PersistenciaException  {
         Empleado empleado = null;
         empleado = empleadoModelo.buscar(dni);
         return empleado;
@@ -133,9 +133,9 @@ public class EmpleadoController {
      * Funcion encargada de verificar si existe o no un empleado
      * @param empleado empleado a encontrar
      * @return true/false si existe o no
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public boolean existe(Empleado empleado) throws BbddException {
+    public boolean existe(Empleado empleado) throws PersistenciaException  {
         boolean encontrado = false;
         Empleado empleadoEncontrado;
 

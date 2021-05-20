@@ -3,6 +3,7 @@ package es.iespuertodelacruz.concesionario.controlador;
 import es.iespuertodelacruz.concesionario.api.Direccion;
 import es.iespuertodelacruz.concesionario.exception.BbddException;
 import es.iespuertodelacruz.concesionario.exception.DireccionException;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 import es.iespuertodelacruz.concesionario.modelo.DireccionModelo;
 
 /**
@@ -13,8 +14,9 @@ public class DireccionController {
 
     /**
      * Constructor de la clase DireccionController
+     * @throws PersistenciaException
      */
-    public DireccionController() {
+    public DireccionController() throws PersistenciaException {
         direccionModelo = new DireccionModelo();
     }
 
@@ -55,9 +57,9 @@ public class DireccionController {
      * Metodo encargado de insertar
      * @param direccion direccion a insertar
      * @throws DireccionException error controlado
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public void insertar(Direccion direccion) throws DireccionException, BbddException {
+    public void insertar(Direccion direccion) throws DireccionException, PersistenciaException {
         validarDireccion(direccion);
         direccionModelo.insertar(direccion);
     }
@@ -66,9 +68,9 @@ public class DireccionController {
      * Metodo encargado de eliminar
      * @param direccion direccion a eliminar
      * @throws DireccionException error controlado
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public void eliminar(Direccion direccion) throws DireccionException, BbddException {
+    public void eliminar(Direccion direccion) throws DireccionException, PersistenciaException {
         validarDireccion(direccion);
         direccionModelo.eliminar(direccion);
     }
@@ -76,10 +78,10 @@ public class DireccionController {
     /**
      * Metodo encargado de eliminar utilizando el identificador de la direccion
      * @param dni dni del cliente
-     * @throws BbddException error controlado
      * @throws DireccionException error controlado
+     * @throws PersistenciaException
      */
-    public void eliminar(String identificador) throws BbddException, DireccionException {
+    public void eliminar(String identificador) throws  DireccionException, PersistenciaException {
         Direccion direccion;
         direccion = buscar(identificador);
         eliminar(direccion);
@@ -89,25 +91,25 @@ public class DireccionController {
      * Metodo encargado de modificar
      * @param direccion direccion a modificar
      * @throws DireccionException error controlado
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public void modificar(Direccion direccion) throws DireccionException, BbddException {
+    public void modificar(Direccion direccion) throws DireccionException, PersistenciaException {
         Direccion direccionAlmacenada;
         validarDireccion(direccion);
         direccionAlmacenada = buscar(direccion.getIdentificador());
         if (direccionAlmacenada == null) {
             throw new DireccionException("La direccion indicada no existe");
         }
-        direccionModelo.modificar(direccion);
+        direccionModelo.actualizar(direccion);
     }
 
     /**
      * Metodo encargado de buscar por codigo de cliente
      * @param dni dni del cliente
      * @return cliente encontrado
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public Direccion buscar(String identificador) throws BbddException {
+    public Direccion buscar(String identificador) throws PersistenciaException  {
         Direccion direccion = null;
         direccion = direccionModelo.buscar(identificador);
         return direccion;

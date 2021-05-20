@@ -1,8 +1,7 @@
 package es.iespuertodelacruz.concesionario.controlador;
 
 import es.iespuertodelacruz.concesionario.api.Persona;
-import es.iespuertodelacruz.concesionario.exception.BbddException;
-import es.iespuertodelacruz.concesionario.exception.PersonaException;
+import es.iespuertodelacruz.concesionario.exception.*;
 import es.iespuertodelacruz.concesionario.modelo.PersonaModelo;
 
 /**
@@ -13,8 +12,9 @@ public class PersonaController {
 
     /**
      * Constructor de la clase PersonaController
+     * @throws PersistenciaException
      */
-    public PersonaController() {
+    public PersonaController() throws PersistenciaException {
         personaModelo = new PersonaModelo();
     }
     
@@ -56,10 +56,10 @@ public class PersonaController {
     /**
      * Metodo encargado de insertar
      * @param persona persona a insertar
-     * @throws BbddException error controlado
      * @throws PersonaException error controlado
+     * @throws PersistenciaException
      */
-    public void insertar(Persona persona) throws BbddException, PersonaException {
+    public void insertar(Persona persona) throws PersonaException, PersistenciaException {
         validarCliente(persona);
         if (existe(persona)) {
             throw new PersonaException("El cliente indicado ya existe");
@@ -70,10 +70,10 @@ public class PersonaController {
     /**
      * Metodo encargado de elimianr
      * @param persona persona a eliminar
-     * @throws BbddException error controlado
      * @throws PersonaException error controlado
+     * @throws PersistenciaException
      */
-    public void eliminar(Persona persona) throws BbddException, PersonaException {
+    public void eliminar(Persona persona) throws PersonaException, PersistenciaException {
         validarCliente(persona);
         if (!existe(persona)) {
             throw new PersonaException("El cliente indicado no existe");
@@ -84,10 +84,10 @@ public class PersonaController {
     /**
      * Metodo encargado de eliminar
      * @param dni dni de la persona
-     * @throws BbddException error controlado
      * @throws PersonaException error controlado
+     * @throws PersistenciaException
      */
-    public void eliminar(String dni) throws BbddException, PersonaException {
+    public void eliminar(String dni) throws PersonaException, PersistenciaException {
         Persona persona;
         persona = buscar(dni);
         eliminar(persona);
@@ -96,27 +96,26 @@ public class PersonaController {
     /**
      * Metodo encargado de modificar
      * @param persona persona a modificar
-     * @throws ClienteException error controlado
-     * @throws BbddException error controlado
      * @throws PersonaException error controlado
+     * @throws PersistenciaException
      */
-    public void modificar(Persona persona) throws BbddException, PersonaException {
+    public void modificar(Persona persona) throws PersonaException, PersistenciaException {
         Persona personaAlmacenada;
         validarCliente(persona);
         personaAlmacenada = buscar(persona.getDni());
         if (personaAlmacenada == null) {
             throw new PersonaException("El cliente indicado no existe");
         }
-        personaModelo.modificar(persona);
+        personaModelo.actualizar(persona);
     }
 
     /**
      * Metodo encargado de buscar
      * @param dni dni de la persona
      * @return persona encontrada
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public Persona buscar(String dni) throws BbddException {
+    public Persona buscar(String dni) throws PersistenciaException  {
         Persona persona = null;
         persona = personaModelo.buscar(dni);
         return persona;
@@ -126,9 +125,9 @@ public class PersonaController {
      * Funcion encargada de verificar si existe o no una persona
      * @param persona persona a encontrar
      * @return true/false si existe o no
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public boolean existe(Persona persona) throws BbddException {
+    public boolean existe(Persona persona) throws PersistenciaException  {
         boolean encontrado = false;
         Persona personaeEncontrada;
 

@@ -3,6 +3,7 @@ package es.iespuertodelacruz.concesionario.controlador;
 import es.iespuertodelacruz.concesionario.api.Cliente;
 import es.iespuertodelacruz.concesionario.exception.BbddException;
 import es.iespuertodelacruz.concesionario.exception.ClienteException;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 import es.iespuertodelacruz.concesionario.modelo.ClienteModelo;
 
 /**
@@ -13,8 +14,9 @@ public class ClienteController {
 
     /**
      * Constructor de la clase ClienteController
+     * @throws PersistenciaException
      */
-    public ClienteController() {
+    public ClienteController() throws PersistenciaException {
         clienteModelo = new ClienteModelo();
     }
 
@@ -58,9 +60,10 @@ public class ClienteController {
      * Metodo encargado de insertar
      * @param cliente cliente a insertar
      * @throws ClienteException error controlado
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
+     * 
      */
-    public void insertar(Cliente cliente) throws ClienteException, BbddException {
+    public void insertar(Cliente cliente) throws ClienteException, PersistenciaException {
         validarCliente(cliente);
         if (existe(cliente)) {
             throw new ClienteException("El cliente indicado ya existe");
@@ -72,9 +75,9 @@ public class ClienteController {
      * Metodo encargado de elimianr
      * @param cliente cliente a eliminar
      * @throws ClienteException error controlado
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public void eliminar(Cliente cliente) throws ClienteException, BbddException {
+    public void eliminar(Cliente cliente) throws ClienteException, PersistenciaException {
         validarCliente(cliente);
         if (!existe(cliente)) {
             throw new ClienteException("El cliente indicado no existe");
@@ -86,9 +89,9 @@ public class ClienteController {
      * Metodo encargado de eliminar utilizando el codigo de cliente
      * @param dni dni del cliente
      * @throws ClienteException error controlado
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public void eliminar(String codigoCliente) throws ClienteException, BbddException {
+    public void eliminar(String codigoCliente) throws ClienteException, PersistenciaException {
         Cliente cliente;
         cliente = buscar(codigoCliente);
         eliminar(cliente);
@@ -98,25 +101,25 @@ public class ClienteController {
      * Metodo encargado de modificar
      * @param cliente cliente a modificar
      * @throws ClienteException error controlado
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public void modificar(Cliente cliente) throws ClienteException, BbddException {
+    public void modificar(Cliente cliente) throws ClienteException, PersistenciaException {
         Cliente clienteAlmacenado;
         validarCliente(cliente);
         clienteAlmacenado = buscar(cliente.getDni());
         if (clienteAlmacenado == null) {
             throw new ClienteException("El cliente indicado no existe");
         }
-        clienteModelo.modificar(cliente);
+        clienteModelo.actualizar(cliente);
     }
 
     /**
      * Metodo encargado de buscar por codigo de cliente
      * @param dni dni del cliente
      * @return cliente encontrado
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public Cliente buscar(String dni) throws BbddException {
+    public Cliente buscar(String dni) throws PersistenciaException  {
         Cliente cliente = null;
         cliente = clienteModelo.buscar(dni);
         return cliente;
@@ -126,9 +129,9 @@ public class ClienteController {
      * Funcion encargada de verificar si existe o no un cliente
      * @param cliente cliente a encontrar
      * @return true/false si existe o no
-     * @throws BbddException error controlado
+     * @throws PersistenciaException
      */
-    public boolean existe(Cliente cliente) throws BbddException {
+    public boolean existe(Cliente cliente) throws PersistenciaException  {
         boolean encontrado = false;
         Cliente clienteEncontrado;
 
