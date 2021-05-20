@@ -1,4 +1,4 @@
-CREATE TABLE "Ventas" (
+CREATE TABLE "Venta" (
 	"identificador"	INTEGER NOT NULL,
 	"dniEmpleado"	varchar(30) NOT NULL,
 	"dniCliente"	varchar(30) NOT NULL,

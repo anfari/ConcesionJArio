@@ -10,5 +10,6 @@ CREATE TABLE IF NOT EXISTS "Vehiculo" (
 	"potencia"	INTEGER NOT NULL,
 	"cilindrada"	varchar(30) NOT NULL,
 	"tipo"	varchar(30) NOT NULL,
+	"estado" varchar(20) NOT NULL,
 	PRIMARY KEY("bastidor")
 );

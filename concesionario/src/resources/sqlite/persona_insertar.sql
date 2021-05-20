@@ -1,41 +1,40 @@
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("10234567D","Pascual","Gimenez","03/02/1984","+34653321432","I019");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("11234567D","Marcelino","Manzano","13/05/1994","+34653321432","I018");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("12234567D","Pastor","Gimenez","02/02/1988","+34653321432","I017");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("13234567D","Perico","Afonso","23/10/1989","+34653321432","11111111A");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("14234567D","Anastasia","Real","03/02/1988","+34653321432","11111112A");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("15234567D","Castolo","Rajado","03/02/1981","+34653321432","11111113A");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("16234567D","Lolita","Zuzunaga","03/02/1994","+34653321432","11111114A");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("17234567D","Encarnacion","Bonachera","03/02/1991","+34653321432","11111115A");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("18234567D","Maria","Pieldelobo","13/02/1994","+34653321432","11111116A");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("19234567D","Cucura","Pieldecordero","22/05/1995","+34653321432","11111117A");
-
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("11111111A","Hierbora","Víbora","03/02/1989","+34653321432","11111118A");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("11111112A","Rita","Oreja de perro","03/02/1988","+34653321432","11111119A");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("11111113A","Perica","Rabo de gato","03/02/1987","+34653321432","11111110A");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("11111114A","Lucas","Bigotes","03/02/1994","+34653321432","I010");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("11111115A","Saria","Santocan","03/02/1979","+34653321432","I011");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("11111116A","Werner","Achaman","03/02/1978","+34653321432","I012");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("11111117A","Royal","Perales","03/02/1974","+34653321432","I013");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("11111118A","Dodo","Parrales","09/02/1994","+34653321432","I014");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("11111119A","Antonio","Recio","30/02/1991","+34653321432","I015");
-INSERT INTO Persona (dni,nombre, apellidos,fechaNacimiento, telefono, direccion) 
-VALUES("11111110A","Coque","Calatraba","25/08/1994","+34653321432","I016");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Pascual", "Gimenez", "11111111A", "03/02/1984", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Marcelino", "11111112A", "Manzano", "13/05/1994", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Pastor", "11111113A", "Gimenez", "02/02/1988", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Perico", "11111114A", "Afonso", "23/10/1989", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Anastasia", "11111115A", "Real", "03/02/1988", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Castolo", "11111116A", "Rajado", "03/02/1981", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Lolita", "11111117A", "Zuzunaga", "03/02/1994", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Encarnacion", "11111118A", "Bonachera", "03/02/1991", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Maria", "11111119A", "Pieldelobo", "13/02/1994", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Cucura", "11111110A", "Pieldecordero", "22/05/1995", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Hierbora", "11111111B", "Víbora", "03/02/1989", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Rita", "11111112B", "Oreja de perro", "03/02/1988", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Perica", "11111113B", "Rabo de gato", "03/02/1987", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Lucas", "11111114B", "Bigotes", "03/02/1994", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Saria", "11111115B", "Santocan", "03/02/1979", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Werner", "11111116B", "Achaman", "03/02/1978", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Royal", "11111117B", "Perales", "03/02/1974", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Dodo", "11111118B", "Parrales", "09/02/1994", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Antonio", "11111119B", "Recio", "30/02/1991", "+34653321432");
+INSERT INTO Persona (nombre, apellidos, dni, fechaNacimiento, telefono) 
+VALUES("Coque", "11111110B", "Calatraba", "25/08/1994", "+34653321432");
