@@ -11,6 +11,12 @@ public class Venta {
 
 
     /**
+     * Constructor vacio de la clase Venta
+     */
+    public Venta() {
+    }
+
+    /**
      * Constructor de la clase Venta
      * @param codigoEmpleado codigo del empleado que realiza la venta
      * @param codigoCliente codigo del cliente que realiza la compra
@@ -23,6 +29,8 @@ public class Venta {
         this.bastidor = bastidor;
         this.identificador=identificador;
     }
+
+
     /**
      * Getter de la clase Venta
      * @return identificador del empleado

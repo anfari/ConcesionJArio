@@ -1,6 +1,7 @@
 package es.iespuertodelacruz.concesionario.vista;
 
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -8,12 +9,13 @@ import es.iespuertodelacruz.concesionario.api.*;
 import es.iespuertodelacruz.concesionario.controlador.*;
 import es.iespuertodelacruz.concesionario.exception.*;
 import es.iespuertodelacruz.concesionario.modelo.Bbdd;
+import es.iespuertodelacruz.concesionario.modelo.Bbdd2;
 /**
  * Clase principal que contiene el menu de opciones de la app
  */
 public class VistaApp {
     static Scanner teclado = new Scanner(System.in);
-    static Bbdd bd;
+    static Bbdd2 bd;
     static ClienteController clienteController;
     static EmpleadoController empleadoController;
     static VehiculoController vehiculoController;
@@ -36,21 +38,40 @@ public class VistaApp {
     }
 
 
-    public static void main(String[] args) throws BbddException, ClienteException, PersistenciaException, DniException {
-        if(bd==null){
+    /**
+     * Metodo main de la clase VistaApp
+     * @param args argumentos
+     * @throws BbddException error controlado
+     * @throws ClienteException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws DniException error controlado
+     * @throws EmpleadoException error controlado
+     * @throws VehiculoException error controlado
+     * @throws BastidorException error controlado
+     * @throws DireccionException error controlado
+     * @throws VentaException error controlado
+     */
+    public static void main(String[] args) throws BbddException, ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException {
+        /**if(bd==null){
             bd=new Bbdd(null, null, null, null);
-        }
+        }*/
+        new VistaApp();
         menuPrincipal();
 
     }
     /**
      * Metodo estatico privado que contiene el menu principal 
      * @throws BbddException error controlado
-     * @throws DniException
-     * @throws PersistenciaException
-     * @throws ClienteException
+     * @throws DniException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws ClienteException error controlado
+     * @throws BastidorException error controlado
+     * @throws VehiculoException error controlado
+     * @throws EmpleadoException error controlado
+     * @throws DireccionException error controlado
+     * @throws VentaException error controlado
      */
-    private static void menuPrincipal() throws BbddException, ClienteException, PersistenciaException, DniException {
+    private static void menuPrincipal() throws BbddException, ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException {
         boolean salir = false;
         int opcion;
 
@@ -88,11 +109,14 @@ public class VistaApp {
     /**
      * Metodo estatico privado que contiene el menu de empleado
      * @throws BbddException error controlado
-     * @throws DniException
-     * @throws PersistenciaException
-     * @throws ClienteException
+     * @throws DniException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws ClienteException error controlado
+     * @throws VehiculoException error controlado
+     * @throws DireccionException error controlado
+     * @throws VentaException error controlado
      */
-    private static void menuEmpleado() throws BbddException, ClienteException, PersistenciaException, DniException {
+    private static void menuEmpleado() throws BbddException, ClienteException, PersistenciaException, DniException, VehiculoException, DireccionException, VentaException {
         boolean salir = false;
         int opcion;
 
@@ -129,14 +153,16 @@ public class VistaApp {
     /**
      * Metodo estatico privado que contiene el menu de gerente
      * @throws BbddException error controlado
-     * @throws DniException
-     * @throws PersistenciaException
-     * @throws ClienteException
-     * @throws EmpleadoException
-     * @throws BastidorException
-     * @throws VehiculoException
+     * @throws DniException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws ClienteException error controlado
+     * @throws EmpleadoException error controlado
+     * @throws BastidorException error controlado
+     * @throws VehiculoException error controlado
+     * @throws DireccionException error controlado
+     * @throws VentaException error controlado
      */
-    private static void menuGerente() throws BbddException, ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException {
+    private static void menuGerente() throws BbddException, ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException {
         boolean salir = false;
         int opcion;
 
@@ -181,8 +207,11 @@ public class VistaApp {
     /**
      * Metodo estatico privado que contiene el menu de ventas
      * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws VehiculoException error controlado
+     * @throws VentaException error controlado
     */
-    private static void menuVentas() throws BbddException {
+    private static void menuVentas() throws BbddException, PersistenciaException, VehiculoException, VentaException {
         boolean salir = false;
         int opcion;
         Vehiculo vehiculo;
@@ -202,19 +231,22 @@ public class VistaApp {
 
                 switch (opcion) {
                     case 1:
-                        pedirDatosVenta();
-                        //TODO: Modificar estado coche del  modelo deseado de la BBDD
-
+                        venta = pedirDatosVenta();
+                        vehiculo = vehiculoController.buscar(venta.getBastidor());
+                        vehiculo.setEstado("Vendido");
+                        vehiculoController.modificar(vehiculo);
+                        System.out.println("Venta completada");
                         break;
                     case 2:
-                        //TODO: Mostrar lista de vehiculos vendidos por orden de ventas
                         System.out.println("Lista vehiculos vendidos");
-                        System.out.println(ventaController.listadoVehiculos());
-                       
+                        ArrayList<String> ventasAgrupadas = ventaController.agruparVentas();
+                        for (String grupo : ventasAgrupadas) {
+                            System.out.println(grupo);
+                        }
                         break;
                     case 3:
-                    System.out.println("Lista de vehiculos disponibles: ");
-                    System.out.println(ventaController.listadoVehiculos());
+                        System.out.println("Lista de vehiculos disponibles: ");
+                        System.out.println(vehiculoController.listadoVehiculos());
                         break;
                     case 4:
                         salir = true;
@@ -235,8 +267,9 @@ public class VistaApp {
      * @throws PersistenciaException error controlado
      * @throws ClienteException error controlado
      * @throws DniException error controlado
+     * @throws DireccionException error controlado
      */
-    private static void menuClientes() throws ClienteException, PersistenciaException, DniException {
+    private static void menuClientes() throws ClienteException, PersistenciaException, DniException, DireccionException {
         boolean salir = false;
         int opcion;
         Cliente cliente;
@@ -301,11 +334,12 @@ public class VistaApp {
 
     /**
      * Metodo estatico que contiene el menu de gestion de empleados
-     * @throws PersistenciaException
-     * @throws EmpleadoException
-     * @throws DniException
+     * @throws PersistenciaException error controlado
+     * @throws EmpleadoException error controlado
+     * @throws DniException error controlado
+     * @throws DireccionException error controlado
      */
-    private static void menuEmpleados() throws EmpleadoException, PersistenciaException, DniException {
+    private static void menuEmpleados() throws EmpleadoException, PersistenciaException, DniException, DireccionException {
         boolean salir = false;
         int opcion;
         Empleado empleado;
@@ -411,7 +445,7 @@ public class VistaApp {
                     case 3:
                         System.out.print("Introduzca el numero de bastidor del vehiculo: ");
                         bastidor = teclado.next();
-                        validarBastidor(bastidor);;
+                        validarBastidor(bastidor);
                         vehiculoController.eliminar(vehiculoController.buscar(bastidor));
                         System.out.println("\nVehiculo eliminado");
                         break;
@@ -436,8 +470,9 @@ public class VistaApp {
     /**
      * Funcion privada encarga de generar vehiculos
      * @return devuelve un objeto de tipo vehiculo
+     * @throws VehiculoException error controlado
      */
-    private static Vehiculo generarDatosVehiculo(){
+    private static Vehiculo generarDatosVehiculo() throws VehiculoException{
         
         System.out.print("Introduzca el numero de bastidor: ");
         String bastidor = teclado.next();
@@ -475,15 +510,19 @@ public class VistaApp {
         System.out.print("Introduzca el estado del vehiculo: ");
         String estado = teclado.next();
 
-        return new Vehiculo(bastidor, matricula, marca, modelo, color, precio, extras, motor, potencia, cilindrada, tipo, estado);
+        Vehiculo vehiculo = new Vehiculo(bastidor, matricula, marca, modelo, color, precio, extras, motor, potencia, cilindrada, tipo, estado);
+        vehiculoController.validarVehiculo(vehiculo);
+
+        return vehiculo;
     }
 
     /**
      * Funcion privada encarga de generar clientes
      * @return un cliente
      * @throws ClienteException error controlado
+     * @throws DireccionException error controlado
      */
-    private static Cliente generarDatosCliente() throws ClienteException {
+    private static Cliente generarDatosCliente() throws ClienteException, DireccionException {
 
         System.out.print("Introduzca el valor de el codigo de cliente: ");
         String codigoCliente = teclado.next();
@@ -512,8 +551,10 @@ public class VistaApp {
     /**
      * Funcion privada encarga de generar empleados
      * @return un empleado
+     * @throws EmpleadoException error controlado
+     * @throws DireccionException error controlado
      */
-    private static Empleado generarDatosEmpleado() {
+    private static Empleado generarDatosEmpleado() throws EmpleadoException, DireccionException {
 
         System.out.print("Introduzca el valor de el codigo del empleado ");
         String codigoEmpleado = teclado.next();
@@ -539,14 +580,18 @@ public class VistaApp {
         System.out.print("Introduzca el valor de contraseña: ");
         String contraseña = teclado.next();
 
-        return new Empleado(codigoEmpleado, nombre, apellidos, dni, fechaNacimiento, telefono, generarDatosDireccion(dni), rango, contraseña);
+        Empleado empleado = new Empleado(codigoEmpleado, nombre, apellidos, dni, fechaNacimiento, telefono, generarDatosDireccion(dni), rango, contraseña);
+        empleadoController.validarEmpleado(empleado);
+
+        return empleado;
     }
 
     /**
      * Funcion privada encarga de generar nuevas direcciones
      * @return una direccion
+     * @throws DireccionException error controlado
      */
-    private static Direccion generarDatosDireccion(String identificador){
+    private static Direccion generarDatosDireccion(String identificador) throws DireccionException{
 
         System.out.print("Introduzca el pais: ");
         String pais = teclado.next();
@@ -566,14 +611,18 @@ public class VistaApp {
         System.out.print("Introduzca el codigo postal: ");
         String codigoPostal = teclado.next();
 
-        return new Direccion(identificador, calle, numero, codigoPostal, provincia, ciudad, pais);
+        Direccion direccion = new Direccion(identificador, calle, numero, codigoPostal, provincia, ciudad, pais);
+        direccionController.validarDireccion(direccion);
+
+        return direccion;
     }
 
-
-    private static Venta pedirDatosVenta() {
-
-        System.out.println("Introduzca el indentidicador de venta");
-        String identificador=teclado.next();
+    /**
+     * Metodo que pide los datos para generar una venta
+     * @return venta creada
+     * @throws VentaException error controlado
+     */
+    private static Venta pedirDatosVenta() throws VentaException {
 
         System.out.print("Introduzca el dni del empleado: ");
         String dniEmpleado = teclado.next();
@@ -584,7 +633,10 @@ public class VistaApp {
         System.out.print("Introduzca el numero de bastidor del vehiculo: ");
         String bastidor = teclado.next();
 
-         return new Venta(identificador, dniEmpleado, dniCliente, bastidor);
+        Venta venta = new Venta(null, dniEmpleado, dniCliente, bastidor);
+        ventaController.validarVenta(venta);
+
+        return venta;
 
     }
 

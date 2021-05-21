@@ -16,7 +16,7 @@ public class VentaModelo {
 
     /**
      * Constructor de la Clase ClienteModelo
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public VentaModelo() throws PersistenciaException {
         persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);
@@ -26,7 +26,7 @@ public class VentaModelo {
     /**
      * Metodo que inserta una venta
      * @param venta venta a insertar
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void insertar(Venta venta) throws PersistenciaException {
         String sql ="INSERT INTO Venta (identificador, codigoEmpleado, codigoCliente, bastidor)" + 
@@ -38,7 +38,7 @@ public class VentaModelo {
     /**
      * Metodo que modifica una venta
      * @param venta venta a modificar
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void actualizar(Venta venta) throws PersistenciaException {
         String sql = "UPDATE Venta SET codigoEmpleado = '" + venta.getCodigoEmpleado() +
@@ -49,17 +49,17 @@ public class VentaModelo {
 
     /**
      * Metodo que busca una venta
-     * @param bastidor codigo de bastidor del vehiculo
-     * @throws PersistenciaException
+     * @param identificador identificador de la venta
+     * @throws PersistenciaException error controlado
      */
-    public Venta buscar(String bastidor) throws PersistenciaException {
-        return (Venta)persistencia.obtenerCliente(bastidor);
+    public Venta buscar(String identificador) throws PersistenciaException {
+        return (Venta)persistencia.obtenerVenta(identificador);
     }
     
     /**
      * Metodo que elimina una venta
      * @param venta venta a eliminar
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void eliminar(Venta venta) throws PersistenciaException {
         String sql = "DELETE from Venta where identificador = '" + 
@@ -67,8 +67,13 @@ public class VentaModelo {
         persistencia.actualizar(sql);
     }
 
-    public void agruparVentas() throws PersistenciaException {
+    /**
+     * Funcion que retorna un listado agrupado de las ventas realizadas
+     * @return listado de ventas agrupado por modelo
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList<String> agruparVentas() throws PersistenciaException {
         String sql="SELECT COUNT(bastidor), Marca, Modelo FROM Vehiculo WHERE estado = 'Vendido' GROUP BY Modelo;";
-        persistencia.actualizar(sql);
+        return persistencia.agruparVentas(sql);
     }
 }

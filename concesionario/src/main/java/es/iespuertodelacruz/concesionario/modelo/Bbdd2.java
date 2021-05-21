@@ -28,19 +28,7 @@ public class Bbdd2  {
     protected String usuario;
     protected String password;
 
-      /**
-     * Constructor por defecto, para crear la conexion a la basede datos
-     * @param driver driver para cargar la bd
-     * @param url url con el puerto incluido de la bd
-     * @param usuario usuario de la bd
-     * @param password contraseña de la bd
-     */
-    public Bbdd2(String driver, String url, String usuario, String password) {
-        this.driver = driver;
-        this.url = url;
-        this.usuario = usuario;
-        this.password = password;
-    }
+
     /**
      * Constructor por defecto, para crear la conexion a la basede datos
      * @param driver driver para cargar la bd
@@ -78,8 +66,8 @@ public class Bbdd2  {
                 listaTablas.add(resultSet.getString(TABLE_NAME));
             }
             for (String tabla : nombreTablas) {
-                if (!listaTablas.contains(tabla)) {
-                    String sqlCrearTabla = fichero.leer(tabla + "_crear.sql");
+                if (!listaTablas.contains(tabla.toLowerCase())) {
+                    String sqlCrearTabla = fichero.leer(tabla.toLowerCase() + "_crear.sql");
                     actualizar(sqlCrearTabla);
                     String sqlInsertarDatos = fichero.leer(tabla + "_insertar.sql");
                     actualizar(sqlInsertarDatos);
@@ -448,7 +436,7 @@ public class Bbdd2  {
 
     /**
      * Funcion que busca una direccion especifica
-     * @param identificador dni de la persona
+     * @param identificador identificador de la direccion
      * @return Direccion encontrada
      * @throws PersistenciaException
      */
@@ -463,11 +451,97 @@ public class Bbdd2  {
         }
 
         return direccion;
-
-
-
-
     }
+
+
+
+
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Venta
+     * @param sql a ejecutar
+     * @return lista de resultado
+     * @throws PersistenciaException
+     */
+    public ArrayList<Object> obtenerListadoVentas(String sql) throws PersistenciaException  {
+        ArrayList<Object> listaVentas = new ArrayList<>();
+        Statement statement = null;
+        ResultSet resultSet = null;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                Venta venta = new Venta();
+                venta.setBastidor("bastidor");
+                venta.setCodigoCliente("codigoCliente");
+                venta.setCodigoEmpleado("codigoEmpleado");
+                venta.setIdentificador("identificador");
+                listaVentas.add(venta);
+            }
+        } catch (Exception exception) {
+            throw new PersistenciaException(SE_HA_PRODUCIDO_UN_ERROR_REALIZANDO_LA_CONSULTA, exception);
+        } finally {
+            closeConnection(connection, statement, resultSet);
+        }
+        return listaVentas;
+    }
+
+    public ArrayList<String> agruparVentas(String sql) throws PersistenciaException  {
+        ArrayList<String> ventasAgrupadas = new ArrayList<>();
+        Statement statement = null;
+        ResultSet resultSet = null;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String cantidad = resultSet.getString("COUNT(bastidor)");
+                String marca = resultSet.getString("marca");
+                String modelo = resultSet.getString("modelo");
+                String resultado = marca + " " + modelo + ": " + cantidad;
+                ventasAgrupadas.add(resultado);
+            }
+        } catch (Exception exception) {
+            throw new PersistenciaException(SE_HA_PRODUCIDO_UN_ERROR_REALIZANDO_LA_CONSULTA, exception);
+        } finally {
+            closeConnection(connection, statement, resultSet);
+        }
+        return ventasAgrupadas;
+    }
+    /**
+     * Funcion busca todas las ventas guardadas
+     * @return lista de todas las ventas
+     * @throws PersistenciaException
+     */
+    public ArrayList<Object> obtenerListadoVentas() throws PersistenciaException  {
+        String sql = "SELECT * FROM Venta";
+        return obtenerListadoDirecciones(sql);
+    }
+
+    /**
+     * Funcion que busca una direccion especifica
+     * @param identificador identificador de la venta
+     * @return Venta encontrada
+     * @throws PersistenciaException
+     */
+    public Object obtenerVenta(String identidicador) throws PersistenciaException  {
+        Object venta = null;
+        ArrayList<Object> listaVentas = null;
+        String sql = "SELECT * FROM Vetna where identificador =";
+        sql = sql + "'" + identidicador + "'";
+        listaVentas = obtenerListadoVentas(sql);
+        if (!listaVentas.isEmpty()) {
+            venta = listaVentas.get(0);
+        }
+
+        return venta;
+    }
+
+
+
 
 
     /**

@@ -40,9 +40,6 @@ public class VentaController {
         if (venta.getCodigoCliente() == null || venta.getCodigoCliente().isEmpty()) {
             mensaje += "El codigo de cliente de la venta es nulo o vacio\n";
         }
-        if (venta.getIdentificador() == null || venta.getIdentificador().isEmpty()) {
-            mensaje += "El identificador de venta es nulo o vacio\n";
-        }
         if (venta.getCodigoEmpleado() == null || venta.getCodigoEmpleado().isEmpty()) {
             mensaje += "El codigo de empleado de venta es nulo o vacio\n";
         }
@@ -138,12 +135,12 @@ public class VentaController {
     }
 
    /**
-     * Funcion que retorna una lista con todos los clientes
-     * @return listado con todos los clientes
+     * Funcion que retorna un listado agrupado de las ventas realizadas
+     * @return @return listado de ventas agrupado por modelo
      * @throws PersistenciaException error controlado
      */
-    public void listadoVehiculos() throws PersistenciaException {
-        ventaModelo.agruparVentas();
+    public ArrayList<String> agruparVentas() throws PersistenciaException {
+        return ventaModelo.agruparVentas();
     }
 
 }
