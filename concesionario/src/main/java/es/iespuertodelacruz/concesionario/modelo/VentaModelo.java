@@ -1,5 +1,7 @@
 package es.iespuertodelacruz.concesionario.modelo;
 
+import java.util.ArrayList;
+
 import es.iespuertodelacruz.concesionario.api.Venta;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 
@@ -62,6 +64,11 @@ public class VentaModelo {
     public void eliminar(Venta venta) throws PersistenciaException {
         String sql = "DELETE from Venta where identificador = '" + 
         venta.getIdentificador() + "'";
+        persistencia.actualizar(sql);
+    }
+
+    public void agruparVentas() throws PersistenciaException {
+        String sql="SELECT COUNT(bastidor), Marca, Modelo FROM Vehiculo WHERE estado = 'Vendido' GROUP BY Modelo;";
         persistencia.actualizar(sql);
     }
 }

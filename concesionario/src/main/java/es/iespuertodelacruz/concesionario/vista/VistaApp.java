@@ -5,15 +5,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import es.iespuertodelacruz.concesionario.api.*;
-import es.iespuertodelacruz.concesionario.controlador.ClienteController;
-import es.iespuertodelacruz.concesionario.controlador.DireccionController;
-import es.iespuertodelacruz.concesionario.controlador.EmpleadoController;
-import es.iespuertodelacruz.concesionario.controlador.PersonaController;
-import es.iespuertodelacruz.concesionario.controlador.VehiculoController;
-import es.iespuertodelacruz.concesionario.exception.BbddException;
-import es.iespuertodelacruz.concesionario.exception.ClienteException;
-import es.iespuertodelacruz.concesionario.exception.DniException;
-import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
+import es.iespuertodelacruz.concesionario.controlador.*;
+import es.iespuertodelacruz.concesionario.exception.*;
 import es.iespuertodelacruz.concesionario.modelo.Bbdd;
 /**
  * Clase principal que contiene el menu de opciones de la app
@@ -26,6 +19,7 @@ public class VistaApp {
     static VehiculoController vehiculoController;
     static PersonaController personaController;
     static DireccionController direccionController;
+    static VentaController ventaController;
     
 
     /**
@@ -38,10 +32,11 @@ public class VistaApp {
         vehiculoController = new VehiculoController();
         personaController = new PersonaController();
         direccionController = new DireccionController();
+        ventaController= new VentaController();
     }
 
 
-    public static void main(String[] args) throws BbddException {
+    public static void main(String[] args) throws BbddException, ClienteException, PersistenciaException, DniException {
         if(bd==null){
             bd=new Bbdd(null, null, null, null);
         }
@@ -51,8 +46,11 @@ public class VistaApp {
     /**
      * Metodo estatico privado que contiene el menu principal 
      * @throws BbddException error controlado
+     * @throws DniException
+     * @throws PersistenciaException
+     * @throws ClienteException
      */
-    private static void menuPrincipal() throws BbddException {
+    private static void menuPrincipal() throws BbddException, ClienteException, PersistenciaException, DniException {
         boolean salir = false;
         int opcion;
 
@@ -90,8 +88,11 @@ public class VistaApp {
     /**
      * Metodo estatico privado que contiene el menu de empleado
      * @throws BbddException error controlado
+     * @throws DniException
+     * @throws PersistenciaException
+     * @throws ClienteException
      */
-    private static void menuEmpleado() throws BbddException {
+    private static void menuEmpleado() throws BbddException, ClienteException, PersistenciaException, DniException {
         boolean salir = false;
         int opcion;
 
@@ -128,8 +129,14 @@ public class VistaApp {
     /**
      * Metodo estatico privado que contiene el menu de gerente
      * @throws BbddException error controlado
+     * @throws DniException
+     * @throws PersistenciaException
+     * @throws ClienteException
+     * @throws EmpleadoException
+     * @throws BastidorException
+     * @throws VehiculoException
      */
-    private static void menuGerente() throws BbddException {
+    private static void menuGerente() throws BbddException, ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException {
         boolean salir = false;
         int opcion;
 
@@ -179,13 +186,14 @@ public class VistaApp {
         boolean salir = false;
         int opcion;
         Vehiculo vehiculo;
+        Venta venta;
 
         while (!salir) {
             System.out.println("\n1. Vender Vehiculo");
             System.out.println("2. Vehiculos vendidos");
             System.out.println("3. Listado de vehiculos");
             System.out.println("4. Salir\n");
-
+            venta=null;
             vehiculo = null;
             try {
                 System.out.print("Introduzca una de las opciones: ");
@@ -196,12 +204,17 @@ public class VistaApp {
                     case 1:
                         pedirDatosVenta();
                         //TODO: Modificar estado coche del  modelo deseado de la BBDD
+
                         break;
                     case 2:
                         //TODO: Mostrar lista de vehiculos vendidos por orden de ventas
+                        System.out.println("Lista vehiculos vendidos");
+                        System.out.println(ventaController.listadoVehiculos());
+                       
                         break;
                     case 3:
-                        //TODO: Mostrar lista de vehiculos disponibles
+                    System.out.println("Lista de vehiculos disponibles: ");
+                    System.out.println(ventaController.listadoVehiculos());
                         break;
                     case 4:
                         salir = true;
@@ -288,11 +301,15 @@ public class VistaApp {
 
     /**
      * Metodo estatico que contiene el menu de gestion de empleados
+     * @throws PersistenciaException
+     * @throws EmpleadoException
+     * @throws DniException
      */
-    private static void menuEmpleados() {
+    private static void menuEmpleados() throws EmpleadoException, PersistenciaException, DniException {
         boolean salir = false;
         int opcion;
         Empleado empleado;
+        String dni=null;
 
         while (!salir) {
             System.out.println("\n1. Insertar empleado");
@@ -312,27 +329,32 @@ public class VistaApp {
                 switch (opcion) {
                     case 1:
                         empleado = generarDatosEmpleado();
-                        //TODO: Insertar el empleado desde controlador
+                        empleadoController.insertar(empleado);
                         System.out.println("\nEmpleado insertado");
                         break;
                     case 2:
                         System.out.println("Proceda a introducir los datos, el DNI debe mantenerse igual");
                         empleado = generarDatosEmpleado();
-                        //TODO: Modificar el empleado desde controlador
+                        empleadoController.modificar(empleado);
                         System.out.println("\nCliente modificado");
                         break;
                     case 3:
                         System.out.print("Introduzca el dni del empleado: ");
-                        //TODO: Eliminar el empleado desde controlador
-                        System.out.println("\nEmpleado eliminado");                    
+                        dni = teclado.next();
+                        validarDni(dni);
+                        empleadoController.eliminar(empleadoController.buscar(dni));
+                        System.out.println("\nEmpleado eliminado");
                         break;
                     case 4:
                         System.out.println("Lista de empleados: ");
-                        //TODO: Mostrar lista de empleados
+                        System.out.println(empleadoController.listadoEmpleados());
                         break;
                     case 5:
                         System.out.print("Introduzca el dni del empleado: ");
-                        //TODO: Mostrar informacion del empleado desde controlador
+                        dni = teclado.next();
+                        validarDni(dni);
+                        empleado = empleadoController.buscar(dni);
+                        System.out.println(empleado.toString());
                         break;
                     case 6:
                         salir = true;
@@ -349,9 +371,13 @@ public class VistaApp {
 
     /**
      * Metodo estatico privado que contiene el menu
+     * @throws PersistenciaException
+     * @throws VehiculoException
+     * @throws BastidorException
+     * @throws DniException
      * @throws BbddException error controlado
      */
-    private static void menuVehiculos() throws BbddException{
+    private static void menuVehiculos() throws VehiculoException, PersistenciaException, DniException, BastidorException {
         boolean salir = false;
         int opcion;
         Vehiculo vehiculo;
@@ -363,6 +389,7 @@ public class VistaApp {
             System.out.println("4. Listado de vehiculos");
             System.out.println("5. Salir\n");
             vehiculo = null;
+            String bastidor=null;
 
             try {
                 System.out.print("Introduzca una de las opciones: ");
@@ -372,23 +399,25 @@ public class VistaApp {
                 switch (opcion) {
                     case 1:
                         vehiculo = generarDatosVehiculo();
-                        //TODO: Insertar el vehiculo desde controlador
+                        vehiculoController.insertar(vehiculo);
                         System.out.println("\nVehiculo insertado");
                         break;
                     case 2:
                         System.out.println("Proceda a introducir los datos, el numero de bastidor debe mantenerse igual");
                         vehiculo = generarDatosVehiculo();
-                        //TODO: Modificar el vehiculo desde controlador
+                        vehiculoController.modificar(vehiculo);
                         System.out.println("\nVehiculo modificado");
                         break;
                     case 3:
                         System.out.print("Introduzca el numero de bastidor del vehiculo: ");
-                        //TODO: Eliminar el vehiculo desde controlador
-                        System.out.println("\nVehiculo eliminado");  
+                        bastidor = teclado.next();
+                        validarBastidor(bastidor);;
+                        vehiculoController.eliminar(vehiculoController.buscar(bastidor));
+                        System.out.println("\nVehiculo eliminado");
                         break;
                     case 4:
                         System.out.println("Lista de vehiculos: ");
-                        //TODO: Mostrar lista de vehiculos
+                        System.out.println(vehiculoController.listadoVehiculos());
                         break;
                     case 5:
                         salir = true;
@@ -541,7 +570,10 @@ public class VistaApp {
     }
 
 
-    private static void pedirDatosVenta() {
+    private static Venta pedirDatosVenta() {
+
+        System.out.println("Introduzca el indentidicador de venta");
+        String identificador=teclado.next();
 
         System.out.print("Introduzca el dni del empleado: ");
         String dniEmpleado = teclado.next();
@@ -552,12 +584,28 @@ public class VistaApp {
         System.out.print("Introduzca el numero de bastidor del vehiculo: ");
         String bastidor = teclado.next();
 
+         return new Venta(identificador, dniEmpleado, dniCliente, bastidor);
+
     }
 
-
+    /**
+     * Metodo privado que valida un dni
+     * @param dni dni a validar 
+     * @throws DniException error cobtrolado
+     */
     private static void validarDni(String dni) throws DniException {
         if (dni == null || dni.isEmpty()) {
             throw new DniException("Debe introducir un DNI");
+        }
+    }
+   /**
+     * Metodo privado que valida un bastidor 
+     * @param bastidor a validar 
+     * @throws BastidorException error cobtrolado
+     */
+    private static void validarBastidor(String bastidor) throws DniException, BastidorException {
+        if (bastidor == null || bastidor.isEmpty()) {
+            throw new BastidorException("Debe introducir un DNI");
         }
     }
 

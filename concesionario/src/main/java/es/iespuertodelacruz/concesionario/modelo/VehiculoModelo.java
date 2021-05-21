@@ -1,5 +1,7 @@
 package es.iespuertodelacruz.concesionario.modelo;
 
+import java.util.ArrayList;
+
 import es.iespuertodelacruz.concesionario.api.Vehiculo;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 
@@ -66,5 +68,14 @@ public class VehiculoModelo {
     public void eliminar(Vehiculo vehiculo) throws PersistenciaException {
         String sql = "DELETE from Vehiculo where bastidor = '" + vehiculo.getBastidor() + "'";
         persistencia.actualizar(sql);
+    }
+
+      /**
+     * Funcion que retorna una lista con todos los veiculos
+     * @return listado con todos los vehiculos
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList<Object> listadoVehiculos() throws PersistenciaException {
+        return persistencia.obtenerListadovehiculos();
     }
 }

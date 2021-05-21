@@ -1,5 +1,7 @@
 package es.iespuertodelacruz.concesionario.modelo;
 
+import java.util.ArrayList;
+
 import es.iespuertodelacruz.concesionario.api.Empleado;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 /**
@@ -64,5 +66,13 @@ public class EmpleadoModelo {
         String sql = "DELETE from Empleado where codigoEmpleado = '" + 
         empleado.getCodigoEmpleado() + "'";
         persistencia.actualizar(sql);
+    }
+      /**
+     * Funcion que retorna una lista con todos los empleados
+     * @return listado con todos los empleados
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList<Object> listadoEmpleados() throws PersistenciaException {
+        return persistencia.obtenerListadoEmpleados();
     }
 }

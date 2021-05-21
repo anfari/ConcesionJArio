@@ -143,8 +143,9 @@ public class ClienteController {
      * @param cliente cliente a encontrar
      * @return true/false si existe o no
      * @throws PersistenciaException
+     * @throws ClienteException
      */
-    public boolean existe(Cliente cliente) throws PersistenciaException  {
+    public boolean existe(Cliente cliente) throws PersistenciaException, ClienteException  {
         boolean encontrado = false;
         Cliente clienteEncontrado;
 

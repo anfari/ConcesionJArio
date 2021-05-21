@@ -1,6 +1,8 @@
 package es.iespuertodelacruz.concesionario.controlador;
 
 
+import java.util.ArrayList;
+
 import es.iespuertodelacruz.concesionario.api.Empleado;
 import es.iespuertodelacruz.concesionario.exception.EmpleadoException;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
@@ -128,7 +130,15 @@ public class EmpleadoController {
         empleado = empleadoModelo.buscar(dni);
         return empleado;
     }
-
+    
+     /**
+     * Funcion que retorna una lista con todos los empleados
+     * @return listado con todos los empleados
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList<Object> listadoEmpleados() throws PersistenciaException {
+        return empleadoModelo.listadoEmpleados();
+    }
     /**
      * Funcion encargada de verificar si existe o no un empleado
      * @param empleado empleado a encontrar

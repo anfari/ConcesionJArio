@@ -1,6 +1,8 @@
 package es.iespuertodelacruz.concesionario.controlador;
 
 
+import java.util.ArrayList;
+
 import es.iespuertodelacruz.concesionario.api.Venta;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 import es.iespuertodelacruz.concesionario.exception.VentaException;
@@ -133,6 +135,15 @@ public class VentaController {
             encontrado = true;
         }
         return encontrado;
+    }
+
+   /**
+     * Funcion que retorna una lista con todos los clientes
+     * @return listado con todos los clientes
+     * @throws PersistenciaException error controlado
+     */
+    public void listadoVehiculos() throws PersistenciaException {
+        ventaModelo.agruparVentas();
     }
 
 }

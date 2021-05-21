@@ -1,5 +1,7 @@
 package es.iespuertodelacruz.concesionario.controlador;
 
+import java.util.ArrayList;
+
 import es.iespuertodelacruz.concesionario.api.Vehiculo;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 import es.iespuertodelacruz.concesionario.exception.VehiculoException;
@@ -151,5 +153,14 @@ public class VehiculoController {
         }
 
         return encontrado;
+    }
+
+    /**
+     * Funcion que retorna una lista con todos los vehiculos
+     * @return listado con todos los vehiculos
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList<Object> listadoVehiculos() throws PersistenciaException {
+        return vehiculoModelo.listadoVehiculos();
     }
 }
