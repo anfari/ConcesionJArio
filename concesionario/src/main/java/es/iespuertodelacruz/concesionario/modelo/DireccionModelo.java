@@ -11,8 +11,8 @@ import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 public class DireccionModelo {
     SqliteBbdd persistencia;
 
-    private static final String TABLA  = "CUENTA";
-    private static final String CLAVE  = "CODIGO";
+    private static final String TABLA  = "Direccion";
+    private static final String CLAVE  = "identificador";
 
     /**
      * Constructor de la Clase DireccionModelo
@@ -30,8 +30,8 @@ public class DireccionModelo {
      * @throws BbddException error controlado
      */
     public void insertar(Direccion direccion) throws PersistenciaException {
-        String sql ="INSERT INTO Direccion (identificador, calle, numero, codigoPostal"
-        +", provincia, ciudad,pais) " + 
+        String sql ="INSERT INTO Direccion (identificador, calle, numero, codigoPostal" +
+        ", provincia, ciudad, pais) " + 
         "VALUES ('"+ direccion.getIdentificador() + "', '"  + direccion.getCalle() + "', '" + direccion.getNumero() + 
         "', '" + direccion.getCodigoPostal() + "', '" + direccion.getProvincia() + 
         "', '" + direccion.getCiudad() + "', '" + direccion.getPais() + "'";

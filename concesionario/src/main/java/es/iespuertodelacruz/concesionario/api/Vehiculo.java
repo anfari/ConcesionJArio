@@ -3,7 +3,6 @@ package es.iespuertodelacruz.concesionario.api;
  * Clase vehiculo contiene las caracteristicas de un vehiculo
  */
 public class Vehiculo {
-    String estado;
     String bastidor;
     String matricula;
     String marca;
@@ -15,6 +14,7 @@ public class Vehiculo {
     int potencia;
     String cilindrada;
     String tipo;
+    String estado;
 
     /**
      * Constructor por defecto
@@ -38,7 +38,7 @@ public class Vehiculo {
      */
     public Vehiculo(String bastidor, String matricula, String marca, 
     String modelo, String color, double precio, String extrasInstalados, 
-    String motor, int potencia, String cilindrada, String tipo,String estado) {
+    String motor, int potencia, String cilindrada, String tipo, String estado) {
         this.bastidor = bastidor;
         this.matricula = matricula;
         this.marca = marca;

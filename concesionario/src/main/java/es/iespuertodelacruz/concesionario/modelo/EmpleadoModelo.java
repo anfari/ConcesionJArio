@@ -9,8 +9,8 @@ public class EmpleadoModelo {
     SqliteBbdd persistencia;
 
 
-    private static final String TABLA  = "CUENTA";
-    private static final String CLAVE  = "CODIGO";
+    private static final String TABLA  = "Empleado";
+    private static final String CLAVE  = "codigoEmpleado";
 
     /**
      * Constructor de la Clase EmpleadoModelo
@@ -27,14 +27,9 @@ public class EmpleadoModelo {
      * @throws PersistenciaException
      */
     public void insertar(Empleado empleado) throws PersistenciaException {
-        String sql ="INSERT INTO Empleado (dni, nombre, apellidos " + 
-        "fechaNacimiento, telefono, direccion,codigoEmpleado"+
-        "+,rango,contrasenia) VALUES ('" + empleado.getDni()+ 
-        "', '" + empleado.getNombre() + "', '" + empleado.getApellidos() + "', '"
-         + empleado.getFechaNacimiento() + "', '" + 
-        empleado.getTelefono() + "', '" + empleado.getDireccion() + 
-         "', '" + empleado.getCodigoEmpleado() + "', '" + empleado.getRango() +
-         "', '" + empleado.getContrasenia() +"'";
+        String sql ="INSERT INTO Empleado (codigoEmpleado, rango, contrasenia, dni)" + 
+        "VALUES ('" + empleado.getCodigoEmpleado()+ "', '" + empleado.getRango() + 
+        "', '" + empleado.getContrasenia() + "', '" + empleado.getDni() + "'";
         persistencia.actualizar(sql);
     }
 
@@ -44,12 +39,9 @@ public class EmpleadoModelo {
      * @throws PersistenciaException
      */
     public void actualizar(Empleado empleado) throws PersistenciaException {
-        String sql = "UPDATE Empleado SET nombre = '" + empleado.getNombre() +
-        "', apellidos = '" + empleado.getApellidos() +
-        "', fechaNacimiento = '" + empleado.getFechaNacimiento() + "', telefono = '" + 
-        empleado.getTelefono() + "', direccion = '" + empleado.getDireccion() +
-        "', dni = '" + empleado.getDni()+"', rango = '" + empleado.getRango()+
-        "', contrasenia = '" + empleado.getContrasenia()+
+        String sql = "UPDATE Empleado SET rango = '" + empleado.getRango() +
+        "', contrasenia = '" + empleado.getContrasenia() +
+        "', dni = '" + empleado.getDni() + 
         "' WHERE codigoEmpleado = '" + empleado.getCodigoEmpleado() + "'";
         persistencia.actualizar(sql);
     }

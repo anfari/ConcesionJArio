@@ -1,7 +1,6 @@
 package es.iespuertodelacruz.concesionario.controlador;
 
 import es.iespuertodelacruz.concesionario.api.Direccion;
-import es.iespuertodelacruz.concesionario.exception.BbddException;
 import es.iespuertodelacruz.concesionario.exception.DireccionException;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 import es.iespuertodelacruz.concesionario.modelo.DireccionModelo;

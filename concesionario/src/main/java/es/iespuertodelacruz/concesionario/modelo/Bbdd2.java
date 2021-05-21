@@ -12,6 +12,10 @@ import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
  * Clase BDbd, va a contener los datos para la base de datos
  */
 public class Bbdd2  {
+    /**
+     *
+     */
+    private static final String SE_HA_PRODUCIDO_UN_ERROR_REALIZANDO_LA_CONSULTA = "Se ha producido un error realizando la consulta";
     Fichero fichero;
     private static final String TABLE = "TABLE";
     private static final String TABLE_NAME= "TABLE_NAME";
@@ -69,9 +73,9 @@ public class Bbdd2  {
         try {
             connection = getConnection();
             databaseMetaData = connection.getMetaData();
-            resultSet = databaseMetaData.getTables(null, null, null, new String[] {"TABLE"});
+            resultSet = databaseMetaData.getTables(null, null, null, new String[] {TABLE});
             while (resultSet.next()) {
-                listaTablas.add(resultSet.getString("TABLE_NAME"));
+                listaTablas.add(resultSet.getString(TABLE_NAME));
             }
             for (String tabla : nombreTablas) {
                 if (!listaTablas.contains(tabla)) {
@@ -90,7 +94,6 @@ public class Bbdd2  {
 
   
 
-    //TODO: Modificar Direccion cuando sepamos PK
 
     /**
      * Funcion encargada de realizar la conexion con la BBDD
@@ -113,46 +116,8 @@ public class Bbdd2  {
         
         return connection;
     }
-    //CRUD de Persona
-    /**
-     * Metodo encargado de realizar la insercion de una persona
-     * @param persona persona a insertar
-     * @throws BbddException error controlado
-     
-    
-    public void insertarPersona(Persona persona) throws BbddException {
-        String sql ="INSERT INTO Persona (dni,nombre, apellidos" + 
-        "fechaNacimiento, telefono, direccion) VALUES ('" + persona.getDni() + 
-        "', '" + persona.getNombre() + "', '" + persona.getApellidos() +
-         "', '" + persona.getFechaNacimiento() + "', '" + 
-        persona.getTelefono() + "', '" + persona.getDireccion() + "'";
-        actualizar(sql);
-    }
-    
-    /**
-     * Metodo encargado de realizar la eliminacion de una persona
-     * @param persona persona a eliminar
-     * @throws BbddException error controlado
-     
-    public void eliminarPersona(Persona persona) throws BbddException {
-        String sql = "DELETE from Persona where dni = '" + persona.getDni() + "'";
-        actualizar(sql);
-    }
-    
-    /**
-     * Metodo encargado de realizar la modificacion de una Persona
-     * @param persona persona a modificar
-     * @throws BbddException error controlado
-    
-    public void modificarPersona(Persona persona) throws BbddException {
-        String sql = "UPDATE Persona SET nombre = '" + persona.getNombre() +
-        "', apellidos = '" + persona.getApellidos() +
-        "', fechaNacimiento = '" + persona.getFechaNacimiento() + "', telefono = '" + 
-        persona.getTelefono() + "', direccion = '" + persona.getDireccion() +
-        "' WHERE dni = '" + persona.getDni()  + "'";
-        actualizar(sql);
-    }
-*/
+
+
     /**
      * Funcion que realiza la consulta sobre la BBDD y la tabla Persona
      * @param sql a ejecutar
@@ -169,24 +134,20 @@ public class Bbdd2  {
             connection = getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
+
             while (resultSet.next()) {
-                Persona persona= new Persona();
+                Persona persona = new Persona();
+                String dni = resultSet.getString("dni");
                 persona.setApellidos(resultSet.getString("apellidos"));
                 persona.setNombre(resultSet.getString("nombre"));
-                persona.setDni(resultSet.getString("dni"));
+                persona.setDni(dni);
                 persona.setTelefono(resultSet.getString("telefono"));
                 persona.setFechaNacimiento(resultSet.getString("fechaNacimiento"));
-                persona.setDireccion(obtenerDireccion(resultSet.getString("dni")));
-                //String apellidos = resultSet.getString("apellidos");
-                //String dni = resultSet.getString("dni");
-                //String fechaNacimiento = resultSet.getString("fechaNacimiento");
-                //String telefono = resultSet.getString("telefono");
-                //Direccion direccion = obtenerDireccion("dni"); //TODO: Modificar cuando se tenga PK
-               // persona = new Persona(nombre, apellidos, dni, fechaNacimiento, telefono, direccion);
+                persona.setDireccion((Direccion)obtenerDireccion(dni));
                 listaPersonas.add(persona);
             }
         } catch (Exception exception) {
-            throw new PersistenciaException("Se ha producido un error realizando la consulta", exception);
+            throw new PersistenciaException(SE_HA_PRODUCIDO_UN_ERROR_REALIZANDO_LA_CONSULTA, exception);
         } finally {
             closeConnection(connection, statement, resultSet);
         }
@@ -212,7 +173,7 @@ public class Bbdd2  {
     public Object obtenerPersona(String dni) throws PersistenciaException {
         Object persona = null;
         ArrayList<Object> listaPersonas = null;
-        String sql = "SELECT * FROM"+nombreTabla+"where"+clave+"=";
+        String sql = "SELECT * FROM " + nombreTabla + " where " + clave + " = ";
         sql = sql + "'" + dni + "'";
         listaPersonas = obtenerListadoPersonas(sql);
         if (!listaPersonas.isEmpty()) {
@@ -222,46 +183,7 @@ public class Bbdd2  {
     }
 
     
-    //CRUD de Cliente
-    
-    /**
-     * Metodo encargado de realizar la insercion de un cliente
-     * @param cliente cliente a insertar
-     * @throws BbddException error controlado
-     
-    public void insertarCliente(Cliente cliente) throws BbddException {
-        String sql ="INSERT INTO Cliente (dni,nombre, apellidos" + 
-        "fechaNacimiento, telefono, direccion) VALUES ('" + cliente.getDni() + 
-        "', '" + cliente.getNombre() + "', '" + cliente.getApellidos() +
-         "', '" + cliente.getFechaNacimiento() + "', '" + 
-        cliente.getTelefono() + "', '" + cliente.getDireccion() + "'";
-        actualizar(sql);
-    }
 
-    /**
-     * Metodo encargado de realizar la eliminacion de un cliente
-     * @param cliente cliente a eliminar
-     * @throws BbddException error controlado
-     
-    public void eliminarCliente(Cliente cliente) throws BbddException {
-        String sql = "DELETE from Cliente where dni = '" + cliente.getDni() + "'";
-        actualizar(sql);
-    }
-
-    /**
-     * Metodo encargado de realizar la modificacion de un cliente
-     * @param cliente cliente a modificar
-     * @throws BbddException error controlado
-     
-    public void modificarCliente(Cliente cliente) throws BbddException {
-        String sql = "UPDATE Cliente SET nombre = '" + cliente.getNombre() +
-        "', apellidos = '" + cliente.getApellidos() +
-        "', fechaNacimiento = '" + cliente.getFechaNacimiento() + "', telefono = '" + 
-        cliente.getTelefono() + "', direccion = '" + cliente.getDireccion() +
-        "' WHERE dni = '" + cliente.getDni()  + "'";
-        actualizar(sql);
-    }
-    */
     /**
      * Funcion que realiza la consulta sobre la BBDD y la tabla Cliente
      * @param sql a ejecutar
@@ -278,27 +200,22 @@ public class Bbdd2  {
             connection = getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
+
             while (resultSet.next()) {
                 Cliente cliente = new Cliente();
+                String dni = resultSet.getString("dni");
                 cliente.setCodigoCliente(resultSet.getString("codigoCliente"));
-                cliente.setDni(resultSet.getString("dni"));
-                cliente.setApellidos(resultSet.getString("apellidos"));
-                cliente.setFechaNacimiento(resultSet.getString("fechaNacimiento"));
-                cliente.setNombre(resultSet.getString("nombre"));
-                cliente.setTelefono(resultSet.getString("telefono"));
-                cliente.setDireccion(obtenerDireccion(resultSet.getString("dni")));
-                //String codigoCliente = resultSet.getString("codigoCliente");
-                //String nombre = resultSet.getString("nombre");
-                //String apellidos = resultSet.getString("apellidos");
-                //String dni = resultSet.getString("dni");
-                //String fechaNacimiento = resultSet.getString("fechaNacimiento");
-                //String telefono = resultSet.getString("telefono");
-                //Direccion direccion = obtenerDireccion("codigoCliente");//TODO: Modificar cuando se tenga PK
-                //cliente = new Cliente(codigoCliente, nombre, apellidos, dni, fechaNacimiento, telefono, direccion);
+                cliente.setDni(dni);
+                Persona persona = (Persona)obtenerPersona(dni);
+                cliente.setNombre(persona.getNombre());
+                cliente.setApellidos(persona.getApellidos());
+                cliente.setFechaNacimiento(persona.getFechaNacimiento());
+                cliente.setTelefono(persona.getTelefono());
+                cliente.setDireccion(persona.getDireccion());
                 listaClientes.add(cliente);
             }
         } catch (Exception exception) {
-            throw new PersistenciaException("Se ha producido un error realizando la consulta", exception);
+            throw new PersistenciaException(SE_HA_PRODUCIDO_UN_ERROR_REALIZANDO_LA_CONSULTA, exception);
         } finally {
             closeConnection(connection, statement, resultSet);
         }
@@ -336,51 +253,6 @@ public class Bbdd2  {
 
 
 
-    //CRUD de Empleado
-
-    /**
-     * Metodo encargado de realizar la insercion de un empleado
-     * @param empleado empleado a insertar
-     * @throws PersistenciaException error controlado
-     
-    public void insertarVendedor(Empleado empleado) throws PersistenciaException {
-        String sql ="INSERT INTO Empleado (dni, nombre, apellidos " + 
-        "fechaNacimiento, telefono, direccion,codigoEmpleado"+
-        "+,rango,contrasenia) VALUES ('" + empleado.getDni()+ 
-        "', '" + empleado.getNombre() + "', '" + empleado.getApellidos() + "', '"
-         + empleado.getFechaNacimiento() + "', '" + 
-        empleado.getTelefono() + "', '" + empleado.getDireccion() + 
-         "', '" + empleado.getCodigoEmpleado() + "', '" + empleado.getRango() +
-         "', '" + empleado.getContrasenia() +"'";
-        actualizar(sql);
-    }
-
-    /**
-     * Metodo encargado de realizar la eliminacion de un empleado
-     * @param empleado empleado a eliminar
-     * @throws PersistenciaException error controlado
-     
-    public void eliminarEmpleado(Empleado empleado) throws PersistenciaException {
-        String sql = "DELETE from Empleado where codigoEmpleado = '" + 
-        empleado.getCodigoEmpleado() + "'";
-        actualizar(sql);
-    }
-
-    /**
-     * Metodo encargado de realizar la modificacion de un empleado
-     * @param empleado empleado a modificar
-     * @throws PersistenciaException error controlado
-     
-    public void modificarEmpleado(Empleado empleado) throws PersistenciaException {
-        String sql = "UPDATE Empleado SET nombre = '" + empleado.getNombre() +
-        "', apellidos = '" + empleado.getApellidos() +
-        "', fechaNacimiento = '" + empleado.getFechaNacimiento() + "', telefono = '" + 
-        empleado.getTelefono() + "', direccion = '" + empleado.getDireccion() +
-        "', dni = '" + empleado.getDni()+"', rango = '" + empleado.getRango()+
-        "', contrasenia = '" + empleado.getContrasenia()+
-        "' WHERE codigoEmpleado = '" + empleado.getCodigoEmpleado() + "'";
-        actualizar(sql);
-    }
 
     /**
      * Funcion que realiza la consulta sobre la BBDD y la tabla Empleado
@@ -398,23 +270,24 @@ public class Bbdd2  {
             connection = getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
+
             while (resultSet.next()) {
                 Empleado empleado = new Empleado();
+                String dni = resultSet.getString("dni");
                 empleado.setCodigoEmpleado(resultSet.getString("codigoEmpleado"));
                 empleado.setRango(resultSet.getString("rango"));
                 empleado.setContrasenia(resultSet.getString("contraseña"));
-                empleado.setNombre(resultSet.getString("nombre"));
-                empleado.setApellidos(resultSet.getString("apellidos"));
-                empleado.setDni(resultSet.getString("dni"));
-                empleado.setFechaNacimiento(resultSet.getString("fechaNacimiento"));
-                empleado.setCodigoEmpleado(resultSet.getString("telefono"));
-                empleado.setDireccion(obtenerDireccion("dni"));
-                //Direccion direccion = obtenerDireccion("codigoEmpleado"); //TODO: Modificar cuando se tenga PK
-                //empleado = new Empleado(codigoEmpleado, nombre, apellidos, dni, fechaNacimiento, telefono, direccion, rango, contrasenia);
+                empleado.setDni(dni);
+                Persona persona = (Persona)obtenerPersona(dni);
+                empleado.setNombre(persona.getNombre());
+                empleado.setApellidos(persona.getApellidos());
+                empleado.setFechaNacimiento(persona.getFechaNacimiento());
+                empleado.setTelefono(persona.getTelefono());
+                empleado.setDireccion(persona.getDireccion());
                 listaEmpleados.add(empleado);
             }
         } catch (Exception exception) {
-            throw new PersistenciaException("Se ha producido un error realizando la consulta", exception);
+            throw new PersistenciaException(SE_HA_PRODUCIDO_UN_ERROR_REALIZANDO_LA_CONSULTA, exception);
         } finally {
             closeConnection(connection, statement, resultSet);
         }
@@ -454,49 +327,6 @@ public class Bbdd2  {
 
 
 
-    //CRUD de vehiculo
-
-    /**
-     * Metodo encargado de realizar la insercion de un vehiculo
-     * @param vehiculo vehiculo a insertar
-     * @throws PersistenciaException error controlado
-     
-    public void insertarVehiculo(Vehiculo vehiculo) throws PersistenciaException {
-        String sql ="INSERT INTO Vehiculo (bastidor, matricula, marca, modelo, color, precio, " + 
-        "extrasInstalados, motor, potencia, cilindrada,tipo) VALUES ('" + vehiculo.getBastidor() + 
-        "', '" + vehiculo.getMatricula() + "', '" + vehiculo.getMarca() + "', '" + vehiculo.getModelo() + 
-        "', '" + vehiculo.getColor() + "', '" + vehiculo.getPrecio() + "', '" + vehiculo.getExtrasInstalados() + 
-        "', '" + vehiculo.getMotor() + "', '" + vehiculo.getPotencia() + "', '" + vehiculo.getCilindrada()+ 
-        "', '" + vehiculo.getTipo() + "'";
-        actualizar(sql);
-    }
-
-    /**
-     * Metodo encargado de realizar la eliminacion de un vehiculo
-     * @param vehiculo vehiculo a eliminar
-     * @throws PersistenciaException error controlado
-     
-    public void eliminarVehiculo(Vehiculo vehiculo) throws PersistenciaException {
-        String sql = "DELETE from Vehiculo where bastidor = '" + vehiculo.getBastidor() + "'";
-        actualizar(sql);
-    }
-
-    /**
-     * Metodo encargado de realizar la modificacion de un vehiculo
-     * @param vehiculo vehiculo a modificar
-     * @throws PersistenciaException error controlado
-     
-    public void modificarVehiculo(Vehiculo vehiculo) throws PersistenciaException {
-        String sql = "UPDATE Vehiculo SET matricula = '" + vehiculo.getMatricula() +
-        "', marca = '" + vehiculo.getMarca() + "', modelo = '" + vehiculo.getModelo() +
-        "', color = '" + vehiculo.getColor() + "', precio = '" + vehiculo.getPrecio() + 
-        "', extrasInstalados = '" + vehiculo.getExtrasInstalados() +
-        "', motor = '" + vehiculo.getMotor() + "', potencia = '" + vehiculo.getPotencia() + 
-        "', cilindrada = '" + vehiculo.getCilindrada() + 
-        "' WHERE bastidor = '" + vehiculo.getBastidor() + "'";
-        actualizar(sql);
-    }
-
     /**
      * Funcion que realiza la consulta sobre la BBDD y la tabla vehiculo
      * @param sql a ejecutar
@@ -513,6 +343,7 @@ public class Bbdd2  {
             connection = getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
+
             while (resultSet.next()) {
                 Vehiculo vehiculo = new Vehiculo();
                 vehiculo.setBastidor(resultSet.getString("bastidor"));
@@ -526,12 +357,11 @@ public class Bbdd2  {
                 vehiculo.setPotencia(resultSet.getInt("potencia"));
                 vehiculo.setCilindrada(resultSet.getString("cilindrada"));
                 vehiculo.setTipo(resultSet.getString("tipo"));
-                //vehiculo = new Vehiculo(bastidor, matricula, marca, modelo, color,
-                //precio, extrasInstalados, motor, potencia, cilindrada,tipo);
+                vehiculo.setEstado(resultSet.getString("estado"));
                 listavehiculos.add(vehiculo);
             }
         } catch (Exception exception) {
-            throw new PersistenciaException("Se ha producido un error realizando la consulta", exception);
+            throw new PersistenciaException(SE_HA_PRODUCIDO_UN_ERROR_REALIZANDO_LA_CONSULTA, exception);
         } finally {
             closeConnection(connection, statement, resultSet);
         }
@@ -572,46 +402,6 @@ public class Bbdd2  {
 
 
 
-    //CRUD de Direccion
-
-    /**
-     * Metodo encargado de realizar la insercion de una direccion
-     * @param direccion direccion a insertar
-     * @throws PersistenciaException
-     
-    public void insertarDireccion(Direccion direccion) throws PersistenciaException  {
-        String sql ="INSERT INTO Direccion (identificador, calle, numero, codigoPostal"
-        +", provincia, ciudad,pais) " + 
-        "VALUES ('"+ direccion.getIdentificador() + "', '"  + direccion.getCalle() + "', '" + direccion.getNumero() + 
-        "', '" + direccion.getCodigoPostal() + "', '" + direccion.getProvincia() + 
-        "', '" + direccion.getCiudad() + "', '" + direccion.getPais() + "'";
-        actualizar(sql);
-    }
-
-    /**
-     * Metodo encargado de realizar la eliminacion de una direccion
-     * @param direccion direccion a eliminar
-     * @throws PersistenciaException
-     
-    public void eliminarDireccion(Direccion direccion) throws PersistenciaException  {
-        String sql = "DELETE from Direccion where identificador = '" + direccion.getIdentificador() + "'"; 
-        actualizar(sql);
-    }
-
-    /**
-     * Metodo encargado de realizar la modificacion de una direccion
-     * @param direccion direccion a modificar
-     * @throws PersistenciaException
-     
-    public void modificarDireccion(Direccion direccion) throws PersistenciaException {
-        String sql = "UPDATE Direccion SET calle = '" + direccion.getCalle() +
-        "', numero = '" + direccion.getNumero() + "', codigoPostal = '" + direccion.getCodigoPostal() +
-        "', provincia = '" + direccion.getProvincia() + "', pais = '" + direccion.getPais() + 
-        "', ciudad = '" + direccion.getCiudad() + 
-        "' WHERE identificador = '" + direccion.getIdentificador() + "'";
-        actualizar(sql);
-    }
-    */
     /**
      * Funcion que realiza la consulta sobre la BBDD y la tabla Direccion
      * @param sql a ejecutar
@@ -636,19 +426,10 @@ public class Bbdd2  {
                 direccion.setNumero(resultSet.getInt("numero"));
                 direccion.setPais(resultSet.getString("pais"));
                 direccion.setProvincia(resultSet.getString("provincia"));
-                //String identificador=resultSet.getString("identificador");
-                //String calle = resultSet.getString("calle");
-                //int numero = resultSet.getInt("numero");
-                //String codigoPostal = resultSet.getString("codigoPostal");
-                //String provincia = resultSet.getString("provincia");
-                //String ciudad = resultSet.getString("ciudad");
-                //String pais = resultSet.getString("pais");
-                //direccion = new Direccion(identificador, calle, numero, codigoPostal,
-                //provincia, ciudad, pais);
                 listaDirecciones.add(direccion);
             }
         } catch (Exception exception) {
-            throw new PersistenciaException("Se ha producido un error realizando la consulta", exception);
+            throw new PersistenciaException(SE_HA_PRODUCIDO_UN_ERROR_REALIZANDO_LA_CONSULTA, exception);
         } finally {
             closeConnection(connection, statement, resultSet);
         }
@@ -702,7 +483,7 @@ public class Bbdd2  {
             statement = connection.createStatement();
             statement.executeUpdate(sql);
         } catch (Exception exception) {
-            throw new PersistenciaException("Se ha producido un error realizando la consulta", exception);
+            throw new PersistenciaException(SE_HA_PRODUCIDO_UN_ERROR_REALIZANDO_LA_CONSULTA, exception);
         }
     }
 

@@ -60,7 +60,7 @@ public class VistaApp {
         }
     }
 
-     /**
+    /**
      * Metodo estatico privado que contiene el menu de empleado
      * @throws BbddException error controlado
      */
@@ -168,7 +168,7 @@ public class VistaApp {
                 switch (opcion) {
                     case 1:
                         pedirDatosVenta();
-                        //TODO: Eliminar un coche del  modelo deseado de la BBDD
+                        //TODO: Modificar estado coche del  modelo deseado de la BBDD
                         break;
                     case 2:
                         //TODO: Mostrar lista de vehiculos vendidos por orden de ventas

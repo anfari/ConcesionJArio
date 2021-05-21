@@ -19,7 +19,7 @@ public class SqliteBbdd extends Bbdd2 {
      * @throws PersistenciaException
      */
     public SqliteBbdd(String nombreTabla,String clave,String driver, String url, String usuario, String password) throws PersistenciaException {
-        super(nombreTabla,clave,driver, url, usuario, password);
+        super(nombreTabla, clave, driver, url, usuario, password);
     }
 
     /**
@@ -30,7 +30,7 @@ public class SqliteBbdd extends Bbdd2 {
      * @throws PersistenciaException
      */
     public SqliteBbdd(String nombreTabla,String clave,String usuario, String password) throws PersistenciaException {
-        super(nombreTabla,clave,DRIVER, URL, usuario, password);
+        super(nombreTabla, clave, DRIVER, URL, usuario, password);
     }
     
 }

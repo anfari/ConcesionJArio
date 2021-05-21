@@ -1,7 +1,6 @@
 package es.iespuertodelacruz.concesionario.controlador;
 
 import es.iespuertodelacruz.concesionario.api.Cliente;
-import es.iespuertodelacruz.concesionario.exception.BbddException;
 import es.iespuertodelacruz.concesionario.exception.ClienteException;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 import es.iespuertodelacruz.concesionario.modelo.ClienteModelo;
@@ -50,7 +49,6 @@ public class ClienteController {
         if (cliente.getTelefono() == null || cliente.getTelefono().isEmpty()) {
             mensaje += "El telefono del cliente es nulo o vacio";
         }
-        //TODO: validar direccion?
         if (!mensaje.isEmpty()) {
             throw new ClienteException(mensaje);
         }

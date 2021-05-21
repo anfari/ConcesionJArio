@@ -8,8 +8,8 @@ import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
  */
 public class PersonaModelo {
     SqliteBbdd persistencia;
-    private static final String TABLA  = "CUENTA";
-    private static final String CLAVE  = "CODIGO";
+    private static final String TABLA  = "Persona";
+    private static final String CLAVE  = "dni";
 
    //ModeloCliente
    
@@ -25,10 +25,10 @@ public class PersonaModelo {
      */
     public void insertar(Persona persona) throws PersistenciaException {
         String sql ="INSERT INTO Persona (dni,nombre, apellidos" + 
-        "fechaNacimiento, telefono, direccion) VALUES ('" + persona.getDni() + 
+        "fechaNacimiento, telefono) VALUES ('" + persona.getDni() + 
         "', '" + persona.getNombre() + "', '" + persona.getApellidos() +
          "', '" + persona.getFechaNacimiento() + "', '" + 
-        persona.getTelefono() + "', '" + persona.getDireccion() + "'";
+        persona.getTelefono() + "'";
         persistencia.actualizar(sql);
     }
 
@@ -40,8 +40,8 @@ public class PersonaModelo {
     public void actualizar(Persona persona) throws PersistenciaException {
         String sql = "UPDATE Persona SET nombre = '" + persona.getNombre() +
         "', apellidos = '" + persona.getApellidos() +
-        "', fechaNacimiento = '" + persona.getFechaNacimiento() + "', telefono = '" + 
-        persona.getTelefono() + "', direccion = '" + persona.getDireccion() +
+        "', fechaNacimiento = '" + persona.getFechaNacimiento() + 
+        "', telefono = '" + persona.getTelefono() + 
         "' WHERE dni = '" + persona.getDni()  + "'";
         persistencia.actualizar(sql);
     }

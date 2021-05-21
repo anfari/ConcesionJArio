@@ -9,8 +9,8 @@ import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 public class VehiculoModelo {
     SqliteBbdd persistencia;
 
-    private static final String TABLA  = "CUENTA";
-    private static final String CLAVE  = "CODIGO";
+    private static final String TABLA  = "Vehiculo";
+    private static final String CLAVE  = "bastidor";
 
     /**
      * Constructor de la clase CocheModelo
@@ -28,11 +28,11 @@ public class VehiculoModelo {
      */
     public void insertar(Vehiculo vehiculo) throws PersistenciaException {
         String sql ="INSERT INTO Vehiculo (bastidor, matricula, marca, modelo, color, precio, " + 
-        "extrasInstalados, motor, potencia, cilindrada,tipo) VALUES ('" + vehiculo.getBastidor() + 
+        "extrasInstalados, motor, potencia, cilindrada, tipo, estado) VALUES ('" + vehiculo.getBastidor() + 
         "', '" + vehiculo.getMatricula() + "', '" + vehiculo.getMarca() + "', '" + vehiculo.getModelo() + 
         "', '" + vehiculo.getColor() + "', '" + vehiculo.getPrecio() + "', '" + vehiculo.getExtrasInstalados() + 
-        "', '" + vehiculo.getMotor() + "', '" + vehiculo.getPotencia() + "', '" + vehiculo.getCilindrada()+ 
-        "', '" + vehiculo.getTipo() + "'";
+        "', '" + vehiculo.getMotor() + "', '" + vehiculo.getPotencia() + "', '" + vehiculo.getCilindrada() + 
+        "', '" + vehiculo.getTipo() + "', '" + vehiculo.getEstado() + "'";
         persistencia.actualizar(sql);
     }
      /**
@@ -46,8 +46,8 @@ public class VehiculoModelo {
         "', color = '" + vehiculo.getColor() + "', precio = '" + vehiculo.getPrecio() + 
         "', extrasInstalados = '" + vehiculo.getExtrasInstalados() +
         "', motor = '" + vehiculo.getMotor() + "', potencia = '" + vehiculo.getPotencia() + 
-        "', cilindrada = '" + vehiculo.getCilindrada() + 
-        "' WHERE bastidor = '" + vehiculo.getBastidor() + "'";
+        "', cilindrada = '" + vehiculo.getCilindrada() + "', tipo = '" + vehiculo.getTipo() + 
+        "', estado = '" + vehiculo.getEstado() + "' WHERE bastidor = '" + vehiculo.getBastidor() + "'";
         persistencia.actualizar(sql);
     }
      /**
