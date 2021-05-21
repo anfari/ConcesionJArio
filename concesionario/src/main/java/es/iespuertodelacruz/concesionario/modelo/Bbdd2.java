@@ -12,11 +12,8 @@ import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
  * Clase BDbd, va a contener los datos para la base de datos
  */
 public class Bbdd2  {
-    /**
-     *
-     */
+
     private static final String SE_HA_PRODUCIDO_UN_ERROR_REALIZANDO_LA_CONSULTA = "Se ha producido un error realizando la consulta";
-    Fichero fichero;
     private static final String TABLE = "TABLE";
     private static final String TABLE_NAME= "TABLE_NAME";
     private static final String NOMBRE_TABLAS = "persona,cliente,empleado,direccion,vehiculo,venta";
@@ -66,10 +63,10 @@ public class Bbdd2  {
                 listaTablas.add(resultSet.getString(TABLE_NAME));
             }
             for (String tabla : nombreTablas) {
-                if (!listaTablas.contains(tabla.toLowerCase())) {
-                    String sqlCrearTabla = fichero.leer(tabla.toLowerCase() + "_crear.sql");
+                if (!listaTablas.contains(tabla)) {
+                    String sqlCrearTabla = new Fichero().leer("src/resources/sqlite/" + tabla.toLowerCase() + "_crear.sql");
                     actualizar(sqlCrearTabla);
-                    String sqlInsertarDatos = fichero.leer(tabla + "_insertar.sql");
+                    String sqlInsertarDatos = new Fichero().leer("src/resources/sqlite/" + tabla.toLowerCase() + "_insertar.sql");
                     actualizar(sqlInsertarDatos);
                 }
             }
