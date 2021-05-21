@@ -51,10 +51,11 @@ public class Bbdd2  {
         Connection connection = null;
         ResultSet resultSet = null;
         ArrayList<String> listaTablas = new ArrayList<>();
-
+/*
         String[] convertir = nombreTabla.split(",");
-        List<String> nombreTablas = Arrays.asList(convertir);
-
+        List<String> nombreTablas = new ArrayList<String>();
+        nombreTablas = Arrays.asList(convertir);
+*/
         try {
             connection = getConnection();
             databaseMetaData = connection.getMetaData();
@@ -62,14 +63,14 @@ public class Bbdd2  {
             while (resultSet.next()) {
                 listaTablas.add(resultSet.getString(TABLE_NAME));
             }
-            for (String tabla : nombreTablas) {
-                if (!listaTablas.contains(tabla)) {
-                    String sqlCrearTabla = new Fichero().leer("src/resources/sqlite/" + tabla.toLowerCase() + "_crear.sql");
+            //for (String tabla : nombreTablas) {
+                if (!listaTablas.contains(nombreTabla)) {
+                    String sqlCrearTabla = new Fichero().leer("src/resources/sqlite/" + nombreTabla.toLowerCase() + "_crear.sql");
                     actualizar(sqlCrearTabla);
-                    String sqlInsertarDatos = new Fichero().leer("src/resources/sqlite/" + tabla.toLowerCase() + "_insertar.sql");
+                    String sqlInsertarDatos = new Fichero().leer("src/resources/sqlite/" + nombreTabla.toLowerCase() + "_insertar.sql");
                     actualizar(sqlInsertarDatos);
                 }
-            }
+            //}
         } catch (Exception e) {
             throw new PersistenciaException("Se ha producido un error en la inicializacion de la BBDD", e);
         } finally {
