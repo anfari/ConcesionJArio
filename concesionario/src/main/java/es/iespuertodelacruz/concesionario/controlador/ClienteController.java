@@ -1,5 +1,7 @@
 package es.iespuertodelacruz.concesionario.controlador;
 
+import java.util.ArrayList;
+
 import es.iespuertodelacruz.concesionario.api.Cliente;
 import es.iespuertodelacruz.concesionario.exception.ClienteException;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
@@ -115,12 +117,25 @@ public class ClienteController {
      * Metodo encargado de buscar por codigo de cliente
      * @param dni dni del cliente
      * @return cliente encontrado
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
+     * @throws ClienteException error controlado
      */
-    public Cliente buscar(String dni) throws PersistenciaException  {
+    public Cliente buscar(String dni) throws PersistenciaException, ClienteException  {
         Cliente cliente = null;
         cliente = clienteModelo.buscar(dni);
+        if (cliente == null) {
+            throw new ClienteException("El cliente no existe");
+        }
         return cliente;
+    }
+
+    /**
+     * Funcion que retorna una lista con todos los clientes
+     * @return listado con todos los clientes
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList<Object> listadoClientes() throws PersistenciaException {
+        return clienteModelo.listadoClientes();
     }
 
     /**

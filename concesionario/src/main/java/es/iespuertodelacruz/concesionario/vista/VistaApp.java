@@ -5,7 +5,15 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import es.iespuertodelacruz.concesionario.api.*;
+import es.iespuertodelacruz.concesionario.controlador.ClienteController;
+import es.iespuertodelacruz.concesionario.controlador.DireccionController;
+import es.iespuertodelacruz.concesionario.controlador.EmpleadoController;
+import es.iespuertodelacruz.concesionario.controlador.PersonaController;
+import es.iespuertodelacruz.concesionario.controlador.VehiculoController;
 import es.iespuertodelacruz.concesionario.exception.BbddException;
+import es.iespuertodelacruz.concesionario.exception.ClienteException;
+import es.iespuertodelacruz.concesionario.exception.DniException;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 import es.iespuertodelacruz.concesionario.modelo.Bbdd;
 /**
  * Clase principal que contiene el menu de opciones de la app
@@ -13,6 +21,25 @@ import es.iespuertodelacruz.concesionario.modelo.Bbdd;
 public class VistaApp {
     static Scanner teclado = new Scanner(System.in);
     static Bbdd bd;
+    static ClienteController clienteController;
+    static EmpleadoController empleadoController;
+    static VehiculoController vehiculoController;
+    static PersonaController personaController;
+    static DireccionController direccionController;
+    
+
+    /**
+     * Constructor de VistaApp
+     * @throws PersistenciaException
+     */
+    public VistaApp() throws PersistenciaException {
+        clienteController = new ClienteController();
+        empleadoController = new EmpleadoController();
+        vehiculoController = new VehiculoController();
+        personaController = new PersonaController();
+        direccionController = new DireccionController();
+    }
+
 
     public static void main(String[] args) throws BbddException {
         if(bd==null){
@@ -192,8 +219,11 @@ public class VistaApp {
 
     /**
      * Metodo estatico privado que contiene el menu de gestion de clientes
+     * @throws PersistenciaException error controlado
+     * @throws ClienteException error controlado
+     * @throws DniException error controlado
      */
-    private static void menuClientes() {
+    private static void menuClientes() throws ClienteException, PersistenciaException, DniException {
         boolean salir = false;
         int opcion;
         Cliente cliente;
@@ -206,6 +236,7 @@ public class VistaApp {
             System.out.println("5. Buscar cliente");
             System.out.println("6. Salir\n");
             cliente = null;
+            String dni = null;
 
             try {
                 System.out.print("Intrduzca una de las opciones: ");
@@ -215,28 +246,32 @@ public class VistaApp {
                 switch (opcion) {
                     case 1:
                         cliente = generarDatosCliente();
-                        //TODO: Insertar el cliente desde controlador
+                        clienteController.insertar(cliente);
                         System.out.println("\nCliente insertado");
                         break;
                     case 2:
                         System.out.println("Proceda a introducir los datos, el DNI debe mantenerse igual");
                         cliente = generarDatosCliente();
-                        //TODO: Modificar el cliente desde controlador
+                        clienteController.modificar(cliente);
                         System.out.println("\nCliente modificado");
                         break;
                     case 3:
                         System.out.print("Introduzca el dni del cliente: ");
-                        String dni = teclado.next();
-                        //TODO: Eliminar el cliente desde controlador
+                        dni = teclado.next();
+                        validarDni(dni);
+                        clienteController.eliminar(clienteController.buscar(dni));
                         System.out.println("\nCliente eliminado");
                         break;
                     case 4:
                         System.out.println("Lista de clientes: ");
-                        //TODO: Mostrar lista de clientes
+                        System.out.println(clienteController.listadoClientes());
                         break;
                     case 5:
-                        
-                        //TODO: mostrar cliente
+                        System.out.print("Introduzca el dni del cliente: ");
+                        dni = teclado.next();
+                        validarDni(dni);
+                        cliente = clienteController.buscar(dni);
+                        System.out.println(cliente.toString());
                     case 6:
                         salir = true;
                         break;
@@ -408,14 +443,18 @@ public class VistaApp {
         System.out.print("Introduzca el tipo de vehiculo: ");
         String tipo = teclado.next();
 
-        return new Vehiculo(bastidor, matricula, marca, modelo, color, precio, extras, motor, potencia, cilindrada, tipo);
+        System.out.print("Introduzca el estado del vehiculo: ");
+        String estado = teclado.next();
+
+        return new Vehiculo(bastidor, matricula, marca, modelo, color, precio, extras, motor, potencia, cilindrada, tipo, estado);
     }
 
     /**
      * Funcion privada encarga de generar clientes
      * @return un cliente
+     * @throws ClienteException error controlado
      */
-    private static Cliente generarDatosCliente() {
+    private static Cliente generarDatosCliente() throws ClienteException {
 
         System.out.print("Introduzca el valor de el codigo de cliente: ");
         String codigoCliente = teclado.next();
@@ -435,7 +474,10 @@ public class VistaApp {
         System.out.print("Introduzca el valor de telefono: ");
         String telefono = teclado.next();
 
-        return new Cliente(codigoCliente, nombre, apellidos, dni, fechaNacimiento, telefono, generarDatosDireccion(dni));
+        Cliente cliente = new Cliente(codigoCliente, nombre, apellidos, dni, fechaNacimiento, telefono, generarDatosDireccion(dni));
+        clienteController.validarCliente(cliente);
+
+        return cliente;
     }
 
     /**
@@ -510,6 +552,13 @@ public class VistaApp {
         System.out.print("Introduzca el numero de bastidor del vehiculo: ");
         String bastidor = teclado.next();
 
+    }
+
+
+    private static void validarDni(String dni) throws DniException {
+        if (dni == null || dni.isEmpty()) {
+            throw new DniException("Debe introducir un DNI");
+        }
     }
 
 

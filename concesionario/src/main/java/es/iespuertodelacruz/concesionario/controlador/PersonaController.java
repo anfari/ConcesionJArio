@@ -24,7 +24,7 @@ public class PersonaController {
      * @param persona persona a validar
      * @throws PersonaException error controlado
      */
-    public void validarCliente(Persona persona) throws PersonaException {
+    public void validarPersona(Persona persona) throws PersonaException {
         String mensaje = "";
 
         if (persona == null) {
@@ -46,7 +46,6 @@ public class PersonaController {
         if (persona.getTelefono() == null || persona.getTelefono().isEmpty()) {
             mensaje += "El telefono de la persona es nulo o vacio";
         }
-        //TODO: validar direccion?
         if (!mensaje.isEmpty()) {
             throw new PersonaException(mensaje);
         }
@@ -60,7 +59,7 @@ public class PersonaController {
      * @throws PersistenciaException
      */
     public void insertar(Persona persona) throws PersonaException, PersistenciaException {
-        validarCliente(persona);
+        validarPersona(persona);
         if (existe(persona)) {
             throw new PersonaException("El cliente indicado ya existe");
         }
@@ -74,7 +73,7 @@ public class PersonaController {
      * @throws PersistenciaException
      */
     public void eliminar(Persona persona) throws PersonaException, PersistenciaException {
-        validarCliente(persona);
+        validarPersona(persona);
         if (!existe(persona)) {
             throw new PersonaException("El cliente indicado no existe");
         }
@@ -101,7 +100,7 @@ public class PersonaController {
      */
     public void modificar(Persona persona) throws PersonaException, PersistenciaException {
         Persona personaAlmacenada;
-        validarCliente(persona);
+        validarPersona(persona);
         personaAlmacenada = buscar(persona.getDni());
         if (personaAlmacenada == null) {
             throw new PersonaException("El cliente indicado no existe");

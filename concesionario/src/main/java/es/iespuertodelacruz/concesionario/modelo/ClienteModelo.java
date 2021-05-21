@@ -1,5 +1,7 @@
 package es.iespuertodelacruz.concesionario.modelo;
 
+import java.util.ArrayList;
+
 import es.iespuertodelacruz.concesionario.api.Cliente;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 
@@ -62,4 +64,13 @@ public class ClienteModelo {
         cliente.getCodigoCliente() + "'";
         persistencia.actualizar(sql);
     }  
+
+    /**
+     * Funcion que retorna una lista con todos los clientes
+     * @return listado con todos los clientes
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList<Object> listadoClientes() throws PersistenciaException {
+        return persistencia.obtenerListadoClientes();
+    }
 }

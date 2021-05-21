@@ -56,11 +56,11 @@ public class EmpleadoController {
         if (empleado.getContrasenia() == null || empleado.getContrasenia().isEmpty()) {
             mensaje += "La contraseña del empleado es nulo o vacio\n";
         }
-        //TODO: validar direccion?
         if (!mensaje.isEmpty()) {
             throw new EmpleadoException(mensaje);
         }
     }
+    
     /**
      * Metodo encargado de insertar
      * @param empleado empleado a insertar
