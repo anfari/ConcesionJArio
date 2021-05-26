@@ -310,7 +310,10 @@ public class VistaApp {
                         break;
                     case 4:
                         System.out.println("Lista de clientes: ");
-                        System.out.println(clienteController.listadoClientes());
+                        ArrayList<Cliente> clientes = clienteController.listadoClientes();
+                        for (Cliente cliente2 : clientes) {
+                            System.out.println(cliente2.toString());
+                        }
                         break;
                     case 5:
                         System.out.print("Introduzca el dni del cliente: ");

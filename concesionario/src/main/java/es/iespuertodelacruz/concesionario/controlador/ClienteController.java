@@ -134,7 +134,7 @@ public class ClienteController {
      * @return listado con todos los clientes
      * @throws PersistenciaException error controlado
      */
-    public ArrayList<Object> listadoClientes() throws PersistenciaException {
+    public ArrayList<Cliente> listadoClientes() throws PersistenciaException {
         return clienteModelo.listadoClientes();
     }
 

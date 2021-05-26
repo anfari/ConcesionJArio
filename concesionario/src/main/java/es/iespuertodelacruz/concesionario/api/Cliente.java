@@ -44,5 +44,13 @@ public class Cliente extends Persona{
     public void setCodigoCliente(String codigoCliente) {
         this.codigoCliente = codigoCliente;
     }
+
+    @Override
+    public String toString() {
+        return codigoCliente + ", " + dni + ", " + nombre + " " + apellidos + ", " + fechaNacimiento + ", " + telefono + ", " + direccion;
+    }
+
+
+    
     
 }

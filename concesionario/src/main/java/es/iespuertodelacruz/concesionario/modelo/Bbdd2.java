@@ -159,7 +159,7 @@ public class Bbdd2  {
     public Object obtenerPersona(String dni) throws PersistenciaException {
         Object persona = null;
         ArrayList<Object> listaPersonas = null;
-        String sql = "SELECT * FROM " + nombreTabla + " where " + clave + " = ";
+        String sql = "SELECT * FROM Persona where dni = ";
         sql = sql + "'" + dni + "'";
         listaPersonas = obtenerListadoPersonas(sql);
         if (!listaPersonas.isEmpty()) {
@@ -176,8 +176,8 @@ public class Bbdd2  {
      * @return lista de resultado
      * @throws BbddException error controlado
      */
-    public ArrayList<Object> obtenerListadoClientes(String sql) throws PersistenciaException {
-        ArrayList<Object> listaClientes = new ArrayList<>();
+    public ArrayList<Cliente> obtenerListadoClientes(String sql) throws PersistenciaException {
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
         Statement statement = null;
         ResultSet resultSet = null;
         Connection connection = null;
@@ -213,7 +213,7 @@ public class Bbdd2  {
      * @return lista de todos los clientes
      * @throws PersistenciaException error controlado
      */
-    public ArrayList<Object> obtenerListadoClientes() throws PersistenciaException {
+    public ArrayList<Cliente> obtenerListadoClientes() throws PersistenciaException {
         String sql = "SELECT * FROM Cliente";
         return obtenerListadoClientes(sql);
     }
@@ -224,9 +224,9 @@ public class Bbdd2  {
      * @return Cliente encotrado
      * @throws BbddException error controlado
      */
-    public Object obtenerCliente(String dni) throws PersistenciaException {
-        Object cliente = null;
-        ArrayList<Object> listaClientes = null;
+    public Cliente obtenerCliente(String dni) throws PersistenciaException {
+        Cliente cliente = null;
+        ArrayList<Cliente> listaClientes = null;
         String sql = "SELECT * FROM Cliente where dni =";
         sql = sql + "'" + dni + "'";
         listaClientes = obtenerListadoClientes(sql);
@@ -528,7 +528,7 @@ public class Bbdd2  {
     public Object obtenerVenta(String identidicador) throws PersistenciaException  {
         Object venta = null;
         ArrayList<Object> listaVentas = null;
-        String sql = "SELECT * FROM Vetna where identificador =";
+        String sql = "SELECT * FROM Venta where identificador =";
         sql = sql + "'" + identidicador + "'";
         listaVentas = obtenerListadoVentas(sql);
         if (!listaVentas.isEmpty()) {
