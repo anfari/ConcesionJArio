@@ -1,9 +1,6 @@
 package es.iespuertodelacruz.concesionario.modelo;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import es.iespuertodelacruz.concesionario.api.*;
 import es.iespuertodelacruz.concesionario.exception.BbddException;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
@@ -11,7 +8,7 @@ import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
  * 
  * Clase BDbd, va a contener los datos para la base de datos
  */
-public class Bbdd2  {
+public class Bbdd  {
 
     private static final String SE_HA_PRODUCIDO_UN_ERROR_REALIZANDO_LA_CONSULTA = "Se ha producido un error realizando la consulta";
     private static final String TABLE = "TABLE";
@@ -35,7 +32,7 @@ public class Bbdd2  {
      * @throws BbddException
      * @throws PersistenciaException
      */
-    public Bbdd2(String nombreTabla, String clave, String driver, String url, String usuario, String password) throws PersistenciaException {
+    public Bbdd(String nombreTabla, String clave, String driver, String url, String usuario, String password) throws PersistenciaException {
         this.nombreTabla= nombreTabla;
         this.clave=clave;
         this.driver = driver;

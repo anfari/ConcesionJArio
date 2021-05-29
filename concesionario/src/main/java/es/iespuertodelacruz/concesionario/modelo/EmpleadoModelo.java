@@ -22,6 +22,16 @@ public class EmpleadoModelo {
         persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);
     }
 
+    /**
+     * Constructor para test de la Clase EmpleadoModelo
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+    public EmpleadoModelo(boolean test) throws PersistenciaException {
+        persistencia = new SqliteBbdd(TABLA, CLAVE, "org.sqlite.JDBC", "jdbc:sqlite:test.db", null, null);
+
+    }
+
 
     /**
      * Metodo que inserta un empleado

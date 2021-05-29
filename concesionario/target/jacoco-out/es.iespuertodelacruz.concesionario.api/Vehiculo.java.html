@@ -3,34 +3,247 @@
  * Clase vehiculo contiene las caracteristicas de un vehiculo
  */
 public class Vehiculo {
+    String bastidor;
     String matricula;
     String marca;
     String modelo;
     String color;
     double precio;
     String extrasInstalados;
-    boolean estado;
+    String motor;
+    int potencia;
+    String cilindrada;
+    String tipo;
+    String estado;
 
     /**
-     * Contructor de vehiculo con parametros 
-     * @param matricula matricula de vehiculo
+     * Constructor por defecto
+     */
+<span class="nc" id="L22">    public Vehiculo() {</span>
+<span class="nc" id="L23">    }</span>
+
+    /**
+     * Constructor con todos los parametros de la clase Vehiculo
+     * @param bastidor numero de bastidor del vehiculo
+     * @param matricula matricula del vehiculo
      * @param marca marca del vehiculo
      * @param modelo modelo del vehiculo
      * @param color color del vehiculo
-     * @param precio preciodel vehiculo
-     * @param extrasInstalados extras instalados del vehiculo
-     * @param estado estado del vehiculo
+     * @param precio precio en euros del vehiculo
+     * @param extrasInstalados extras que tiene el vehiculo
+     * @param motor tipo de motor del vehiculo
+     * @param potencia potencia expresada en CV del vehiculo
+     * @param cilindrada cilindrada expresada en CC del vehiculo
+     * @param tipo tipo de vehiculo
      */
-    public Vehiculo(String matricula, String marca, String modelo, 
-<span class="nc" id="L25">    String color, double precio, String extrasInstalados, boolean estado) {</span>
-<span class="nc" id="L26">        this.matricula = matricula;</span>
-<span class="nc" id="L27">        this.marca = marca;</span>
-<span class="nc" id="L28">        this.modelo = modelo;</span>
-<span class="nc" id="L29">        this.color = color;</span>
-<span class="nc" id="L30">        this.precio = precio;</span>
-<span class="nc" id="L31">        this.extrasInstalados = extrasInstalados;</span>
-<span class="nc" id="L32">        this.estado = estado;</span>
-<span class="nc" id="L33">    }</span>
+    public Vehiculo(String bastidor, String matricula, String marca, 
+    String modelo, String color, double precio, String extrasInstalados, 
+<span class="nc" id="L41">    String motor, int potencia, String cilindrada, String tipo, String estado) {</span>
+<span class="nc" id="L42">        this.bastidor = bastidor;</span>
+<span class="nc" id="L43">        this.matricula = matricula;</span>
+<span class="nc" id="L44">        this.marca = marca;</span>
+<span class="nc" id="L45">        this.modelo = modelo;</span>
+<span class="nc" id="L46">        this.color = color;</span>
+<span class="nc" id="L47">        this.precio = precio;</span>
+<span class="nc" id="L48">        this.extrasInstalados = extrasInstalados;</span>
+<span class="nc" id="L49">        this.motor = motor;</span>
+<span class="nc" id="L50">        this.potencia = potencia;</span>
+<span class="nc" id="L51">        this.cilindrada = cilindrada;</span>
+<span class="nc" id="L52">        this.tipo=tipo;</span>
+<span class="nc" id="L53">        this.estado=estado;</span>
+<span class="nc" id="L54">    }</span>
+     /**
+     * Getter de la clase Vehiculo
+     * @return estado del vehiculo
+     */
+    public String getEstado() {
+<span class="nc" id="L60">        return this.estado;</span>
+    }
+    /**
+     * Setter de la clase Vehiculo
+     * @param estado del vehiculo
+     */
+    public void setEstado(String estado) {
+<span class="nc" id="L67">        this.estado = estado;</span>
+<span class="nc" id="L68">    }</span>
+
+    
+    /**
+     * Getter de la clase Vehiculo
+     * @return numero de bastidor del vehiculo
+     */
+    public String getBastidor() {
+<span class="nc" id="L76">        return this.bastidor;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param bastidor numero de bastidor del vehiculo
+     */
+    public void setBastidor(String bastidor) {
+<span class="nc" id="L84">        this.bastidor = bastidor;</span>
+<span class="nc" id="L85">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return matricula del vehiculo
+     */
+    public String getMatricula() {
+<span class="nc" id="L92">        return this.matricula;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param matricula matricula del vehiculo
+     */
+    public void setMatricula(String matricula) {
+<span class="nc" id="L100">        this.matricula = matricula;</span>
+<span class="nc" id="L101">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return marca del vehiculo
+     */
+    public String getMarca() {
+<span class="nc" id="L108">        return this.marca;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param marca marca del vehiculo
+     */
+    public void setMarca(String marca) {
+<span class="nc" id="L116">        this.marca = marca;</span>
+<span class="nc" id="L117">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return modelo del vehiculo
+     */
+    public String getModelo() {
+<span class="nc" id="L124">        return this.modelo;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param modelo modelo del vehiculo
+     */
+    public void setModelo(String modelo) {
+<span class="nc" id="L132">        this.modelo = modelo;</span>
+<span class="nc" id="L133">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return color del vehiculo
+     */
+    public String getColor() {
+<span class="nc" id="L140">        return this.color;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param color color del vehiculo
+     */
+    public void setColor(String color) {
+<span class="nc" id="L148">        this.color = color;</span>
+<span class="nc" id="L149">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return precio del vehiculo
+     */
+    public double getPrecio() {
+<span class="nc" id="L156">        return this.precio;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param precio precio del vehiculo
+     */
+    public void setPrecio(double precio) {
+<span class="nc" id="L164">        this.precio = precio;</span>
+<span class="nc" id="L165">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return extras del vehiculo
+     */
+    public String getExtrasInstalados() {
+<span class="nc" id="L172">        return this.extrasInstalados;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param extrasInstalados extras del vehiculo
+     */
+    public void setExtrasInstalados(String extrasInstalados) {
+<span class="nc" id="L180">        this.extrasInstalados = extrasInstalados;</span>
+<span class="nc" id="L181">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return motor del vehiculo
+     */
+    public String getMotor() {
+<span class="nc" id="L188">        return this.motor;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param motor motor del vehiculo
+     */
+    public void setMotor(String motor) {
+<span class="nc" id="L196">        this.motor = motor;</span>
+<span class="nc" id="L197">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return potencia del vehiculo
+     */
+    public int getPotencia() {
+<span class="nc" id="L204">        return this.potencia;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param potencia potencia del vehiculo
+     */
+    public void setPotencia(int potencia) {
+<span class="nc" id="L212">        this.potencia = potencia;</span>
+<span class="nc" id="L213">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return cilindrada del vehiculo
+     */
+    public String getCilindrada() {
+<span class="nc" id="L220">        return this.cilindrada;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param cilindrada cilindrada del vehiculo
+     */
+    public void setCilindrada(String cilindrada) {
+<span class="nc" id="L228">        this.cilindrada = cilindrada;</span>
+<span class="nc" id="L229">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return tipo de vehiculo
+     */
+    public String getTipo() {
+<span class="nc" id="L236">        return this.tipo;</span>
+    }
+    
+     /**
+     * Setter de la clase Vehiculo
+     * @param tipo tipo de vehiculo
+     */
+    public void setTipo(String tipo) {
+<span class="nc" id="L244">        this.tipo = tipo;</span>
+<span class="nc" id="L245">    }</span>
+
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmpleadoModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">concesionario</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.concesionario.modelo</a> &gt; <span class="el_source">EmpleadoModelo.java</span></div><h1>EmpleadoModelo.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.concesionario.modelo;
+
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.concesionario.api.Empleado;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
+/**
+ * Clase EmpleadoModelo que gestiona los datos de empleados
+ */
+public class EmpleadoModelo {
+    SqliteBbdd persistencia;
+
+
+    private static final String TABLA  = &quot;Empleado&quot;;
+    private static final String CLAVE  = &quot;codigoEmpleado&quot;;
+
+    /**
+     * Constructor de la Clase EmpleadoModelo
+     * @throws PersistenciaException
+     */
+<span class="nc" id="L21">    public EmpleadoModelo() throws PersistenciaException {</span>
+<span class="nc" id="L22">        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);</span>
+<span class="nc" id="L23">    }</span>
+
+    /**
+     * Constructor para test de la Clase EmpleadoModelo
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+<span class="nc" id="L30">    public EmpleadoModelo(boolean test) throws PersistenciaException {</span>
+<span class="nc" id="L31">        persistencia = new SqliteBbdd(TABLA, CLAVE, &quot;org.sqlite.JDBC&quot;, &quot;jdbc:sqlite:test.db&quot;, null, null);</span>
+
+<span class="nc" id="L33">    }</span>
+
+
+    /**
+     * Metodo que inserta un empleado
+     * @param empleado empleado a insertar
+     * @throws PersistenciaException
+     */
+    public void insertar(Empleado empleado) throws PersistenciaException {
+<span class="nc" id="L42">        String sql =&quot;INSERT INTO Empleado (codigoEmpleado, rango, contrasenia, dni)&quot; + </span>
+<span class="nc" id="L43">        &quot;VALUES ('&quot; + empleado.getCodigoEmpleado()+ &quot;', '&quot; + empleado.getRango() + </span>
+<span class="nc" id="L44">        &quot;', '&quot; + empleado.getContrasenia() + &quot;', '&quot; + empleado.getDni() + &quot;'&quot;;</span>
+<span class="nc" id="L45">        persistencia.actualizar(sql);</span>
+<span class="nc" id="L46">    }</span>
+
+     /**
+     * Metodo que modifica un empleado
+     * @param empleado empleado a modificar
+     * @throws PersistenciaException
+     */
+    public void actualizar(Empleado empleado) throws PersistenciaException {
+<span class="nc" id="L54">        String sql = &quot;UPDATE Empleado SET rango = '&quot; + empleado.getRango() +</span>
+<span class="nc" id="L55">        &quot;', contrasenia = '&quot; + empleado.getContrasenia() +</span>
+<span class="nc" id="L56">        &quot;', dni = '&quot; + empleado.getDni() + </span>
+<span class="nc" id="L57">        &quot;' WHERE codigoEmpleado = '&quot; + empleado.getCodigoEmpleado() + &quot;'&quot;;</span>
+<span class="nc" id="L58">        persistencia.actualizar(sql);</span>
+<span class="nc" id="L59">    }</span>
+
+     /**
+     * Metodo que busca un empleado
+     * @param empleado empleado a buscar
+     * @throws PersistenciaException
+     */
+    public Empleado buscar(String dni) throws PersistenciaException {
+<span class="nc" id="L67">        return (Empleado)persistencia.obtenerEmpleados(dni);</span>
+    }
+
+     /**
+     * Metodo que elimina un empleado
+     * @param empleado empleado a eliminar
+     * @throws PersistenciaException
+     */
+    public void eliminar(Empleado empleado) throws PersistenciaException {
+<span class="nc" id="L76">        String sql = &quot;DELETE from Empleado where codigoEmpleado = '&quot; + </span>
+<span class="nc" id="L77">        empleado.getCodigoEmpleado() + &quot;'&quot;;</span>
+<span class="nc" id="L78">        persistencia.actualizar(sql);</span>
+<span class="nc" id="L79">    }</span>
+      /**
+     * Funcion que retorna una lista con todos los empleados
+     * @return listado con todos los empleados
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Object&gt; listadoEmpleados() throws PersistenciaException {
+<span class="nc" id="L86">        return persistencia.obtenerListadoEmpleados();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -24,6 +24,16 @@ public class VentaModelo {
     }
 
     /**
+     * Constructor para test de la Clase VentaModelo
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+    public VentaModelo(boolean test) throws PersistenciaException {
+        persistencia = new SqliteBbdd(TABLA, CLAVE, "org.sqlite.JDBC", "jdbc:sqlite:test.db", null, null);
+
+    }
+
+    /**
      * Metodo que inserta una venta
      * @param venta venta a insertar
      * @throws PersistenciaException error controlado

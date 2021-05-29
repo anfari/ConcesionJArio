@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClienteController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">concesionario</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.concesionario.controlador</a> &gt; <span class="el_source">ClienteController.java</span></div><h1>ClienteController.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.concesionario.controlador;
+
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.concesionario.api.Cliente;
+import es.iespuertodelacruz.concesionario.exception.ClienteException;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
+import es.iespuertodelacruz.concesionario.modelo.ClienteModelo;
+
+/**
+ * Clase ClienteController
+ */
+public class ClienteController {
+    ClienteModelo clienteModelo;
+
+    /**
+     * Constructor de la clase ClienteController
+     * @throws PersistenciaException
+     */
+<span class="nc" id="L20">    public ClienteController() throws PersistenciaException {</span>
+<span class="nc" id="L21">        clienteModelo = new ClienteModelo();</span>
+<span class="nc" id="L22">    }</span>
+
+    /**
+     * Metodo encargado de realizar la validacion del objeto Cliente
+     * @param cliente cliente a validar
+     * @throws ClienteException error controlado
+     */
+    public void validarCliente(Cliente cliente) throws ClienteException {
+<span class="nc" id="L30">        String mensaje = &quot;&quot;;</span>
+
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        if (cliente == null) {</span>
+<span class="nc" id="L33">            mensaje = &quot;Se esta intentando validar un objeto vacio&quot;;</span>
+<span class="nc" id="L34">            throw new ClienteException(mensaje);</span>
+        }
+<span class="nc bnc" id="L36" title="All 4 branches missed.">        if (cliente.getCodigoCliente() == null || cliente.getCodigoCliente().isEmpty()) {</span>
+<span class="nc" id="L37">            mensaje += &quot;El codigo del cliente es nulo o vacio\n&quot;;</span>
+        }
+<span class="nc bnc" id="L39" title="All 4 branches missed.">        if (cliente.getNombre() == null || cliente.getNombre().isEmpty()) {</span>
+<span class="nc" id="L40">            mensaje += &quot;El nombre del cliente es nulo o vacio\n&quot;;</span>
+        }
+<span class="nc bnc" id="L42" title="All 4 branches missed.">        if (cliente.getApellidos() == null || cliente.getApellidos().isEmpty()) {</span>
+<span class="nc" id="L43">            mensaje += &quot;Los apellidos del cliente son nulos o vacios\n&quot;;</span>
+        }
+<span class="nc bnc" id="L45" title="All 4 branches missed.">        if (cliente.getDni() == null || cliente.getDni().isEmpty()) {</span>
+<span class="nc" id="L46">            mensaje += &quot;El dni del cliente es nulo o vacio\n&quot;;</span>
+        }
+<span class="nc bnc" id="L48" title="All 4 branches missed.">        if (cliente.getFechaNacimiento() == null || cliente.getFechaNacimiento().isEmpty()) {</span>
+<span class="nc" id="L49">            mensaje += &quot;La fecha de nacimiento del cliente es nula o vacia\n&quot;;</span>
+        }
+<span class="nc bnc" id="L51" title="All 4 branches missed.">        if (cliente.getTelefono() == null || cliente.getTelefono().isEmpty()) {</span>
+<span class="nc" id="L52">            mensaje += &quot;El telefono del cliente es nulo o vacio&quot;;</span>
+        }
+<span class="nc bnc" id="L54" title="All 2 branches missed.">        if (!mensaje.isEmpty()) {</span>
+<span class="nc" id="L55">            throw new ClienteException(mensaje);</span>
+        }
+<span class="nc" id="L57">    }</span>
+
+    /**
+     * Metodo encargado de insertar
+     * @param cliente cliente a insertar
+     * @throws ClienteException error controlado
+     * @throws PersistenciaException
+     * 
+     */
+    public void insertar(Cliente cliente) throws ClienteException, PersistenciaException {
+<span class="nc" id="L67">        validarCliente(cliente);</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">        if (existe(cliente)) {</span>
+<span class="nc" id="L69">            throw new ClienteException(&quot;El cliente indicado ya existe&quot;);</span>
+        }
+<span class="nc" id="L71">        clienteModelo.insertar(cliente);</span>
+<span class="nc" id="L72">    }</span>
+
+    /**
+     * Metodo encargado de elimianr
+     * @param cliente cliente a eliminar
+     * @throws ClienteException error controlado
+     * @throws PersistenciaException
+     */
+    public void eliminar(Cliente cliente) throws ClienteException, PersistenciaException {
+<span class="nc" id="L81">        validarCliente(cliente);</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        if (!existe(cliente)) {</span>
+<span class="nc" id="L83">            throw new ClienteException(&quot;El cliente indicado no existe&quot;);</span>
+        }
+<span class="nc" id="L85">        clienteModelo.eliminar(cliente);</span>
+<span class="nc" id="L86">    }</span>
+
+    /**
+     * Metodo encargado de eliminar utilizando el codigo de cliente
+     * @param dni dni del cliente
+     * @throws ClienteException error controlado
+     * @throws PersistenciaException
+     */
+    public void eliminar(String codigoCliente) throws ClienteException, PersistenciaException {
+        Cliente cliente;
+<span class="nc" id="L96">        cliente = buscar(codigoCliente);</span>
+<span class="nc" id="L97">        eliminar(cliente);</span>
+<span class="nc" id="L98">    }</span>
+
+    /**
+     * Metodo encargado de modificar
+     * @param cliente cliente a modificar
+     * @throws ClienteException error controlado
+     * @throws PersistenciaException
+     */
+    public void modificar(Cliente cliente) throws ClienteException, PersistenciaException {
+        Cliente clienteAlmacenado;
+<span class="nc" id="L108">        validarCliente(cliente);</span>
+<span class="nc" id="L109">        clienteAlmacenado = buscar(cliente.getDni());</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">        if (clienteAlmacenado == null) {</span>
+<span class="nc" id="L111">            throw new ClienteException(&quot;El cliente indicado no existe&quot;);</span>
+        }
+<span class="nc" id="L113">        clienteModelo.actualizar(cliente);</span>
+<span class="nc" id="L114">    }</span>
+
+    /**
+     * Metodo encargado de buscar por codigo de cliente
+     * @param dni dni del cliente
+     * @return cliente encontrado
+     * @throws PersistenciaException error controlado
+     * @throws ClienteException error controlado
+     */
+    public Cliente buscar(String dni) throws PersistenciaException, ClienteException  {
+<span class="nc" id="L124">        Cliente cliente = null;</span>
+<span class="nc" id="L125">        cliente = clienteModelo.buscar(dni);</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">        if (cliente == null) {</span>
+<span class="nc" id="L127">            throw new ClienteException(&quot;El cliente no existe&quot;);</span>
+        }
+<span class="nc" id="L129">        return cliente;</span>
+    }
+
+    /**
+     * Funcion que retorna una lista con todos los clientes
+     * @return listado con todos los clientes
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Cliente&gt; listadoClientes() throws PersistenciaException {
+<span class="nc" id="L138">        return clienteModelo.listadoClientes();</span>
+    }
+
+    /**
+     * Funcion encargada de verificar si existe o no un cliente
+     * @param cliente cliente a encontrar
+     * @return true/false si existe o no
+     * @throws PersistenciaException
+     * @throws ClienteException
+     */
+    public boolean existe(Cliente cliente) throws PersistenciaException, ClienteException  {
+<span class="nc" id="L149">        boolean encontrado = false;</span>
+        Cliente clienteEncontrado;
+
+<span class="nc" id="L152">        clienteEncontrado = buscar(cliente.getDni());</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">        if (clienteEncontrado != null) {</span>
+<span class="nc" id="L154">            encontrado = true;</span>
+        }
+
+<span class="nc" id="L157">        return encontrado;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

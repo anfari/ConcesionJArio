@@ -9,13 +9,12 @@ import es.iespuertodelacruz.concesionario.api.*;
 import es.iespuertodelacruz.concesionario.controlador.*;
 import es.iespuertodelacruz.concesionario.exception.*;
 import es.iespuertodelacruz.concesionario.modelo.Bbdd;
-import es.iespuertodelacruz.concesionario.modelo.Bbdd2;
 /**
  * Clase principal que contiene el menu de opciones de la app
  */
 public class VistaApp {
     static Scanner teclado = new Scanner(System.in);
-    static Bbdd2 bd;
+    static Bbdd bd;
     static ClienteController clienteController;
     static EmpleadoController empleadoController;
     static VehiculoController vehiculoController;

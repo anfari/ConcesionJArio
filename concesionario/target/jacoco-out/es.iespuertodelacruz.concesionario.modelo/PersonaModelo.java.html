@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PersonaModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">concesionario</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.concesionario.modelo</a> &gt; <span class="el_source">PersonaModelo.java</span></div><h1>PersonaModelo.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.concesionario.modelo;
+
+import es.iespuertodelacruz.concesionario.api.Persona;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
+
+/**
+ * Clase PersonaModelo
+ */
+public class PersonaModelo {
+    SqliteBbdd persistencia;
+    private static final String TABLA  = &quot;Persona&quot;;
+    private static final String CLAVE  = &quot;dni&quot;;
+
+   //ModeloCliente
+   
+<span class="nc" id="L16">   public PersonaModelo() throws PersistenciaException  {</span>
+<span class="nc" id="L17">      persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);</span>
+      
+<span class="nc" id="L19">   }</span>
+
+   /**
+     * Constructor para test de la Clase PersonaModelo
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+<span class="nc" id="L26">    public PersonaModelo(boolean test) throws PersistenciaException {</span>
+<span class="nc" id="L27">        persistencia = new SqliteBbdd(TABLA, CLAVE, &quot;org.sqlite.JDBC&quot;, &quot;jdbc:sqlite:test.db&quot;, null, null);</span>
+
+<span class="nc" id="L29">    }</span>
+
+
+    /**
+     * Metodo que inserta una persona
+     * @param persona persona a insertar
+     * @throws PersistenciaException
+     */
+    public void insertar(Persona persona) throws PersistenciaException {
+<span class="nc" id="L38">        String sql =&quot;INSERT INTO Persona (dni,nombre, apellidos&quot; + </span>
+<span class="nc" id="L39">        &quot;fechaNacimiento, telefono) VALUES ('&quot; + persona.getDni() + </span>
+<span class="nc" id="L40">        &quot;', '&quot; + persona.getNombre() + &quot;', '&quot; + persona.getApellidos() +</span>
+<span class="nc" id="L41">         &quot;', '&quot; + persona.getFechaNacimiento() + &quot;', '&quot; + </span>
+<span class="nc" id="L42">        persona.getTelefono() + &quot;'&quot;;</span>
+<span class="nc" id="L43">        persistencia.actualizar(sql);</span>
+<span class="nc" id="L44">    }</span>
+
+     /**
+     * Metodo que modifica una persona
+     * @param persona persona a modificar
+     * @throws PersistenciaException
+     */
+    public void actualizar(Persona persona) throws PersistenciaException {
+<span class="nc" id="L52">        String sql = &quot;UPDATE Persona SET nombre = '&quot; + persona.getNombre() +</span>
+<span class="nc" id="L53">        &quot;', apellidos = '&quot; + persona.getApellidos() +</span>
+<span class="nc" id="L54">        &quot;', fechaNacimiento = '&quot; + persona.getFechaNacimiento() + </span>
+<span class="nc" id="L55">        &quot;', telefono = '&quot; + persona.getTelefono() + </span>
+<span class="nc" id="L56">        &quot;' WHERE dni = '&quot; + persona.getDni()  + &quot;'&quot;;</span>
+<span class="nc" id="L57">        persistencia.actualizar(sql);</span>
+<span class="nc" id="L58">    }</span>
+
+     /**
+     * Metodo que busca una persona
+     * @param dni dni de la persona
+     * @throws PersistenciaException
+     */
+    public Persona buscar(String dni) throws PersistenciaException {
+<span class="nc" id="L66">        return (Persona)persistencia.obtenerPersona(dni);</span>
+    }
+
+     /**
+     * Metodo que elimina una persona
+     * @param persona persona a eliminar
+     * @throws PersistenciaException
+     */
+    public void eliminar(Persona persona) throws PersistenciaException {
+<span class="nc" id="L75">        String sql = &quot;DELETE from Persona where dni = '&quot; + persona.getDni() + &quot;'&quot;;</span>
+<span class="nc" id="L76">        persistencia.actualizar(sql);</span>
+<span class="nc" id="L77">    }  </span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
