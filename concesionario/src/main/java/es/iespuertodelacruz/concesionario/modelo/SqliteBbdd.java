@@ -6,7 +6,7 @@ import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 /**
  * Clase SqliteBbdd
  */
-public class SqliteBbdd extends Bbdd2 {
+public class SqliteBbdd extends Bbdd {
     private static final String DRIVER = "org.sqlite.JDBC";
     private static final String URL = "jdbc:sqlite:concesionjario.db";
 

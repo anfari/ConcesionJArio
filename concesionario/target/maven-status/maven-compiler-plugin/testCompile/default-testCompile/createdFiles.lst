@@ -1,1 +1,4 @@
-es/iespuertodelacruz/concesionario/AppTest.class
+es\iespuertodelacruz\concesionario\ClienteModeloTest.class
+es\iespuertodelacruz\concesionario\Utilidades.class
+es\iespuertodelacruz\concesionario\AppTest.class
+es\iespuertodelacruz\concesionario\BbddTest.class

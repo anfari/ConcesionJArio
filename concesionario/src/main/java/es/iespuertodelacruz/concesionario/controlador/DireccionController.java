@@ -118,12 +118,13 @@ public class DireccionController {
      * Funcion encargada de verificar si existe o no una direccion
      * @param direccion direccion a encontrar
      * @return true/false si existe o no
+     * @throws PersistenciaException error controlado
      */
-    public boolean existe(Direccion direccion) {
+    public boolean existe(Direccion direccion) throws PersistenciaException {
         boolean encontrado = false;
         Direccion direccionEncontrada;
 
-        direccionEncontrada = null; //buscar(direccion.PK);
+        direccionEncontrada = buscar(direccion.getIdentificador());
         if (direccionEncontrada != null) {
             encontrado = true;
         }

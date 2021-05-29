@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.concesionario.vista;
+package es.iespuertodelacruz.concesionario.exception;
 
 public class BastidorException extends Exception{
     private static final long serialVersionUID = 1L;

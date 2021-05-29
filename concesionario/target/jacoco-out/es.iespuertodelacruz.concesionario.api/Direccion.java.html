@@ -3,28 +3,163 @@
  * Clase direccion que contiene la direccion de una persona
  */
 public class Direccion {
+    String identificador;
     String calle;
     int numero;
     String codigoPostal;
     String provincia;
-    String poblacion;
+    String ciudad;
+    String pais;
 
     /**
+     * Constructor por defecto
+     */
+<span class="nc" id="L17">    public Direccion() {</span>
+<span class="nc" id="L18">    }</span>
+    
+    /**
      * Constructor de direccion con parametros
+     * @param identificador identificador de la direccion
      * @param calle nombre de la calle 
      * @param numero numeo de la casa
      * @param codigoPostal codigo postal 
      * @param provincia provincia de residencia
-     * @param poblacion poblacion de residencia
+     * @param ciudad ciudad de residencia
+     * @param pais pais de residencia
      */
-    public Direccion(String calle, int numero, String codigoPostal, 
-<span class="nc" id="L21">    String provincia, String poblacion) {</span>
-<span class="nc" id="L22">        this.calle = calle;</span>
-<span class="nc" id="L23">        this.numero = numero;</span>
-<span class="nc" id="L24">        this.codigoPostal = codigoPostal;</span>
-<span class="nc" id="L25">        this.provincia = provincia;</span>
-<span class="nc" id="L26">        this.poblacion = poblacion;</span>
-<span class="nc" id="L27">    }</span>
+    public Direccion(String identificador, String calle, int numero, String codigoPostal, 
+<span class="nc" id="L31">    String provincia, String ciudad, String pais) {</span>
+<span class="nc" id="L32">        this.identificador = identificador;</span>
+<span class="nc" id="L33">        this.calle = calle;</span>
+<span class="nc" id="L34">        this.numero = numero;</span>
+<span class="nc" id="L35">        this.codigoPostal = codigoPostal;</span>
+<span class="nc" id="L36">        this.provincia = provincia;</span>
+<span class="nc" id="L37">        this.ciudad = ciudad;</span>
+<span class="nc" id="L38">        this.pais = pais;</span>
+<span class="nc" id="L39">    }</span>
+
+   
+    /**
+     * Getter de la clase Direccion
+     * @return identificador de la direccion
+     */
+    public String getIdentificador() {
+<span class="nc" id="L47">        return this.identificador;</span>
+    }
+
+    /**
+     * Setter de la clase Direccion
+     * @param identificador identificador de la direccion
+     */
+    public void setIdentificador(String identificador) {
+<span class="nc" id="L55">        this.identificador = identificador;</span>
+<span class="nc" id="L56">    }</span>
+
+    /**
+     * Getter de la clase Direccion
+     * @return nombre de la calle
+     */
+    public String getCalle() {
+<span class="nc" id="L63">        return this.calle;</span>
+    }
+
+    /**
+     * Setter de la clase Direccion
+     * @param calle nombre de la calle
+     */
+    public void setCalle(String calle) {
+<span class="nc" id="L71">        this.calle = calle;</span>
+<span class="nc" id="L72">    }</span>
+
+    /**
+     * Getter de la clase Direccion
+     * @return numero de la casa
+     */
+    public int getNumero() {
+<span class="nc" id="L79">        return this.numero;</span>
+    }
+
+    /**
+     * Setter de la clase Direccion
+     * @param numero numero de la casa
+     */
+    public void setNumero(int numero) {
+<span class="nc" id="L87">        this.numero = numero;</span>
+<span class="nc" id="L88">    }</span>
+
+    /**
+     * Getter de la clase Direccion
+     * @return codigo postal de la calle
+     */
+    public String getCodigoPostal() {
+<span class="nc" id="L95">        return this.codigoPostal;</span>
+    }
+
+    /**
+     * Setter de la clase Direccion
+     * @param codigoPostal codigo postal de la calle
+     */
+    public void setCodigoPostal(String codigoPostal) {
+<span class="nc" id="L103">        this.codigoPostal = codigoPostal;</span>
+<span class="nc" id="L104">    }</span>
+
+    /**
+     * Getter de la clase Direccion
+     * @return provincia del cliente
+     */
+    public String getProvincia() {
+<span class="nc" id="L111">        return this.provincia;</span>
+    }
+
+    /**
+     * Setter de la clase Direccion
+     * @param provincia provincia
+     */
+    public void setProvincia(String provincia) {
+<span class="nc" id="L119">        this.provincia = provincia;</span>
+<span class="nc" id="L120">    }</span>
+
+    /**
+     * Getter de la clase Direccion
+     * @return cuidad
+     */
+    public String getCiudad() {
+<span class="nc" id="L127">        return this.ciudad;</span>
+    }
+
+    /**
+     * Setter de la clase Direccion
+     * @param ciudad ciudad
+     */
+    public void setCiudad(String ciudad) {
+<span class="nc" id="L135">        this.ciudad = ciudad;</span>
+<span class="nc" id="L136">    }</span>
+
+    /**
+     * Getter de la clase Direccion
+     * @return pais
+     */
+    public String getPais() {
+<span class="nc" id="L143">        return this.pais;</span>
+    }
+
+    /**
+     * Setter de la clase Direccion
+     * @param pais pais
+     */
+    public void setPais(String pais) {
+<span class="nc" id="L151">        this.pais = pais;</span>
+<span class="nc" id="L152">    }</span>
+
+
+    /**
+     * Funcion toString de la clase Direccion
+     */
+    @Override
+    public String toString() {
+<span class="nc" id="L160">        return getCalle() + &quot; &quot; + getNumero() + &quot;, &quot; + getCiudad() + </span>
+<span class="nc" id="L161">        &quot;, &quot; + getProvincia() + &quot;, &quot; + getPais() + &quot;, &quot; + getCodigoPostal();</span>
+    }
 
     
 }

@@ -16,7 +16,7 @@ public class ClienteModelo {
 
     /**
      * Constructor de la Clase ClienteModelo
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public ClienteModelo() throws PersistenciaException {
         persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);
@@ -24,9 +24,20 @@ public class ClienteModelo {
     }
 
     /**
+     * Constructor para test de la Clase ClienteModelo
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+    public ClienteModelo(boolean test) throws PersistenciaException {
+        persistencia = new SqliteBbdd(TABLA, CLAVE, "org.sqlite.JDBC", "jdbc:sqlite:test.db", null, null);
+
+    }
+    
+
+    /**
      * Metodo que inserta un cliente
      * @param cliente cliente a insertar
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void insertar(Cliente cliente) throws PersistenciaException {
         String sql ="INSERT INTO Cliente (codigoCliente, dni) VALUES ('" + 
@@ -37,7 +48,7 @@ public class ClienteModelo {
     /**
      * Metodo que modifica un cliente
      * @param cliente cliente a modificar
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void actualizar(Cliente cliente) throws PersistenciaException {
         String sql = "UPDATE Cliente SET dni = '" + cliente.getDni() +
@@ -48,7 +59,7 @@ public class ClienteModelo {
     /**
      * Metodo que busca un cliente
      * @param dni dni del cliente
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public Cliente buscar(String dni) throws PersistenciaException {
         return (Cliente)persistencia.obtenerCliente(dni);
@@ -57,7 +68,7 @@ public class ClienteModelo {
     /**
      * Metodo que elimina un cliente
      * @param cliente cliente a eliminar
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void eliminar(Cliente cliente) throws PersistenciaException {
         String sql = "DELETE from Cliente where codigoCliente = '" + 
