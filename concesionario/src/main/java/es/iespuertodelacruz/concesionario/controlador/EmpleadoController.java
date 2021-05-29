@@ -23,6 +23,15 @@ public class EmpleadoController {
     }
 
     /**
+     * Constructor para test de la clase EmpleadoController
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+    public EmpleadoController(boolean test) throws PersistenciaException {
+        empleadoModelo = new EmpleadoModelo(true);
+    }
+
+    /**
      * Metodo encargado de realizar la validacion del objeto Empleado
      * @param empleado empleado a validar
      * @throws EmpleadoException error controlado
@@ -116,7 +125,7 @@ public class EmpleadoController {
         if (empleadoAlmacenado == null) {
             throw new EmpleadoException("El empleado indicado no existe");
         }
-        empleadoModelo.actualizar(empleado);
+        empleadoModelo.modificar(empleado);
     }
 
     /**
@@ -136,7 +145,7 @@ public class EmpleadoController {
      * @return listado con todos los empleados
      * @throws PersistenciaException error controlado
      */
-    public ArrayList<Object> listadoEmpleados() throws PersistenciaException {
+    public ArrayList<Empleado> listadoEmpleados() throws PersistenciaException {
         return empleadoModelo.listadoEmpleados();
     }
     /**

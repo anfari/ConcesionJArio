@@ -19,6 +19,15 @@ public class DireccionController {
         direccionModelo = new DireccionModelo();
     }
 
+    /**
+     * Constructor para test de la clase DireccionController
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+    public DireccionController(boolean test) throws PersistenciaException {
+        direccionModelo = new DireccionModelo(true);
+    }
+
 
     /**
      * Metodo encargado de realizar la validacion del objeto Direccion
@@ -99,7 +108,7 @@ public class DireccionController {
         if (direccionAlmacenada == null) {
             throw new DireccionException("La direccion indicada no existe");
         }
-        direccionModelo.actualizar(direccion);
+        direccionModelo.modificar(direccion);
     }
 
     /**

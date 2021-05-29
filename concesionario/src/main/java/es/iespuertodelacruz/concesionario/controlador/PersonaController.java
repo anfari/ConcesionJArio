@@ -17,6 +17,15 @@ public class PersonaController {
     public PersonaController() throws PersistenciaException {
         personaModelo = new PersonaModelo();
     }
+
+    /**
+     * Constructor para test de la clase PersonaController
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+    public PersonaController(boolean test) throws PersistenciaException {
+        personaModelo = new PersonaModelo(true);
+    }
     
 
     /**
@@ -105,7 +114,7 @@ public class PersonaController {
         if (personaAlmacenada == null) {
             throw new PersonaException("El cliente indicado no existe");
         }
-        personaModelo.actualizar(persona);
+        personaModelo.modificar(persona);
     }
 
     /**

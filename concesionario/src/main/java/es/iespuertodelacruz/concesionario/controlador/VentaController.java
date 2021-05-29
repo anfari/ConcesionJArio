@@ -23,6 +23,16 @@ public class VentaController {
     }
 
     /**
+     * Constructor para test de la clase VentaController
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+    public VentaController(boolean test) throws PersistenciaException {
+        ventaModelo = new VentaModelo(true);
+    }
+    
+
+    /**
      * Metodo encargado de realizar la validacion del objeto venta
      * @param venta venta a validar
      * @throws VentaException error controlado
@@ -102,7 +112,7 @@ public class VentaController {
         if (ventaAlmacenado == null) {
             throw new VentaException("El venta indicado no existe");
         }
-        ventaModelo.actualizar(venta);
+        ventaModelo.modificar(venta);
     }
 
     /**

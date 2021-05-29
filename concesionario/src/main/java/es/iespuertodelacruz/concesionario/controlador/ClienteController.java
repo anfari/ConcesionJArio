@@ -22,6 +22,16 @@ public class ClienteController {
     }
 
     /**
+     * Constructor para test de la clase ClienteController
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+    public ClienteController(boolean test) throws PersistenciaException {
+        clienteModelo = new ClienteModelo(true);
+    }
+
+
+    /**
      * Metodo encargado de realizar la validacion del objeto Cliente
      * @param cliente cliente a validar
      * @throws ClienteException error controlado
@@ -110,7 +120,7 @@ public class ClienteController {
         if (clienteAlmacenado == null) {
             throw new ClienteException("El cliente indicado no existe");
         }
-        clienteModelo.actualizar(cliente);
+        clienteModelo.modificar(cliente);
     }
 
     /**

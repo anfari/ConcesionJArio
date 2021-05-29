@@ -22,6 +22,16 @@ public class VehiculoController {
     }
 
     /**
+     * Constructor para test de la clase VehiculoController
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+    public VehiculoController(boolean test) throws PersistenciaException {
+        vehiculoModelo = new VehiculoModelo(true);
+    }
+
+
+    /**
      * Metodo encargado de realizar la validacion del objeto Vehiculo
      * @param vehiculo vehiculo a validar
      * @throws VehiculoException error controlado
@@ -122,7 +132,7 @@ public class VehiculoController {
         if (vehiculoAlmacenado == null) {
             throw new VehiculoException("El vehiculo indicado no existe");
         }
-        vehiculoModelo.actualizar(vehiculo);
+        vehiculoModelo.modificar(vehiculo);
     }
 
     /**
@@ -160,7 +170,7 @@ public class VehiculoController {
      * @return listado con todos los vehiculos
      * @throws PersistenciaException error controlado
      */
-    public ArrayList<Object> listadoVehiculos() throws PersistenciaException {
+    public ArrayList<Vehiculo> listadoVehiculos() throws PersistenciaException {
         return vehiculoModelo.listadoVehiculos();
     }
 }

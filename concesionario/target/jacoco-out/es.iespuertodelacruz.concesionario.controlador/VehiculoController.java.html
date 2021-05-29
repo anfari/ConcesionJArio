@@ -22,51 +22,61 @@ public class VehiculoController {
 <span class="nc" id="L22">    }</span>
 
     /**
+     * Constructor para test de la clase VehiculoController
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+<span class="nc" id="L29">    public VehiculoController(boolean test) throws PersistenciaException {</span>
+<span class="nc" id="L30">        vehiculoModelo = new VehiculoModelo(true);</span>
+<span class="nc" id="L31">    }</span>
+
+
+    /**
      * Metodo encargado de realizar la validacion del objeto Vehiculo
      * @param vehiculo vehiculo a validar
      * @throws VehiculoException error controlado
      */
     public void validarVehiculo(Vehiculo vehiculo) throws VehiculoException {
-<span class="nc" id="L30">        String mensaje = &quot;&quot;;</span>
+<span class="nc" id="L40">        String mensaje = &quot;&quot;;</span>
 
-<span class="nc bnc" id="L32" title="All 2 branches missed.">        if (vehiculo == null) {</span>
-<span class="nc" id="L33">            mensaje = &quot;Se esta intentando validar un objeto vacio&quot;;</span>
-<span class="nc" id="L34">            throw new VehiculoException(mensaje);</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (vehiculo == null) {</span>
+<span class="nc" id="L43">            mensaje = &quot;Se esta intentando validar un objeto vacio&quot;;</span>
+<span class="nc" id="L44">            throw new VehiculoException(mensaje);</span>
         }
-<span class="nc bnc" id="L36" title="All 4 branches missed.">        if (vehiculo.getBastidor() == null || vehiculo.getBastidor().isEmpty()) {</span>
-<span class="nc" id="L37">            mensaje += &quot;El codigo de bastidor es nulo o vacio\n&quot;;</span>
+<span class="nc bnc" id="L46" title="All 4 branches missed.">        if (vehiculo.getBastidor() == null || vehiculo.getBastidor().isEmpty()) {</span>
+<span class="nc" id="L47">            mensaje += &quot;El codigo de bastidor es nulo o vacio\n&quot;;</span>
         }
-<span class="nc bnc" id="L39" title="All 4 branches missed.">        if (vehiculo.getMarca() == null || vehiculo.getMarca().isEmpty()) {</span>
-<span class="nc" id="L40">            mensaje += &quot;La marca es nula o vacia\n&quot;;</span>
+<span class="nc bnc" id="L49" title="All 4 branches missed.">        if (vehiculo.getMarca() == null || vehiculo.getMarca().isEmpty()) {</span>
+<span class="nc" id="L50">            mensaje += &quot;La marca es nula o vacia\n&quot;;</span>
         }
-<span class="nc bnc" id="L42" title="All 4 branches missed.">        if (vehiculo.getModelo() == null || vehiculo.getModelo().isEmpty()) {</span>
-<span class="nc" id="L43">            mensaje += &quot;El modelo es nulo o vacio\n&quot;;</span>
+<span class="nc bnc" id="L52" title="All 4 branches missed.">        if (vehiculo.getModelo() == null || vehiculo.getModelo().isEmpty()) {</span>
+<span class="nc" id="L53">            mensaje += &quot;El modelo es nulo o vacio\n&quot;;</span>
         }
-<span class="nc bnc" id="L45" title="All 4 branches missed.">        if (vehiculo.getColor() == null || vehiculo.getColor().isEmpty()) {</span>
-<span class="nc" id="L46">            mensaje += &quot;El color es nulo o vacio\n&quot;;</span>
+<span class="nc bnc" id="L55" title="All 4 branches missed.">        if (vehiculo.getColor() == null || vehiculo.getColor().isEmpty()) {</span>
+<span class="nc" id="L56">            mensaje += &quot;El color es nulo o vacio\n&quot;;</span>
         }
-<span class="nc bnc" id="L48" title="All 2 branches missed.">        if (vehiculo.getPrecio() &lt;= 0) {</span>
-<span class="nc" id="L49">            mensaje = &quot;El precio es 0 o menor\n&quot;;</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (vehiculo.getPrecio() &lt;= 0) {</span>
+<span class="nc" id="L59">            mensaje = &quot;El precio es 0 o menor\n&quot;;</span>
         }
-<span class="nc bnc" id="L51" title="All 4 branches missed.">        if (vehiculo.getMotor() == null || vehiculo.getMotor().isEmpty()) {</span>
-<span class="nc" id="L52">            mensaje += &quot;El motor es nulo o vacio\n&quot;;</span>
+<span class="nc bnc" id="L61" title="All 4 branches missed.">        if (vehiculo.getMotor() == null || vehiculo.getMotor().isEmpty()) {</span>
+<span class="nc" id="L62">            mensaje += &quot;El motor es nulo o vacio\n&quot;;</span>
         }
-<span class="nc bnc" id="L54" title="All 2 branches missed.">        if (vehiculo.getPotencia() &lt;= 0) {</span>
-<span class="nc" id="L55">            mensaje = &quot;La potencia es nula o vacia\n&quot;;</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        if (vehiculo.getPotencia() &lt;= 0) {</span>
+<span class="nc" id="L65">            mensaje = &quot;La potencia es nula o vacia\n&quot;;</span>
         }
-<span class="nc bnc" id="L57" title="All 4 branches missed.">        if (vehiculo.getCilindrada() == null || vehiculo.getCilindrada().isEmpty()) {</span>
-<span class="nc" id="L58">            mensaje += &quot;La cilindrada es nula o vacia\n&quot;;</span>
+<span class="nc bnc" id="L67" title="All 4 branches missed.">        if (vehiculo.getCilindrada() == null || vehiculo.getCilindrada().isEmpty()) {</span>
+<span class="nc" id="L68">            mensaje += &quot;La cilindrada es nula o vacia\n&quot;;</span>
         }
-<span class="nc bnc" id="L60" title="All 4 branches missed.">        if (vehiculo.getTipo() == null || vehiculo.getTipo().isEmpty()) {</span>
-<span class="nc" id="L61">            mensaje += &quot;El tipo es nulo o vacio\n&quot;;</span>
+<span class="nc bnc" id="L70" title="All 4 branches missed.">        if (vehiculo.getTipo() == null || vehiculo.getTipo().isEmpty()) {</span>
+<span class="nc" id="L71">            mensaje += &quot;El tipo es nulo o vacio\n&quot;;</span>
         }
-<span class="nc bnc" id="L63" title="All 4 branches missed.">        if (vehiculo.getEstado() == null || vehiculo.getEstado().isEmpty()) {</span>
-<span class="nc" id="L64">            mensaje += &quot;El estado es nulo o vacio\n&quot;;</span>
+<span class="nc bnc" id="L73" title="All 4 branches missed.">        if (vehiculo.getEstado() == null || vehiculo.getEstado().isEmpty()) {</span>
+<span class="nc" id="L74">            mensaje += &quot;El estado es nulo o vacio\n&quot;;</span>
         }
-<span class="nc bnc" id="L66" title="All 2 branches missed.">        if (!mensaje.isEmpty()) {</span>
-<span class="nc" id="L67">            throw new VehiculoException(mensaje);</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        if (!mensaje.isEmpty()) {</span>
+<span class="nc" id="L77">            throw new VehiculoException(mensaje);</span>
         }
-<span class="nc" id="L69">    }</span>
+<span class="nc" id="L79">    }</span>
 
     /**
      * Metodo encargado de insertar
@@ -76,12 +86,12 @@ public class VehiculoController {
      * 
      */
     public void insertar(Vehiculo vehiculo) throws VehiculoException, PersistenciaException {
-<span class="nc" id="L79">        validarVehiculo(vehiculo);</span>
-<span class="nc bnc" id="L80" title="All 2 branches missed.">        if (existe(vehiculo)) {</span>
-<span class="nc" id="L81">            throw new VehiculoException(&quot;El vehiculo indicado ya existe&quot;);</span>
+<span class="nc" id="L89">        validarVehiculo(vehiculo);</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        if (existe(vehiculo)) {</span>
+<span class="nc" id="L91">            throw new VehiculoException(&quot;El vehiculo indicado ya existe&quot;);</span>
         }
-<span class="nc" id="L83">        vehiculoModelo.insertar(vehiculo);</span>
-<span class="nc" id="L84">    }</span>
+<span class="nc" id="L93">        vehiculoModelo.insertar(vehiculo);</span>
+<span class="nc" id="L94">    }</span>
 
     /**
      * Metodo encargado de elimianr
@@ -90,12 +100,12 @@ public class VehiculoController {
      * @throws PersistenciaException error controlado
      */
     public void eliminar(Vehiculo vehiculo) throws VehiculoException, PersistenciaException {
-<span class="nc" id="L93">        validarVehiculo(vehiculo);</span>
-<span class="nc bnc" id="L94" title="All 2 branches missed.">        if (!existe(vehiculo)) {</span>
-<span class="nc" id="L95">            throw new VehiculoException(&quot;El vehiculo indicado no existe&quot;);</span>
+<span class="nc" id="L103">        validarVehiculo(vehiculo);</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        if (!existe(vehiculo)) {</span>
+<span class="nc" id="L105">            throw new VehiculoException(&quot;El vehiculo indicado no existe&quot;);</span>
         }
-<span class="nc" id="L97">        vehiculoModelo.eliminar(vehiculo);</span>
-<span class="nc" id="L98">    }</span>
+<span class="nc" id="L107">        vehiculoModelo.eliminar(vehiculo);</span>
+<span class="nc" id="L108">    }</span>
 
     /**
      * Metodo encargado de eliminar 
@@ -105,9 +115,9 @@ public class VehiculoController {
      */
     public void eliminar(String bastidor) throws VehiculoException, PersistenciaException {
         Vehiculo vehiculo;
-<span class="nc" id="L108">        vehiculo = buscar(bastidor);</span>
-<span class="nc" id="L109">        eliminar(vehiculo);</span>
-<span class="nc" id="L110">    }</span>
+<span class="nc" id="L118">        vehiculo = buscar(bastidor);</span>
+<span class="nc" id="L119">        eliminar(vehiculo);</span>
+<span class="nc" id="L120">    }</span>
 
     /**
      * Metodo encargado de modificar
@@ -117,13 +127,13 @@ public class VehiculoController {
      */
     public void modificar(Vehiculo vehiculo) throws VehiculoException, PersistenciaException {
         Vehiculo vehiculoAlmacenado;
-<span class="nc" id="L120">        validarVehiculo(vehiculo);</span>
-<span class="nc" id="L121">        vehiculoAlmacenado = buscar(vehiculo.getBastidor());</span>
-<span class="nc bnc" id="L122" title="All 2 branches missed.">        if (vehiculoAlmacenado == null) {</span>
-<span class="nc" id="L123">            throw new VehiculoException(&quot;El vehiculo indicado no existe&quot;);</span>
+<span class="nc" id="L130">        validarVehiculo(vehiculo);</span>
+<span class="nc" id="L131">        vehiculoAlmacenado = buscar(vehiculo.getBastidor());</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">        if (vehiculoAlmacenado == null) {</span>
+<span class="nc" id="L133">            throw new VehiculoException(&quot;El vehiculo indicado no existe&quot;);</span>
         }
-<span class="nc" id="L125">        vehiculoModelo.actualizar(vehiculo);</span>
-<span class="nc" id="L126">    }</span>
+<span class="nc" id="L135">        vehiculoModelo.modificar(vehiculo);</span>
+<span class="nc" id="L136">    }</span>
 
     /**
      * Metodo encargado de buscar por numero de bastidor
@@ -132,9 +142,9 @@ public class VehiculoController {
      * @throws PersistenciaException error controlado
      */
     public Vehiculo buscar(String bastidor) throws PersistenciaException  {
-<span class="nc" id="L135">        Vehiculo vehiculo = null;</span>
-<span class="nc" id="L136">        vehiculo = vehiculoModelo.buscar(bastidor);</span>
-<span class="nc" id="L137">        return vehiculo;</span>
+<span class="nc" id="L145">        Vehiculo vehiculo = null;</span>
+<span class="nc" id="L146">        vehiculo = vehiculoModelo.buscar(bastidor);</span>
+<span class="nc" id="L147">        return vehiculo;</span>
     }
 
     /**
@@ -144,15 +154,15 @@ public class VehiculoController {
      * @throws PersistenciaException error controlado
      */
     public boolean existe(Vehiculo vehiculo) throws PersistenciaException  {
-<span class="nc" id="L147">        boolean encontrado = false;</span>
+<span class="nc" id="L157">        boolean encontrado = false;</span>
         Vehiculo vehiculoEncontrado;
 
-<span class="nc" id="L150">        vehiculoEncontrado = buscar(vehiculo.getBastidor());</span>
-<span class="nc bnc" id="L151" title="All 2 branches missed.">        if (vehiculoEncontrado != null) {</span>
-<span class="nc" id="L152">            encontrado = true;</span>
+<span class="nc" id="L160">        vehiculoEncontrado = buscar(vehiculo.getBastidor());</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">        if (vehiculoEncontrado != null) {</span>
+<span class="nc" id="L162">            encontrado = true;</span>
         }
 
-<span class="nc" id="L155">        return encontrado;</span>
+<span class="nc" id="L165">        return encontrado;</span>
     }
 
     /**
@@ -160,8 +170,8 @@ public class VehiculoController {
      * @return listado con todos los vehiculos
      * @throws PersistenciaException error controlado
      */
-    public ArrayList&lt;Object&gt; listadoVehiculos() throws PersistenciaException {
-<span class="nc" id="L164">        return vehiculoModelo.listadoVehiculos();</span>
+    public ArrayList&lt;Vehiculo&gt; listadoVehiculos() throws PersistenciaException {
+<span class="nc" id="L174">        return vehiculoModelo.listadoVehiculos();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

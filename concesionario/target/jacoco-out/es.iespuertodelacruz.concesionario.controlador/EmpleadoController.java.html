@@ -23,45 +23,54 @@ public class EmpleadoController {
 <span class="nc" id="L23">    }</span>
 
     /**
+     * Constructor para test de la clase EmpleadoController
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+<span class="nc" id="L30">    public EmpleadoController(boolean test) throws PersistenciaException {</span>
+<span class="nc" id="L31">        empleadoModelo = new EmpleadoModelo(true);</span>
+<span class="nc" id="L32">    }</span>
+
+    /**
      * Metodo encargado de realizar la validacion del objeto Empleado
      * @param empleado empleado a validar
      * @throws EmpleadoException error controlado
      */
     public void validarEmpleado(Empleado empleado) throws EmpleadoException {
-<span class="nc" id="L31">        String mensaje = &quot;&quot;;</span>
+<span class="nc" id="L40">        String mensaje = &quot;&quot;;</span>
 
-<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (empleado == null) {</span>
-<span class="nc" id="L34">            mensaje = &quot;Se esta intentando validar un objeto vacio&quot;;</span>
-<span class="nc" id="L35">            throw new EmpleadoException(mensaje);</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (empleado == null) {</span>
+<span class="nc" id="L43">            mensaje = &quot;Se esta intentando validar un objeto vacio&quot;;</span>
+<span class="nc" id="L44">            throw new EmpleadoException(mensaje);</span>
         }
-<span class="nc bnc" id="L37" title="All 4 branches missed.">        if (empleado.getNombre() == null || empleado.getNombre().isEmpty()) {</span>
-<span class="nc" id="L38">            mensaje += &quot;El nombre del empleado es nulo o vacio\n&quot;;</span>
+<span class="nc bnc" id="L46" title="All 4 branches missed.">        if (empleado.getNombre() == null || empleado.getNombre().isEmpty()) {</span>
+<span class="nc" id="L47">            mensaje += &quot;El nombre del empleado es nulo o vacio\n&quot;;</span>
         }
-<span class="nc bnc" id="L40" title="All 4 branches missed.">        if (empleado.getApellidos() == null || empleado.getApellidos().isEmpty()) {</span>
-<span class="nc" id="L41">            mensaje += &quot;Los apellidos del empleado son nulos o vacios\n&quot;;</span>
+<span class="nc bnc" id="L49" title="All 4 branches missed.">        if (empleado.getApellidos() == null || empleado.getApellidos().isEmpty()) {</span>
+<span class="nc" id="L50">            mensaje += &quot;Los apellidos del empleado son nulos o vacios\n&quot;;</span>
         }
-<span class="nc bnc" id="L43" title="All 4 branches missed.">        if (empleado.getDni() == null || empleado.getDni().isEmpty()) {</span>
-<span class="nc" id="L44">            mensaje += &quot;El dni del empleado es nulo o vacio\n&quot;;</span>
+<span class="nc bnc" id="L52" title="All 4 branches missed.">        if (empleado.getDni() == null || empleado.getDni().isEmpty()) {</span>
+<span class="nc" id="L53">            mensaje += &quot;El dni del empleado es nulo o vacio\n&quot;;</span>
         }
-<span class="nc bnc" id="L46" title="All 4 branches missed.">        if (empleado.getFechaNacimiento() == null || empleado.getFechaNacimiento().isEmpty()) {</span>
-<span class="nc" id="L47">            mensaje += &quot;La fecha de nacimiento del empleado es nula o vacia\n&quot;;</span>
+<span class="nc bnc" id="L55" title="All 4 branches missed.">        if (empleado.getFechaNacimiento() == null || empleado.getFechaNacimiento().isEmpty()) {</span>
+<span class="nc" id="L56">            mensaje += &quot;La fecha de nacimiento del empleado es nula o vacia\n&quot;;</span>
         }
-<span class="nc bnc" id="L49" title="All 4 branches missed.">        if (empleado.getTelefono() == null || empleado.getTelefono().isEmpty()) {</span>
-<span class="nc" id="L50">            mensaje += &quot;El telefono del empleado es nulo o vacio&quot;;</span>
+<span class="nc bnc" id="L58" title="All 4 branches missed.">        if (empleado.getTelefono() == null || empleado.getTelefono().isEmpty()) {</span>
+<span class="nc" id="L59">            mensaje += &quot;El telefono del empleado es nulo o vacio&quot;;</span>
         }
-<span class="nc bnc" id="L52" title="All 4 branches missed.">        if (empleado.getCodigoEmpleado() == null || empleado.getCodigoEmpleado().isEmpty()) {</span>
-<span class="nc" id="L53">            mensaje += &quot;El codigo del empleado es nulo o vacio\n&quot;;</span>
+<span class="nc bnc" id="L61" title="All 4 branches missed.">        if (empleado.getCodigoEmpleado() == null || empleado.getCodigoEmpleado().isEmpty()) {</span>
+<span class="nc" id="L62">            mensaje += &quot;El codigo del empleado es nulo o vacio\n&quot;;</span>
         }
-<span class="nc bnc" id="L55" title="All 4 branches missed.">        if (empleado.getRango() == null || empleado.getRango().isEmpty()) {</span>
-<span class="nc" id="L56">            mensaje += &quot;El rango del empleado es nulo o vacio\n&quot;;</span>
+<span class="nc bnc" id="L64" title="All 4 branches missed.">        if (empleado.getRango() == null || empleado.getRango().isEmpty()) {</span>
+<span class="nc" id="L65">            mensaje += &quot;El rango del empleado es nulo o vacio\n&quot;;</span>
         }
-<span class="nc bnc" id="L58" title="All 4 branches missed.">        if (empleado.getContrasenia() == null || empleado.getContrasenia().isEmpty()) {</span>
-<span class="nc" id="L59">            mensaje += &quot;La contraseña del empleado es nulo o vacio\n&quot;;</span>
+<span class="nc bnc" id="L67" title="All 4 branches missed.">        if (empleado.getContrasenia() == null || empleado.getContrasenia().isEmpty()) {</span>
+<span class="nc" id="L68">            mensaje += &quot;La contraseña del empleado es nulo o vacio\n&quot;;</span>
         }
-<span class="nc bnc" id="L61" title="All 2 branches missed.">        if (!mensaje.isEmpty()) {</span>
-<span class="nc" id="L62">            throw new EmpleadoException(mensaje);</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (!mensaje.isEmpty()) {</span>
+<span class="nc" id="L71">            throw new EmpleadoException(mensaje);</span>
         }
-<span class="nc" id="L64">    }</span>
+<span class="nc" id="L73">    }</span>
     
     /**
      * Metodo encargado de insertar
@@ -70,12 +79,12 @@ public class EmpleadoController {
      * @throws PersistenciaException
      */
     public void insertar(Empleado empleado) throws  EmpleadoException, PersistenciaException {
-<span class="nc" id="L73">        validarEmpleado(empleado);</span>
-<span class="nc bnc" id="L74" title="All 2 branches missed.">        if (existe(empleado)) {</span>
-<span class="nc" id="L75">            throw new EmpleadoException(&quot;El empleado indicado ya existe&quot;);</span>
+<span class="nc" id="L82">        validarEmpleado(empleado);</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        if (existe(empleado)) {</span>
+<span class="nc" id="L84">            throw new EmpleadoException(&quot;El empleado indicado ya existe&quot;);</span>
         }
-<span class="nc" id="L77">        empleadoModelo.insertar(empleado);</span>
-<span class="nc" id="L78">    }</span>
+<span class="nc" id="L86">        empleadoModelo.insertar(empleado);</span>
+<span class="nc" id="L87">    }</span>
 
     /**
      * Metodo encargado de elimianr
@@ -84,12 +93,12 @@ public class EmpleadoController {
      * @throws PersistenciaException
      */
     public void eliminar(Empleado empleado) throws EmpleadoException, PersistenciaException {
-<span class="nc" id="L87">        validarEmpleado(empleado);</span>
-<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (!existe(empleado)) {</span>
-<span class="nc" id="L89">            throw new EmpleadoException(&quot;El empleado indicado no existe&quot;);</span>
+<span class="nc" id="L96">        validarEmpleado(empleado);</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        if (!existe(empleado)) {</span>
+<span class="nc" id="L98">            throw new EmpleadoException(&quot;El empleado indicado no existe&quot;);</span>
         }
-<span class="nc" id="L91">        empleadoModelo.eliminar(empleado);</span>
-<span class="nc" id="L92">    }</span>
+<span class="nc" id="L100">        empleadoModelo.eliminar(empleado);</span>
+<span class="nc" id="L101">    }</span>
 
     /**
      * Metodo encargado de eliminar utilizando el codigo de empleado
@@ -99,9 +108,9 @@ public class EmpleadoController {
      */
     public void eliminar(String dni) throws EmpleadoException, PersistenciaException {
         Empleado empleado;
-<span class="nc" id="L102">        empleado = buscar(dni);</span>
-<span class="nc" id="L103">        eliminar(empleado);</span>
-<span class="nc" id="L104">    }</span>
+<span class="nc" id="L111">        empleado = buscar(dni);</span>
+<span class="nc" id="L112">        eliminar(empleado);</span>
+<span class="nc" id="L113">    }</span>
 
     /**
      * Metodo encargado de modificar
@@ -111,13 +120,13 @@ public class EmpleadoController {
      */
     public void modificar(Empleado empleado) throws EmpleadoException, PersistenciaException {
         Empleado empleadoAlmacenado;
-<span class="nc" id="L114">        validarEmpleado(empleado);</span>
-<span class="nc" id="L115">        empleadoAlmacenado = buscar(empleado.getDni());</span>
-<span class="nc bnc" id="L116" title="All 2 branches missed.">        if (empleadoAlmacenado == null) {</span>
-<span class="nc" id="L117">            throw new EmpleadoException(&quot;El empleado indicado no existe&quot;);</span>
+<span class="nc" id="L123">        validarEmpleado(empleado);</span>
+<span class="nc" id="L124">        empleadoAlmacenado = buscar(empleado.getDni());</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">        if (empleadoAlmacenado == null) {</span>
+<span class="nc" id="L126">            throw new EmpleadoException(&quot;El empleado indicado no existe&quot;);</span>
         }
-<span class="nc" id="L119">        empleadoModelo.actualizar(empleado);</span>
-<span class="nc" id="L120">    }</span>
+<span class="nc" id="L128">        empleadoModelo.modificar(empleado);</span>
+<span class="nc" id="L129">    }</span>
 
     /**
      * Metodo encargado de buscar por codigo de empleado
@@ -126,9 +135,9 @@ public class EmpleadoController {
      * @throws PersistenciaException
      */
     public Empleado buscar(String dni) throws PersistenciaException  {
-<span class="nc" id="L129">        Empleado empleado = null;</span>
-<span class="nc" id="L130">        empleado = empleadoModelo.buscar(dni);</span>
-<span class="nc" id="L131">        return empleado;</span>
+<span class="nc" id="L138">        Empleado empleado = null;</span>
+<span class="nc" id="L139">        empleado = empleadoModelo.buscar(dni);</span>
+<span class="nc" id="L140">        return empleado;</span>
     }
     
      /**
@@ -136,8 +145,8 @@ public class EmpleadoController {
      * @return listado con todos los empleados
      * @throws PersistenciaException error controlado
      */
-    public ArrayList&lt;Object&gt; listadoEmpleados() throws PersistenciaException {
-<span class="nc" id="L140">        return empleadoModelo.listadoEmpleados();</span>
+    public ArrayList&lt;Empleado&gt; listadoEmpleados() throws PersistenciaException {
+<span class="nc" id="L149">        return empleadoModelo.listadoEmpleados();</span>
     }
     /**
      * Funcion encargada de verificar si existe o no un empleado
@@ -146,15 +155,15 @@ public class EmpleadoController {
      * @throws PersistenciaException
      */
     public boolean existe(Empleado empleado) throws PersistenciaException  {
-<span class="nc" id="L149">        boolean encontrado = false;</span>
+<span class="nc" id="L158">        boolean encontrado = false;</span>
         Empleado empleadoEncontrado;
 
-<span class="nc" id="L152">        empleadoEncontrado = buscar(empleado.getDni());</span>
-<span class="nc bnc" id="L153" title="All 2 branches missed.">        if (empleadoEncontrado != null) {</span>
-<span class="nc" id="L154">            encontrado = true;</span>
+<span class="nc" id="L161">        empleadoEncontrado = buscar(empleado.getDni());</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">        if (empleadoEncontrado != null) {</span>
+<span class="nc" id="L163">            encontrado = true;</span>
         }
 
-<span class="nc" id="L157">        return encontrado;</span>
+<span class="nc" id="L166">        return encontrado;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

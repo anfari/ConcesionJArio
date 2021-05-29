@@ -1,5 +1,8 @@
 package es.iespuertodelacruz.concesionario.modelo;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import es.iespuertodelacruz.concesionario.api.Direccion;
 import es.iespuertodelacruz.concesionario.exception.BbddException;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
@@ -45,7 +48,7 @@ public class DireccionModelo {
         ", provincia, ciudad, pais) " + 
         "VALUES ('"+ direccion.getIdentificador() + "', '"  + direccion.getCalle() + "', '" + direccion.getNumero() + 
         "', '" + direccion.getCodigoPostal() + "', '" + direccion.getProvincia() + 
-        "', '" + direccion.getCiudad() + "', '" + direccion.getPais() + "'";
+        "', '" + direccion.getCiudad() + "', '" + direccion.getPais() + "')";
         persistencia.actualizar(sql);
     }
 
@@ -54,23 +57,13 @@ public class DireccionModelo {
      * @param direccion direccion a modificar
      * @throws PersistenciaException
      */
-    public void actualizar(Direccion direccion) throws PersistenciaException {
+    public void modificar(Direccion direccion) throws PersistenciaException {
         String sql = "UPDATE Direccion SET calle = '" + direccion.getCalle() +
         "', numero = '" + direccion.getNumero() + "', codigoPostal = '" + direccion.getCodigoPostal() +
         "', provincia = '" + direccion.getProvincia() + "', pais = '" + direccion.getPais() + 
         "', ciudad = '" + direccion.getCiudad() + 
         "' WHERE identificador = '" + direccion.getIdentificador() + "'";
         persistencia.actualizar(sql);
-    }
-
-    /**
-     * Metodo que busca una direccion
-     * @param identificador identificador de la direccion a buscar
-     * @return direccion encontrada
-     * @throws PersistenciaException
-     */
-    public Direccion buscar(String identificador) throws PersistenciaException {
-        return (Direccion)persistencia.obtenerDireccion(identificador);
     }
 
     /**
@@ -82,4 +75,70 @@ public class DireccionModelo {
         String sql = "DELETE from Direccion where identificador = '" + direccion.getIdentificador() + "'"; 
         persistencia.actualizar(sql);
     }
+
+    /**
+     * Funcion que busca una direccion especifica
+     * @param identificador identificador de la direccion
+     * @return Direccion encontrada
+     * @throws PersistenciaException error controlado
+     */
+    public Direccion buscar(String identificador) throws PersistenciaException  {
+        Direccion direccion = null;
+        ArrayList<Direccion> listaDirecciones = null;
+        String sql = "SELECT * FROM Direccion where identificador = ";
+        sql = sql + "'" + identificador + "'";
+        listaDirecciones = convertir(sql);
+        if (!listaDirecciones.isEmpty()) {
+            direccion = listaDirecciones.get(0);
+        }
+
+        return direccion;
+    }
+
+    /**
+     * Funcion busca todas las direcciones guardadas
+     * @return lista de todas las direcciones
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList<Direccion> listadoDirecciones() throws PersistenciaException  {
+        String sql = "SELECT * FROM Direccion";
+        return convertir(sql);
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Direccion
+     * @param sql a ejecutar
+     * @return lista de resultados
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList<Direccion> convertir(String sql) throws PersistenciaException {
+        ArrayList<Direccion> listaDirecciones = new ArrayList<>();
+        ResultSet resultSet = null;
+
+        try {
+            resultSet = persistencia.buscarElementos(sql);
+
+            while (resultSet.next()) {
+                Direccion direccion = new Direccion();
+                direccion.setIdentificador(resultSet.getString("identificador"));
+                direccion.setCalle(resultSet.getString("calle"));
+                direccion.setCiudad(resultSet.getString("ciudad"));
+                direccion.setCodigoPostal(resultSet.getString("codigoPostal"));
+                direccion.setNumero(resultSet.getInt("numero"));
+                direccion.setPais(resultSet.getString("pais"));
+                direccion.setProvincia(resultSet.getString("provincia"));
+                listaDirecciones.add(direccion);
+            }
+        } catch (Exception exception) {
+            throw new PersistenciaException("Se ha producido un error realizando la consulta", exception);
+        } finally {
+            persistencia.closeConnection(null, null, resultSet);
+        }
+        return listaDirecciones;
+    }
+
+
+
+
+
 }

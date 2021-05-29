@@ -1,5 +1,6 @@
 package es.iespuertodelacruz.concesionario.modelo;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import es.iespuertodelacruz.concesionario.api.Vehiculo;
@@ -44,7 +45,7 @@ public class VehiculoModelo {
         "', '" + vehiculo.getMatricula() + "', '" + vehiculo.getMarca() + "', '" + vehiculo.getModelo() + 
         "', '" + vehiculo.getColor() + "', '" + vehiculo.getPrecio() + "', '" + vehiculo.getExtrasInstalados() + 
         "', '" + vehiculo.getMotor() + "', '" + vehiculo.getPotencia() + "', '" + vehiculo.getCilindrada() + 
-        "', '" + vehiculo.getTipo() + "', '" + vehiculo.getEstado() + "'";
+        "', '" + vehiculo.getTipo() + "', '" + vehiculo.getEstado() + "')";
         persistencia.actualizar(sql);
     }
      /**
@@ -52,7 +53,7 @@ public class VehiculoModelo {
      * @param vehiculo vehiculo a modificar
      * @throws PersistenciaException
      */
-    public void actualizar(Vehiculo vehiculo) throws PersistenciaException {
+    public void modificar(Vehiculo vehiculo) throws PersistenciaException {
         String sql = "UPDATE Vehiculo SET matricula = '" + vehiculo.getMatricula() +
         "', marca = '" + vehiculo.getMarca() + "', modelo = '" + vehiculo.getModelo() +
         "', color = '" + vehiculo.getColor() + "', precio = '" + vehiculo.getPrecio() + 
@@ -62,15 +63,8 @@ public class VehiculoModelo {
         "', estado = '" + vehiculo.getEstado() + "' WHERE bastidor = '" + vehiculo.getBastidor() + "'";
         persistencia.actualizar(sql);
     }
-     /**
-     * Metodo que busca un vehiculo en la lista
-     * @param vehiculo a buscar
-     * @throws PersistenciaException
-     */
-    public Vehiculo buscar(String bastidor) throws PersistenciaException {
-        return (Vehiculo)persistencia.obtenerVehiculo(bastidor);
-    }
-     /**
+
+    /**
      * Metodo que elimina un vehiculo de la lista
      * @param vehiculo vehiculo a eliminar
      * @throws PersistenciaException
@@ -80,12 +74,71 @@ public class VehiculoModelo {
         persistencia.actualizar(sql);
     }
 
-      /**
-     * Funcion que retorna una lista con todos los veiculos
-     * @return listado con todos los vehiculos
+    /**
+     * Funcion que busca un vehiculo especifico
+     * @param bastidor numero de bastidor del vehiculo
+     * @return Vehiculo encontrado
      * @throws PersistenciaException error controlado
      */
-    public ArrayList<Object> listadoVehiculos() throws PersistenciaException {
-        return persistencia.obtenerListadovehiculos();
+    public Vehiculo buscar(String dni) throws PersistenciaException  {
+        Vehiculo vehiculo = null;
+        ArrayList<Vehiculo> listaVehiculos = null;
+        String sql = "SELECT * FROM Cliente where dni = ";
+        sql = sql + "'" + dni + "'";
+        listaVehiculos = convertir(sql);
+        if (!listaVehiculos.isEmpty()) {
+            vehiculo = listaVehiculos.get(0);
+        }
+
+        return vehiculo;
     }
+
+    /**
+     * Funcion busca todos los vehiculos guardados
+     * @return lista de todos los vehiculos
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList<Vehiculo> listadoVehiculos() throws PersistenciaException  {
+        String sql = "SELECT * FROM Vehiculo";
+        return convertir(sql);
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Vehiculo
+     * @param sql a ejecutar
+     * @return lista de resultados
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList<Vehiculo> convertir(String sql) throws PersistenciaException {
+        ArrayList<Vehiculo> listaVehiculos = new ArrayList<>();
+        ResultSet resultSet = null;
+
+        try {
+            resultSet = persistencia.buscarElementos(sql);
+
+            while (resultSet.next()) {
+                Vehiculo vehiculo = new Vehiculo();
+                vehiculo.setBastidor(resultSet.getString("bastidor"));
+                vehiculo.setMatricula(resultSet.getString("matricula"));
+                vehiculo.setMarca(resultSet.getString("marca"));
+                vehiculo.setModelo(resultSet.getString("modelo"));
+                vehiculo.setColor(resultSet.getString("color"));
+                vehiculo.setPrecio(resultSet.getDouble("precio"));
+                vehiculo.setExtrasInstalados(resultSet.getString("extrasInstalados"));
+                vehiculo.setMotor(resultSet.getString("motor"));
+                vehiculo.setPotencia(resultSet.getInt("potencia"));
+                vehiculo.setCilindrada(resultSet.getString("cilindrada"));
+                vehiculo.setTipo(resultSet.getString("tipo"));
+                vehiculo.setEstado(resultSet.getString("estado"));
+                listaVehiculos.add(vehiculo);
+            }
+        } catch (Exception exception) {
+            throw new PersistenciaException("Se ha producido un error realizando la consulta", exception);
+        } finally {
+            persistencia.closeConnection(null, null, resultSet);
+        }
+        return listaVehiculos;
+    }
+
+
 }

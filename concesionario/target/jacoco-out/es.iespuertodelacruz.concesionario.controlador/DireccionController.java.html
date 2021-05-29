@@ -19,6 +19,15 @@ public class DireccionController {
 <span class="nc" id="L19">        direccionModelo = new DireccionModelo();</span>
 <span class="nc" id="L20">    }</span>
 
+    /**
+     * Constructor para test de la clase DireccionController
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+<span class="nc" id="L27">    public DireccionController(boolean test) throws PersistenciaException {</span>
+<span class="nc" id="L28">        direccionModelo = new DireccionModelo(true);</span>
+<span class="nc" id="L29">    }</span>
+
 
     /**
      * Metodo encargado de realizar la validacion del objeto Direccion
@@ -26,31 +35,31 @@ public class DireccionController {
      * @throws DireccionException error controlado
      */
     public void validarDireccion(Direccion direccion) throws DireccionException {
-<span class="nc" id="L29">        String mensaje = &quot;&quot;;</span>
+<span class="nc" id="L38">        String mensaje = &quot;&quot;;</span>
 
-<span class="nc bnc" id="L31" title="All 2 branches missed.">        if (direccion == null) {</span>
-<span class="nc" id="L32">            mensaje = &quot;Se esta intentando validar un objeto vacio&quot;;</span>
-<span class="nc" id="L33">            throw new DireccionException(mensaje);</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        if (direccion == null) {</span>
+<span class="nc" id="L41">            mensaje = &quot;Se esta intentando validar un objeto vacio&quot;;</span>
+<span class="nc" id="L42">            throw new DireccionException(mensaje);</span>
         }
-<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (direccion.getNumero() &lt;= 0) {</span>
-<span class="nc" id="L36">            mensaje = &quot;El numero de domicilio es 0 o menor\n&quot;;</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (direccion.getNumero() &lt;= 0) {</span>
+<span class="nc" id="L45">            mensaje = &quot;El numero de domicilio es 0 o menor\n&quot;;</span>
         }
-<span class="nc bnc" id="L38" title="All 4 branches missed.">        if (direccion.getCalle() == null || direccion.getCalle().isEmpty()) {</span>
-<span class="nc" id="L39">            mensaje += &quot;La calle es nula o vacia\n&quot;;</span>
+<span class="nc bnc" id="L47" title="All 4 branches missed.">        if (direccion.getCalle() == null || direccion.getCalle().isEmpty()) {</span>
+<span class="nc" id="L48">            mensaje += &quot;La calle es nula o vacia\n&quot;;</span>
         }
-<span class="nc bnc" id="L41" title="All 4 branches missed.">        if (direccion.getCodigoPostal() == null || direccion.getCodigoPostal().isEmpty()) {</span>
-<span class="nc" id="L42">            mensaje += &quot;El codigo postal es nulo o vacio\n&quot;;</span>
+<span class="nc bnc" id="L50" title="All 4 branches missed.">        if (direccion.getCodigoPostal() == null || direccion.getCodigoPostal().isEmpty()) {</span>
+<span class="nc" id="L51">            mensaje += &quot;El codigo postal es nulo o vacio\n&quot;;</span>
         }
-<span class="nc bnc" id="L44" title="All 4 branches missed.">        if (direccion.getCiudad() == null || direccion.getCiudad().isEmpty()) {</span>
-<span class="nc" id="L45">            mensaje += &quot;La ciudad es nula o vacia\n&quot;;</span>
+<span class="nc bnc" id="L53" title="All 4 branches missed.">        if (direccion.getCiudad() == null || direccion.getCiudad().isEmpty()) {</span>
+<span class="nc" id="L54">            mensaje += &quot;La ciudad es nula o vacia\n&quot;;</span>
         }
-<span class="nc bnc" id="L47" title="All 4 branches missed.">        if (direccion.getProvincia() == null || direccion.getProvincia().isEmpty()) {</span>
-<span class="nc" id="L48">            mensaje += &quot;La provincia es nula o vacia&quot;;</span>
+<span class="nc bnc" id="L56" title="All 4 branches missed.">        if (direccion.getProvincia() == null || direccion.getProvincia().isEmpty()) {</span>
+<span class="nc" id="L57">            mensaje += &quot;La provincia es nula o vacia&quot;;</span>
         }
-<span class="nc bnc" id="L50" title="All 2 branches missed.">        if (!mensaje.isEmpty()) {</span>
-<span class="nc" id="L51">            throw new DireccionException(mensaje);</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        if (!mensaje.isEmpty()) {</span>
+<span class="nc" id="L60">            throw new DireccionException(mensaje);</span>
         }
-<span class="nc" id="L53">    }</span>
+<span class="nc" id="L62">    }</span>
 
     /**
      * Metodo encargado de insertar
@@ -59,9 +68,9 @@ public class DireccionController {
      * @throws PersistenciaException
      */
     public void insertar(Direccion direccion) throws DireccionException, PersistenciaException {
-<span class="nc" id="L62">        validarDireccion(direccion);</span>
-<span class="nc" id="L63">        direccionModelo.insertar(direccion);</span>
-<span class="nc" id="L64">    }</span>
+<span class="nc" id="L71">        validarDireccion(direccion);</span>
+<span class="nc" id="L72">        direccionModelo.insertar(direccion);</span>
+<span class="nc" id="L73">    }</span>
 
     /**
      * Metodo encargado de eliminar
@@ -70,9 +79,9 @@ public class DireccionController {
      * @throws PersistenciaException
      */
     public void eliminar(Direccion direccion) throws DireccionException, PersistenciaException {
-<span class="nc" id="L73">        validarDireccion(direccion);</span>
-<span class="nc" id="L74">        direccionModelo.eliminar(direccion);</span>
-<span class="nc" id="L75">    }</span>
+<span class="nc" id="L82">        validarDireccion(direccion);</span>
+<span class="nc" id="L83">        direccionModelo.eliminar(direccion);</span>
+<span class="nc" id="L84">    }</span>
 
     /**
      * Metodo encargado de eliminar utilizando el identificador de la direccion
@@ -82,9 +91,9 @@ public class DireccionController {
      */
     public void eliminar(String identificador) throws  DireccionException, PersistenciaException {
         Direccion direccion;
-<span class="nc" id="L85">        direccion = buscar(identificador);</span>
-<span class="nc" id="L86">        eliminar(direccion);</span>
-<span class="nc" id="L87">    }</span>
+<span class="nc" id="L94">        direccion = buscar(identificador);</span>
+<span class="nc" id="L95">        eliminar(direccion);</span>
+<span class="nc" id="L96">    }</span>
 
     /**
      * Metodo encargado de modificar
@@ -94,13 +103,13 @@ public class DireccionController {
      */
     public void modificar(Direccion direccion) throws DireccionException, PersistenciaException {
         Direccion direccionAlmacenada;
-<span class="nc" id="L97">        validarDireccion(direccion);</span>
-<span class="nc" id="L98">        direccionAlmacenada = buscar(direccion.getIdentificador());</span>
-<span class="nc bnc" id="L99" title="All 2 branches missed.">        if (direccionAlmacenada == null) {</span>
-<span class="nc" id="L100">            throw new DireccionException(&quot;La direccion indicada no existe&quot;);</span>
+<span class="nc" id="L106">        validarDireccion(direccion);</span>
+<span class="nc" id="L107">        direccionAlmacenada = buscar(direccion.getIdentificador());</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">        if (direccionAlmacenada == null) {</span>
+<span class="nc" id="L109">            throw new DireccionException(&quot;La direccion indicada no existe&quot;);</span>
         }
-<span class="nc" id="L102">        direccionModelo.actualizar(direccion);</span>
-<span class="nc" id="L103">    }</span>
+<span class="nc" id="L111">        direccionModelo.modificar(direccion);</span>
+<span class="nc" id="L112">    }</span>
 
     /**
      * Metodo encargado de buscar por codigo de cliente
@@ -109,9 +118,9 @@ public class DireccionController {
      * @throws PersistenciaException
      */
     public Direccion buscar(String identificador) throws PersistenciaException  {
-<span class="nc" id="L112">        Direccion direccion = null;</span>
-<span class="nc" id="L113">        direccion = direccionModelo.buscar(identificador);</span>
-<span class="nc" id="L114">        return direccion;</span>
+<span class="nc" id="L121">        Direccion direccion = null;</span>
+<span class="nc" id="L122">        direccion = direccionModelo.buscar(identificador);</span>
+<span class="nc" id="L123">        return direccion;</span>
     }
 
     /**
@@ -121,15 +130,15 @@ public class DireccionController {
      * @throws PersistenciaException error controlado
      */
     public boolean existe(Direccion direccion) throws PersistenciaException {
-<span class="nc" id="L124">        boolean encontrado = false;</span>
+<span class="nc" id="L133">        boolean encontrado = false;</span>
         Direccion direccionEncontrada;
 
-<span class="nc" id="L127">        direccionEncontrada = buscar(direccion.getIdentificador());</span>
-<span class="nc bnc" id="L128" title="All 2 branches missed.">        if (direccionEncontrada != null) {</span>
-<span class="nc" id="L129">            encontrado = true;</span>
+<span class="nc" id="L136">        direccionEncontrada = buscar(direccion.getIdentificador());</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">        if (direccionEncontrada != null) {</span>
+<span class="nc" id="L138">            encontrado = true;</span>
         }
 
-<span class="nc" id="L132">        return encontrado;</span>
+<span class="nc" id="L141">        return encontrado;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
