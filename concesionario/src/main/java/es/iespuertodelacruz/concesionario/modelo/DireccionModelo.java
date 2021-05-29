@@ -47,7 +47,7 @@ public class DireccionModelo {
         String sql ="INSERT INTO Direccion (identificador, calle, numero, codigoPostal" +
         ", provincia, ciudad, pais) " + 
         "VALUES ('"+ direccion.getIdentificador() + "', '"  + direccion.getCalle() + "', '" + direccion.getNumero() + 
-        "', '" + direccion.getCodigoPostal() + "', '" + direccion.getProvincia() + 
+        "', " + direccion.getCodigoPostal() + ", '" + direccion.getProvincia() + 
         "', '" + direccion.getCiudad() + "', '" + direccion.getPais() + "')";
         persistencia.actualizar(sql);
     }

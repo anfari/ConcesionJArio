@@ -1,14 +1,14 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 concesionario,es.iespuertodelacruz.concesionario.exception,ClienteException,9,0,0,0,4,0,2,0,2,0
-concesionario,es.iespuertodelacruz.concesionario.exception,PersonaException,9,0,0,0,4,0,2,0,2,0
 concesionario,es.iespuertodelacruz.concesionario.exception,VehiculoException,9,0,0,0,4,0,2,0,2,0
+concesionario,es.iespuertodelacruz.concesionario.exception,PersonaException,9,0,0,0,4,0,2,0,2,0
 concesionario,es.iespuertodelacruz.concesionario.exception,DniException,9,0,0,0,4,0,2,0,2,0
 concesionario,es.iespuertodelacruz.concesionario.exception,PersistenciaException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,BbddException,9,0,0,0,4,0,2,0,2,0
 concesionario,es.iespuertodelacruz.concesionario.exception,EmpleadoException,9,0,0,0,4,0,2,0,2,0
 concesionario,es.iespuertodelacruz.concesionario.exception,DireccionException,9,0,0,0,4,0,2,0,2,0
-concesionario,es.iespuertodelacruz.concesionario.exception,BastidorException,9,0,0,0,4,0,2,0,2,0
 concesionario,es.iespuertodelacruz.concesionario.exception,VentaException,9,0,0,0,4,0,2,0,2,0
+concesionario,es.iespuertodelacruz.concesionario.exception,BastidorException,9,0,0,0,4,0,2,0,2,0
 concesionario,es.iespuertodelacruz.concesionario.controlador,VentaController,173,0,24,0,47,0,22,0,10,0
 concesionario,es.iespuertodelacruz.concesionario.controlador,VehiculoController,265,0,48,0,61,0,34,0,10,0
 concesionario,es.iespuertodelacruz.concesionario.controlador,EmpleadoController,253,0,44,0,57,0,32,0,10,0
@@ -21,7 +21,7 @@ concesionario,es.iespuertodelacruz.concesionario.api,Vehiculo,0,193,0,0,0,65,0,2
 concesionario,es.iespuertodelacruz.concesionario.api,Empleado,0,59,0,0,0,17,0,9,0,9
 concesionario,es.iespuertodelacruz.concesionario.api,Venta,0,69,0,0,0,22,0,11,0,11
 concesionario,es.iespuertodelacruz.concesionario.api,Persona,0,99,0,0,0,30,0,15,0,15
-concesionario,es.iespuertodelacruz.concesionario.modelo,DireccionModelo,60,189,1,3,11,39,3,7,2,6
+concesionario,es.iespuertodelacruz.concesionario.modelo,DireccionModelo,7,242,1,3,2,48,1,9,0,8
 concesionario,es.iespuertodelacruz.concesionario.modelo,PersonaModelo,7,231,1,3,2,51,1,9,0,8
 concesionario,es.iespuertodelacruz.concesionario.modelo,Bbdd,9,212,2,12,3,60,2,11,0,6
 concesionario,es.iespuertodelacruz.concesionario.modelo,ClienteModelo,0,212,0,4,0,50,0,10,0,8
