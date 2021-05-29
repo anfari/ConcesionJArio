@@ -244,5 +244,24 @@ public class Vehiculo {
         this.tipo = tipo;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+            " bastidor='" + getBastidor() + "'" +
+            ", matricula='" + getMatricula() + "'" +
+            ", marca='" + getMarca() + "'" +
+            ", modelo='" + getModelo() + "'" +
+            ", color='" + getColor() + "'" +
+            ", precio='" + getPrecio() + "'" +
+            ", extrasInstalados='" + getExtrasInstalados() + "'" +
+            ", motor='" + getMotor() + "'" +
+            ", potencia='" + getPotencia() + "'" +
+            ", cilindrada='" + getCilindrada() + "'" +
+            ", tipo='" + getTipo() + "'" +
+            ", estado='" + getEstado() + "'" +
+            "}";
+    }
+
+
 
 }

@@ -158,7 +158,7 @@ public class Direccion {
     @Override
     public String toString() {
         return getCalle() + " " + getNumero() + ", " + getCiudad() + 
-        ", " + getProvincia() + ", " + getPais() + ", " + getCodigoPostal();
+        ", " + getProvincia() + ", " + getPais() + ", " + getCodigoPostal()+ getIdentificador();
     }
 
     

@@ -130,6 +130,13 @@ public class Persona {
         this.direccion = direccion;
     }
 
+    @Override
+    public String toString() {
+        return getNombre() + "," +getApellidos() + "," +getDni() + "," +
+            getFechaNacimiento() + "," + getTelefono() + "," +getDireccion();
+          
+    }
+
 
 
 

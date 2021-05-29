@@ -94,5 +94,11 @@ public class Venta {
         this.bastidor = bastidor;
     }
 
+    @Override
+    public String toString() {
+        return getIdentificador() + "," +getCodigoEmpleado() + "," +
+            getCodigoCliente() + "," +getBastidor();
+    }
+
 
 }

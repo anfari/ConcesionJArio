@@ -47,7 +47,7 @@ public class Cliente extends Persona{
 
     @Override
     public String toString() {
-        return codigoCliente + ", " + dni + ", " + nombre + " " + apellidos + ", " + fechaNacimiento + ", " + telefono + ", " + direccion;
+        return getCodigoCliente() + super.toString();
     }
 
 

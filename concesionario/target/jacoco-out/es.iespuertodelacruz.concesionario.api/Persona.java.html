@@ -10,8 +10,8 @@ public class Persona {
     String telefono;
     Direccion direccion;
 
-<span class="nc" id="L13">    public Persona() {</span>
-<span class="nc" id="L14">    }</span>
+<span class="fc" id="L13">    public Persona() {</span>
+<span class="fc" id="L14">    }</span>
 
     /**
      * Constructor de persona con parametros 
@@ -23,14 +23,14 @@ public class Persona {
      * @param direccion objeto direccion
      */
     public Persona(String nombre, String apellidos, String dni, 
-<span class="nc" id="L26">    String fechaNacimiento, String telefono, Direccion direccion) {</span>
-<span class="nc" id="L27">        this.nombre = nombre;</span>
-<span class="nc" id="L28">        this.apellidos = apellidos;</span>
-<span class="nc" id="L29">        this.dni = dni;</span>
-<span class="nc" id="L30">        this.fechaNacimiento = fechaNacimiento;</span>
-<span class="nc" id="L31">        this.telefono = telefono;</span>
-<span class="nc" id="L32">        this.direccion = direccion;</span>
-<span class="nc" id="L33">    }</span>
+<span class="fc" id="L26">    String fechaNacimiento, String telefono, Direccion direccion) {</span>
+<span class="fc" id="L27">        this.nombre = nombre;</span>
+<span class="fc" id="L28">        this.apellidos = apellidos;</span>
+<span class="fc" id="L29">        this.dni = dni;</span>
+<span class="fc" id="L30">        this.fechaNacimiento = fechaNacimiento;</span>
+<span class="fc" id="L31">        this.telefono = telefono;</span>
+<span class="fc" id="L32">        this.direccion = direccion;</span>
+<span class="fc" id="L33">    }</span>
     
     
     /**
@@ -38,7 +38,7 @@ public class Persona {
      * @return nombre de la persona
      */
     public String getNombre() {
-<span class="nc" id="L41">        return this.nombre;</span>
+<span class="fc" id="L41">        return this.nombre;</span>
     }
 
     /**
@@ -46,15 +46,15 @@ public class Persona {
      * @param nombre de la persona
      */
     public void setNombre(String nombre) {
-<span class="nc" id="L49">        this.nombre = nombre;</span>
-<span class="nc" id="L50">    }</span>
+<span class="fc" id="L49">        this.nombre = nombre;</span>
+<span class="fc" id="L50">    }</span>
 
     /**
      * Getter de la clase Persona
      * @return apellidos de la persona
      */
     public String getApellidos() {
-<span class="nc" id="L57">        return this.apellidos;</span>
+<span class="fc" id="L57">        return this.apellidos;</span>
     }
     
     /**
@@ -62,15 +62,15 @@ public class Persona {
      * @param apellidos de la persona
      */
     public void setApellidos(String apellidos) {
-<span class="nc" id="L65">        this.apellidos = apellidos;</span>
-<span class="nc" id="L66">    }</span>
+<span class="fc" id="L65">        this.apellidos = apellidos;</span>
+<span class="fc" id="L66">    }</span>
 
     /**
      * Getter de la clase Persona
      * @return dni de la persona
      */
     public String getDni() {
-<span class="nc" id="L73">        return this.dni;</span>
+<span class="fc" id="L73">        return this.dni;</span>
     }
     
     /**
@@ -78,15 +78,15 @@ public class Persona {
      * @param dni de la persona
      */
     public void setDni(String dni) {
-<span class="nc" id="L81">        this.dni = dni;</span>
-<span class="nc" id="L82">    }</span>
+<span class="fc" id="L81">        this.dni = dni;</span>
+<span class="fc" id="L82">    }</span>
 
     /**
      * Getter de la clase Persona
      * @return fecha de nacimiento de la persona
      */
     public String getFechaNacimiento() {
-<span class="nc" id="L89">        return this.fechaNacimiento;</span>
+<span class="fc" id="L89">        return this.fechaNacimiento;</span>
     }
     
     /**
@@ -94,15 +94,15 @@ public class Persona {
      * @param fechaNacimiento de la persona
      */
     public void setFechaNacimiento(String fechaNacimiento) {
-<span class="nc" id="L97">        this.fechaNacimiento = fechaNacimiento;</span>
-<span class="nc" id="L98">    }</span>
+<span class="fc" id="L97">        this.fechaNacimiento = fechaNacimiento;</span>
+<span class="fc" id="L98">    }</span>
 
     /**
      * Getter de la clase Persona
      * @return telefono de la persona
      */
     public String getTelefono() {
-<span class="nc" id="L105">        return this.telefono;</span>
+<span class="fc" id="L105">        return this.telefono;</span>
     }
     
     /**
@@ -110,15 +110,15 @@ public class Persona {
      * @param relefono de la persona
      */
     public void setTelefono(String telefono) {
-<span class="nc" id="L113">        this.telefono = telefono;</span>
-<span class="nc" id="L114">    }</span>
+<span class="fc" id="L113">        this.telefono = telefono;</span>
+<span class="fc" id="L114">    }</span>
 
     /**
      * Getter de la clase Persona
      * @return direccion de la persona
      */
     public Direccion getDireccion() {
-<span class="nc" id="L121">        return this.direccion;</span>
+<span class="fc" id="L121">        return this.direccion;</span>
     }
     
     
@@ -127,8 +127,15 @@ public class Persona {
      * @param direccion de la persona
      */
     public void setDireccion(Direccion direccion) {
-<span class="nc" id="L130">        this.direccion = direccion;</span>
-<span class="nc" id="L131">    }</span>
+<span class="fc" id="L130">        this.direccion = direccion;</span>
+<span class="fc" id="L131">    }</span>
+
+    @Override
+    public String toString() {
+<span class="fc" id="L135">        return getNombre() + &quot;,&quot; +getApellidos() + &quot;,&quot; +getDni() + &quot;,&quot; +</span>
+<span class="fc" id="L136">            getFechaNacimiento() + &quot;,&quot; + getTelefono() + &quot;,&quot; +getDireccion();</span>
+          
+    }
 
 
 

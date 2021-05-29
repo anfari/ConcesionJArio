@@ -84,4 +84,10 @@ public class Empleado extends Persona{
         this.contrasenia = contrasenia;
     }
 
+    @Override
+    public String toString() {
+        return getCodigoEmpleado()+super.toString()+getRango()+getContrasenia();
+    }
+
+
 }

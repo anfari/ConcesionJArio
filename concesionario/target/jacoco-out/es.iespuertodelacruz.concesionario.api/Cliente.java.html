@@ -9,8 +9,8 @@ public class Cliente extends Persona{
     /**
      * Constructor por defecto
      */
-<span class="nc" id="L12">    public Cliente() {</span>
-<span class="nc" id="L13">    }</span>
+<span class="fc" id="L12">    public Cliente() {</span>
+<span class="fc" id="L13">    }</span>
 
     /**
      * Contructor de cliente con parametros
@@ -24,9 +24,9 @@ public class Cliente extends Persona{
      */
     public Cliente(String codigoCliente,String nombre, String apellidos, 
     String dni, String fechaNacimiento, String telefono, Direccion direccion) {
-<span class="nc" id="L27">        super(nombre, apellidos, dni, fechaNacimiento, telefono, direccion);</span>
-<span class="nc" id="L28">        this.codigoCliente= codigoCliente;</span>
-<span class="nc" id="L29">    }</span>
+<span class="fc" id="L27">        super(nombre, apellidos, dni, fechaNacimiento, telefono, direccion);</span>
+<span class="fc" id="L28">        this.codigoCliente= codigoCliente;</span>
+<span class="fc" id="L29">    }</span>
 
 
     /**
@@ -34,7 +34,7 @@ public class Cliente extends Persona{
      * @return codigo del cliente
      */
     public String getCodigoCliente() {
-<span class="nc" id="L37">        return this.codigoCliente;</span>
+<span class="fc" id="L37">        return this.codigoCliente;</span>
     }
 
     /**
@@ -42,12 +42,12 @@ public class Cliente extends Persona{
      * @param codigoCliente codigo del cliente
      */
     public void setCodigoCliente(String codigoCliente) {
-<span class="nc" id="L45">        this.codigoCliente = codigoCliente;</span>
-<span class="nc" id="L46">    }</span>
+<span class="fc" id="L45">        this.codigoCliente = codigoCliente;</span>
+<span class="fc" id="L46">    }</span>
 
     @Override
     public String toString() {
-<span class="nc" id="L50">        return codigoCliente + &quot;, &quot; + dni + &quot;, &quot; + nombre + &quot; &quot; + apellidos + &quot;, &quot; + fechaNacimiento + &quot;, &quot; + telefono + &quot;, &quot; + direccion;</span>
+<span class="fc" id="L50">        return getCodigoCliente() + super.toString();</span>
     }
 
 
