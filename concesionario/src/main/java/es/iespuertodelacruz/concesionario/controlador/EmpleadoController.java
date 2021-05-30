@@ -58,9 +58,6 @@ public class EmpleadoController {
         if (empleado.getTelefono() == null || empleado.getTelefono().isEmpty()) {
             mensaje += "El telefono del empleado es nulo o vacio";
         }
-        if (empleado.getCodigoEmpleado() == null || empleado.getCodigoEmpleado().isEmpty()) {
-            mensaje += "El codigo del empleado es nulo o vacio\n";
-        }
         if (empleado.getRango() == null || empleado.getRango().isEmpty()) {
             mensaje += "El rango del empleado es nulo o vacio\n";
         }

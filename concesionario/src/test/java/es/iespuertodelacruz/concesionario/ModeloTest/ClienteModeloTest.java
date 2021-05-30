@@ -133,7 +133,7 @@ public class ClienteModeloTest {
    
     
     @Test
-    public void listaClientesTest() {
+    public void listadoClientesTest() {
         try {
             assertEquals(11, clienteModelo.listadoClientes().size(), "El tamanio no es el esperado");
         } catch (PersistenciaException e) {
@@ -143,7 +143,7 @@ public class ClienteModeloTest {
     }
 
     @Test
-    public void covnertirErrorTest() {
+    public void convertirErrorTest() {
         try {
             clienteModelo.convertir("error");
         } catch (PersistenciaException e) {
@@ -153,7 +153,7 @@ public class ClienteModeloTest {
 
 
     /**
-     * Metodo encargado de crear una persona para test
+     * Funcion encargado de crear una persona para test
      * @return persona creada
      */
     private Persona crearPersona() {
@@ -161,7 +161,7 @@ public class ClienteModeloTest {
     }
 
     /**
-     * Metodo encargado de crear un cliente para test
+     * Funcion encargado de crear un cliente para test
      * @return cliente creado
      */
     private Cliente crearCliente() {
@@ -169,7 +169,7 @@ public class ClienteModeloTest {
     }
 
     /**
-     * Metodo encargado de crear una direccion para test
+     * Funcion encargado de crear una direccion para test
      * @return direccion creada
      */
     private Direccion crearDireccion() {

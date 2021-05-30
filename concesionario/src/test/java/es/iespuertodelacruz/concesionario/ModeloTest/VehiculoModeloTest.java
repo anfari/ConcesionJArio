@@ -71,7 +71,7 @@ public class VehiculoModeloTest {
         try {
             vehiculoEncontrado = vehiculoModelo.buscar("VVVZZZ6KZ1R149942");
         } catch (PersistenciaException e) {
-            fail("Error al buscar el empleado", e);
+            fail("Error al buscar el vehiculo", e);
         }
         assertNotNull(vehiculoEncontrado, "El objeto no deberia ser nulo");
     }
@@ -82,24 +82,24 @@ public class VehiculoModeloTest {
         try {
             vehiculoEncontrado = vehiculoModelo.buscar("00000000Z");
         } catch (PersistenciaException e) {
-            fail("Error al buscar el empleado", e);
+            fail("Error al buscar el vehiculo", e);
         }
         assertNull(vehiculoEncontrado, "El objeto deberia ser nulo");
     }
    
     
     @Test
-    public void listaVehiculosTest() {
+    public void listadoVehiculosTest() {
         try {
             assertEquals(40, vehiculoModelo.listadoVehiculos().size(), "El tamanio no es el esperado");
         } catch (PersistenciaException e) {
-            fail("Error al listar los empleados", e);
+            fail("Error al listar los vehiculos", e);
         }
 
     }
 
     @Test
-    public void covnertirErrorTest() {
+    public void convertirErrorTest() {
         try {
             vehiculoModelo.convertir("error");
         } catch (PersistenciaException e) {
@@ -108,7 +108,10 @@ public class VehiculoModeloTest {
     }
 
 
-
+    /**
+     * Funcion encargado de crear un vehiculo para test
+     * @return vehiculo creado
+     */
     private Vehiculo crearVehiculo() {
         return new Vehiculo("VVVZZZ6KZ1R149942", null, "Ford", "Fiesta", "Azul", 19000, null, "Gasolina", 120, "1600cc", "Coche", "Disponible");
     }

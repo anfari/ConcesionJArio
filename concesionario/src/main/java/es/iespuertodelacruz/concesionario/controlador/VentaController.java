@@ -68,7 +68,7 @@ public class VentaController {
     public void insertar(Venta venta) throws VentaException, PersistenciaException {
         validarVenta(venta);
         if (existe(venta)) {
-            throw new VentaException("La venta indicado ya existe");
+            throw new VentaException("La venta indicada ya existe");
         }
         ventaModelo.insertar(venta);
     }
@@ -82,7 +82,7 @@ public class VentaController {
     public void eliminar(Venta venta) throws VentaException, PersistenciaException {
         validarVenta(venta);
         if (!existe(venta)) {
-            throw new VentaException("La venta indicado no existe");
+            throw new VentaException("La venta indicada no existe");
         }
         ventaModelo.eliminar(venta);
     }
@@ -110,7 +110,7 @@ public class VentaController {
         validarVenta(venta);
         ventaAlmacenado = buscar(venta.getIdentificador());
         if (ventaAlmacenado == null) {
-            throw new VentaException("El venta indicado no existe");
+            throw new VentaException("La venta indicada no existe");
         }
         ventaModelo.modificar(venta);
     }

@@ -1,6 +1,8 @@
 package es.iespuertodelacruz.concesionario.ModeloTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.AfterEach;
@@ -75,7 +77,7 @@ public class PersonaModeloTest {
     }
 
     @Test
-    public void listaEmpleadosTest() {
+    public void listadoPersonasTest() {
         try {
             assertEquals(21, personaModelo.listadoPersonas().size(), "El tamanio no es el esperado");
         } catch (PersistenciaException e) {
@@ -84,10 +86,30 @@ public class PersonaModeloTest {
 
     }
 
+    @Test
+    public void buscarEmptyTest() {
+        Persona personaEncontrada = null;
+        try {
+            personaEncontrada = personaModelo.buscar("100");
+        } catch (PersistenciaException e) {
+            fail("Error al buscar la persona", e);
+        }
+        assertNull(personaEncontrada, "El objeto deberia ser nulo");
+    }
+
+    @Test
+    public void convertirErrorTest() {
+        try {
+            personaModelo.convertir("error");
+        } catch (PersistenciaException e) {
+            assertTrue(e.getMessage().contains("Se ha producido un error"), "La consulta no deberia ser posible");
+        }
+    }
+
 
 
     /**
-     * Metodo encargado de crear una persona para test
+     * Funcion encargado de crear una persona para test
      * @return persona creada
      */
     private Persona crearPersona() {
@@ -95,7 +117,7 @@ public class PersonaModeloTest {
     }
 
     /**
-     * Metodo encargado de crear una direccion para test
+     * Funcion encargado de crear una direccion para test
      * @return direccion creada
      */
     private Direccion crearDireccion() {

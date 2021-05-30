@@ -83,7 +83,7 @@ public class VehiculoModelo {
     public Vehiculo buscar(String dni) throws PersistenciaException  {
         Vehiculo vehiculo = null;
         ArrayList<Vehiculo> listaVehiculos = null;
-        String sql = "SELECT * FROM Cliente where dni = ";
+        String sql = "SELECT * FROM Vehiculo where bastidor = ";
         sql = sql + "'" + dni + "'";
         listaVehiculos = convertir(sql);
         if (!listaVehiculos.isEmpty()) {

@@ -11,41 +11,34 @@ import es.iespuertodelacruz.concesionario.modelo.DireccionModelo;
 public class DireccionModeloTest {
     DireccionModelo direccionModelo;
     Direccion direccion;
-     @BeforeEach 
-    public void setUp(){
-        if(direccionModelo==null){
+
+    @BeforeEach 
+    public void setUp() {
+        if(direccionModelo == null){
             try {
-                direccionModelo=new DireccionModelo(true);
+                direccionModelo = new DireccionModelo(true);
             } catch (PersistenciaException e) {
                 fail("Error al inicializar el modelo");
             }
         }
-        direccion=generarDireccion();
-        
+        direccion = crearDireccion();
         try {
             direccionModelo.insertar(direccion);
         } catch (PersistenciaException e) {
-            fail("Error al insertar una direccion");
+            fail("Error al insertar la direccion");
         }
 
     }
-     @AfterEach 
+
+    @AfterEach 
     public void tearDown(){
         try {
             direccionModelo.eliminar(direccion);
         } catch (PersistenciaException e) {
-            fail("Error al eliminar");
+            fail("Error al eliminar la direccion");
         }
     }
-    @Test
-    public void constructorTest() {
-        try {
-            direccionModelo= new DireccionModelo();
-            direccionModelo = new DireccionModelo(true);
-        } catch (PersistenciaException e) {
-            fail("Error al inicializar el modelo");
-        }
-    }
+
     
     @Test
     public void modificarTest() {
@@ -53,32 +46,47 @@ public class DireccionModeloTest {
         try {
             direccionModelo.modificar(direccion);
         } catch (PersistenciaException e) {
-            fail("Error al actualizar la cliente", e);
+            fail("Error al modificar la direccion", e);
         }
     }
 
     @Test
-    public void buscarTest() {
-
-        
+    public void listadoDireccionesTest() {
         try {
-            assertTrue(direccionModelo.listadoDirecciones().size()>0);
+            assertEquals(21, direccionModelo.listadoDirecciones().size(), "El tamanio no es el esperado");
         } catch (PersistenciaException e) {
-            fail("Error");
+            fail("Error al listar las direcciones", e);
         }
-       
     }
 
-       /**
-     * Funcion privada encargada de generar direcciones de personas
+    @Test
+    public void buscarEmptyTest() {
+        Direccion direccionEncontrada = null;
+        try {
+            direccionEncontrada = direccionModelo.buscar("55555555X");
+        } catch (PersistenciaException e) {
+            fail("Error al buscar la direccion", e);
+        }
+        assertNull(direccionEncontrada, "El objeto deberia ser nulo");
+    }
+
+    @Test
+    public void convertirErrorTest() {
+        try {
+            direccionModelo.convertir("error");
+        } catch (PersistenciaException e) {
+            assertTrue(e.getMessage().contains("Se ha producido un error"), "La consulta no deberia ser posible");
+        }
+    }
+
+
+
+    /**
+     * Funcion encargado de crear una direccion para test
+     * @return direccion creada
      */
-    private Direccion generarDireccion(){
-        Direccion direccion= new Direccion("22222222A", "VillaBajo", 2, "38435", "Almeria", "Almeria", "España");
-        return direccion;
+    private Direccion crearDireccion(){
+        return new Direccion("22222222A", "VillaBajo", 2, "38435", "Almeria", "Almeria", "España");
     }
-   
     
-
-
-
 }

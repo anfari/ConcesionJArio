@@ -69,6 +69,9 @@ public class DireccionController {
      */
     public void insertar(Direccion direccion) throws DireccionException, PersistenciaException {
         validarDireccion(direccion);
+        if (existe(direccion)) {
+            throw new DireccionException("La direccion indicada ya existe");
+        }
         direccionModelo.insertar(direccion);
     }
 
@@ -80,6 +83,9 @@ public class DireccionController {
      */
     public void eliminar(Direccion direccion) throws DireccionException, PersistenciaException {
         validarDireccion(direccion);
+        if (!existe(direccion)) {
+            throw new DireccionException("La direccion indicada no existe");
+        }
         direccionModelo.eliminar(direccion);
     }
 

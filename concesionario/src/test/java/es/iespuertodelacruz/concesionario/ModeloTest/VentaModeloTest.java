@@ -30,7 +30,7 @@ public class VentaModeloTest {
                 fail("Error al inicializar el modelo", e);
             }
         }
-        venta = crearVehiculo();
+        venta = crearVenta();
         try {
             ventaModelo.insertar(venta);
         } catch (PersistenciaException e) {
@@ -92,13 +92,12 @@ public class VentaModeloTest {
    
     
     @Test
-    public void listaVentasTest() {
+    public void listadoVentasTest() {
         try {
             assertEquals(7, ventaModelo.listadoVentas().size(), "El tamanio no es el esperado");
         } catch (PersistenciaException e) {
             fail("Error al listar las ventas", e);
         }
-
     }
 
     @Test
@@ -126,7 +125,7 @@ public class VentaModeloTest {
      * Funcion encargada de crear una venta para test
      * @return venta creada
      */
-    private Venta crearVehiculo() {
+    private Venta crearVenta() {
         return new Venta("9999999999999", "1", "1", "VSSZZZ6KZ1R149947");
     }
 }

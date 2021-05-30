@@ -43,9 +43,6 @@ public class ClienteController {
             mensaje = "Se esta intentando validar un objeto vacio";
             throw new ClienteException(mensaje);
         }
-        if (cliente.getCodigoCliente() == null || cliente.getCodigoCliente().isEmpty()) {
-            mensaje += "El codigo del cliente es nulo o vacio\n";
-        }
         if (cliente.getNombre() == null || cliente.getNombre().isEmpty()) {
             mensaje += "El nombre del cliente es nulo o vacio\n";
         }
@@ -96,14 +93,14 @@ public class ClienteController {
     }
 
     /**
-     * Metodo encargado de eliminar utilizando el codigo de cliente
+     * Metodo encargado de eliminar utilizando el dni
      * @param dni dni del cliente
      * @throws ClienteException error controlado
      * @throws PersistenciaException
      */
-    public void eliminar(String codigoCliente) throws ClienteException, PersistenciaException {
+    public void eliminar(String dni) throws ClienteException, PersistenciaException {
         Cliente cliente;
-        cliente = buscar(codigoCliente);
+        cliente = buscar(dni);
         eliminar(cliente);
     }
 
@@ -124,7 +121,7 @@ public class ClienteController {
     }
 
     /**
-     * Metodo encargado de buscar por codigo de cliente
+     * Funcion encargada de buscar por dni
      * @param dni dni del cliente
      * @return cliente encontrado
      * @throws PersistenciaException error controlado
@@ -133,9 +130,6 @@ public class ClienteController {
     public Cliente buscar(String dni) throws PersistenciaException, ClienteException  {
         Cliente cliente = null;
         cliente = clienteModelo.buscar(dni);
-        if (cliente == null) {
-            throw new ClienteException("El cliente no existe");
-        }
         return cliente;
     }
 

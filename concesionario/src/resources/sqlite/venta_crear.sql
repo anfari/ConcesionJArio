@@ -1,10 +1,10 @@
 CREATE TABLE "Venta" (
 	"identificador"	INTEGER NOT NULL,
-	"dniEmpleado"	varchar(30) NOT NULL,
-	"dniCliente"	varchar(30) NOT NULL,
+	"codigoEmpleado"	INTEGER NOT NULL,
+	"codigoCliente"	INTEGER NOT NULL,
 	"bastidor"	varchar(30) NOT NULL,
 	PRIMARY KEY("identificador" AUTOINCREMENT),
 	FOREIGN KEY("bastidor") REFERENCES "Vehiculo"("bastidor"),
-	FOREIGN KEY("dniCliente") REFERENCES "Cliente"("dni"),
-	FOREIGN KEY("dniEmpleado") REFERENCES "Empleado"("dni")
+	FOREIGN KEY("codigoCliente") REFERENCES "Cliente"("codigoCliente"),
+	FOREIGN KEY("codigoEmpleado") REFERENCES "Empleado"("codigoEmpleado")
 );

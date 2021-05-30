@@ -133,7 +133,7 @@ public class EmpleadoModeloTest {
    
     
     @Test
-    public void listaEmpleadosTest() {
+    public void listadoEmpleadosTest() {
         try {
             assertEquals(11, empleadoModelo.listadoEmpleados().size(), "El tamanio no es el esperado");
         } catch (PersistenciaException e) {
@@ -143,7 +143,7 @@ public class EmpleadoModeloTest {
     }
 
     @Test
-    public void covnertirErrorTest() {
+    public void convertirErrorTest() {
         try {
             empleadoModelo.convertir("error");
         } catch (PersistenciaException e) {
@@ -154,7 +154,7 @@ public class EmpleadoModeloTest {
 
 
     /**
-     * Metodo encargado de crear una persona para test
+     * Funcion encargado de crear una persona para test
      * @return persona creada
      */
     private Persona crearPersona() {
@@ -162,7 +162,7 @@ public class EmpleadoModeloTest {
     }
 
     /**
-     * Metodo encargado de crear un empleado para test
+     * Funcion encargado de crear un empleado para test
      * @return empleado creado
      */
     private Empleado crearEmpleado() {
@@ -170,7 +170,7 @@ public class EmpleadoModeloTest {
     }
 
     /**
-     * Metodo encargado de crear una direccion para test
+     * Funcion encargado de crear una direccion para test
      * @return direccion creada
      */
     private Direccion crearDireccion() {

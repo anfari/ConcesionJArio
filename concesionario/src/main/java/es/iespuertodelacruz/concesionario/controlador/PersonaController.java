@@ -70,21 +70,21 @@ public class PersonaController {
     public void insertar(Persona persona) throws PersonaException, PersistenciaException {
         validarPersona(persona);
         if (existe(persona)) {
-            throw new PersonaException("El cliente indicado ya existe");
+            throw new PersonaException("La persona indicada ya existe");
         }
         personaModelo.insertar(persona);
     }
 
     /**
-     * Metodo encargado de elimianr
+     * Metodo encargado de eliminar
      * @param persona persona a eliminar
      * @throws PersonaException error controlado
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void eliminar(Persona persona) throws PersonaException, PersistenciaException {
         validarPersona(persona);
         if (!existe(persona)) {
-            throw new PersonaException("El cliente indicado no existe");
+            throw new PersonaException("La persona indicada no existe");
         }
         personaModelo.eliminar(persona);
     }
@@ -112,7 +112,7 @@ public class PersonaController {
         validarPersona(persona);
         personaAlmacenada = buscar(persona.getDni());
         if (personaAlmacenada == null) {
-            throw new PersonaException("El cliente indicado no existe");
+            throw new PersonaException("La persona indicada no existe");
         }
         personaModelo.modificar(persona);
     }
