@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="es.iespuertodelacruz.concesionario.controller.EmpleadoControllerTest" time="6.32" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="es.iespuertodelacruz.concesionario.VistaAppTest" time="0.143" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="15"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -55,14 +55,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="59.0"/>
   </properties>
-  <testcase name="constructorTest" classname="es.iespuertodelacruz.concesionario.controller.EmpleadoControllerTest" time="0.514"/>
-  <testcase name="eliminarErrorTest" classname="es.iespuertodelacruz.concesionario.controller.EmpleadoControllerTest" time="0.643"/>
-  <testcase name="insertarErrorTest" classname="es.iespuertodelacruz.concesionario.controller.EmpleadoControllerTest" time="0.722"/>
-  <testcase name="validarEmpleadoVacioTest" classname="es.iespuertodelacruz.concesionario.controller.EmpleadoControllerTest" time="0.558"/>
-  <testcase name="modificarTest" classname="es.iespuertodelacruz.concesionario.controller.EmpleadoControllerTest" time="0.658"/>
-  <testcase name="eliminarDniTest" classname="es.iespuertodelacruz.concesionario.controller.EmpleadoControllerTest" time="1.066"/>
-  <testcase name="modificarErrorTest" classname="es.iespuertodelacruz.concesionario.controller.EmpleadoControllerTest" time="0.499"/>
-  <testcase name="validarEmpleadoNullTest" classname="es.iespuertodelacruz.concesionario.controller.EmpleadoControllerTest" time="0.5"/>
-  <testcase name="validarEmpleadoNuloTest" classname="es.iespuertodelacruz.concesionario.controller.EmpleadoControllerTest" time="0.518"/>
-  <testcase name="listadoEmpleadosTest" classname="es.iespuertodelacruz.concesionario.controller.EmpleadoControllerTest" time="0.631"/>
+  <testcase name="principalSalirTest" classname="es.iespuertodelacruz.concesionario.VistaAppTest" time="0.024"/>
+  <testcase name="constructorTest" classname="es.iespuertodelacruz.concesionario.VistaAppTest" time="0.037"/>
+  <testcase name="principalErrorTest" classname="es.iespuertodelacruz.concesionario.VistaAppTest" time="0.039"/>
+  <testcase name="principalSolo1a3Test" classname="es.iespuertodelacruz.concesionario.VistaAppTest" time="0.036"/>
 </testsuite>
