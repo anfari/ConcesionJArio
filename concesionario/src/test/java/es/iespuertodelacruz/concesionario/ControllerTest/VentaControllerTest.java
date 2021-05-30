@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.concesionario.ControllerTest;
+package es.iespuertodelacruz.concesionario.controllerTest;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -39,10 +39,11 @@ public class VentaControllerTest {
     @AfterEach 
     public void tearDown(){
         try {
-            ventaController.eliminar(venta);
+            ventaController.eliminar(venta.getIdentificador());
         } catch (PersistenciaException | VentaException e) {
             fail("Error al eliminar la venta", e);
         }
+        
     }
 
 
@@ -81,6 +82,18 @@ public class VentaControllerTest {
     }
 
     @Test
+    public void validarVentaNullTest() {
+        Venta ventaVacia = new Venta(null, null, null, null);
+
+        try {
+            ventaController.validarVenta(ventaVacia);
+        } catch (VentaException e) {
+            assertTrue(e.getMessage().contains("venta"));
+        }
+
+    }
+
+    @Test
     public void insertarErrorTest() {
         try {
             ventaController.insertar(venta);
@@ -98,20 +111,16 @@ public class VentaControllerTest {
             assertTrue(e.getMessage().contains("La venta indicada no existe"));
         }
     }
-/*
+
     @Test
-    public void eliminarIdentificadorTest() {
+    public void eliminarIdentificadorTest() throws PersistenciaException {
         try {
-            ventaController.eliminar("9999999999");
+            ventaController.eliminar(venta);
         } catch (PersistenciaException | VentaException e) {
             fail("Error al eliminar la venta", e);
         }
-        try {
-            ventaController.insertar(venta);
-        } catch (PersistenciaException | VentaException e) {
-            fail("Error al insertar la venta", e);
-        }
-    }*/
+        
+    }
 
     @Test
     public void modificarTest() {

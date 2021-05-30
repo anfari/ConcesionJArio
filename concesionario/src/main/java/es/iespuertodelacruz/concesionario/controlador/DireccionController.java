@@ -42,19 +42,19 @@ public class DireccionController {
             throw new DireccionException(mensaje);
         }
         if (direccion.getNumero() <= 0) {
-            mensaje = "El numero de domicilio es 0 o menor\n";
+            mensaje = "El numero de direccion de domicilio es 0 o menor\n";
         }
         if (direccion.getCalle() == null || direccion.getCalle().isEmpty()) {
-            mensaje += "La calle es nula o vacia\n";
+            mensaje += "La calle de direccion es nula o vacia\n";
         }
         if (direccion.getCodigoPostal() == null || direccion.getCodigoPostal().isEmpty()) {
-            mensaje += "El codigo postal es nulo o vacio\n";
+            mensaje += "El codigo postal de direccion es nulo o vacio\n";
         }
         if (direccion.getCiudad() == null || direccion.getCiudad().isEmpty()) {
-            mensaje += "La ciudad es nula o vacia\n";
+            mensaje += "La ciudad de direccion es nula o vacia\n";
         }
         if (direccion.getProvincia() == null || direccion.getProvincia().isEmpty()) {
-            mensaje += "La provincia es nula o vacia";
+            mensaje += "La provincia de direccion es nula o vacia";
         }
         if (!mensaje.isEmpty()) {
             throw new DireccionException(mensaje);

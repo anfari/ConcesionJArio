@@ -94,9 +94,7 @@ public class VentaController {
      * @throws PersistenciaException
      */
     public void eliminar(String identificador) throws VentaException, PersistenciaException {
-        Venta venta;
-        venta = buscar(identificador);
-        eliminar(venta);
+        ventaModelo.eliminar(identificador);
     }
 
     /**

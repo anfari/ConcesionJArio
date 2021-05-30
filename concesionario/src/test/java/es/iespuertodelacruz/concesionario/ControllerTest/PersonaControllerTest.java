@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.concesionario.ControllerTest;
+package es.iespuertodelacruz.concesionario.controllerTest;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -97,7 +97,18 @@ public class PersonaControllerTest {
         } catch (PersonaException e) {
             assertTrue(e.getMessage().contains("El telefono"));
         }
+    }
 
+
+    @Test
+    public void validarPersonaNulaaTest() {
+        Persona personaVacia = new Persona(null, null, null, null, null, direccion);
+
+        try {
+            personaController.validarPersona(personaVacia);
+        } catch (PersonaException e) {
+            assertTrue(e.getMessage().contains("de la persona"));
+        }
     }
 
     @Test

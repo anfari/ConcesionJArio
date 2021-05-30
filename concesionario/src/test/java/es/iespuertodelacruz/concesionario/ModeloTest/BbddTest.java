@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.concesionario.ModeloTest;
+package es.iespuertodelacruz.concesionario.modeloTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 

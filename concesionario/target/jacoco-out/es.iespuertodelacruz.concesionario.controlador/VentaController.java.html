@@ -44,13 +44,13 @@ public class VentaController {
 <span class="fc" id="L44">            mensaje = &quot;Se esta intentando validar un objeto vacio&quot;;</span>
 <span class="fc" id="L45">            throw new VentaException(mensaje);</span>
         }
-<span class="pc bpc" id="L47" title="1 of 4 branches missed.">        if (venta.getBastidor() == null || venta.getBastidor().isEmpty()) {</span>
+<span class="fc bfc" id="L47" title="All 4 branches covered.">        if (venta.getBastidor() == null || venta.getBastidor().isEmpty()) {</span>
 <span class="fc" id="L48">            mensaje += &quot;El bastidor de venta es nulo o vacio\n&quot;;</span>
         }
-<span class="pc bpc" id="L50" title="1 of 4 branches missed.">        if (venta.getCodigoCliente() == null || venta.getCodigoCliente().isEmpty()) {</span>
+<span class="fc bfc" id="L50" title="All 4 branches covered.">        if (venta.getCodigoCliente() == null || venta.getCodigoCliente().isEmpty()) {</span>
 <span class="fc" id="L51">            mensaje += &quot;El codigo de cliente de la venta es nulo o vacio\n&quot;;</span>
         }
-<span class="pc bpc" id="L53" title="1 of 4 branches missed.">        if (venta.getCodigoEmpleado() == null || venta.getCodigoEmpleado().isEmpty()) {</span>
+<span class="fc bfc" id="L53" title="All 4 branches covered.">        if (venta.getCodigoEmpleado() == null || venta.getCodigoEmpleado().isEmpty()) {</span>
 <span class="fc" id="L54">            mensaje += &quot;El codigo de empleado de venta es nulo o vacio\n&quot;;</span>
         }
 <span class="fc bfc" id="L56" title="All 2 branches covered.">        if (!mensaje.isEmpty()) {</span>
@@ -94,10 +94,8 @@ public class VentaController {
      * @throws PersistenciaException
      */
     public void eliminar(String identificador) throws VentaException, PersistenciaException {
-        Venta venta;
-<span class="nc" id="L98">        venta = buscar(identificador);</span>
-<span class="nc" id="L99">        eliminar(venta);</span>
-<span class="nc" id="L100">    }</span>
+<span class="fc" id="L97">        ventaModelo.eliminar(identificador);</span>
+<span class="fc" id="L98">    }</span>
 
     /**
      * Metodo encargado de modificar
@@ -107,13 +105,13 @@ public class VentaController {
      */
     public void modificar(Venta venta) throws VentaException, PersistenciaException {
         Venta ventaAlmacenado;
-<span class="fc" id="L110">        validarVenta(venta);</span>
-<span class="fc" id="L111">        ventaAlmacenado = buscar(venta.getIdentificador());</span>
-<span class="fc bfc" id="L112" title="All 2 branches covered.">        if (ventaAlmacenado == null) {</span>
-<span class="fc" id="L113">            throw new VentaException(&quot;La venta indicada no existe&quot;);</span>
+<span class="fc" id="L108">        validarVenta(venta);</span>
+<span class="fc" id="L109">        ventaAlmacenado = buscar(venta.getIdentificador());</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        if (ventaAlmacenado == null) {</span>
+<span class="fc" id="L111">            throw new VentaException(&quot;La venta indicada no existe&quot;);</span>
         }
-<span class="fc" id="L115">        ventaModelo.modificar(venta);</span>
-<span class="fc" id="L116">    }</span>
+<span class="fc" id="L113">        ventaModelo.modificar(venta);</span>
+<span class="fc" id="L114">    }</span>
 
     /**
      * Metodo encargado de buscar por identificaor de venta
@@ -122,9 +120,9 @@ public class VentaController {
      * @throws PersistenciaException
      */
     public Venta buscar(String identificador) throws PersistenciaException  {
-<span class="fc" id="L125">        Venta venta = null;</span>
-<span class="fc" id="L126">        venta = ventaModelo.buscar(identificador);</span>
-<span class="fc" id="L127">        return venta;</span>
+<span class="fc" id="L123">        Venta venta = null;</span>
+<span class="fc" id="L124">        venta = ventaModelo.buscar(identificador);</span>
+<span class="fc" id="L125">        return venta;</span>
     }
 
     /**
@@ -134,14 +132,14 @@ public class VentaController {
      * @throws PersistenciaException
      */
     public boolean existe(Venta venta) throws PersistenciaException  {
-<span class="fc" id="L137">        boolean encontrado = false;</span>
+<span class="fc" id="L135">        boolean encontrado = false;</span>
         Venta ventaEncontrado;
 
-<span class="fc" id="L140">        ventaEncontrado = buscar(venta.getIdentificador());</span>
-<span class="fc bfc" id="L141" title="All 2 branches covered.">        if (ventaEncontrado != null) {</span>
-<span class="fc" id="L142">            encontrado = true;</span>
+<span class="fc" id="L138">        ventaEncontrado = buscar(venta.getIdentificador());</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">        if (ventaEncontrado != null) {</span>
+<span class="fc" id="L140">            encontrado = true;</span>
         }
-<span class="fc" id="L144">        return encontrado;</span>
+<span class="fc" id="L142">        return encontrado;</span>
     }
 
    /**
@@ -150,7 +148,7 @@ public class VentaController {
      * @throws PersistenciaException error controlado
      */
     public ArrayList&lt;String&gt; agruparVentas() throws PersistenciaException {
-<span class="fc" id="L153">        return ventaModelo.agruparVentas();</span>
+<span class="fc" id="L151">        return ventaModelo.agruparVentas();</span>
     }
 
 }

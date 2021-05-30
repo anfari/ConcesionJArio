@@ -70,6 +70,17 @@ public class VentaModelo {
     }
 
     /**
+     * Metodo que elimina una venta por identificador
+     * @param venta venta a eliminar
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminar(String identificador) throws PersistenciaException {
+        String sql = "DELETE from Venta where identificador = '" + 
+        identificador + "'";
+        persistencia.actualizar(sql);
+    }
+
+    /**
      * Funcion que busca una venta especifica
      * @param identificador identificador de la venta
      * @return Venta encontrado

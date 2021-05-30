@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: es.iespuertodelacruz.concesionario.ApiTest.ClienteApiTest
+Test set: es.iespuertodelacruz.concesionario.apiTest.ClienteApiTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.065 s - in es.iespuertodelacruz.concesionario.ApiTest.ClienteApiTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s - in es.iespuertodelacruz.concesionario.apiTest.ClienteApiTest

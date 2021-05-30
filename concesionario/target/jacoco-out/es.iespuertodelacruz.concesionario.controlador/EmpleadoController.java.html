@@ -43,25 +43,25 @@ public class EmpleadoController {
 <span class="fc" id="L43">            mensaje = &quot;Se esta intentando validar un objeto vacio&quot;;</span>
 <span class="fc" id="L44">            throw new EmpleadoException(mensaje);</span>
         }
-<span class="pc bpc" id="L46" title="1 of 4 branches missed.">        if (empleado.getNombre() == null || empleado.getNombre().isEmpty()) {</span>
+<span class="fc bfc" id="L46" title="All 4 branches covered.">        if (empleado.getNombre() == null || empleado.getNombre().isEmpty()) {</span>
 <span class="fc" id="L47">            mensaje += &quot;El nombre del empleado es nulo o vacio\n&quot;;</span>
         }
-<span class="pc bpc" id="L49" title="1 of 4 branches missed.">        if (empleado.getApellidos() == null || empleado.getApellidos().isEmpty()) {</span>
+<span class="fc bfc" id="L49" title="All 4 branches covered.">        if (empleado.getApellidos() == null || empleado.getApellidos().isEmpty()) {</span>
 <span class="fc" id="L50">            mensaje += &quot;Los apellidos del empleado son nulos o vacios\n&quot;;</span>
         }
-<span class="pc bpc" id="L52" title="1 of 4 branches missed.">        if (empleado.getDni() == null || empleado.getDni().isEmpty()) {</span>
+<span class="fc bfc" id="L52" title="All 4 branches covered.">        if (empleado.getDni() == null || empleado.getDni().isEmpty()) {</span>
 <span class="fc" id="L53">            mensaje += &quot;El dni del empleado es nulo o vacio\n&quot;;</span>
         }
-<span class="pc bpc" id="L55" title="1 of 4 branches missed.">        if (empleado.getFechaNacimiento() == null || empleado.getFechaNacimiento().isEmpty()) {</span>
+<span class="fc bfc" id="L55" title="All 4 branches covered.">        if (empleado.getFechaNacimiento() == null || empleado.getFechaNacimiento().isEmpty()) {</span>
 <span class="fc" id="L56">            mensaje += &quot;La fecha de nacimiento del empleado es nula o vacia\n&quot;;</span>
         }
-<span class="pc bpc" id="L58" title="1 of 4 branches missed.">        if (empleado.getTelefono() == null || empleado.getTelefono().isEmpty()) {</span>
+<span class="fc bfc" id="L58" title="All 4 branches covered.">        if (empleado.getTelefono() == null || empleado.getTelefono().isEmpty()) {</span>
 <span class="fc" id="L59">            mensaje += &quot;El telefono del empleado es nulo o vacio&quot;;</span>
         }
-<span class="pc bpc" id="L61" title="1 of 4 branches missed.">        if (empleado.getRango() == null || empleado.getRango().isEmpty()) {</span>
+<span class="fc bfc" id="L61" title="All 4 branches covered.">        if (empleado.getRango() == null || empleado.getRango().isEmpty()) {</span>
 <span class="fc" id="L62">            mensaje += &quot;El rango del empleado es nulo o vacio\n&quot;;</span>
         }
-<span class="pc bpc" id="L64" title="1 of 4 branches missed.">        if (empleado.getContrasenia() == null || empleado.getContrasenia().isEmpty()) {</span>
+<span class="fc bfc" id="L64" title="All 4 branches covered.">        if (empleado.getContrasenia() == null || empleado.getContrasenia().isEmpty()) {</span>
 <span class="fc" id="L65">            mensaje += &quot;La contraseña del empleado es nulo o vacio\n&quot;;</span>
         }
 <span class="fc bfc" id="L67" title="All 2 branches covered.">        if (!mensaje.isEmpty()) {</span>

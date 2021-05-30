@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.concesionario.ControllerTest;
+package es.iespuertodelacruz.concesionario.controllerTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -62,6 +62,24 @@ public class VehiculoControllerTest {
             vehiculoController.validarVehiculo(vehiculoNulo);
         } catch (VehiculoException e) {
             assertTrue(e.getMessage().contains("Se esta intentando validar un objeto vacio"));
+        }
+    }
+    @Test
+    public void validarEnterosTest(){
+        Vehiculo vehiculo= new Vehiculo("", "", "", "", "", 0, "", "", 0, "", "", "");
+        try {
+            vehiculoController.validarVehiculo(vehiculo);
+        } catch (VehiculoException e) {
+            assertTrue(e.getMessage().contains("del vehiculo"));
+        }
+    }
+    @Test
+    public void validarStringTest(){
+        Vehiculo vehiculo= new Vehiculo(null, null, null, null, null, 0, null, null, 0, null, null, null);
+        try {
+            vehiculoController.validarVehiculo(vehiculo);
+        } catch (VehiculoException e) {
+            assertTrue(e.getMessage().contains("del vehiculo"));
         }
     }
     /*

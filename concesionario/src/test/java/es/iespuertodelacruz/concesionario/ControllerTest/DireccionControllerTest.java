@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.concesionario.ControllerTest;
+package es.iespuertodelacruz.concesionario.controllerTest;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -72,7 +72,19 @@ public class DireccionControllerTest {
         try {
             direccionController.validarDireccion(direccionVacia);
         } catch (DireccionException e) {
-            assertTrue(e.getMessage().contains("El numero de domicilio"));
+            assertTrue(e.getMessage().contains("direccion"));
+        }
+
+    }
+
+    @Test
+    public void validarDireccionNulaaTest() {
+        Direccion direccionVacia = new Direccion(null, null, 0, null, null, null, null);
+
+        try {
+            direccionController.validarDireccion(direccionVacia);
+        } catch (DireccionException e) {
+            assertTrue(e.getMessage().contains("de direccion"));
         }
 
     }

@@ -30,8 +30,6 @@ public class Fichero {
             String linea = scanner.nextLine(); // Guardamos la linea en un String
             informacion.append(linea + RETORNO_CARRO);
          }
-      } catch (PersistenciaException e) {  
-            throw e;
       }catch (Exception e) {
             throw new PersistenciaException("Se ha producido un error en la lectura del fichero", e);
       } finally {

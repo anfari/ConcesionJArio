@@ -43,38 +43,38 @@ public class VehiculoController {
 <span class="fc" id="L43">            mensaje = &quot;Se esta intentando validar un objeto vacio&quot;;</span>
 <span class="fc" id="L44">            throw new VehiculoException(mensaje);</span>
         }
-<span class="pc bpc" id="L46" title="2 of 4 branches missed.">        if (vehiculo.getBastidor() == null || vehiculo.getBastidor().isEmpty()) {</span>
-<span class="nc" id="L47">            mensaje += &quot;El codigo de bastidor es nulo o vacio\n&quot;;</span>
+<span class="fc bfc" id="L46" title="All 4 branches covered.">        if (vehiculo.getBastidor() == null || vehiculo.getBastidor().isEmpty()) {</span>
+<span class="fc" id="L47">            mensaje += &quot;El codigo del vehiculo de bastidor es nulo o vacio\n&quot;;</span>
         }
-<span class="pc bpc" id="L49" title="2 of 4 branches missed.">        if (vehiculo.getMarca() == null || vehiculo.getMarca().isEmpty()) {</span>
-<span class="nc" id="L50">            mensaje += &quot;La marca es nula o vacia\n&quot;;</span>
+<span class="fc bfc" id="L49" title="All 4 branches covered.">        if (vehiculo.getMarca() == null || vehiculo.getMarca().isEmpty()) {</span>
+<span class="fc" id="L50">            mensaje += &quot;La marca del vehiculo es nula o vacia\n&quot;;</span>
         }
-<span class="pc bpc" id="L52" title="2 of 4 branches missed.">        if (vehiculo.getModelo() == null || vehiculo.getModelo().isEmpty()) {</span>
-<span class="nc" id="L53">            mensaje += &quot;El modelo es nulo o vacio\n&quot;;</span>
+<span class="fc bfc" id="L52" title="All 4 branches covered.">        if (vehiculo.getModelo() == null || vehiculo.getModelo().isEmpty()) {</span>
+<span class="fc" id="L53">            mensaje += &quot;El modelo del vehiculo es nulo o vacio\n&quot;;</span>
         }
-<span class="pc bpc" id="L55" title="2 of 4 branches missed.">        if (vehiculo.getColor() == null || vehiculo.getColor().isEmpty()) {</span>
-<span class="nc" id="L56">            mensaje += &quot;El color es nulo o vacio\n&quot;;</span>
+<span class="fc bfc" id="L55" title="All 4 branches covered.">        if (vehiculo.getColor() == null || vehiculo.getColor().isEmpty()) {</span>
+<span class="fc" id="L56">            mensaje += &quot;El color del vehiculo es nulo o vacio\n&quot;;</span>
         }
-<span class="pc bpc" id="L58" title="1 of 2 branches missed.">        if (vehiculo.getPrecio() &lt;= 0) {</span>
-<span class="nc" id="L59">            mensaje = &quot;El precio es 0 o menor\n&quot;;</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (vehiculo.getPrecio() &lt;= 0) {</span>
+<span class="fc" id="L59">            mensaje = &quot;El precio del vehiculo es 0 o menor\n&quot;;</span>
         }
-<span class="pc bpc" id="L61" title="2 of 4 branches missed.">        if (vehiculo.getMotor() == null || vehiculo.getMotor().isEmpty()) {</span>
-<span class="nc" id="L62">            mensaje += &quot;El motor es nulo o vacio\n&quot;;</span>
+<span class="fc bfc" id="L61" title="All 4 branches covered.">        if (vehiculo.getMotor() == null || vehiculo.getMotor().isEmpty()) {</span>
+<span class="fc" id="L62">            mensaje += &quot;El motor del vehiculo es nulo o vacio\n&quot;;</span>
         }
-<span class="pc bpc" id="L64" title="1 of 2 branches missed.">        if (vehiculo.getPotencia() &lt;= 0) {</span>
-<span class="nc" id="L65">            mensaje = &quot;La potencia es nula o vacia\n&quot;;</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if (vehiculo.getPotencia() &lt;= 0) {</span>
+<span class="fc" id="L65">            mensaje = &quot;La potencia del vehiculo es nula o vacia\n&quot;;</span>
         }
-<span class="pc bpc" id="L67" title="2 of 4 branches missed.">        if (vehiculo.getCilindrada() == null || vehiculo.getCilindrada().isEmpty()) {</span>
-<span class="nc" id="L68">            mensaje += &quot;La cilindrada es nula o vacia\n&quot;;</span>
+<span class="fc bfc" id="L67" title="All 4 branches covered.">        if (vehiculo.getCilindrada() == null || vehiculo.getCilindrada().isEmpty()) {</span>
+<span class="fc" id="L68">            mensaje += &quot;La cilindrada del vehiculo es nula o vacia\n&quot;;</span>
         }
-<span class="pc bpc" id="L70" title="2 of 4 branches missed.">        if (vehiculo.getTipo() == null || vehiculo.getTipo().isEmpty()) {</span>
-<span class="nc" id="L71">            mensaje += &quot;El tipo es nulo o vacio\n&quot;;</span>
+<span class="fc bfc" id="L70" title="All 4 branches covered.">        if (vehiculo.getTipo() == null || vehiculo.getTipo().isEmpty()) {</span>
+<span class="fc" id="L71">            mensaje += &quot;El tipo del vehiculo es nulo o vacio\n&quot;;</span>
         }
-<span class="pc bpc" id="L73" title="2 of 4 branches missed.">        if (vehiculo.getEstado() == null || vehiculo.getEstado().isEmpty()) {</span>
-<span class="nc" id="L74">            mensaje += &quot;El estado es nulo o vacio\n&quot;;</span>
+<span class="fc bfc" id="L73" title="All 4 branches covered.">        if (vehiculo.getEstado() == null || vehiculo.getEstado().isEmpty()) {</span>
+<span class="fc" id="L74">            mensaje += &quot;El estado del vehiculo es nulo o vacio\n&quot;;</span>
         }
-<span class="pc bpc" id="L76" title="1 of 2 branches missed.">        if (!mensaje.isEmpty()) {</span>
-<span class="nc" id="L77">            throw new VehiculoException(mensaje);</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        if (!mensaje.isEmpty()) {</span>
+<span class="fc" id="L77">            throw new VehiculoException(mensaje);</span>
         }
 <span class="fc" id="L79">    }</span>
 

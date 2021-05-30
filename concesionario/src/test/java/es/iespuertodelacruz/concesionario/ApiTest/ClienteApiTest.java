@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.concesionario.ApiTest;
+package es.iespuertodelacruz.concesionario.apiTest;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;

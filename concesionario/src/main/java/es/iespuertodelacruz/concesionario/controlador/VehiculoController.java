@@ -44,34 +44,34 @@ public class VehiculoController {
             throw new VehiculoException(mensaje);
         }
         if (vehiculo.getBastidor() == null || vehiculo.getBastidor().isEmpty()) {
-            mensaje += "El codigo de bastidor es nulo o vacio\n";
+            mensaje += "El codigo del vehiculo de bastidor es nulo o vacio\n";
         }
         if (vehiculo.getMarca() == null || vehiculo.getMarca().isEmpty()) {
-            mensaje += "La marca es nula o vacia\n";
+            mensaje += "La marca del vehiculo es nula o vacia\n";
         }
         if (vehiculo.getModelo() == null || vehiculo.getModelo().isEmpty()) {
-            mensaje += "El modelo es nulo o vacio\n";
+            mensaje += "El modelo del vehiculo es nulo o vacio\n";
         }
         if (vehiculo.getColor() == null || vehiculo.getColor().isEmpty()) {
-            mensaje += "El color es nulo o vacio\n";
+            mensaje += "El color del vehiculo es nulo o vacio\n";
         }
         if (vehiculo.getPrecio() <= 0) {
-            mensaje = "El precio es 0 o menor\n";
+            mensaje = "El precio del vehiculo es 0 o menor\n";
         }
         if (vehiculo.getMotor() == null || vehiculo.getMotor().isEmpty()) {
-            mensaje += "El motor es nulo o vacio\n";
+            mensaje += "El motor del vehiculo es nulo o vacio\n";
         }
         if (vehiculo.getPotencia() <= 0) {
-            mensaje = "La potencia es nula o vacia\n";
+            mensaje = "La potencia del vehiculo es nula o vacia\n";
         }
         if (vehiculo.getCilindrada() == null || vehiculo.getCilindrada().isEmpty()) {
-            mensaje += "La cilindrada es nula o vacia\n";
+            mensaje += "La cilindrada del vehiculo es nula o vacia\n";
         }
         if (vehiculo.getTipo() == null || vehiculo.getTipo().isEmpty()) {
-            mensaje += "El tipo es nulo o vacio\n";
+            mensaje += "El tipo del vehiculo es nulo o vacio\n";
         }
         if (vehiculo.getEstado() == null || vehiculo.getEstado().isEmpty()) {
-            mensaje += "El estado es nulo o vacio\n";
+            mensaje += "El estado del vehiculo es nulo o vacio\n";
         }
         if (!mensaje.isEmpty()) {
             throw new VehiculoException(mensaje);

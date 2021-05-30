@@ -42,19 +42,19 @@ public class DireccionController {
 <span class="fc" id="L42">            throw new DireccionException(mensaje);</span>
         }
 <span class="fc bfc" id="L44" title="All 2 branches covered.">        if (direccion.getNumero() &lt;= 0) {</span>
-<span class="fc" id="L45">            mensaje = &quot;El numero de domicilio es 0 o menor\n&quot;;</span>
+<span class="fc" id="L45">            mensaje = &quot;El numero de direccion de domicilio es 0 o menor\n&quot;;</span>
         }
-<span class="pc bpc" id="L47" title="1 of 4 branches missed.">        if (direccion.getCalle() == null || direccion.getCalle().isEmpty()) {</span>
-<span class="fc" id="L48">            mensaje += &quot;La calle es nula o vacia\n&quot;;</span>
+<span class="fc bfc" id="L47" title="All 4 branches covered.">        if (direccion.getCalle() == null || direccion.getCalle().isEmpty()) {</span>
+<span class="fc" id="L48">            mensaje += &quot;La calle de direccion es nula o vacia\n&quot;;</span>
         }
-<span class="pc bpc" id="L50" title="1 of 4 branches missed.">        if (direccion.getCodigoPostal() == null || direccion.getCodigoPostal().isEmpty()) {</span>
-<span class="fc" id="L51">            mensaje += &quot;El codigo postal es nulo o vacio\n&quot;;</span>
+<span class="fc bfc" id="L50" title="All 4 branches covered.">        if (direccion.getCodigoPostal() == null || direccion.getCodigoPostal().isEmpty()) {</span>
+<span class="fc" id="L51">            mensaje += &quot;El codigo postal de direccion es nulo o vacio\n&quot;;</span>
         }
-<span class="pc bpc" id="L53" title="1 of 4 branches missed.">        if (direccion.getCiudad() == null || direccion.getCiudad().isEmpty()) {</span>
-<span class="fc" id="L54">            mensaje += &quot;La ciudad es nula o vacia\n&quot;;</span>
+<span class="fc bfc" id="L53" title="All 4 branches covered.">        if (direccion.getCiudad() == null || direccion.getCiudad().isEmpty()) {</span>
+<span class="fc" id="L54">            mensaje += &quot;La ciudad de direccion es nula o vacia\n&quot;;</span>
         }
-<span class="pc bpc" id="L56" title="1 of 4 branches missed.">        if (direccion.getProvincia() == null || direccion.getProvincia().isEmpty()) {</span>
-<span class="fc" id="L57">            mensaje += &quot;La provincia es nula o vacia&quot;;</span>
+<span class="fc bfc" id="L56" title="All 4 branches covered.">        if (direccion.getProvincia() == null || direccion.getProvincia().isEmpty()) {</span>
+<span class="fc" id="L57">            mensaje += &quot;La provincia de direccion es nula o vacia&quot;;</span>
         }
 <span class="fc bfc" id="L59" title="All 2 branches covered.">        if (!mensaje.isEmpty()) {</span>
 <span class="fc" id="L60">            throw new DireccionException(mensaje);</span>

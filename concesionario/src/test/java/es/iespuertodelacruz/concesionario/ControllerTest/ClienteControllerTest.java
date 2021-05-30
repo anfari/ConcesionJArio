@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.concesionario.ControllerTest;
+package es.iespuertodelacruz.concesionario.controllerTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -121,8 +121,19 @@ public class ClienteControllerTest {
         } catch (ClienteException e) {
             assertTrue(e.getMessage().contains("El telefono"));
         }
-
     }
+
+    @Test
+    public void validarClienteNullTest() {
+        Cliente clienteVacio = new Cliente(null, null, null, null, null, null, null);
+
+        try {
+            clienteController.validarCliente(clienteVacio);
+        } catch (ClienteException e) {
+            assertTrue(e.getMessage().contains("del cliente"));
+        }
+    }
+
 
     @Test
     public void insertarErrorTest() {

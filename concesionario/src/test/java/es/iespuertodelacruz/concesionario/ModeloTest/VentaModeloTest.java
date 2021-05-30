@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.concesionario.ModeloTest;
+package es.iespuertodelacruz.concesionario.modeloTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -118,6 +118,16 @@ public class VentaModeloTest {
             fail("Error agrupando las ventas");
         }
         assertFalse(ventasAgrupadas.isEmpty(), "La lista no deberia estar vacia");
+    }
+    @Test
+    public void agruparVentasFalseTest() throws PersistenciaException{
+        
+        try {
+            ventaModelo.agruparVentas();
+        } catch (PersistenciaException e) {
+            assertTrue(e.getMessage().contains("error realizando la consulta"));
+        }
+        //assertFalse(ventasAgrupadas.isEmpty(), "La lista no deberia estar vacia");
     }
 
 
