@@ -6,6 +6,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.*;
 /**
@@ -22,6 +23,8 @@ public class VistaAppTest {
 
     private ByteArrayInputStream testIn;
     private ByteArrayOutputStream testOut;
+
+    String[] args = null;
     VistaApp vista;
      @BeforeEach 
     public void setUp() throws PersistenciaException{
@@ -48,14 +51,55 @@ public class VistaAppTest {
         return testOut.toString();
     }
 
-    
- 
-     @AfterEach 
-    public void tearDown(){}
-
-
-    @Test
-    public void asse(){
-
-    }
+     
+       
+     
+     
+        @Test
+        public void sumaTest(){
+           
+         
+           args = null;
+           testIn = new ByteArrayInputStream("1 3".getBytes());
+           System.setIn(testIn);
+           try {
+              vista.main(args);
+           } catch (Exception e) {
+              fail("Se ha producido un error realizando la operacion suma:"+e.getMessage());
+           }
+           
+        } 
+     
+        @Test
+        public void restaTest(){
+           String[] args = null;
+           testIn = new ByteArrayInputStream("2 3".getBytes());
+           System.setIn(testIn);
+           try {
+              vista.main(args);
+           } catch (Exception e) {
+              fail("Se ha producido un error realizando la operacion suma:"+e.getMessage());
+           }
+           
+        } 
+       
+     
+        @Test
+        public void errorEleccionMenuTest(){
+           
+           String[] args = null;
+           testIn = new ByteArrayInputStream("4 a".getBytes());
+           System.setIn(testIn);
+           try {
+              vista.main(args);
+           } catch (Exception exception) {
+              if (exception instanceof NoSuchElementException) {
+                 assertTrue(true);
+              } else {
+                 fail("Se ha producido un error realizando la operacion suma:"+exception.getMessage());
+              }
+              
+           }
+           
+        }
 }
