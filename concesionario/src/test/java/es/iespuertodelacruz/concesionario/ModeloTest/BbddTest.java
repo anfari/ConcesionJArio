@@ -45,7 +45,7 @@ public class BbddTest {
     @Test
     public void getConnectionErrorTest() {
         try {
-            bbdd = new Bbdd("Persona", " " , "", "jdbc:sqlite:test.db", null, null);
+            bbdd = new Bbdd("Persona", "" , "", "jdbc:sqlite:test.db", null, null);
         } catch (PersistenciaException e) {
             assertTrue(e.getMessage().contains("Se ha producido un error en la inicializacion"));
         }
@@ -70,7 +70,14 @@ public class BbddTest {
     }
 
 
-
+    @Test
+    public void getConnectionUsuarioError2Test() {
+        try {
+            bbdd = new Bbdd(null, null ,null, null, null, null);
+        } catch (PersistenciaException e) {
+            assertTrue(e.getMessage().contains("Se ha producido un error en la inicializacion"));
+        }
+    }
 
 
  
