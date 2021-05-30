@@ -244,24 +244,14 @@ public class Vehiculo {
         this.tipo = tipo;
     }
 
+    /**
+     * Funcion toString de la Clase Vehiculo
+     */
     @Override
     public String toString() {
-        return "{" +
-            " bastidor='" + getBastidor() + "'" +
-            ", matricula='" + getMatricula() + "'" +
-            ", marca='" + getMarca() + "'" +
-            ", modelo='" + getModelo() + "'" +
-            ", color='" + getColor() + "'" +
-            ", precio='" + getPrecio() + "'" +
-            ", extrasInstalados='" + getExtrasInstalados() + "'" +
-            ", motor='" + getMotor() + "'" +
-            ", potencia='" + getPotencia() + "'" +
-            ", cilindrada='" + getCilindrada() + "'" +
-            ", tipo='" + getTipo() + "'" +
-            ", estado='" + getEstado() + "'" +
-            "}";
+        return getBastidor() + ", " + getMatricula() + ", " + getMarca() + ", " + getModelo() + ", " + getColor() + ", " +
+            getPrecio() + "€, Extras:'" + getExtrasInstalados() + ", " + getMotor() + ", " + getPotencia() + " CV, " +
+            getCilindrada() + ", " + getTipo() + " " + getEstado();
     }
-
-
 
 }

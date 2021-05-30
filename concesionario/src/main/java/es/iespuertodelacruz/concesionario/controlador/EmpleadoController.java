@@ -4,8 +4,11 @@ package es.iespuertodelacruz.concesionario.controlador;
 import java.util.ArrayList;
 
 import es.iespuertodelacruz.concesionario.api.Empleado;
+import es.iespuertodelacruz.concesionario.api.Persona;
+import es.iespuertodelacruz.concesionario.exception.DireccionException;
 import es.iespuertodelacruz.concesionario.exception.EmpleadoException;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
+import es.iespuertodelacruz.concesionario.exception.PersonaException;
 import es.iespuertodelacruz.concesionario.modelo.EmpleadoModelo;
 
 /**
@@ -13,6 +16,7 @@ import es.iespuertodelacruz.concesionario.modelo.EmpleadoModelo;
  */
 public class EmpleadoController {
     EmpleadoModelo empleadoModelo;
+    PersonaController personaController;
 
     /**
      * Constructor de la clase EmpleadoModelo
@@ -20,6 +24,7 @@ public class EmpleadoController {
      */
     public EmpleadoController() throws PersistenciaException {
         empleadoModelo = new EmpleadoModelo();
+        personaController = new PersonaController();
     }
 
     /**
@@ -29,6 +34,7 @@ public class EmpleadoController {
      */
     public EmpleadoController(boolean test) throws PersistenciaException {
         empleadoModelo = new EmpleadoModelo(true);
+        personaController = new PersonaController(true);
     }
 
     /**
@@ -74,12 +80,16 @@ public class EmpleadoController {
      * @param empleado empleado a insertar
      * @throws EmpleadoException
      * @throws PersistenciaException
+     * @throws DireccionException
+     * @throws PersonaException
      */
-    public void insertar(Empleado empleado) throws  EmpleadoException, PersistenciaException {
+    public void insertar(Empleado empleado) throws  EmpleadoException, PersistenciaException, PersonaException, DireccionException {
         validarEmpleado(empleado);
         if (existe(empleado)) {
             throw new EmpleadoException("El empleado indicado ya existe");
         }
+        Persona persona = generarPersona(empleado);
+        personaController.insertar(persona);
         empleadoModelo.insertar(empleado);
     }
 
@@ -88,12 +98,16 @@ public class EmpleadoController {
      * @param empleado empleado a eliminar
      * @throws EmpleadoException error controlado
      * @throws PersistenciaException
+     * @throws DireccionException
+     * @throws PersonaException
      */
-    public void eliminar(Empleado empleado) throws EmpleadoException, PersistenciaException {
+    public void eliminar(Empleado empleado) throws EmpleadoException, PersistenciaException, PersonaException, DireccionException {
         validarEmpleado(empleado);
         if (!existe(empleado)) {
             throw new EmpleadoException("El empleado indicado no existe");
         }
+        Persona persona = generarPersona(empleado);
+        personaController.eliminar(persona);
         empleadoModelo.eliminar(empleado);
     }
 
@@ -102,8 +116,10 @@ public class EmpleadoController {
      * @param dni dni del empleado
      * @throws EmpleadoException error controlado
      * @throws PersistenciaException
+     * @throws DireccionException
+     * @throws PersonaException
      */
-    public void eliminar(String dni) throws EmpleadoException, PersistenciaException {
+    public void eliminar(String dni) throws EmpleadoException, PersistenciaException, PersonaException, DireccionException {
         Empleado empleado;
         empleado = buscar(dni);
         eliminar(empleado);
@@ -114,14 +130,18 @@ public class EmpleadoController {
      * @param empleado empleado a modificar
      * @throws EmpleadoException error controlado
      * @throws PersistenciaException
+     * @throws DireccionException
+     * @throws PersonaException
      */
-    public void modificar(Empleado empleado) throws EmpleadoException, PersistenciaException {
+    public void modificar(Empleado empleado) throws EmpleadoException, PersistenciaException, PersonaException, DireccionException {
         Empleado empleadoAlmacenado;
         validarEmpleado(empleado);
         empleadoAlmacenado = buscar(empleado.getDni());
         if (empleadoAlmacenado == null) {
             throw new EmpleadoException("El empleado indicado no existe");
         }
+        Persona persona = generarPersona(empleado);
+        personaController.modificar(persona);
         empleadoModelo.modificar(empleado);
     }
 
@@ -162,4 +182,15 @@ public class EmpleadoController {
 
         return encontrado;
     }
+
+    /**
+     * Funcion encargada de generar una Persona a partir de los datos del empleado
+     * @param empleado empleado del que generar la persona
+     * @return Persona creada
+     */
+    private Persona generarPersona(Empleado empleado) {
+        return new Persona(empleado.getNombre(), empleado.getApellidos(), empleado.getDni(), 
+        empleado.getFechaNacimiento(), empleado.getTelefono(), empleado.getDireccion());
+    }
+    
 }

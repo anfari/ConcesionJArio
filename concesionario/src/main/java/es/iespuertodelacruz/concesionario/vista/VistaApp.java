@@ -49,8 +49,9 @@ public class VistaApp {
      * @throws BastidorException error controlado
      * @throws DireccionException error controlado
      * @throws VentaException error controlado
+     * @throws PersonaException
      */
-    public static void main(String[] args) throws BbddException, ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException {
+    public static void main(String[] args) throws BbddException, ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
         /**if(bd==null){
             bd=new Bbdd(null, null, null, null);
         }*/
@@ -69,8 +70,10 @@ public class VistaApp {
      * @throws EmpleadoException error controlado
      * @throws DireccionException error controlado
      * @throws VentaException error controlado
+     * @throws PersonaException
      */
-    private static void menuPrincipal() throws BbddException, ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException {
+    private static void menuPrincipal() throws BbddException, ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
+        teclado = new Scanner(System.in);
         boolean salir = false;
         int opcion;
 
@@ -82,6 +85,7 @@ public class VistaApp {
             try {
                 System.out.print("Introduzca una de las opciones: ");
                 opcion = teclado.nextInt();
+                teclado.nextLine();
                 System.out.println("");
 
                 switch (opcion) {
@@ -114,8 +118,9 @@ public class VistaApp {
      * @throws VehiculoException error controlado
      * @throws DireccionException error controlado
      * @throws VentaException error controlado
+     * @throws PersonaException
      */
-    private static void menuEmpleado() throws BbddException, ClienteException, PersistenciaException, DniException, VehiculoException, DireccionException, VentaException {
+    private static void menuEmpleado() throws BbddException, ClienteException, PersistenciaException, DniException, VehiculoException, DireccionException, VentaException, PersonaException {
         boolean salir = false;
         int opcion;
 
@@ -127,6 +132,7 @@ public class VistaApp {
             try {
                 System.out.print("Introduzca una de las opciones: ");
                 opcion = teclado.nextInt();
+                teclado.nextLine();
                 System.out.println("");
 
                 switch (opcion) {
@@ -160,8 +166,9 @@ public class VistaApp {
      * @throws VehiculoException error controlado
      * @throws DireccionException error controlado
      * @throws VentaException error controlado
+     * @throws PersonaException
      */
-    private static void menuGerente() throws BbddException, ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException {
+    private static void menuGerente() throws BbddException, ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
         boolean salir = false;
         int opcion;
 
@@ -175,6 +182,7 @@ public class VistaApp {
             try {
                 System.out.print("Introduzca una de las opciones: ");
                 opcion = teclado.nextInt();
+                teclado.nextLine();
                 System.out.println("");
 
                 switch (opcion) {
@@ -226,6 +234,7 @@ public class VistaApp {
             try {
                 System.out.print("Introduzca una de las opciones: ");
                 opcion = teclado.nextInt();
+                teclado.nextLine();
                 System.out.println("");
 
                 switch (opcion) {
@@ -244,8 +253,11 @@ public class VistaApp {
                         }
                         break;
                     case 3:
-                        System.out.println("Lista de vehiculos disponibles: ");
-                        System.out.println(vehiculoController.listadoVehiculos());
+                        System.out.println("Lista de vehiculos: ");
+                        ArrayList<Vehiculo> vehiculos = vehiculoController.listadoVehiculos();
+                        for (Vehiculo vehiculo2 : vehiculos) {
+                            System.out.println(vehiculo2.toString());
+                        }
                         break;
                     case 4:
                         salir = true;
@@ -267,8 +279,9 @@ public class VistaApp {
      * @throws ClienteException error controlado
      * @throws DniException error controlado
      * @throws DireccionException error controlado
+     * @throws PersonaException
      */
-    private static void menuClientes() throws ClienteException, PersistenciaException, DniException, DireccionException {
+    private static void menuClientes() throws ClienteException, PersistenciaException, DniException, DireccionException, PersonaException {
         boolean salir = false;
         int opcion;
         Cliente cliente;
@@ -286,23 +299,24 @@ public class VistaApp {
             try {
                 System.out.print("Intrduzca una de las opciones: ");
                 opcion = teclado.nextInt();
+                teclado.nextLine();
                 System.out.println("");
 
                 switch (opcion) {
                     case 1:
-                        cliente = generarDatosCliente();
+                        cliente = generarDatosCliente(true);
                         clienteController.insertar(cliente);
                         System.out.println("\nCliente insertado");
                         break;
                     case 2:
                         System.out.println("Proceda a introducir los datos, el DNI debe mantenerse igual");
-                        cliente = generarDatosCliente();
+                        cliente = generarDatosCliente(false);
                         clienteController.modificar(cliente);
                         System.out.println("\nCliente modificado");
                         break;
                     case 3:
                         System.out.print("Introduzca el dni del cliente: ");
-                        dni = teclado.next();
+                        dni = teclado.nextLine();
                         validarDni(dni);
                         clienteController.eliminar(clienteController.buscar(dni));
                         System.out.println("\nCliente eliminado");
@@ -320,6 +334,7 @@ public class VistaApp {
                         validarDni(dni);
                         cliente = clienteController.buscar(dni);
                         System.out.println(cliente.toString());
+                        break;
                     case 6:
                         salir = true;
                         break;
@@ -340,8 +355,9 @@ public class VistaApp {
      * @throws EmpleadoException error controlado
      * @throws DniException error controlado
      * @throws DireccionException error controlado
+     * @throws PersonaException
      */
-    private static void menuEmpleados() throws EmpleadoException, PersistenciaException, DniException, DireccionException {
+    private static void menuEmpleados() throws EmpleadoException, PersistenciaException, DniException, DireccionException, PersonaException {
         boolean salir = false;
         int opcion;
         Empleado empleado;
@@ -360,17 +376,18 @@ public class VistaApp {
 
                 System.out.print("Introduzca una de las opciones: ");
                 opcion = teclado.nextInt();
+                teclado.nextLine();
                 System.out.println("");
 
                 switch (opcion) {
                     case 1:
-                        empleado = generarDatosEmpleado();
+                        empleado = generarDatosEmpleado(true);
                         empleadoController.insertar(empleado);
                         System.out.println("\nEmpleado insertado");
                         break;
                     case 2:
                         System.out.println("Proceda a introducir los datos, el DNI debe mantenerse igual");
-                        empleado = generarDatosEmpleado();
+                        empleado = generarDatosEmpleado(false);
                         empleadoController.modificar(empleado);
                         System.out.println("\nCliente modificado");
                         break;
@@ -383,7 +400,10 @@ public class VistaApp {
                         break;
                     case 4:
                         System.out.println("Lista de empleados: ");
-                        System.out.println(empleadoController.listadoEmpleados());
+                        ArrayList<Empleado> empleados = empleadoController.listadoEmpleados();
+                        for (Empleado empleado2 : empleados) {
+                            System.out.println(empleado2.toString());
+                        }
                         break;
                     case 5:
                         System.out.print("Introduzca el dni del empleado: ");
@@ -430,6 +450,7 @@ public class VistaApp {
             try {
                 System.out.print("Introduzca una de las opciones: ");
                 opcion = teclado.nextInt();
+                teclado.nextLine();
                 System.out.println("");
  
                 switch (opcion) {
@@ -453,7 +474,10 @@ public class VistaApp {
                         break;
                     case 4:
                         System.out.println("Lista de vehiculos: ");
-                        System.out.println(vehiculoController.listadoVehiculos());
+                        ArrayList<Vehiculo> vehiculos = vehiculoController.listadoVehiculos();
+                        for (Vehiculo vehiculo2 : vehiculos) {
+                            System.out.println(vehiculo2.toString());
+                        }
                         break;
                     case 5:
                         salir = true;
@@ -477,40 +501,40 @@ public class VistaApp {
     private static Vehiculo generarDatosVehiculo() throws VehiculoException{
         
         System.out.print("Introduzca el numero de bastidor: ");
-        String bastidor = teclado.next();
+        String bastidor = teclado.nextLine();
 
         System.out.print("Introduzca el valor de matricula: ");
-        String matricula = teclado.next();
+        String matricula = teclado.nextLine();
 
         System.out.print("Introduzca la marca: ");
-        String marca = teclado.next();
+        String marca = teclado.nextLine();
 
         System.out.print("Introduzca el modelo: ");
-        String modelo = teclado.next();
+        String modelo = teclado.nextLine();
 
         System.out.print("Introduzca el color: ");
-        String color = teclado.next();
+        String color = teclado.nextLine();
 
         System.out.print("Introduzca la cilindrada: ");
-        String cilindrada = teclado.next();
+        String cilindrada = teclado.nextLine();
 
         System.out.print("Introduzca el tipo de motor: ");
-        String motor = teclado.next();
+        String motor = teclado.nextLine();
 
         System.out.print("Introduzca la potencia: ");
-        int potencia = teclado.nextInt();
+        int potencia = Integer.parseInt(teclado.nextLine());
 
         System.out.print("Introduzca los extras instalados: ");
-        String extras = teclado.next();
+        String extras = teclado.nextLine();
 
         System.out.print("Introduzca el precio: ");
         double precio = teclado.nextDouble();
 
         System.out.print("Introduzca el tipo de vehiculo: ");
-        String tipo = teclado.next();
+        String tipo = teclado.nextLine();
 
         System.out.print("Introduzca el estado del vehiculo: ");
-        String estado = teclado.next();
+        String estado = teclado.nextLine();
 
         Vehiculo vehiculo = new Vehiculo(bastidor, matricula, marca, modelo, color, precio, extras, motor, potencia, cilindrada, tipo, estado);
         vehiculoController.validarVehiculo(vehiculo);
@@ -524,31 +548,35 @@ public class VistaApp {
      * @throws ClienteException error controlado
      * @throws DireccionException error controlado
      */
-    private static Cliente generarDatosCliente() throws ClienteException, DireccionException {
+    private static Cliente generarDatosCliente(boolean nuevo) throws ClienteException, DireccionException {
+        String codigoCliente = null;
 
-        System.out.print("Introduzca el valor de el codigo de cliente: ");
-        String codigoCliente = teclado.next();
+        if (!nuevo) {
+            System.out.print("Introduzca el valor de el codigo de cliente: ");
+            codigoCliente = teclado.nextLine();
+        }
 
         System.out.print("Introduzca el valor de dni: ");
-        String dni = teclado.next();
+        String dni = teclado.nextLine();
 
         System.out.print("Introduzca el valor de nombre: ");
-        String nombre = teclado.next();
+        String nombre = teclado.nextLine();
 
         System.out.print("Introduzca el valor de apellidos: ");
-        String apellidos = teclado.next();
+        String apellidos = teclado.nextLine();
 
         System.out.print("Introduzca el valor de fechaNacimiento: ");
-        String fechaNacimiento = teclado.next();
+        String fechaNacimiento = teclado.nextLine();
 
         System.out.print("Introduzca el valor de telefono: ");
-        String telefono = teclado.next();
+        String telefono = teclado.nextLine();
 
         Cliente cliente = new Cliente(codigoCliente, nombre, apellidos, dni, fechaNacimiento, telefono, generarDatosDireccion(dni));
         clienteController.validarCliente(cliente);
 
         return cliente;
     }
+    
 
     /**
      * Funcion privada encarga de generar empleados
@@ -556,33 +584,36 @@ public class VistaApp {
      * @throws EmpleadoException error controlado
      * @throws DireccionException error controlado
      */
-    private static Empleado generarDatosEmpleado() throws EmpleadoException, DireccionException {
+    private static Empleado generarDatosEmpleado(boolean nuevo) throws EmpleadoException, DireccionException {
+        String codigoEmpleado = null;
 
-        System.out.print("Introduzca el valor de el codigo del empleado ");
-        String codigoEmpleado = teclado.next();
+        if (!nuevo) {
+            System.out.print("Introduzca el valor de el codigo del empleado ");
+            codigoEmpleado = teclado.nextLine();
+        }
 
         System.out.print("Introduzca el valor de dni: ");
-        String dni = teclado.next();
+        String dni = teclado.nextLine();
 
         System.out.print("Introduzca el valor de nombre: ");
-        String nombre = teclado.next();
+        String nombre = teclado.nextLine();
 
         System.out.print("Introduzca el valor de apellidos: ");
-        String apellidos = teclado.next();
+        String apellidos = teclado.nextLine();
 
         System.out.print("Introduzca el valor de fechaNacimiento: ");
-        String fechaNacimiento = teclado.next();
+        String fechaNacimiento = teclado.nextLine();
 
         System.out.print("Introduzca el valor de telefono: ");
-        String telefono = teclado.next();
+        String telefono = teclado.nextLine();
 
         System.out.print("Introduzca el rango del empleado: ");
-        String rango = teclado.next();
+        String rango = teclado.nextLine();
 
         System.out.print("Introduzca el valor de contraseña: ");
-        String contraseña = teclado.next();
+        String contrasenia = teclado.nextLine();
 
-        Empleado empleado = new Empleado(codigoEmpleado, nombre, apellidos, dni, fechaNacimiento, telefono, generarDatosDireccion(dni), rango, contraseña);
+        Empleado empleado = new Empleado(codigoEmpleado, nombre, apellidos, dni, fechaNacimiento, telefono, generarDatosDireccion(dni), rango, contrasenia);
         empleadoController.validarEmpleado(empleado);
 
         return empleado;
@@ -596,22 +627,22 @@ public class VistaApp {
     private static Direccion generarDatosDireccion(String identificador) throws DireccionException{
 
         System.out.print("Introduzca el pais: ");
-        String pais = teclado.next();
+        String pais = teclado.nextLine();
 
         System.out.print("Introduzca la provincia: ");
-        String provincia = teclado.next();
+        String provincia = teclado.nextLine();
 
         System.out.print("Introduzca la ciudad: ");
-        String ciudad = teclado.next();
+        String ciudad = teclado.nextLine();
 
-        System.out.print("Introduzca el valor de calle: ");
-        String calle = teclado.next();
+        System.out.print("Introduzca la calle: ");
+        String calle = teclado.nextLine();
 
         System.out.print("Introduzca el numero de la vivienda: ");
-        int numero = teclado.nextInt();
+        int numero = Integer.parseInt(teclado.nextLine());
 
         System.out.print("Introduzca el codigo postal: ");
-        String codigoPostal = teclado.next();
+        String codigoPostal = teclado.nextLine();
 
         Direccion direccion = new Direccion(identificador, calle, numero, codigoPostal, provincia, ciudad, pais);
         direccionController.validarDireccion(direccion);
@@ -627,13 +658,13 @@ public class VistaApp {
     private static Venta pedirDatosVenta() throws VentaException {
 
         System.out.print("Introduzca el dni del empleado: ");
-        String dniEmpleado = teclado.next();
+        String dniEmpleado = teclado.nextLine();
 
         System.out.print("Introduzca el dni del cliente: ");
-        String dniCliente = teclado.next();
+        String dniCliente = teclado.nextLine();
 
         System.out.print("Introduzca el numero de bastidor del vehiculo: ");
-        String bastidor = teclado.next();
+        String bastidor = teclado.nextLine();
 
         Venta venta = new Venta(null, dniEmpleado, dniCliente, bastidor);
         ventaController.validarVenta(venta);
@@ -652,7 +683,8 @@ public class VistaApp {
             throw new DniException("Debe introducir un DNI");
         }
     }
-   /**
+    
+    /**
      * Metodo privado que valida un bastidor 
      * @param bastidor a validar 
      * @throws BastidorException error cobtrolado

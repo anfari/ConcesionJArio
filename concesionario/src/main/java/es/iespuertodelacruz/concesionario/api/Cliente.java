@@ -45,12 +45,13 @@ public class Cliente extends Persona{
         this.codigoCliente = codigoCliente;
     }
 
+    
+    /**
+     * Funcion toString de la clase Cliente
+     */
     @Override
     public String toString() {
-        return getCodigoCliente() + super.toString();
+        return getCodigoCliente() + ", " + super.toString();
     }
-
-
-    
     
 }

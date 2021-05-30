@@ -3,8 +3,11 @@ package es.iespuertodelacruz.concesionario.controlador;
 import java.util.ArrayList;
 
 import es.iespuertodelacruz.concesionario.api.Cliente;
+import es.iespuertodelacruz.concesionario.api.Persona;
 import es.iespuertodelacruz.concesionario.exception.ClienteException;
+import es.iespuertodelacruz.concesionario.exception.DireccionException;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
+import es.iespuertodelacruz.concesionario.exception.PersonaException;
 import es.iespuertodelacruz.concesionario.modelo.ClienteModelo;
 
 /**
@@ -12,6 +15,7 @@ import es.iespuertodelacruz.concesionario.modelo.ClienteModelo;
  */
 public class ClienteController {
     ClienteModelo clienteModelo;
+    PersonaController personaController;
 
     /**
      * Constructor de la clase ClienteController
@@ -19,6 +23,7 @@ public class ClienteController {
      */
     public ClienteController() throws PersistenciaException {
         clienteModelo = new ClienteModelo();
+        personaController = new PersonaController();
     }
 
     /**
@@ -28,6 +33,7 @@ public class ClienteController {
      */
     public ClienteController(boolean test) throws PersistenciaException {
         clienteModelo = new ClienteModelo(true);
+        personaController = new PersonaController(true);
     }
 
 
@@ -68,13 +74,17 @@ public class ClienteController {
      * @param cliente cliente a insertar
      * @throws ClienteException error controlado
      * @throws PersistenciaException
+     * @throws PersonaException
+     * @throws DireccionException
      * 
      */
-    public void insertar(Cliente cliente) throws ClienteException, PersistenciaException {
+    public void insertar(Cliente cliente) throws ClienteException, PersistenciaException, PersonaException, DireccionException {
         validarCliente(cliente);
         if (existe(cliente)) {
             throw new ClienteException("El cliente indicado ya existe");
         }
+        Persona persona = generarPersona(cliente);
+        personaController.insertar(persona);
         clienteModelo.insertar(cliente);
     }
 
@@ -83,12 +93,16 @@ public class ClienteController {
      * @param cliente cliente a eliminar
      * @throws ClienteException error controlado
      * @throws PersistenciaException
+     * @throws PersonaException
+     * @throws DireccionException
      */
-    public void eliminar(Cliente cliente) throws ClienteException, PersistenciaException {
+    public void eliminar(Cliente cliente) throws ClienteException, PersistenciaException, PersonaException, DireccionException {
         validarCliente(cliente);
         if (!existe(cliente)) {
             throw new ClienteException("El cliente indicado no existe");
         }
+        Persona persona = generarPersona(cliente);
+        personaController.eliminar(persona);
         clienteModelo.eliminar(cliente);
     }
 
@@ -97,8 +111,10 @@ public class ClienteController {
      * @param dni dni del cliente
      * @throws ClienteException error controlado
      * @throws PersistenciaException
+     * @throws PersonaException
+     * @throws DireccionException
      */
-    public void eliminar(String dni) throws ClienteException, PersistenciaException {
+    public void eliminar(String dni) throws ClienteException, PersistenciaException, PersonaException, DireccionException {
         Cliente cliente;
         cliente = buscar(dni);
         eliminar(cliente);
@@ -109,14 +125,18 @@ public class ClienteController {
      * @param cliente cliente a modificar
      * @throws ClienteException error controlado
      * @throws PersistenciaException
+     * @throws PersonaException
+     * @throws DireccionException
      */
-    public void modificar(Cliente cliente) throws ClienteException, PersistenciaException {
+    public void modificar(Cliente cliente) throws ClienteException, PersistenciaException, PersonaException, DireccionException {
         Cliente clienteAlmacenado;
         validarCliente(cliente);
         clienteAlmacenado = buscar(cliente.getDni());
         if (clienteAlmacenado == null) {
             throw new ClienteException("El cliente indicado no existe");
         }
+        Persona persona = generarPersona(cliente);
+        personaController.modificar(persona);
         clienteModelo.modificar(cliente);
     }
 
@@ -159,6 +179,17 @@ public class ClienteController {
         }
 
         return encontrado;
+    }
+
+
+    /**
+     * Funcion encargada de generar una Persona a partir de los datos del cliente
+     * @param cliente cliente del que generar la persona
+     * @return Persona creada
+     */
+    private Persona generarPersona(Cliente cliente) {
+        return new Persona(cliente.getNombre(), cliente.getApellidos(), cliente.getDni(), 
+        cliente.getFechaNacimiento(), cliente.getTelefono(), cliente.getDireccion());
     }
 
 }

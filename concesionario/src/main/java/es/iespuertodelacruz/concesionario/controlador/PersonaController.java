@@ -1,5 +1,6 @@
 package es.iespuertodelacruz.concesionario.controlador;
 
+import es.iespuertodelacruz.concesionario.api.Direccion;
 import es.iespuertodelacruz.concesionario.api.Persona;
 import es.iespuertodelacruz.concesionario.exception.*;
 import es.iespuertodelacruz.concesionario.modelo.PersonaModelo;
@@ -9,6 +10,7 @@ import es.iespuertodelacruz.concesionario.modelo.PersonaModelo;
  */
 public class PersonaController {
     PersonaModelo personaModelo;
+    DireccionController direccionController;
 
     /**
      * Constructor de la clase PersonaController
@@ -16,6 +18,7 @@ public class PersonaController {
      */
     public PersonaController() throws PersistenciaException {
         personaModelo = new PersonaModelo();
+        direccionController = new DireccionController();
     }
 
     /**
@@ -25,6 +28,7 @@ public class PersonaController {
      */
     public PersonaController(boolean test) throws PersistenciaException {
         personaModelo = new PersonaModelo(true);
+        direccionController = new DireccionController(true);
     }
     
 
@@ -65,13 +69,16 @@ public class PersonaController {
      * Metodo encargado de insertar
      * @param persona persona a insertar
      * @throws PersonaException error controlado
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
+     * @throws DireccionException error controlado
      */
-    public void insertar(Persona persona) throws PersonaException, PersistenciaException {
+    public void insertar(Persona persona) throws PersonaException, PersistenciaException, DireccionException {
         validarPersona(persona);
         if (existe(persona)) {
             throw new PersonaException("La persona indicada ya existe");
         }
+        Direccion direccion = persona.getDireccion();
+        direccionController.insertar(direccion);
         personaModelo.insertar(persona);
     }
 
@@ -80,12 +87,15 @@ public class PersonaController {
      * @param persona persona a eliminar
      * @throws PersonaException error controlado
      * @throws PersistenciaException error controlado
+     * @throws DireccionException
      */
-    public void eliminar(Persona persona) throws PersonaException, PersistenciaException {
+    public void eliminar(Persona persona) throws PersonaException, PersistenciaException, DireccionException {        
         validarPersona(persona);
         if (!existe(persona)) {
             throw new PersonaException("La persona indicada no existe");
         }
+        Direccion direccion = persona.getDireccion();
+        direccionController.eliminar(direccion);
         personaModelo.eliminar(persona);
     }
 
@@ -94,8 +104,9 @@ public class PersonaController {
      * @param dni dni de la persona
      * @throws PersonaException error controlado
      * @throws PersistenciaException
+     * @throws DireccionException
      */
-    public void eliminar(String dni) throws PersonaException, PersistenciaException {
+    public void eliminar(String dni) throws PersonaException, PersistenciaException, DireccionException {
         Persona persona;
         persona = buscar(dni);
         eliminar(persona);
@@ -106,14 +117,17 @@ public class PersonaController {
      * @param persona persona a modificar
      * @throws PersonaException error controlado
      * @throws PersistenciaException
+     * @throws DireccionException
      */
-    public void modificar(Persona persona) throws PersonaException, PersistenciaException {
+    public void modificar(Persona persona) throws PersonaException, PersistenciaException, DireccionException {
         Persona personaAlmacenada;
         validarPersona(persona);
         personaAlmacenada = buscar(persona.getDni());
         if (personaAlmacenada == null) {
             throw new PersonaException("La persona indicada no existe");
         }
+        Direccion direccion = persona.getDireccion();
+        direccionController.modificar(direccion);
         personaModelo.modificar(persona);
     }
 

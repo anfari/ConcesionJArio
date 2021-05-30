@@ -84,10 +84,12 @@ public class Empleado extends Persona{
         this.contrasenia = contrasenia;
     }
 
+    /**
+     * Funcion toString de la clase Empleado
+     */
     @Override
     public String toString() {
-        return getCodigoEmpleado()+super.toString()+getRango()+getContrasenia();
+        return getCodigoEmpleado() + ", " + getRango() + ", " + super.toString();
     }
-
 
 }
