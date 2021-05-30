@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="es.iespuertodelacruz.concesionario.excepcionesTest.ExcepcionesTest" time="0.008" tests="12" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="es.iespuertodelacruz.concesionario.modelo.ClienteModeloTest" time="5.759" tests="6" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="15"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -55,16 +55,10 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="59.0"/>
   </properties>
-  <testcase name="EmpleadoExceptionTest" classname="es.iespuertodelacruz.concesionario.excepcionesTest.ExcepcionesTest" time="0"/>
-  <testcase name="BbddException2Test" classname="es.iespuertodelacruz.concesionario.excepcionesTest.ExcepcionesTest" time="0"/>
-  <testcase name="PersonaExceptionTest" classname="es.iespuertodelacruz.concesionario.excepcionesTest.ExcepcionesTest" time="0"/>
-  <testcase name="BbddExceptionTest" classname="es.iespuertodelacruz.concesionario.excepcionesTest.ExcepcionesTest" time="0"/>
-  <testcase name="ClienteExceptionTest" classname="es.iespuertodelacruz.concesionario.excepcionesTest.ExcepcionesTest" time="0"/>
-  <testcase name="DniException2Test" classname="es.iespuertodelacruz.concesionario.excepcionesTest.ExcepcionesTest" time="0"/>
-  <testcase name="VehiculoExceptionTest" classname="es.iespuertodelacruz.concesionario.excepcionesTest.ExcepcionesTest" time="0"/>
-  <testcase name="DireccionExceptionTest" classname="es.iespuertodelacruz.concesionario.excepcionesTest.ExcepcionesTest" time="0"/>
-  <testcase name="VentaExceptionTest" classname="es.iespuertodelacruz.concesionario.excepcionesTest.ExcepcionesTest" time="0"/>
-  <testcase name="BastidorException2Test" classname="es.iespuertodelacruz.concesionario.excepcionesTest.ExcepcionesTest" time="0"/>
-  <testcase name="DniExceptionTest" classname="es.iespuertodelacruz.concesionario.excepcionesTest.ExcepcionesTest" time="0"/>
-  <testcase name="BastidorExceptionTest" classname="es.iespuertodelacruz.concesionario.excepcionesTest.ExcepcionesTest" time="0"/>
+  <testcase name="convertirErrorTest" classname="es.iespuertodelacruz.concesionario.modelo.ClienteModeloTest" time="2.077"/>
+  <testcase name="constructorTest" classname="es.iespuertodelacruz.concesionario.modelo.ClienteModeloTest" time="0.633"/>
+  <testcase name="modificarTest" classname="es.iespuertodelacruz.concesionario.modelo.ClienteModeloTest" time="0.69"/>
+  <testcase name="buscarTest" classname="es.iespuertodelacruz.concesionario.modelo.ClienteModeloTest" time="0.742"/>
+  <testcase name="buscarEmptyTest" classname="es.iespuertodelacruz.concesionario.modelo.ClienteModeloTest" time="0.824"/>
+  <testcase name="listadoClientesTest" classname="es.iespuertodelacruz.concesionario.modelo.ClienteModeloTest" time="0.786"/>
 </testsuite>

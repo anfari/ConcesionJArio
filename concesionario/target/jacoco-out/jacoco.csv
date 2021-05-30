@@ -1,14 +1,14 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 concesionario,es.iespuertodelacruz.concesionario.exception,ClienteException,0,9,0,0,0,4,0,2,0,2
-concesionario,es.iespuertodelacruz.concesionario.exception,VehiculoException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,PersonaException,0,9,0,0,0,4,0,2,0,2
+concesionario,es.iespuertodelacruz.concesionario.exception,VehiculoException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,DniException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,PersistenciaException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,BbddException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,EmpleadoException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,DireccionException,0,9,0,0,0,4,0,2,0,2
-concesionario,es.iespuertodelacruz.concesionario.exception,VentaException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,BastidorException,0,9,0,0,0,4,0,2,0,2
+concesionario,es.iespuertodelacruz.concesionario.exception,VentaException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.controlador,VentaController,0,170,0,24,0,46,0,22,0,10
 concesionario,es.iespuertodelacruz.concesionario.controlador,VehiculoController,0,265,0,48,0,61,0,34,0,10
 concesionario,es.iespuertodelacruz.concesionario.controlador,EmpleadoController,0,237,0,40,0,55,0,30,0,10
