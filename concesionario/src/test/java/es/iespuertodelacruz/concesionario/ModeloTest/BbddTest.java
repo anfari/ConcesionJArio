@@ -79,21 +79,5 @@ public class BbddTest {
         }
     }
 
-
- 
-
-
-
-
-    /**
-     * Metodo que inserta una persona en la bbdd
-     */
-    private void insertarCliente() {
-        try {
-            bbdd.actualizar("INSERT INTO Cliente (codigoCliente, dni) VALUES (null, '11111111A')");
-        } catch (PersistenciaException e) {
-            fail("Error al insertar la persona", e);
-        }
-    }
     
 }

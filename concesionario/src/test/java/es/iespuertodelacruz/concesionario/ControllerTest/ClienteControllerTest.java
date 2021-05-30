@@ -11,13 +11,8 @@ import org.junit.jupiter.api.Test;
 import es.iespuertodelacruz.concesionario.api.Cliente;
 import es.iespuertodelacruz.concesionario.api.Direccion;
 import es.iespuertodelacruz.concesionario.api.Persona;
-import es.iespuertodelacruz.concesionario.controlador.ClienteController;
-import es.iespuertodelacruz.concesionario.controlador.DireccionController;
-import es.iespuertodelacruz.concesionario.controlador.PersonaController;
-import es.iespuertodelacruz.concesionario.exception.ClienteException;
-import es.iespuertodelacruz.concesionario.exception.DireccionException;
-import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
-import es.iespuertodelacruz.concesionario.exception.PersonaException;
+import es.iespuertodelacruz.concesionario.controlador.*;
+import es.iespuertodelacruz.concesionario.exception.*;
 
 public class ClienteControllerTest {
     ClienteController clienteController;

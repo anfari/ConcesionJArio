@@ -10,13 +10,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import es.iespuertodelacruz.concesionario.api.Cliente;
-import es.iespuertodelacruz.concesionario.api.Direccion;
-import es.iespuertodelacruz.concesionario.api.Persona;
+import es.iespuertodelacruz.concesionario.api.*;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
-import es.iespuertodelacruz.concesionario.modelo.ClienteModelo;
-import es.iespuertodelacruz.concesionario.modelo.DireccionModelo;
-import es.iespuertodelacruz.concesionario.modelo.PersonaModelo;
+import es.iespuertodelacruz.concesionario.modelo.*;
 
 public class ClienteModeloTest {
     ClienteModelo clienteModelo;
