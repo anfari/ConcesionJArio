@@ -13,7 +13,7 @@ import es.iespuertodelacruz.concesionario.modelo.ClienteModelo;
 /**
  * Clase ClienteController
  */
-public class ClienteController {
+public class ClienteController extends Validaciones {
     ClienteModelo clienteModelo;
     PersonaController personaController;
 
@@ -55,8 +55,8 @@ public class ClienteController {
         if (cliente.getApellidos() == null || cliente.getApellidos().isEmpty()) {
             mensaje += "Los apellidos del cliente son nulos o vacios\n";
         }
-        if (cliente.getDni() == null || cliente.getDni().isEmpty()) {
-            mensaje += "El dni del cliente es nulo o vacio\n";
+        if (cliente.getDni() == null || cliente.getDni().isEmpty() || !validarDni(cliente.getDni())) {
+            mensaje += "El dni del cliente es nulo, vacio o invalido\n";
         }
         if (cliente.getFechaNacimiento() == null || cliente.getFechaNacimiento().isEmpty()) {
             mensaje += "La fecha de nacimiento del cliente es nula o vacia\n";

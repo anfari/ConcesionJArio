@@ -8,7 +8,7 @@ import es.iespuertodelacruz.concesionario.modelo.PersonaModelo;
 /**
  * Clase PersonaController
  */
-public class PersonaController {
+public class PersonaController extends Validaciones {
     PersonaModelo personaModelo;
     DireccionController direccionController;
 
@@ -50,8 +50,8 @@ public class PersonaController {
         if (persona.getApellidos() == null || persona.getApellidos().isEmpty()) {
             mensaje += "Los apellidos de la persona son nulos o vacios\n";
         }
-        if (persona.getDni() == null || persona.getDni().isEmpty()) {
-            mensaje += "El dni de la persona es nulo o vacio\n";
+        if (persona.getDni() == null || persona.getDni().isEmpty() || !validarDni(persona.getDni())) {
+            mensaje += "El dni de la persona es nulo, vacio o invalido\n";
         }
         if (persona.getFechaNacimiento() == null || persona.getFechaNacimiento().isEmpty()) {
             mensaje += "La fecha de nacimiento de la persona es nula o vacia\n";

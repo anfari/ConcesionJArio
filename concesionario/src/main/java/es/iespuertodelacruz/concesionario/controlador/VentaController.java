@@ -11,7 +11,7 @@ import es.iespuertodelacruz.concesionario.modelo.VentaModelo;
 /**
  * Clase VentaController
  */
-public class VentaController {
+public class VentaController extends Validaciones {
     VentaModelo ventaModelo;
 
     /**
@@ -44,8 +44,8 @@ public class VentaController {
             mensaje = "Se esta intentando validar un objeto vacio";
             throw new VentaException(mensaje);
         }
-        if (venta.getBastidor() == null || venta.getBastidor().isEmpty()) {
-            mensaje += "El bastidor de venta es nulo o vacio\n";
+        if (venta.getBastidor() == null || venta.getBastidor().isEmpty() || !validarBastidor(venta.getBastidor())) {
+            mensaje += "El bastidor de venta es nulo, vacio o invalido\n";
         }
         if (venta.getCodigoCliente() == null || venta.getCodigoCliente().isEmpty()) {
             mensaje += "El codigo de cliente de la venta es nulo o vacio\n";

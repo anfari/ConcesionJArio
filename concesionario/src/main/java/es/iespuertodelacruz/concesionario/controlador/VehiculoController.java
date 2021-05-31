@@ -10,7 +10,7 @@ import es.iespuertodelacruz.concesionario.modelo.VehiculoModelo;
 /**
  * Clase VehiculoController
  */
-public class VehiculoController {
+public class VehiculoController extends Validaciones {
     VehiculoModelo vehiculoModelo;
 
     /**
@@ -43,8 +43,8 @@ public class VehiculoController {
             mensaje = "Se esta intentando validar un objeto vacio";
             throw new VehiculoException(mensaje);
         }
-        if (vehiculo.getBastidor() == null || vehiculo.getBastidor().isEmpty()) {
-            mensaje += "El codigo del vehiculo de bastidor es nulo o vacio\n";
+        if (vehiculo.getBastidor() == null || vehiculo.getBastidor().isEmpty() || !validarBastidor(vehiculo.getBastidor())) {
+            mensaje += "El codigo del vehiculo de bastidor es nulo, vacio o invalido\n";
         }
         if (vehiculo.getMarca() == null || vehiculo.getMarca().isEmpty()) {
             mensaje += "La marca del vehiculo es nula o vacia\n";

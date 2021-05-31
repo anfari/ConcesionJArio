@@ -14,7 +14,7 @@ import es.iespuertodelacruz.concesionario.modelo.EmpleadoModelo;
 /**
  * Clase EmpleadoController
  */
-public class EmpleadoController {
+public class EmpleadoController extends Validaciones {
     EmpleadoModelo empleadoModelo;
     PersonaController personaController;
 
@@ -55,8 +55,8 @@ public class EmpleadoController {
         if (empleado.getApellidos() == null || empleado.getApellidos().isEmpty()) {
             mensaje += "Los apellidos del empleado son nulos o vacios\n";
         }
-        if (empleado.getDni() == null || empleado.getDni().isEmpty()) {
-            mensaje += "El dni del empleado es nulo o vacio\n";
+        if (empleado.getDni() == null || empleado.getDni().isEmpty() || !validarDni(empleado.getDni())) {
+            mensaje += "El dni del empleado es nulo, vacio o invalido\n";
         }
         if (empleado.getFechaNacimiento() == null || empleado.getFechaNacimiento().isEmpty()) {
             mensaje += "La fecha de nacimiento del empleado es nula o vacia\n";

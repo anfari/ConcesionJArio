@@ -8,7 +8,7 @@ import es.iespuertodelacruz.concesionario.modelo.DireccionModelo;
 /**
  * Clase DireccionController
  */
-public class DireccionController {
+public class DireccionController extends Validaciones {
     DireccionModelo direccionModelo;
 
     /**
@@ -47,8 +47,8 @@ public class DireccionController {
         if (direccion.getCalle() == null || direccion.getCalle().isEmpty()) {
             mensaje += "La calle de direccion es nula o vacia\n";
         }
-        if (direccion.getCodigoPostal() == null || direccion.getCodigoPostal().isEmpty()) {
-            mensaje += "El codigo postal de direccion es nulo o vacio\n";
+        if (direccion.getCodigoPostal() == null || direccion.getCodigoPostal().isEmpty() || !validarCodigoPostal(direccion.getCodigoPostal())) {
+            mensaje += "El codigo postal de direccion es nulo, vacio o invalido\n";
         }
         if (direccion.getCiudad() == null || direccion.getCiudad().isEmpty()) {
             mensaje += "La ciudad de direccion es nula o vacia\n";

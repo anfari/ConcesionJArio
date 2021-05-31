@@ -18,6 +18,7 @@ es\iespuertodelacruz\concesionario\modelo\DireccionModelo.class
 es\iespuertodelacruz\concesionario\controlador\VehiculoController.class
 es\iespuertodelacruz\concesionario\controlador\VentaController.class
 es\iespuertodelacruz\concesionario\api\Persona.class
+es\iespuertodelacruz\concesionario\controlador\Validaciones.class
 es\iespuertodelacruz\concesionario\exception\BastidorException.class
 es\iespuertodelacruz\concesionario\modelo\SqliteBbdd.class
 es\iespuertodelacruz\concesionario\api\Empleado.class

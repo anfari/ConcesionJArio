@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"es.iespuertodelacruz.concesionario.api"},{"l":"es.iespuertodelacruz.concesionario.controlador"},{"l":"es.iespuertodelacruz.concesionario.exception"},{"l":"es.iespuertodelacruz.concesionario.modelo"},{"l":"es.iespuertodelacruz.concesionario.vista"}];updateSearchResults();
