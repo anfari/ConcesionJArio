@@ -56,13 +56,13 @@ public class VehiculoController extends Validaciones {
             mensaje += "El color del vehiculo es nulo o vacio\n";
         }
         if (vehiculo.getPrecio() <= 0) {
-            mensaje = "El precio del vehiculo es 0 o menor\n";
+            mensaje += "El precio del vehiculo es 0 o menor\n";
         }
         if (vehiculo.getMotor() == null || vehiculo.getMotor().isEmpty()) {
             mensaje += "El motor del vehiculo es nulo o vacio\n";
         }
         if (vehiculo.getPotencia() <= 0) {
-            mensaje = "La potencia del vehiculo es nula o vacia\n";
+            mensaje += "La potencia del vehiculo es nula o vacia\n";
         }
         if (vehiculo.getCilindrada() == null || vehiculo.getCilindrada().isEmpty()) {
             mensaje += "La cilindrada del vehiculo es nula o vacia\n";

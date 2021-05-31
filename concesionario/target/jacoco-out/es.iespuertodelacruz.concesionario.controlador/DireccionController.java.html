@@ -47,7 +47,7 @@ public class DireccionController extends Validaciones {
 <span class="fc bfc" id="L47" title="All 4 branches covered.">        if (direccion.getCalle() == null || direccion.getCalle().isEmpty()) {</span>
 <span class="fc" id="L48">            mensaje += &quot;La calle de direccion es nula o vacia\n&quot;;</span>
         }
-<span class="pc bpc" id="L50" title="1 of 6 branches missed.">        if (direccion.getCodigoPostal() == null || direccion.getCodigoPostal().isEmpty() || !validarCodigoPostal(direccion.getCodigoPostal())) {</span>
+<span class="fc bfc" id="L50" title="All 6 branches covered.">        if (direccion.getCodigoPostal() == null || direccion.getCodigoPostal().isEmpty() || !validarCodigoPostal(direccion.getCodigoPostal())) {</span>
 <span class="fc" id="L51">            mensaje += &quot;El codigo postal de direccion es nulo, vacio o invalido\n&quot;;</span>
         }
 <span class="fc bfc" id="L53" title="All 4 branches covered.">        if (direccion.getCiudad() == null || direccion.getCiudad().isEmpty()) {</span>

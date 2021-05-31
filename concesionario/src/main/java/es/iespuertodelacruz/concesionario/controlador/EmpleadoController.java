@@ -192,5 +192,39 @@ public class EmpleadoController extends Validaciones {
         return new Persona(empleado.getNombre(), empleado.getApellidos(), empleado.getDni(), 
         empleado.getFechaNacimiento(), empleado.getTelefono(), empleado.getDireccion());
     }
+
+    /**
+     * Metodo encargado de validar las credenciales de acceso
+     * @param rango rango necesario para acceder al menu
+     * @param dni dni del empleado
+     * @param contrasenia contrsenia del empleado
+     * @throws PersistenciaException error controlado
+     * @throws EmpleadoException error controlado
+     */
+    public void comprobarCredenciales(int rango, String dni, String contrasenia) throws PersistenciaException, EmpleadoException {
+        Empleado empleado = null;
+
+        empleado = buscar(dni);
+
+        if (empleado != null) {
+            switch (rango) {
+                case 1:
+                    if (!empleado.getRango().equalsIgnoreCase("Gerente")) {
+                        throw new EmpleadoException("Tu rango no es suficiente");
+                    }               
+                    break;
+                case 2:
+                    if (!empleado.getRango().equalsIgnoreCase("Empleado")) {
+                        throw new EmpleadoException("Tu rango no es suficiente");
+                    }   
+                    break;
+            }
+            if (!empleado.getContrasenia().equals(contrasenia)) {
+                throw new EmpleadoException("La contrasenia es incorrecta");
+            } 
+        } else {
+            throw new EmpleadoException("No existe un empleado con ese dni");
+        }
+    }
     
 }

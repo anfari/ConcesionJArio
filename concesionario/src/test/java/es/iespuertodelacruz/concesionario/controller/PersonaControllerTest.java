@@ -92,6 +92,17 @@ public class PersonaControllerTest {
     }
 
     @Test
+    public void validarDniErrorTest() {
+        Persona personaVacia = new Persona(null, null, "1234567", null, null, direccion);
+
+        try {
+            personaController.validarPersona(personaVacia);
+        } catch (PersonaException e) {
+            assertTrue(e.getMessage().contains("invalido"));
+        }
+    }
+
+    @Test
     public void insertarErrorTest() {
         try {
             personaController.insertar(persona);

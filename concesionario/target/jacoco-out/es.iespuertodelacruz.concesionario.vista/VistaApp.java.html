@@ -65,13 +65,11 @@ public class VistaApp {
      * @throws PersonaException error controlado
      */
     public static void main(String[] args) throws ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
-        /**if(bd==null){
-            bd=new Bbdd(null, null, null, null);
-        }*/
-<span class="fc" id="L71">        new VistaApp();</span>
-<span class="fc" id="L72">        menuPrincipal();</span>
 
-<span class="fc" id="L74">    }</span>
+<span class="fc" id="L69">        new VistaApp();</span>
+<span class="fc" id="L70">        menuPrincipal();</span>
+
+<span class="fc" id="L72">    }</span>
     /**
      * Metodo estatico privado que contiene el menu principal 
      * @throws DniException error controlado
@@ -85,26 +83,28 @@ public class VistaApp {
      * @throws PersonaException error controlado
      */
     public static void menuPrincipal() throws ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
-<span class="fc" id="L88">        teclado = new Scanner(System.in);</span>
-<span class="fc" id="L89">        boolean salir = false;</span>
+<span class="fc" id="L86">        teclado = new Scanner(System.in);</span>
+<span class="fc" id="L87">        boolean salir = false;</span>
         int opcion;
 
-<span class="fc bfc" id="L92" title="All 2 branches covered.">        while (!salir) {</span>
-<span class="fc" id="L93">            System.out.println(&quot;\n1. Acceso Gerente&quot;);</span>
-<span class="fc" id="L94">            System.out.println(&quot;2. Acceso Empleado&quot;);</span>
-<span class="fc" id="L95">            System.out.println(&quot;3. Salir\n&quot;);</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">        while (!salir) {</span>
+<span class="fc" id="L91">            System.out.println(&quot;\n1. Acceso Gerente&quot;);</span>
+<span class="fc" id="L92">            System.out.println(&quot;2. Acceso Empleado&quot;);</span>
+<span class="fc" id="L93">            System.out.println(&quot;3. Salir\n&quot;);</span>
 
             try {
-<span class="fc" id="L98">                System.out.print(&quot;Introduzca una de las opciones: &quot;);</span>
-<span class="fc" id="L99">                opcion = teclado.nextInt();</span>
-<span class="fc" id="L100">                teclado.nextLine();</span>
-<span class="fc" id="L101">                System.out.println(&quot;&quot;);</span>
+<span class="fc" id="L96">                System.out.print(&quot;Introduzca una de las opciones: &quot;);</span>
+<span class="fc" id="L97">                opcion = teclado.nextInt();</span>
+<span class="fc" id="L98">                teclado.nextLine();</span>
+<span class="fc" id="L99">                System.out.println(&quot;&quot;);</span>
 
-<span class="pc bpc" id="L103" title="2 of 4 branches missed.">                switch (opcion) {</span>
+<span class="pc bpc" id="L101" title="2 of 4 branches missed.">                switch (opcion) {</span>
                     case 1:
-<span class="nc" id="L105">                        menuGerente();</span>
-<span class="nc" id="L106">                        break;</span>
+<span class="nc" id="L103">                        pedirCredenciales(1);</span>
+<span class="nc" id="L104">                        menuGerente();</span>
+<span class="nc" id="L105">                        break;</span>
                     case 2:
+<span class="nc" id="L107">                        pedirCredenciales(2);</span>
 <span class="nc" id="L108">                        menuEmpleado();</span>
 <span class="nc" id="L109">                        break;</span>
                     case 3:
@@ -682,15 +682,32 @@ public class VistaApp {
     }
 
     /**
+     * Metodo que pide las credenciales de acceso
+     * @param rango rango necesario para acceder al menu
+     * @throws PersistenciaException error controlado
+     * @throws EmpleadoException error controlado
+     */
+    public static void pedirCredenciales(int rango) throws PersistenciaException, EmpleadoException {
+
+<span class="nc" id="L692">        System.out.print(&quot;Introduzca su dni: &quot;);</span>
+<span class="nc" id="L693">        String dni = teclado.nextLine();</span>
+
+<span class="nc" id="L695">        System.out.print(&quot;Introduzca su contrsenia: &quot;);</span>
+<span class="nc" id="L696">        String contrasenia = teclado.nextLine();</span>
+
+<span class="nc" id="L698">        empleadoController.comprobarCredenciales(rango, dni, contrasenia);</span>
+<span class="nc" id="L699">    }</span>
+
+    /**
      * Metodo privado que valida un dni
      * @param dni dni a validar 
      * @throws DniException error controlado
      */
     public static void validarDni(String dni) throws DniException {
-<span class="pc bpc" id="L690" title="1 of 4 branches missed.">        if (dni == null || dni.isEmpty()) {</span>
-<span class="fc" id="L691">            throw new DniException(&quot;Debe introducir un DNI&quot;);</span>
+<span class="pc bpc" id="L707" title="1 of 4 branches missed.">        if (dni == null || dni.isEmpty()) {</span>
+<span class="fc" id="L708">            throw new DniException(&quot;Debe introducir un DNI&quot;);</span>
         }
-<span class="fc" id="L693">    }</span>
+<span class="fc" id="L710">    }</span>
     
     /**
      * Metodo privado que valida un bastidor 
@@ -698,14 +715,10 @@ public class VistaApp {
      * @throws BastidorException error controlado
      */
     public static void validarBastidor(String bastidor) throws BastidorException {
-<span class="pc bpc" id="L701" title="1 of 4 branches missed.">        if (bastidor == null || bastidor.isEmpty()) {</span>
-<span class="fc" id="L702">            throw new BastidorException(&quot;Debe introducir un numero de bastidor&quot;);</span>
+<span class="pc bpc" id="L718" title="1 of 4 branches missed.">        if (bastidor == null || bastidor.isEmpty()) {</span>
+<span class="fc" id="L719">            throw new BastidorException(&quot;Debe introducir un numero de bastidor&quot;);</span>
         }
-<span class="fc" id="L704">    }</span>
-
-
-
-
+<span class="fc" id="L721">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

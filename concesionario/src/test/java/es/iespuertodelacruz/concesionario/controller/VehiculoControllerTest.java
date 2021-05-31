@@ -82,17 +82,16 @@ public class VehiculoControllerTest {
             assertTrue(e.getMessage().contains("del vehiculo"));
         }
     }
-    /*
-    @Test
-    public void validarVehiculoVacioTest() {
-        Vehiculo vehiculoVacio = new Vehiculo("", null, "", "", "", 0, "", "", 0, "", "", "");
 
+    @Test
+    public void validarBastidorErrorTest(){
+        Vehiculo vehiculo = new Vehiculo("123456789", null, null, null, null, 0, null, null, 0, null, null, null);
         try {
-            vehiculoController.validarVehiculo(vehiculoVacio);
+            vehiculoController.validarVehiculo(vehiculo);
         } catch (VehiculoException e) {
-            assertTrue(e.getMessage().contains("La marca"));
+            assertTrue(e.getMessage().contains("invalido"));
         }
-    }*/
+    }
 
     @Test
     public void insertarErrorTest() {
