@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import es.iespuertodelacruz.concesionario.api.Direccion;
-import es.iespuertodelacruz.concesionario.exception.BbddException;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 
 /**
@@ -19,8 +18,7 @@ public class DireccionModelo {
 
     /**
      * Constructor de la Clase DireccionModelo
-     * @throws BbddException
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public DireccionModelo() throws PersistenciaException {
         persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);
@@ -40,8 +38,7 @@ public class DireccionModelo {
     /**
      * Metodo que inserta una direccion
      * @param direccion direccion a insertar
-     * @throws PersistenciaException
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
     public void insertar(Direccion direccion) throws PersistenciaException {
         String sql ="INSERT INTO Direccion (identificador, calle, numero, codigoPostal" +
@@ -55,7 +52,7 @@ public class DireccionModelo {
     /**
      * Metodo que modifica una direccion
      * @param direccion direccion a modificar
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void modificar(Direccion direccion) throws PersistenciaException {
         String sql = "UPDATE Direccion SET calle = '" + direccion.getCalle() +
@@ -69,7 +66,7 @@ public class DireccionModelo {
     /**
      * Metodo que elimina una direccion
      * @param direccion direccion a eliminar
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void eliminar(Direccion direccion) throws PersistenciaException {
         String sql = "DELETE from Direccion where identificador = '" + direccion.getIdentificador() + "'"; 

@@ -1,7 +1,6 @@
 package es.iespuertodelacruz.concesionario.modelo;
 import java.sql.*;
 import java.util.ArrayList;
-import es.iespuertodelacruz.concesionario.exception.BbddException;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 /**
  * 
@@ -24,12 +23,13 @@ public class Bbdd  {
 
     /**
      * Constructor por defecto, para crear la conexion a la basede datos
+     * @param nombreTabla nombre de la tabla a inicializar
+     * @param clave PK de la tabla a inicializar
      * @param driver driver para cargar la bd
      * @param url url con el puerto incluido de la bd
      * @param usuario usuario de la bd
      * @param password contraseña de la bd
-     * @throws BbddException
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public Bbdd(String nombreTabla, String clave, String driver, String url, String usuario, String password) throws PersistenciaException {
         this.nombreTabla= nombreTabla;
@@ -41,7 +41,10 @@ public class Bbdd  {
         init();
     }
 
-
+    /**
+     * Metodo encargado de inicializar las tablas de la BBDD
+     * @throws PersistenciaException error controlado
+     */
     private void init() throws PersistenciaException {
         DatabaseMetaData databaseMetaData;
         Connection connection = null;
@@ -129,11 +132,11 @@ public class Bbdd  {
         }
     }
 
-      /**
+    /**
      * Metodo privado encargado de cerrar la conexion con la base de datos
-     * @param conexion de la BD
-     * @param statement de la BD
-     * @param resultado de la BD
+     * @param connection de la BBDD
+     * @param statement de la BBDD
+     * @param resultSet de la BBDD
      * @throws PersistenciaException error controlado
      */
     public void closeConnection (Connection connection, Statement statement, ResultSet resultSet) throws PersistenciaException  {

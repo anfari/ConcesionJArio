@@ -19,7 +19,7 @@ public class ClienteController {
 
     /**
      * Constructor de la clase ClienteController
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
 <span class="fc" id="L24">    public ClienteController() throws PersistenciaException {</span>
 <span class="fc" id="L25">        clienteModelo = new ClienteModelo();</span>
@@ -73,9 +73,9 @@ public class ClienteController {
      * Metodo encargado de insertar
      * @param cliente cliente a insertar
      * @throws ClienteException error controlado
-     * @throws PersistenciaException
-     * @throws PersonaException
-     * @throws DireccionException
+     * @throws PersistenciaException error controlado
+     * @throws PersonaException error controlado
+     * @throws DireccionException error controlado
      * 
      */
     public void insertar(Cliente cliente) throws ClienteException, PersistenciaException, PersonaException, DireccionException {
@@ -92,9 +92,9 @@ public class ClienteController {
      * Metodo encargado de elimianr
      * @param cliente cliente a eliminar
      * @throws ClienteException error controlado
-     * @throws PersistenciaException
-     * @throws PersonaException
-     * @throws DireccionException
+     * @throws PersistenciaException error controlado
+     * @throws PersonaException error controlado
+     * @throws DireccionException error controlado
      */
     public void eliminar(Cliente cliente) throws ClienteException, PersistenciaException, PersonaException, DireccionException {
 <span class="fc" id="L100">        validarCliente(cliente);</span>
@@ -110,9 +110,9 @@ public class ClienteController {
      * Metodo encargado de eliminar utilizando el dni
      * @param dni dni del cliente
      * @throws ClienteException error controlado
-     * @throws PersistenciaException
-     * @throws PersonaException
-     * @throws DireccionException
+     * @throws PersistenciaException error controlado
+     * @throws PersonaException error controlado
+     * @throws DireccionException error controlado
      */
     public void eliminar(String dni) throws ClienteException, PersistenciaException, PersonaException, DireccionException {
         Cliente cliente;
@@ -124,9 +124,9 @@ public class ClienteController {
      * Metodo encargado de modificar
      * @param cliente cliente a modificar
      * @throws ClienteException error controlado
-     * @throws PersistenciaException
-     * @throws PersonaException
-     * @throws DireccionException
+     * @throws PersistenciaException error controlado
+     * @throws PersonaException error controlado
+     * @throws DireccionException error controlado
      */
     public void modificar(Cliente cliente) throws ClienteException, PersistenciaException, PersonaException, DireccionException {
         Cliente clienteAlmacenado;
@@ -166,8 +166,8 @@ public class ClienteController {
      * Funcion encargada de verificar si existe o no un cliente
      * @param cliente cliente a encontrar
      * @return true/false si existe o no
-     * @throws PersistenciaException
-     * @throws ClienteException
+     * @throws PersistenciaException error controlado
+     * @throws ClienteException error controlado
      */
     public boolean existe(Cliente cliente) throws PersistenciaException, ClienteException  {
 <span class="fc" id="L173">        boolean encontrado = false;</span>

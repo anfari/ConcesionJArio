@@ -16,7 +16,7 @@ public class VentaController {
 
     /**
      * Constructor de la clase ClienteController
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public VentaController() throws PersistenciaException {
         ventaModelo = new VentaModelo();
@@ -62,7 +62,7 @@ public class VentaController {
      * Metodo encargado de insertar
      * @param venta venta a insertar
      * @throws VentaException error controlado
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      * 
      */
     public void insertar(Venta venta) throws VentaException, PersistenciaException {
@@ -77,7 +77,7 @@ public class VentaController {
      * Metodo encargado de elimianr
      * @param venta cliente a eliminar
      * @throws VentaException error controlado
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void eliminar(Venta venta) throws VentaException, PersistenciaException {
         validarVenta(venta);
@@ -91,7 +91,7 @@ public class VentaController {
      * Metodo encargado de eliminar utilizando el codigo de la venta
      * @param identificador identificador de la venta
      * @throws VentaException error controlado
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void eliminar(String identificador) throws VentaException, PersistenciaException {
         ventaModelo.eliminar(identificador);
@@ -101,7 +101,7 @@ public class VentaController {
      * Metodo encargado de modificar
      * @param venta venta a modificar
      * @throws VentaException error controlado
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void modificar(Venta venta) throws VentaException, PersistenciaException {
         Venta ventaAlmacenado;
@@ -115,9 +115,9 @@ public class VentaController {
 
     /**
      * Metodo encargado de buscar por identificaor de venta
-     * @param identificador 
+     * @param identificador identificador de la venta
      * @return venta encontrado
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public Venta buscar(String identificador) throws PersistenciaException  {
         Venta venta = null;
@@ -129,7 +129,7 @@ public class VentaController {
      * Funcion encargada de verificar si existe o no un venta
      * @param venta venta  a encontrar
      * @return true/false si existe o no
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public boolean existe(Venta venta) throws PersistenciaException  {
         boolean encontrado = false;
@@ -144,7 +144,7 @@ public class VentaController {
 
    /**
      * Funcion que retorna un listado agrupado de las ventas realizadas
-     * @return @return listado de ventas agrupado por modelo
+     * @return listado de ventas agrupado por modelo
      * @throws PersistenciaException error controlado
      */
     public ArrayList<String> agruparVentas() throws PersistenciaException {

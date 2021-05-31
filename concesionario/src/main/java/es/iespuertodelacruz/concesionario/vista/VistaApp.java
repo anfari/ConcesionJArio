@@ -54,7 +54,6 @@ public class VistaApp {
     /**
      * Metodo main de la clase VistaApp
      * @param args argumentos
-     * @throws BbddException error controlado
      * @throws ClienteException error controlado
      * @throws PersistenciaException error controlado
      * @throws DniException error controlado
@@ -63,9 +62,9 @@ public class VistaApp {
      * @throws BastidorException error controlado
      * @throws DireccionException error controlado
      * @throws VentaException error controlado
-     * @throws PersonaException
+     * @throws PersonaException error controlado
      */
-    public static void main(String[] args) throws BbddException, ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
+    public static void main(String[] args) throws ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
         /**if(bd==null){
             bd=new Bbdd(null, null, null, null);
         }*/
@@ -75,7 +74,6 @@ public class VistaApp {
     }
     /**
      * Metodo estatico privado que contiene el menu principal 
-     * @throws BbddException error controlado
      * @throws DniException error controlado
      * @throws PersistenciaException error controlado
      * @throws ClienteException error controlado
@@ -84,9 +82,9 @@ public class VistaApp {
      * @throws EmpleadoException error controlado
      * @throws DireccionException error controlado
      * @throws VentaException error controlado
-     * @throws PersonaException
+     * @throws PersonaException error controlado
      */
-    public static void menuPrincipal() throws BbddException, ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
+    public static void menuPrincipal() throws ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
         teclado = new Scanner(System.in);
         boolean salir = false;
         int opcion;
@@ -125,16 +123,15 @@ public class VistaApp {
 
     /**
      * Metodo estatico privado que contiene el menu de empleado
-     * @throws BbddException error controlado
      * @throws DniException error controlado
      * @throws PersistenciaException error controlado
      * @throws ClienteException error controlado
      * @throws VehiculoException error controlado
      * @throws DireccionException error controlado
      * @throws VentaException error controlado
-     * @throws PersonaException
+     * @throws PersonaException error controlado
      */
-    public static void menuEmpleado() throws BbddException, ClienteException, PersistenciaException, DniException, VehiculoException, DireccionException, VentaException, PersonaException {
+    public static void menuEmpleado() throws ClienteException, PersistenciaException, DniException, VehiculoException, DireccionException, VentaException, PersonaException {
         boolean salir = false;
         int opcion;
 
@@ -171,7 +168,6 @@ public class VistaApp {
 
     /**
      * Metodo estatico privado que contiene el menu de gerente
-     * @throws BbddException error controlado
      * @throws DniException error controlado
      * @throws PersistenciaException error controlado
      * @throws ClienteException error controlado
@@ -180,9 +176,9 @@ public class VistaApp {
      * @throws VehiculoException error controlado
      * @throws DireccionException error controlado
      * @throws VentaException error controlado
-     * @throws PersonaException
+     * @throws PersonaException error controlado
      */
-    public static void menuGerente() throws BbddException, ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
+    public static void menuGerente() throws ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
         boolean salir = false;
         int opcion;
 
@@ -227,12 +223,11 @@ public class VistaApp {
     
     /**
      * Metodo estatico privado que contiene el menu de ventas
-     * @throws BbddException error controlado
      * @throws PersistenciaException error controlado
      * @throws VehiculoException error controlado
      * @throws VentaException error controlado
     */
-    public static void menuVentas() throws BbddException, PersistenciaException, VehiculoException, VentaException {
+    public static void menuVentas() throws PersistenciaException, VehiculoException, VentaException {
         boolean salir = false;
         int opcion;
         Vehiculo vehiculo;
@@ -293,7 +288,7 @@ public class VistaApp {
      * @throws ClienteException error controlado
      * @throws DniException error controlado
      * @throws DireccionException error controlado
-     * @throws PersonaException
+     * @throws PersonaException error controlado
      */
     public static void menuClientes() throws ClienteException, PersistenciaException, DniException, DireccionException, PersonaException {
         boolean salir = false;
@@ -369,7 +364,7 @@ public class VistaApp {
      * @throws EmpleadoException error controlado
      * @throws DniException error controlado
      * @throws DireccionException error controlado
-     * @throws PersonaException
+     * @throws PersonaException error controlado
      */
     public static void menuEmpleados() throws EmpleadoException, PersistenciaException, DniException, DireccionException, PersonaException {
         boolean salir = false;
@@ -441,11 +436,10 @@ public class VistaApp {
 
     /**
      * Metodo estatico privado que contiene el menu
-     * @throws PersistenciaException
-     * @throws VehiculoException
-     * @throws BastidorException
-     * @throws DniException
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws VehiculoException error controlado
+     * @throws BastidorException error controlado
+     * @throws DniException error controlado
      */
     public static void menuVehiculos() throws VehiculoException, PersistenciaException, DniException, BastidorException {
         boolean salir = false;
@@ -690,7 +684,7 @@ public class VistaApp {
     /**
      * Metodo privado que valida un dni
      * @param dni dni a validar 
-     * @throws DniException error cobtrolado
+     * @throws DniException error controlado
      */
     private static void validarDni(String dni) throws DniException {
         if (dni == null || dni.isEmpty()) {
@@ -701,7 +695,7 @@ public class VistaApp {
     /**
      * Metodo privado que valida un bastidor 
      * @param bastidor a validar 
-     * @throws BastidorException error cobtrolado
+     * @throws BastidorException error controlado
      */
     private static void validarBastidor(String bastidor) throws DniException, BastidorException {
         if (bastidor == null || bastidor.isEmpty()) {

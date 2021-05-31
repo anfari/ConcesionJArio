@@ -17,7 +17,7 @@ public class VehiculoModelo {
 
     /**
      * Constructor de la clase CocheModelo
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
 <span class="fc" id="L22">    public VehiculoModelo() throws PersistenciaException {</span>
 <span class="fc" id="L23">        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);</span>
@@ -37,7 +37,7 @@ public class VehiculoModelo {
     /**
      * Metodo que inserta en una lista
      * @param vehiculo inserta el vehiculo
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void insertar(Vehiculo vehiculo) throws PersistenciaException {
 <span class="fc" id="L43">        String sql =&quot;INSERT INTO Vehiculo (bastidor, matricula, marca, modelo, color, precio, &quot; + </span>
@@ -51,7 +51,7 @@ public class VehiculoModelo {
      /**
      * Metodo que modifica en una lista
      * @param vehiculo vehiculo a modificar
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void modificar(Vehiculo vehiculo) throws PersistenciaException {
 <span class="fc" id="L57">        String sql = &quot;UPDATE Vehiculo SET matricula = '&quot; + vehiculo.getMatricula() +</span>
@@ -67,7 +67,7 @@ public class VehiculoModelo {
     /**
      * Metodo que elimina un vehiculo de la lista
      * @param vehiculo vehiculo a eliminar
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void eliminar(Vehiculo vehiculo) throws PersistenciaException {
 <span class="fc" id="L73">        String sql = &quot;DELETE from Vehiculo where bastidor = '&quot; + vehiculo.getBastidor() + &quot;'&quot;;</span>

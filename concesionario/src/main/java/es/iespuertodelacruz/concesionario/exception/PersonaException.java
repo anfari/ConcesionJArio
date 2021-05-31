@@ -1,5 +1,8 @@
 package es.iespuertodelacruz.concesionario.exception;
 
+/**
+ * Clase PersonaException
+ */
 public class PersonaException extends Exception {
    private static final long serialVersionUID = 1L;
 

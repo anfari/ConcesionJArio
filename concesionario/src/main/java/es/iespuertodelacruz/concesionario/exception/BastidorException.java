@@ -1,5 +1,8 @@
 package es.iespuertodelacruz.concesionario.exception;
 
+/**
+ * Clase BastidorException
+ */
 public class BastidorException extends Exception{
     private static final long serialVersionUID = 1L;
 

@@ -13,7 +13,7 @@ public class DireccionController {
 
     /**
      * Constructor de la clase DireccionController
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public DireccionController() throws PersistenciaException {
         direccionModelo = new DireccionModelo();
@@ -65,7 +65,7 @@ public class DireccionController {
      * Metodo encargado de insertar
      * @param direccion direccion a insertar
      * @throws DireccionException error controlado
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void insertar(Direccion direccion) throws DireccionException, PersistenciaException {
         validarDireccion(direccion);
@@ -79,7 +79,7 @@ public class DireccionController {
      * Metodo encargado de eliminar
      * @param direccion direccion a eliminar
      * @throws DireccionException error controlado
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void eliminar(Direccion direccion) throws DireccionException, PersistenciaException {
         validarDireccion(direccion);
@@ -91,9 +91,9 @@ public class DireccionController {
 
     /**
      * Metodo encargado de eliminar utilizando el identificador de la direccion
-     * @param dni dni del cliente
+     * @param identificador identificadorde la direccion
      * @throws DireccionException error controlado
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void eliminar(String identificador) throws  DireccionException, PersistenciaException {
         Direccion direccion;
@@ -105,7 +105,7 @@ public class DireccionController {
      * Metodo encargado de modificar
      * @param direccion direccion a modificar
      * @throws DireccionException error controlado
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void modificar(Direccion direccion) throws DireccionException, PersistenciaException {
         Direccion direccionAlmacenada;
@@ -118,10 +118,10 @@ public class DireccionController {
     }
 
     /**
-     * Metodo encargado de buscar por codigo de cliente
-     * @param dni dni del cliente
-     * @return cliente encontrado
-     * @throws PersistenciaException
+     * Metodo encargado de buscar por identificador de la direccion
+     * @param identificador identificador de la direccion
+     * @return Direccion encontrada
+     * @throws PersistenciaException error controlado
      */
     public Direccion buscar(String identificador) throws PersistenciaException  {
         Direccion direccion = null;

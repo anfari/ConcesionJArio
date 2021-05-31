@@ -29,4 +29,3 @@ es\iespuertodelacruz\concesionario\exception\PersonaException.class
 es\iespuertodelacruz\concesionario\api\Cliente.class
 es\iespuertodelacruz\concesionario\exception\ClienteException.class
 es\iespuertodelacruz\concesionario\exception\EmpleadoException.class
-es\iespuertodelacruz\concesionario\exception\BbddException.class

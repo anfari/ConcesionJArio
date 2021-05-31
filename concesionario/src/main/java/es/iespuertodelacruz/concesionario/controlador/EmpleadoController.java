@@ -20,7 +20,7 @@ public class EmpleadoController {
 
     /**
      * Constructor de la clase EmpleadoModelo
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public EmpleadoController() throws PersistenciaException {
         empleadoModelo = new EmpleadoModelo();
@@ -78,10 +78,10 @@ public class EmpleadoController {
     /**
      * Metodo encargado de insertar
      * @param empleado empleado a insertar
-     * @throws EmpleadoException
-     * @throws PersistenciaException
-     * @throws DireccionException
-     * @throws PersonaException
+     * @throws EmpleadoException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws DireccionException error controlado
+     * @throws PersonaException error controlado
      */
     public void insertar(Empleado empleado) throws  EmpleadoException, PersistenciaException, PersonaException, DireccionException {
         validarEmpleado(empleado);
@@ -97,9 +97,9 @@ public class EmpleadoController {
      * Metodo encargado de elimianr
      * @param empleado empleado a eliminar
      * @throws EmpleadoException error controlado
-     * @throws PersistenciaException
-     * @throws DireccionException
-     * @throws PersonaException
+     * @throws PersistenciaException error controlado
+     * @throws DireccionException error controlado
+     * @throws PersonaException error controlado
      */
     public void eliminar(Empleado empleado) throws EmpleadoException, PersistenciaException, PersonaException, DireccionException {
         validarEmpleado(empleado);
@@ -115,9 +115,9 @@ public class EmpleadoController {
      * Metodo encargado de eliminar utilizando el codigo de empleado
      * @param dni dni del empleado
      * @throws EmpleadoException error controlado
-     * @throws PersistenciaException
-     * @throws DireccionException
-     * @throws PersonaException
+     * @throws PersistenciaException error controlado
+     * @throws DireccionException error controlado
+     * @throws PersonaException error controlado
      */
     public void eliminar(String dni) throws EmpleadoException, PersistenciaException, PersonaException, DireccionException {
         Empleado empleado;
@@ -129,9 +129,9 @@ public class EmpleadoController {
      * Metodo encargado de modificar
      * @param empleado empleado a modificar
      * @throws EmpleadoException error controlado
-     * @throws PersistenciaException
-     * @throws DireccionException
-     * @throws PersonaException
+     * @throws PersistenciaException error controlado
+     * @throws DireccionException error controlado
+     * @throws PersonaException error controlado
      */
     public void modificar(Empleado empleado) throws EmpleadoException, PersistenciaException, PersonaException, DireccionException {
         Empleado empleadoAlmacenado;
@@ -149,7 +149,7 @@ public class EmpleadoController {
      * Metodo encargado de buscar por codigo de empleado
      * @param dni dni del empleado
      * @return empleado encontrado
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public Empleado buscar(String dni) throws PersistenciaException  {
         Empleado empleado = null;
@@ -169,7 +169,7 @@ public class EmpleadoController {
      * Funcion encargada de verificar si existe o no un empleado
      * @param empleado empleado a encontrar
      * @return true/false si existe o no
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public boolean existe(Empleado empleado) throws PersistenciaException  {
         boolean encontrado = false;

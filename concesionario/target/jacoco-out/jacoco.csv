@@ -4,7 +4,6 @@ concesionario,es.iespuertodelacruz.concesionario.exception,PersonaException,0,9,
 concesionario,es.iespuertodelacruz.concesionario.exception,VehiculoException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,DniException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,PersistenciaException,0,9,0,0,0,4,0,2,0,2
-concesionario,es.iespuertodelacruz.concesionario.exception,BbddException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,EmpleadoException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,DireccionException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,BastidorException,0,9,0,0,0,4,0,2,0,2
