@@ -55,7 +55,7 @@ public class ClienteController extends Validaciones {
 <span class="fc bfc" id="L55" title="All 4 branches covered.">        if (cliente.getApellidos() == null || cliente.getApellidos().isEmpty()) {</span>
 <span class="fc" id="L56">            mensaje += &quot;Los apellidos del cliente son nulos o vacios\n&quot;;</span>
         }
-<span class="pc bpc" id="L58" title="1 of 6 branches missed.">        if (cliente.getDni() == null || cliente.getDni().isEmpty() || !validarDni(cliente.getDni())) {</span>
+<span class="fc bfc" id="L58" title="All 6 branches covered.">        if (cliente.getDni() == null || cliente.getDni().isEmpty() || !validarDni(cliente.getDni())) {</span>
 <span class="fc" id="L59">            mensaje += &quot;El dni del cliente es nulo, vacio o invalido\n&quot;;</span>
         }
 <span class="fc bfc" id="L61" title="All 4 branches covered.">        if (cliente.getFechaNacimiento() == null || cliente.getFechaNacimiento().isEmpty()) {</span>

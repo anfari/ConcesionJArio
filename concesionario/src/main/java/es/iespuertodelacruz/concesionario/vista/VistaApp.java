@@ -65,9 +65,7 @@ public class VistaApp {
      * @throws PersonaException error controlado
      */
     public static void main(String[] args) throws ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
-        /**if(bd==null){
-            bd=new Bbdd(null, null, null, null);
-        }*/
+
         new VistaApp();
         menuPrincipal();
 
@@ -102,9 +100,11 @@ public class VistaApp {
 
                 switch (opcion) {
                     case 1:
+                        pedirCredenciales(1);
                         menuGerente();
                         break;
                     case 2:
+                        pedirCredenciales(2);
                         menuEmpleado();
                         break;
                     case 3:
@@ -679,6 +679,23 @@ public class VistaApp {
 
         return venta;
 
+    }
+
+    /**
+     * Metodo que pide las credenciales de acceso
+     * @param rango rango necesario para acceder al menu
+     * @throws PersistenciaException error controlado
+     * @throws EmpleadoException error controlado
+     */
+    public static void pedirCredenciales(int rango) throws PersistenciaException, EmpleadoException {
+
+        System.out.print("Introduzca su dni: ");
+        String dni = teclado.nextLine();
+
+        System.out.print("Introduzca su contrsenia: ");
+        String contrasenia = teclado.nextLine();
+
+        empleadoController.comprobarCredenciales(rango, dni, contrasenia);
     }
 
     /**

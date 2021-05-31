@@ -90,6 +90,18 @@ public class DireccionControllerTest {
     }
 
     @Test
+    public void validarCodigoPostalErrorTest() {
+        Direccion direccionVacia = new Direccion(null, null, 0, "12", null, null, null);
+
+        try {
+            direccionController.validarDireccion(direccionVacia);
+        } catch (DireccionException e) {
+            assertTrue(e.getMessage().contains("invalido"));
+        }
+
+    }
+
+    @Test
     public void insertarErrorTest() {
         try {
             direccionController.insertar(direccion);

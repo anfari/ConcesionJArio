@@ -94,6 +94,18 @@ public class VentaControllerTest {
     }
 
     @Test
+    public void validarBastidorErrorTest() {
+        Venta ventaVacia = new Venta(null, null, null, "1234");
+
+        try {
+            ventaController.validarVenta(ventaVacia);
+        } catch (VentaException e) {
+            assertTrue(e.getMessage().contains("invalido"));
+        }
+
+    }
+
+    @Test
     public void insertarErrorTest() {
         try {
             ventaController.insertar(venta);

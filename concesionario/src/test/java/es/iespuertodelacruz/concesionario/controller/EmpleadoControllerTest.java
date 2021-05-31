@@ -100,6 +100,17 @@ public class EmpleadoControllerTest {
     }
 
     @Test
+    public void validarDniErrorTest() {
+        Empleado empleadoVacio = new Empleado(null, null, null, "1234567", null, null, direccion, null, null);
+
+        try {
+            empleadoController.validarEmpleado(empleadoVacio);
+        } catch (EmpleadoException e) {
+            assertTrue(e.getMessage().contains("invalido"));
+        }
+    }
+
+    @Test
     public void insertarErrorTest() {
         try {
             empleadoController.insertar(empleado);
@@ -161,6 +172,69 @@ public class EmpleadoControllerTest {
         }
     }
 
+    @Test
+    public void comprobarCredencialesGerenteTest() {
+        try {
+            empleadoController.comprobarCredenciales(1, "11111111B", "gerente");
+        } catch (PersistenciaException | EmpleadoException e) {
+            fail("Error validando las credenciales");
+        }
+    }
+
+    @Test
+    public void comprobarCredencialesEmpleadoTest() {
+        try {
+            empleadoController.comprobarCredenciales(2, "11111112B", "empleado01?");
+        } catch (PersistenciaException | EmpleadoException e) {
+            fail("Error validando las credenciales");
+        }
+    }
+
+    @Test
+    public void comprobarCredencialesGerenteErrorTest() {
+        try {
+            empleadoController.comprobarCredenciales(1, "11111112B", "empleado01?");
+        } catch (PersistenciaException | EmpleadoException e) {
+            assertTrue(e.getMessage().contains("Tu rango no es suficiente"));
+        }
+    }
+
+    @Test
+    public void comprobarCredencialesEmpleadoErrorTest() {
+        try {
+            empleadoController.comprobarCredenciales(2, "55555555H", "1234?");
+        } catch (PersistenciaException | EmpleadoException e) {
+            assertTrue(e.getMessage().contains("Tu rango no es suficiente"));
+        }
+    }
+
+    @Test
+    public void comprobarCredencialesContraseniaErrorTest() {
+        try {
+            empleadoController.comprobarCredenciales(1, "11111111B", "gerent");
+        } catch (PersistenciaException | EmpleadoException e) {
+            assertTrue(e.getMessage().contains("La contrasenia es incorrecta"));
+        }
+    }
+
+    @Test
+    public void comprobarCredencialesNuloTest() {
+        try {
+            empleadoController.comprobarCredenciales(1, "21111111B", "gerent");
+        } catch (PersistenciaException | EmpleadoException e) {
+            assertTrue(e.getMessage().contains("No existe un empleado"));
+        }
+    }
+
+    @Test
+    public void comprobarCredencialesSwitchErrorTest() {
+        try {
+            empleadoController.comprobarCredenciales(3, "11111111B", "gerente");
+        } catch (PersistenciaException | EmpleadoException e) {
+            fail("Error al validar las credenciales");
+        }
+    }
+
 
 
     /**
@@ -168,7 +242,7 @@ public class EmpleadoControllerTest {
      * @return empleado creado
      */
     private Empleado crearEmpleado() {
-        return new Empleado(null, "Juan", "Perez", "55555555H", "15/05/1992", "123456789", crearDireccion(), "Gerente", "1234");
+        return new Empleado(null, "Juan", "Perez", "55555555H", "15/05/1992", "123456789", crearDireccion(), "becario", "1234");
     }
 
     /**

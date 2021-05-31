@@ -43,7 +43,7 @@ public class VehiculoController extends Validaciones {
 <span class="fc" id="L43">            mensaje = &quot;Se esta intentando validar un objeto vacio&quot;;</span>
 <span class="fc" id="L44">            throw new VehiculoException(mensaje);</span>
         }
-<span class="pc bpc" id="L46" title="1 of 6 branches missed.">        if (vehiculo.getBastidor() == null || vehiculo.getBastidor().isEmpty() || !validarBastidor(vehiculo.getBastidor())) {</span>
+<span class="fc bfc" id="L46" title="All 6 branches covered.">        if (vehiculo.getBastidor() == null || vehiculo.getBastidor().isEmpty() || !validarBastidor(vehiculo.getBastidor())) {</span>
 <span class="fc" id="L47">            mensaje += &quot;El codigo del vehiculo de bastidor es nulo, vacio o invalido\n&quot;;</span>
         }
 <span class="fc bfc" id="L49" title="All 4 branches covered.">        if (vehiculo.getMarca() == null || vehiculo.getMarca().isEmpty()) {</span>
@@ -56,13 +56,13 @@ public class VehiculoController extends Validaciones {
 <span class="fc" id="L56">            mensaje += &quot;El color del vehiculo es nulo o vacio\n&quot;;</span>
         }
 <span class="fc bfc" id="L58" title="All 2 branches covered.">        if (vehiculo.getPrecio() &lt;= 0) {</span>
-<span class="fc" id="L59">            mensaje = &quot;El precio del vehiculo es 0 o menor\n&quot;;</span>
+<span class="fc" id="L59">            mensaje += &quot;El precio del vehiculo es 0 o menor\n&quot;;</span>
         }
 <span class="fc bfc" id="L61" title="All 4 branches covered.">        if (vehiculo.getMotor() == null || vehiculo.getMotor().isEmpty()) {</span>
 <span class="fc" id="L62">            mensaje += &quot;El motor del vehiculo es nulo o vacio\n&quot;;</span>
         }
 <span class="fc bfc" id="L64" title="All 2 branches covered.">        if (vehiculo.getPotencia() &lt;= 0) {</span>
-<span class="fc" id="L65">            mensaje = &quot;La potencia del vehiculo es nula o vacia\n&quot;;</span>
+<span class="fc" id="L65">            mensaje += &quot;La potencia del vehiculo es nula o vacia\n&quot;;</span>
         }
 <span class="fc bfc" id="L67" title="All 4 branches covered.">        if (vehiculo.getCilindrada() == null || vehiculo.getCilindrada().isEmpty()) {</span>
 <span class="fc" id="L68">            mensaje += &quot;La cilindrada del vehiculo es nula o vacia\n&quot;;</span>

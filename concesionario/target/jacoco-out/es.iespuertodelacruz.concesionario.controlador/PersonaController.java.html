@@ -50,7 +50,7 @@ public class PersonaController extends Validaciones {
 <span class="fc bfc" id="L50" title="All 4 branches covered.">        if (persona.getApellidos() == null || persona.getApellidos().isEmpty()) {</span>
 <span class="fc" id="L51">            mensaje += &quot;Los apellidos de la persona son nulos o vacios\n&quot;;</span>
         }
-<span class="pc bpc" id="L53" title="1 of 6 branches missed.">        if (persona.getDni() == null || persona.getDni().isEmpty() || !validarDni(persona.getDni())) {</span>
+<span class="fc bfc" id="L53" title="All 6 branches covered.">        if (persona.getDni() == null || persona.getDni().isEmpty() || !validarDni(persona.getDni())) {</span>
 <span class="fc" id="L54">            mensaje += &quot;El dni de la persona es nulo, vacio o invalido\n&quot;;</span>
         }
 <span class="fc bfc" id="L56" title="All 4 branches covered.">        if (persona.getFechaNacimiento() == null || persona.getFechaNacimiento().isEmpty()) {</span>

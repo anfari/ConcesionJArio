@@ -98,6 +98,16 @@ public class ClienteControllerTest {
         }
     }
 
+    @Test
+    public void validarDniErrorTest() {
+        Cliente clienteVacio = new Cliente(null, null, null, "1234567", null, null, null);
+
+        try {
+            clienteController.validarCliente(clienteVacio);
+        } catch (ClienteException e) {
+            assertTrue(e.getMessage().contains("invalido"));
+        }
+    }
 
     @Test
     public void insertarErrorTest() {
