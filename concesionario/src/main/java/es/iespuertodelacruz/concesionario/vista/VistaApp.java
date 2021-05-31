@@ -669,7 +669,7 @@ public class VistaApp {
      * @return venta creada
      * @throws VentaException error controlado
      */
-    private static Venta pedirDatosVenta() throws VentaException {
+    public static Venta pedirDatosVenta() throws VentaException {
 
         System.out.print("Introduzca el dni del empleado: ");
         String dniEmpleado = teclado.nextLine();
@@ -692,7 +692,7 @@ public class VistaApp {
      * @param dni dni a validar 
      * @throws DniException error cobtrolado
      */
-    private static void validarDni(String dni) throws DniException {
+    public static void validarDni(String dni) throws DniException {
         if (dni == null || dni.isEmpty()) {
             throw new DniException("Debe introducir un DNI");
         }
@@ -703,9 +703,9 @@ public class VistaApp {
      * @param bastidor a validar 
      * @throws BastidorException error cobtrolado
      */
-    private static void validarBastidor(String bastidor) throws DniException, BastidorException {
+    public static void validarBastidor(String bastidor) throws BastidorException {
         if (bastidor == null || bastidor.isEmpty()) {
-            throw new BastidorException("Debe introducir un DNI");
+            throw new BastidorException("Debe introducir un numero de bastidor");
         }
     }
 

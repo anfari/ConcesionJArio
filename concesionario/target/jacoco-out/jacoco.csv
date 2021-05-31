@@ -1,14 +1,14 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 concesionario,es.iespuertodelacruz.concesionario.exception,ClienteException,0,9,0,0,0,4,0,2,0,2
-concesionario,es.iespuertodelacruz.concesionario.exception,VehiculoException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,PersonaException,0,9,0,0,0,4,0,2,0,2
+concesionario,es.iespuertodelacruz.concesionario.exception,VehiculoException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,DniException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,PersistenciaException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,BbddException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,EmpleadoException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,DireccionException,0,9,0,0,0,4,0,2,0,2
-concesionario,es.iespuertodelacruz.concesionario.exception,VentaException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.exception,BastidorException,0,9,0,0,0,4,0,2,0,2
+concesionario,es.iespuertodelacruz.concesionario.exception,VentaException,0,9,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.controlador,VentaController,0,170,0,24,0,46,0,22,0,10
 concesionario,es.iespuertodelacruz.concesionario.controlador,VehiculoController,0,265,0,48,0,61,0,34,0,10
 concesionario,es.iespuertodelacruz.concesionario.controlador,EmpleadoController,0,288,0,40,0,65,0,31,0,11
@@ -30,4 +30,4 @@ concesionario,es.iespuertodelacruz.concesionario.modelo,Fichero,0,67,0,6,0,19,0,
 concesionario,es.iespuertodelacruz.concesionario.modelo,SqliteBbdd,0,18,0,0,0,4,0,2,0,2
 concesionario,es.iespuertodelacruz.concesionario.modelo,VehiculoModelo,0,324,0,4,0,59,0,10,0,8
 concesionario,es.iespuertodelacruz.concesionario.modelo,EmpleadoModelo,0,242,0,4,0,55,0,10,0,8
-concesionario,es.iespuertodelacruz.concesionario.vista,VistaApp,929,123,71,4,333,40,61,7,13,5
+concesionario,es.iespuertodelacruz.concesionario.vista,VistaApp,907,145,65,10,327,46,57,11,11,7

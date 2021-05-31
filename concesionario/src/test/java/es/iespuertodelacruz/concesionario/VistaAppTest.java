@@ -221,4 +221,49 @@ public class VistaAppTest {
       }
       
    }*/
+
+
+   @Test
+   public void validarDniTest() {
+      String dni = "11111111A";
+      try {
+         VistaApp.validarDni(dni);
+      } catch (DniException e) {
+         fail("Error al validar el dni");
+      }
+   }
+
+   @Test
+   public void validarDniErrorTest() {
+      String dni = "";
+      try {
+         VistaApp.validarDni(dni);
+      } catch (DniException e) {
+         assertTrue(e.getMessage().contains("Debe introducir un DNI"));
+      }
+   }
+
+   @Test
+   public void validarBastidorTest() {
+      String bastidor = "VVVZZZ6KZ1R149942";
+      
+      try {
+         VistaApp.validarBastidor(bastidor);
+      } catch (BastidorException e) {
+         fail("Error al validar el bastidor");
+      }
+      
+   }
+
+   @Test
+   public void validarBastidorErrorTest() {
+      String bastidor = "";
+      try {
+         VistaApp.validarBastidor(bastidor);
+      } catch (BastidorException e) {
+         assertTrue(e.getMessage().contains("Debe introducir"));
+      }
+   }
+
+
 }

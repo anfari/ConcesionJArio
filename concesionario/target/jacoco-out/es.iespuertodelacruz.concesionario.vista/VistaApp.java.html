@@ -692,22 +692,22 @@ public class VistaApp {
      * @param dni dni a validar 
      * @throws DniException error cobtrolado
      */
-    private static void validarDni(String dni) throws DniException {
-<span class="nc bnc" id="L696" title="All 4 branches missed.">        if (dni == null || dni.isEmpty()) {</span>
-<span class="nc" id="L697">            throw new DniException(&quot;Debe introducir un DNI&quot;);</span>
+    public static void validarDni(String dni) throws DniException {
+<span class="pc bpc" id="L696" title="1 of 4 branches missed.">        if (dni == null || dni.isEmpty()) {</span>
+<span class="fc" id="L697">            throw new DniException(&quot;Debe introducir un DNI&quot;);</span>
         }
-<span class="nc" id="L699">    }</span>
+<span class="fc" id="L699">    }</span>
     
     /**
      * Metodo privado que valida un bastidor 
      * @param bastidor a validar 
      * @throws BastidorException error cobtrolado
      */
-    private static void validarBastidor(String bastidor) throws DniException, BastidorException {
-<span class="nc bnc" id="L707" title="All 4 branches missed.">        if (bastidor == null || bastidor.isEmpty()) {</span>
-<span class="nc" id="L708">            throw new BastidorException(&quot;Debe introducir un DNI&quot;);</span>
+    public static void validarBastidor(String bastidor) throws BastidorException {
+<span class="pc bpc" id="L707" title="1 of 4 branches missed.">        if (bastidor == null || bastidor.isEmpty()) {</span>
+<span class="fc" id="L708">            throw new BastidorException(&quot;Debe introducir un numero de bastidor&quot;);</span>
         }
-<span class="nc" id="L710">    }</span>
+<span class="fc" id="L710">    }</span>
 
 
 
