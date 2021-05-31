@@ -60,6 +60,20 @@ public class VistaAppTest {
    } 
 
    @Test
+   public void opcion4Test(){
+      args = null;
+      testIn = new ByteArrayInputStream("3 ".getBytes());
+      System.setIn(testIn);
+
+      try {
+         VistaApp.menuPrincipal();
+      } catch (BbddException | ClienteException | PersistenciaException | DniException | EmpleadoException
+            | VehiculoException | BastidorException | DireccionException | VentaException | PersonaException e) {
+         fail("Error ejecutando el menu");
+      }
+   } 
+
+   @Test
    public void principalSolo1a3Test(){
       args = null;
       testIn = new ByteArrayInputStream("4\r3 ".getBytes());
