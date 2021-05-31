@@ -48,7 +48,7 @@ public class Venta {
 
      /**
      * Getter de la clase Venta
-     * @return dni del empleado
+     * @return codigo del empleado
      */
     public String getCodigoEmpleado() {
         return this.codigoEmpleado;
@@ -56,7 +56,7 @@ public class Venta {
 
     /**
      * Setter de la clase Venta
-     * @param dniEmpleado dni del empleado
+     * @param codigoEmpleado codigo del empleado
      */
     public void setCodigoEmpleado(String codigoEmpleado) {
         this.codigoEmpleado = codigoEmpleado;
@@ -64,7 +64,7 @@ public class Venta {
     
     /**
      * Getter de la clase Venta
-     * @return dni del cliente
+     * @return codigo del cliente
      */
     public String getCodigoCliente() {
         return this.codigoCliente;
@@ -72,7 +72,7 @@ public class Venta {
     
      /**
      * Setter de la clase Venta
-     * @param dniCliente dni del cliente
+     * @param codigoCliente codigo del cliente
      */
     public void setCodigoCliente(String codigoCliente) {
         this.codigoCliente = codigoCliente;
@@ -94,6 +94,10 @@ public class Venta {
         this.bastidor = bastidor;
     }
 
+
+    /**
+     * Funcion toString de la clase Venta
+     */
     @Override
     public String toString() {
         return getIdentificador() + "," +getCodigoEmpleado() + "," +

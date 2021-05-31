@@ -14,7 +14,7 @@ public class PersonaController {
 
     /**
      * Constructor de la clase PersonaController
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
 <span class="fc" id="L19">    public PersonaController() throws PersistenciaException {</span>
 <span class="fc" id="L20">        personaModelo = new PersonaModelo();</span>
@@ -87,7 +87,7 @@ public class PersonaController {
      * @param persona persona a eliminar
      * @throws PersonaException error controlado
      * @throws PersistenciaException error controlado
-     * @throws DireccionException
+     * @throws DireccionException error controlado
      */
     public void eliminar(Persona persona) throws PersonaException, PersistenciaException, DireccionException {        
 <span class="fc" id="L93">        validarPersona(persona);</span>
@@ -103,8 +103,8 @@ public class PersonaController {
      * Metodo encargado de eliminar
      * @param dni dni de la persona
      * @throws PersonaException error controlado
-     * @throws PersistenciaException
-     * @throws DireccionException
+     * @throws PersistenciaException error controlado
+     * @throws DireccionException error controlado
      */
     public void eliminar(String dni) throws PersonaException, PersistenciaException, DireccionException {
         Persona persona;
@@ -116,8 +116,8 @@ public class PersonaController {
      * Metodo encargado de modificar
      * @param persona persona a modificar
      * @throws PersonaException error controlado
-     * @throws PersistenciaException
-     * @throws DireccionException
+     * @throws PersistenciaException error controlado
+     * @throws DireccionException error controlado
      */
     public void modificar(Persona persona) throws PersonaException, PersistenciaException, DireccionException {
         Persona personaAlmacenada;
@@ -135,7 +135,7 @@ public class PersonaController {
      * Metodo encargado de buscar
      * @param dni dni de la persona
      * @return persona encontrada
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public Persona buscar(String dni) throws PersistenciaException  {
 <span class="fc" id="L141">        Persona persona = null;</span>
@@ -147,7 +147,7 @@ public class PersonaController {
      * Funcion encargada de verificar si existe o no una persona
      * @param persona persona a encontrar
      * @return true/false si existe o no
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public boolean existe(Persona persona) throws PersistenciaException  {
 <span class="fc" id="L153">        boolean encontrado = false;</span>

@@ -7,7 +7,6 @@ import java.io.ByteArrayInputStream;
 import org.junit.jupiter.api.*;
 
 import es.iespuertodelacruz.concesionario.exception.BastidorException;
-import es.iespuertodelacruz.concesionario.exception.BbddException;
 import es.iespuertodelacruz.concesionario.exception.ClienteException;
 import es.iespuertodelacruz.concesionario.exception.DireccionException;
 import es.iespuertodelacruz.concesionario.exception.DniException;
@@ -53,7 +52,7 @@ public class VistaAppTest {
 
       try {
          VistaApp.menuPrincipal();
-      } catch (BbddException | ClienteException | PersistenciaException | DniException | EmpleadoException
+      } catch (ClienteException | PersistenciaException | DniException | EmpleadoException
             | VehiculoException | BastidorException | DireccionException | VentaException | PersonaException e) {
          fail("Error ejecutando el menu");
       }
@@ -67,7 +66,7 @@ public class VistaAppTest {
 
       try {
          VistaApp.menuPrincipal();
-      } catch (BbddException | ClienteException | PersistenciaException | DniException | EmpleadoException
+      } catch (ClienteException | PersistenciaException | DniException | EmpleadoException
             | VehiculoException | BastidorException | DireccionException | VentaException | PersonaException e) {
          fail("Error ejecutando el menu");
       }
@@ -81,7 +80,7 @@ public class VistaAppTest {
 
       try {
          VistaApp.main(args);
-      } catch (BbddException | ClienteException | PersistenciaException | DniException | EmpleadoException
+      } catch (ClienteException | PersistenciaException | DniException | EmpleadoException
             | VehiculoException | BastidorException | DireccionException | VentaException | PersonaException e) {
          fail("Error ejecutando el menu");
       }
@@ -95,7 +94,7 @@ public class VistaAppTest {
 
       try {
          VistaApp.main(args);
-      } catch (BbddException | ClienteException | PersistenciaException | DniException | EmpleadoException
+      } catch (ClienteException | PersistenciaException | DniException | EmpleadoException
             | VehiculoException | BastidorException | DireccionException | VentaException | PersonaException e) {
          fail("Error ejecutando el menu");
       }

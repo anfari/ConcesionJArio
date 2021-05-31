@@ -19,7 +19,7 @@ public class EmpleadoModelo {
 
     /**
      * Constructor de la Clase EmpleadoModelo
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
 <span class="fc" id="L24">    public EmpleadoModelo() throws PersistenciaException {</span>
 <span class="fc" id="L25">        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);</span>
@@ -40,7 +40,7 @@ public class EmpleadoModelo {
     /**
      * Metodo que inserta un empleado
      * @param empleado empleado a insertar
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void insertar(Empleado empleado) throws PersistenciaException {
 <span class="fc" id="L46">        String sql =&quot;INSERT INTO Empleado (codigoEmpleado, rango, contrasenia, dni)&quot; + </span>
@@ -52,7 +52,7 @@ public class EmpleadoModelo {
     /**
      * Metodo que modifica un empleado
      * @param empleado empleado a modificar
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void modificar(Empleado empleado) throws PersistenciaException {
 <span class="fc" id="L58">        String sql = &quot;UPDATE Empleado SET rango = '&quot; + empleado.getRango() +</span>
@@ -65,7 +65,7 @@ public class EmpleadoModelo {
     /**
      * Metodo que elimina un empleado
      * @param empleado empleado a eliminar
-     * @throws PersistenciaException
+     * @throws PersistenciaException error controlado
      */
     public void eliminar(Empleado empleado) throws PersistenciaException {
 <span class="fc" id="L71">        String sql = &quot;DELETE from Empleado where dni = '&quot; + </span>

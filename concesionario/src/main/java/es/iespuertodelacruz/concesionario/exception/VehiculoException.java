@@ -1,5 +1,8 @@
 package es.iespuertodelacruz.concesionario.exception;
 
+/**
+ * Clase VehiculoException
+ */
 public class VehiculoException extends Exception {
    private static final long serialVersionUID = 1L;
 

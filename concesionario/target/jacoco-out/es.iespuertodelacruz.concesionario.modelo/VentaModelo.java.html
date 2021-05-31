@@ -71,7 +71,7 @@ public class VentaModelo {
 
     /**
      * Metodo que elimina una venta por identificador
-     * @param venta venta a eliminar
+     * @param identificador identificador de la venta a eliminar
      * @throws PersistenciaException error controlado
      */
     public void eliminar(String identificador) throws PersistenciaException {

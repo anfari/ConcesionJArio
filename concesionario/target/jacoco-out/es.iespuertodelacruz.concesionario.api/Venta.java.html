@@ -48,7 +48,7 @@ public class Venta {
 
      /**
      * Getter de la clase Venta
-     * @return dni del empleado
+     * @return codigo del empleado
      */
     public String getCodigoEmpleado() {
 <span class="fc" id="L54">        return this.codigoEmpleado;</span>
@@ -56,7 +56,7 @@ public class Venta {
 
     /**
      * Setter de la clase Venta
-     * @param dniEmpleado dni del empleado
+     * @param codigoEmpleado codigo del empleado
      */
     public void setCodigoEmpleado(String codigoEmpleado) {
 <span class="fc" id="L62">        this.codigoEmpleado = codigoEmpleado;</span>
@@ -64,7 +64,7 @@ public class Venta {
     
     /**
      * Getter de la clase Venta
-     * @return dni del cliente
+     * @return codigo del cliente
      */
     public String getCodigoCliente() {
 <span class="fc" id="L70">        return this.codigoCliente;</span>
@@ -72,7 +72,7 @@ public class Venta {
     
      /**
      * Setter de la clase Venta
-     * @param dniCliente dni del cliente
+     * @param codigoCliente codigo del cliente
      */
     public void setCodigoCliente(String codigoCliente) {
 <span class="fc" id="L78">        this.codigoCliente = codigoCliente;</span>
@@ -94,10 +94,14 @@ public class Venta {
 <span class="fc" id="L94">        this.bastidor = bastidor;</span>
 <span class="fc" id="L95">    }</span>
 
+
+    /**
+     * Funcion toString de la clase Venta
+     */
     @Override
     public String toString() {
-<span class="fc" id="L99">        return getIdentificador() + &quot;,&quot; +getCodigoEmpleado() + &quot;,&quot; +</span>
-<span class="fc" id="L100">            getCodigoCliente() + &quot;,&quot; +getBastidor();</span>
+<span class="fc" id="L103">        return getIdentificador() + &quot;,&quot; +getCodigoEmpleado() + &quot;,&quot; +</span>
+<span class="fc" id="L104">            getCodigoCliente() + &quot;,&quot; +getBastidor();</span>
     }
 
 
