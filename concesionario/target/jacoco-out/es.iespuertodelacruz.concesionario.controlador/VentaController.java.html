@@ -62,7 +62,7 @@ public class VentaController {
      * Metodo encargado de insertar
      * @param venta venta a insertar
      * @throws VentaException error controlado
-     * @throws PersistenciaException error controlado
+     * @throws PersistenciaException
      * 
      */
     public void insertar(Venta venta) throws VentaException, PersistenciaException {
@@ -77,7 +77,7 @@ public class VentaController {
      * Metodo encargado de elimianr
      * @param venta cliente a eliminar
      * @throws VentaException error controlado
-     * @throws PersistenciaException error controlado
+     * @throws PersistenciaException
      */
     public void eliminar(Venta venta) throws VentaException, PersistenciaException {
 <span class="fc" id="L83">        validarVenta(venta);</span>
@@ -91,7 +91,7 @@ public class VentaController {
      * Metodo encargado de eliminar utilizando el codigo de la venta
      * @param identificador identificador de la venta
      * @throws VentaException error controlado
-     * @throws PersistenciaException error controlado
+     * @throws PersistenciaException
      */
     public void eliminar(String identificador) throws VentaException, PersistenciaException {
 <span class="fc" id="L97">        ventaModelo.eliminar(identificador);</span>
@@ -101,7 +101,7 @@ public class VentaController {
      * Metodo encargado de modificar
      * @param venta venta a modificar
      * @throws VentaException error controlado
-     * @throws PersistenciaException error controlado
+     * @throws PersistenciaException
      */
     public void modificar(Venta venta) throws VentaException, PersistenciaException {
         Venta ventaAlmacenado;
@@ -117,7 +117,7 @@ public class VentaController {
      * Metodo encargado de buscar por identificaor de venta
      * @param identificador 
      * @return venta encontrado
-     * @throws PersistenciaException error controlado
+     * @throws PersistenciaException
      */
     public Venta buscar(String identificador) throws PersistenciaException  {
 <span class="fc" id="L123">        Venta venta = null;</span>
@@ -129,7 +129,7 @@ public class VentaController {
      * Funcion encargada de verificar si existe o no un venta
      * @param venta venta  a encontrar
      * @return true/false si existe o no
-     * @throws PersistenciaException error controlado
+     * @throws PersistenciaException
      */
     public boolean existe(Venta venta) throws PersistenciaException  {
 <span class="fc" id="L135">        boolean encontrado = false;</span>

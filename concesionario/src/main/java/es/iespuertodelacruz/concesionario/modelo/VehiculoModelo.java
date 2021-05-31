@@ -17,7 +17,7 @@ public class VehiculoModelo {
 
     /**
      * Constructor de la clase CocheModelo
-     * @throws PersistenciaException error controlado
+     * @throws PersistenciaException
      */
     public VehiculoModelo() throws PersistenciaException {
         persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);
@@ -37,7 +37,7 @@ public class VehiculoModelo {
     /**
      * Metodo que inserta en una lista
      * @param vehiculo inserta el vehiculo
-     * @throws PersistenciaException error controlado
+     * @throws PersistenciaException
      */
     public void insertar(Vehiculo vehiculo) throws PersistenciaException {
         String sql ="INSERT INTO Vehiculo (bastidor, matricula, marca, modelo, color, precio, " + 
@@ -51,7 +51,7 @@ public class VehiculoModelo {
      /**
      * Metodo que modifica en una lista
      * @param vehiculo vehiculo a modificar
-     * @throws PersistenciaException error controlado
+     * @throws PersistenciaException
      */
     public void modificar(Vehiculo vehiculo) throws PersistenciaException {
         String sql = "UPDATE Vehiculo SET matricula = '" + vehiculo.getMatricula() +
@@ -67,7 +67,7 @@ public class VehiculoModelo {
     /**
      * Metodo que elimina un vehiculo de la lista
      * @param vehiculo vehiculo a eliminar
-     * @throws PersistenciaException error controlado
+     * @throws PersistenciaException
      */
     public void eliminar(Vehiculo vehiculo) throws PersistenciaException {
         String sql = "DELETE from Vehiculo where bastidor = '" + vehiculo.getBastidor() + "'";
@@ -80,11 +80,11 @@ public class VehiculoModelo {
      * @return Vehiculo encontrado
      * @throws PersistenciaException error controlado
      */
-    public Vehiculo buscar(String bastidor) throws PersistenciaException  {
+    public Vehiculo buscar(String dni) throws PersistenciaException  {
         Vehiculo vehiculo = null;
         ArrayList<Vehiculo> listaVehiculos = null;
         String sql = "SELECT * FROM Vehiculo where bastidor = ";
-        sql = sql + "'" + bastidor + "'";
+        sql = sql + "'" + dni + "'";
         listaVehiculos = convertir(sql);
         if (!listaVehiculos.isEmpty()) {
             vehiculo = listaVehiculos.get(0);

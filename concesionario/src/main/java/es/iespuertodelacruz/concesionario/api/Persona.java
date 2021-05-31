@@ -10,9 +10,6 @@ public class Persona {
     String telefono;
     Direccion direccion;
 
-    /**
-     * Constructor vacio de la clase Persona
-     */
     public Persona() {
     }
 
@@ -110,7 +107,7 @@ public class Persona {
     
     /**
      * Setter de la clase Persona
-     * @param telefono de la persona
+     * @param relefono de la persona
      */
     public void setTelefono(String telefono) {
         this.telefono = telefono;
@@ -133,15 +130,14 @@ public class Persona {
         this.direccion = direccion;
     }
 
-
-    /**
-     * Funcion toString de la clase Persona
-     */
     @Override
     public String toString() {
         return getNombre() + "," +getApellidos() + "," +getDni() + "," +
             getFechaNacimiento() + "," + getTelefono() + "," +getDireccion();
           
     }
+
+
+
 
 }

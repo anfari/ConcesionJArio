@@ -3,6 +3,7 @@ package es.iespuertodelacruz.concesionario.modelo;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import es.iespuertodelacruz.concesionario.api.Cliente;
 import es.iespuertodelacruz.concesionario.api.Persona;
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 
@@ -15,10 +16,7 @@ public class PersonaModelo {
     private static final String TABLA  = "Persona";
     private static final String CLAVE  = "dni";
 
-    /**
-     * Constructor de la clase PersonaModelo
-     * @throws PersistenciaException error controlado
-     */
+   
     public PersonaModelo() throws PersistenciaException  {
         persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);
         direccionModelo = new DireccionModelo();
@@ -38,7 +36,7 @@ public class PersonaModelo {
     /**
      * Metodo que inserta una persona
      * @param persona persona a insertar
-     * @throws PersistenciaException error controlado
+     * @throws PersistenciaException
      */
     public void insertar(Persona persona) throws PersistenciaException {
         String sql ="INSERT INTO Persona (nombre, apellidos, dni, " + 
@@ -52,7 +50,7 @@ public class PersonaModelo {
     /**
      * Metodo que modifica una persona
      * @param persona persona a modificar
-     * @throws PersistenciaException error controlado
+     * @throws PersistenciaException
      */
     public void modificar(Persona persona) throws PersistenciaException {
         String sql = "UPDATE Persona SET nombre = '" + persona.getNombre() +
@@ -66,7 +64,7 @@ public class PersonaModelo {
     /**
      * Metodo que elimina una persona
      * @param persona persona a eliminar
-     * @throws PersistenciaException error controlado
+     * @throws PersistenciaException
      */
     public void eliminar(Persona persona) throws PersistenciaException {
         String sql = "DELETE from Persona where dni = '" + persona.getDni() + "'";

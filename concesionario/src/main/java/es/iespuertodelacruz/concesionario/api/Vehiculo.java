@@ -35,7 +35,6 @@ public class Vehiculo {
      * @param potencia potencia expresada en CV del vehiculo
      * @param cilindrada cilindrada expresada en CC del vehiculo
      * @param tipo tipo de vehiculo
-     * @param estado estado de disponibilidad del vehiculo
      */
     public Vehiculo(String bastidor, String matricula, String marca, 
     String modelo, String color, double precio, String extrasInstalados, 

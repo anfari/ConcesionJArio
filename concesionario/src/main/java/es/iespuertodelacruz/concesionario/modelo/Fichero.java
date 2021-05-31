@@ -5,16 +5,12 @@ import java.util.Scanner;
 
 import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
 
-/**
- * Clase Fichero
- */
 public class Fichero {
    private static final String RETORNO_CARRO = "\n";
 
    /**
     * Funcion encargada de leer un ficher
     * @param nombre nombre del fichero a leer
-    * @return informacion obtenida del fichero
     * @throws PersistenciaException Error controlado en la lectura del fichero
     */
    public String leer(String nombre) throws PersistenciaException {
@@ -46,8 +42,8 @@ public class Fichero {
 
    /**
    * Funcion que verifica si el fichero existo
-   * @param fichero fichero a validar
-   * @return true/false si existe o no
+   * @param fichero
+   * @return
    */
    public boolean validarFichero(File fichero) {
       return fichero.exists();

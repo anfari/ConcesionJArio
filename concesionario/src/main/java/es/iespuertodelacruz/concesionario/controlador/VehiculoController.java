@@ -123,7 +123,7 @@ public class VehiculoController {
      * Metodo encargado de modificar
      * @param vehiculo vehiculo a modificar
      * @throws VehiculoException error controlado
-     * @throws PersistenciaException error controlado
+     * @throws PersistenciaException
      */
     public void modificar(Vehiculo vehiculo) throws VehiculoException, PersistenciaException {
         Vehiculo vehiculoAlmacenado;

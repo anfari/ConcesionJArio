@@ -1,8 +1,5 @@
 package es.iespuertodelacruz.concesionario.exception;
 
-/**
- * Clase EmpleadoException
- */
 public class EmpleadoException extends Exception {
    private static final long serialVersionUID = 1L;
 

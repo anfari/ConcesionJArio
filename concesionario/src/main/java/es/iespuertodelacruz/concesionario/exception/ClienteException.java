@@ -1,8 +1,5 @@
 package es.iespuertodelacruz.concesionario.exception;
 
-/**
- * Clase ClienteException
- */
 public class ClienteException extends Exception {
    private static final long serialVersionUID = 1L;
 

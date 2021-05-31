@@ -104,4 +104,22 @@ public class ExcepcionesTest {
         }
     }
 
+    @Test
+    public void BbddExceptionTest() {
+        try {
+            throw new BbddException("Error", new Exception());
+        } catch (BbddException e) {
+            assertEquals("Error", e.getMessage(), "El error no es el esperado");
+        }
+    }
+
+    @Test
+    public void BbddException2Test() {
+        try {
+            throw new BbddException("Error");
+        } catch (BbddException e) {
+            assertEquals("Error", e.getMessage(), "El error no es el esperado");
+        }
+    }
+    
 }

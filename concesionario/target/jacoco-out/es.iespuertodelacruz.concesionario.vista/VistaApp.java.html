@@ -63,9 +63,9 @@ public class VistaApp {
      * @throws BastidorException error controlado
      * @throws DireccionException error controlado
      * @throws VentaException error controlado
-     * @throws PersonaException error controlado
+     * @throws PersonaException
      */
-    public static void main(String[] args) throws ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
+    public static void main(String[] args) throws BbddException, ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
         /**if(bd==null){
             bd=new Bbdd(null, null, null, null);
         }*/
@@ -84,9 +84,9 @@ public class VistaApp {
      * @throws EmpleadoException error controlado
      * @throws DireccionException error controlado
      * @throws VentaException error controlado
-     * @throws PersonaException error controlado
+     * @throws PersonaException
      */
-    public static void menuPrincipal() throws ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
+    public static void menuPrincipal() throws BbddException, ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
 <span class="fc" id="L90">        teclado = new Scanner(System.in);</span>
 <span class="fc" id="L91">        boolean salir = false;</span>
         int opcion;
@@ -132,9 +132,9 @@ public class VistaApp {
      * @throws VehiculoException error controlado
      * @throws DireccionException error controlado
      * @throws VentaException error controlado
-     * @throws PersonaException error controlado
+     * @throws PersonaException
      */
-    public static void menuEmpleado() throws ClienteException, PersistenciaException, DniException, VehiculoException, DireccionException, VentaException, PersonaException {
+    public static void menuEmpleado() throws BbddException, ClienteException, PersistenciaException, DniException, VehiculoException, DireccionException, VentaException, PersonaException {
 <span class="nc" id="L138">        boolean salir = false;</span>
         int opcion;
 
@@ -180,9 +180,9 @@ public class VistaApp {
      * @throws VehiculoException error controlado
      * @throws DireccionException error controlado
      * @throws VentaException error controlado
-     * @throws PersonaException error controlado
+     * @throws PersonaException
      */
-    public static void menuGerente() throws ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
+    public static void menuGerente() throws BbddException, ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
 <span class="nc" id="L186">        boolean salir = false;</span>
         int opcion;
 
@@ -232,7 +232,7 @@ public class VistaApp {
      * @throws VehiculoException error controlado
      * @throws VentaException error controlado
     */
-    public static void menuVentas() throws PersistenciaException, VehiculoException, VentaException {
+    public static void menuVentas() throws BbddException, PersistenciaException, VehiculoException, VentaException {
 <span class="nc" id="L236">        boolean salir = false;</span>
         int opcion;
         Vehiculo vehiculo;
@@ -293,7 +293,7 @@ public class VistaApp {
      * @throws ClienteException error controlado
      * @throws DniException error controlado
      * @throws DireccionException error controlado
-     * @throws PersonaException error controlado
+     * @throws PersonaException
      */
     public static void menuClientes() throws ClienteException, PersistenciaException, DniException, DireccionException, PersonaException {
 <span class="nc" id="L299">        boolean salir = false;</span>
@@ -369,7 +369,7 @@ public class VistaApp {
      * @throws EmpleadoException error controlado
      * @throws DniException error controlado
      * @throws DireccionException error controlado
-     * @throws PersonaException error controlado
+     * @throws PersonaException
      */
     public static void menuEmpleados() throws EmpleadoException, PersistenciaException, DniException, DireccionException, PersonaException {
 <span class="nc" id="L375">        boolean salir = false;</span>
@@ -441,10 +441,10 @@ public class VistaApp {
 
     /**
      * Metodo estatico privado que contiene el menu
-     * @throws PersistenciaException error controlado
-     * @throws VehiculoException error controlado
-     * @throws BastidorException error controlado
-     * @throws DniException error controlado
+     * @throws PersistenciaException
+     * @throws VehiculoException
+     * @throws BastidorException
+     * @throws DniException
      * @throws BbddException error controlado
      */
     public static void menuVehiculos() throws VehiculoException, PersistenciaException, DniException, BastidorException {
@@ -690,7 +690,7 @@ public class VistaApp {
     /**
      * Metodo privado que valida un dni
      * @param dni dni a validar 
-     * @throws DniException error controlado
+     * @throws DniException error cobtrolado
      */
     private static void validarDni(String dni) throws DniException {
 <span class="nc bnc" id="L696" title="All 4 branches missed.">        if (dni == null || dni.isEmpty()) {</span>
@@ -701,7 +701,7 @@ public class VistaApp {
     /**
      * Metodo privado que valida un bastidor 
      * @param bastidor a validar 
-     * @throws BastidorException error controlado
+     * @throws BastidorException error cobtrolado
      */
     private static void validarBastidor(String bastidor) throws DniException, BastidorException {
 <span class="nc bnc" id="L707" title="All 4 branches missed.">        if (bastidor == null || bastidor.isEmpty()) {</span>

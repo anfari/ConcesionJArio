@@ -1,8 +1,5 @@
 package es.iespuertodelacruz.concesionario.exception;
 
-/**
- * Clase DniException
- */
 public class DniException extends Exception {
    private static final long serialVersionUID = 1L;
 
