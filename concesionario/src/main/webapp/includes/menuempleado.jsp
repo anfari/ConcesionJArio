@@ -10,8 +10,9 @@
       <%@include file="header.jsp" %>
 
       <ul>
-        <li><h1>Acceso Gerente</h1></li>
-        <li><h1>Acceso Empleado</h1></li>
+        <li><h1>Realizar Venta</h1></li>
+        <li><h1>Gestionar Clientes</h1></li>
+        <li><h1>Salir</h1></li>
       </ul>
 
       <%@include file="footer.jsp" %>

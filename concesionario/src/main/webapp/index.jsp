@@ -16,10 +16,7 @@
 </head>
 
 <body>
-    <%@include file="header.jsp" %>
-    <br>
-    <br>
-    <br>
+    <%@include file="includes/header.jsp" %>
     
     <div id="logo">
         <h1><i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ConcesionJArio</i></h1>
@@ -124,7 +121,7 @@
 
 
 
-    <%@include file="footer.jsp" %>
+    <%@include file="includes/footer.jsp" %>
 </body>
 
 </html>

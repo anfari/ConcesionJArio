@@ -1,25 +1,24 @@
+<%@ page errorPage = "includes/error/loginError.jsp" %>
 <%@ page import="es.iespuertodelacruz.concesionario.controlador.EmpleadoController" %>
-<%! es.iespuertodelacruz.concesionario.controlador.EmpleadoController empleadoController = new EmpleadoController();  %>
+<%@ page import= "es.iespuertodelacruz.concesionario.exception.PersistenciaException" %>
+<% try { %>
+<% es.iespuertodelacruz.concesionario.controlador.EmpleadoController empleadoController = new EmpleadoController();  %>
+<% } catch (PersistenciaException e) { System.out.println(e); } %>
 
 <html>
-    <head>
-       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       <title>Validar Usuario</title>
-       <link rel="stylesheet" href="css/estilos.css">
-    </head>
     <body>
         <h1>Verificar datos</h1>
         <jsp:useBean id="empleadoController" class="es.iespuertodelacruz.concesionario.controlador.EmpleadoController"/>
+
+        <% String usuario = request.getParameter("usuario"); %>
+        <% String contrasenia = request.getParameter("contrasenia"); %>
           
-        <jsp:setProperty name="empleadoController" property="usuario"/>
-        <jsp:setProperty name="empleadoController" property="contrasenia"/>
-          
-        <%rango =  empleadoController.comprobarCredenciales(usuario, contrasenia);%> 
+        <% String rango =  empleadoController.comprobarCredenciales(usuario, contrasenia);%> 
         <%if(rango.equalsIgnoreCase("Gerente")){%>
-            <meta http-equiv = "refresh" content = " 1 ; url = test.jsp"/>
+            <meta http-equiv = "refresh" content = " 1 ; url = includes/test.jsp"/>
         <%}%>
         <%if(rango.equalsIgnoreCase("Empleado")){%>
-            <meta http-equiv = "refresh" content = " 1 ; url = oindex.jsp"/>
+            <meta http-equiv = "refresh" content = " 1 ; url = includes/oindex.jsp"/>
         <%}else{%>
             Error! El USUARIO es INVALIDO<br/>
         <%}%>  

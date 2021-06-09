@@ -6,15 +6,14 @@
  *       the last modified time of the source file after
  *       generation to assist with modification tracking.
  */
-package org.apache.jsp;
+package org.apache.jsp.includes.error;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import es.iespuertodelacruz.concesionario.controlador.EmpleadoController;
-import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
+import es.ejemplos.concesionario.exceptions.PersistenciaException;
 
-public final class validarusuario_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class loginError_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent,
                  org.apache.jasper.runtime.JspSourceImports {
 
@@ -22,6 +21,12 @@ public final class validarusuario_jsp extends org.apache.jasper.runtime.HttpJspB
           javax.servlet.jsp.JspFactory.getDefaultFactory();
 
   private static java.util.Map<java.lang.String,java.lang.Long> _jspx_dependants;
+
+  static {
+    _jspx_dependants = new java.util.HashMap<java.lang.String,java.lang.Long>(2);
+    _jspx_dependants.put("file:/C:/Users/Antonio/.m2/repository/org/apache/taglibs/taglibs-standard-impl/1.2.5/taglibs-standard-impl-1.2.5.jar", Long.valueOf(1623168356027L));
+    _jspx_dependants.put("jar:file:/C:/Users/Antonio/.m2/repository/org/apache/taglibs/taglibs-standard-impl/1.2.5/taglibs-standard-impl-1.2.5.jar!/META-INF/c.tld", Long.valueOf(1425978670000L));
+  }
 
   private static final java.util.Set<java.lang.String> _jspx_imports_packages;
 
@@ -33,8 +38,7 @@ public final class validarusuario_jsp extends org.apache.jasper.runtime.HttpJspB
     _jspx_imports_packages.add("javax.servlet.http");
     _jspx_imports_packages.add("javax.servlet.jsp");
     _jspx_imports_classes = new java.util.HashSet<>();
-    _jspx_imports_classes.add("es.iespuertodelacruz.concesionario.exception.PersistenciaException");
-    _jspx_imports_classes.add("es.iespuertodelacruz.concesionario.controlador.EmpleadoController");
+    _jspx_imports_classes.add("es.ejemplos.concesionario.exceptions.PersistenciaException");
   }
 
   private volatile javax.el.ExpressionFactory _el_expressionfactory;
@@ -83,14 +87,12 @@ public final class validarusuario_jsp extends org.apache.jasper.runtime.HttpJspB
   public void _jspService(final javax.servlet.http.HttpServletRequest request, final javax.servlet.http.HttpServletResponse response)
       throws java.io.IOException, javax.servlet.ServletException {
 
-    final java.lang.String _jspx_method = request.getMethod();
-    if (!"GET".equals(_jspx_method) && !"POST".equals(_jspx_method) && !"HEAD".equals(_jspx_method) && !javax.servlet.DispatcherType.ERROR.equals(request.getDispatcherType())) {
-      response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "JSPs only permit GET POST or HEAD");
-      return;
-    }
-
     final javax.servlet.jsp.PageContext pageContext;
     javax.servlet.http.HttpSession session = null;
+    java.lang.Throwable exception = org.apache.jasper.runtime.JspRuntimeLibrary.getThrowable(request);
+    if (exception != null) {
+      response.setStatus(javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    }
     final javax.servlet.ServletContext application;
     final javax.servlet.ServletConfig config;
     javax.servlet.jsp.JspWriter out = null;
@@ -100,9 +102,9 @@ public final class validarusuario_jsp extends org.apache.jasper.runtime.HttpJspB
 
 
     try {
-      response.setContentType("text/html");
+      response.setContentType("text/html;charset=UTF-8");
       pageContext = _jspxFactory.getPageContext(this, request, response,
-      			"includes/error/loginError.jsp", true, 8192, true);
+      			null, true, 8192, true);
       _jspx_page_context = pageContext;
       application = pageContext.getServletContext();
       config = pageContext.getServletConfig();
@@ -113,56 +115,33 @@ public final class validarusuario_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
- try { 
-      out.write('\r');
-      out.write('\n');
- es.iespuertodelacruz.concesionario.controlador.EmpleadoController empleadoController = new EmpleadoController();  
-      out.write('\r');
-      out.write('\n');
- } catch (PersistenciaException e) { System.out.println(e); } 
-      out.write("\r\n");
-      out.write("\r\n");
       out.write("<html>\r\n");
-      out.write("    <body>\r\n");
-      out.write("        <h1>Verificar datos</h1>\r\n");
-      out.write("        ");
-      es.iespuertodelacruz.concesionario.controlador.EmpleadoController empleadoController = null;
-      empleadoController = (es.iespuertodelacruz.concesionario.controlador.EmpleadoController) _jspx_page_context.getAttribute("empleadoController", javax.servlet.jsp.PageContext.PAGE_SCOPE);
-      if (empleadoController == null){
-        empleadoController = new es.iespuertodelacruz.concesionario.controlador.EmpleadoController();
-        _jspx_page_context.setAttribute("empleadoController", empleadoController, javax.servlet.jsp.PageContext.PAGE_SCOPE);
-      }
+      out.write("<head><title>Error Message</title></head>\r\n");
+      out.write("<body>\r\n");
+      out.write("<form action=\"\" method=\"post\" >\r\n");
+      out.write("\r\n");
+      out.write("    <center>\r\n");
+      out.write("        <br><br>\r\n");
+      out.write("        <table width=\"90%\" height=\"100px\"\r\n");
+      out.write("               style=\"  -moz-border-radius: 8px;  -webkit-border-radius: 8px;border-radius: 8px;border: 2px solid #467aa7;\">\r\n");
+      out.write("            <tr>\r\n");
+      out.write("                <td style=\"color:#467aa7;\">\r\n");
+      out.write("                    ");
+ 
+                    PersistenciaException e = (PersistenciaException) exception;
+                        String message = e.getMessage();
+                    
       out.write("\r\n");
       out.write("\r\n");
-      out.write("        ");
- String usuario = request.getParameter("usuario"); 
-      out.write("\r\n");
-      out.write("        ");
- String contrasenia = request.getParameter("contrasenia"); 
-      out.write("\r\n");
-      out.write("          \r\n");
-      out.write("        ");
- String rango =  empleadoController.comprobarCredenciales(usuario, contrasenia);
-      out.write(" \r\n");
-      out.write("        ");
-if(rango.equalsIgnoreCase("Gerente")){
-      out.write("\r\n");
-      out.write("            <meta http-equiv = \"refresh\" content = \" 1 ; url = includes/test.jsp\"/>\r\n");
-      out.write("        ");
-}
-      out.write("\r\n");
-      out.write("        ");
-if(rango.equalsIgnoreCase("Empleado")){
-      out.write("\r\n");
-      out.write("            <meta http-equiv = \"refresh\" content = \" 1 ; url = includes/oindex.jsp\"/>\r\n");
-      out.write("        ");
-}else{
-      out.write("\r\n");
-      out.write("            Error! El USUARIO es INVALIDO<br/>\r\n");
-      out.write("        ");
-}
-      out.write("  \r\n");
-      out.write("    </body>\r\n");
+      out.write("                    <label>");
+      out.print(message );
+      out.write("</label>\r\n");
+      out.write("                </td>\r\n");
+      out.write("            </tr>\r\n");
+      out.write("        </table>\r\n");
+      out.write("    </center>\r\n");
+      out.write("</form>\r\n");
+      out.write("</body>\r\n");
       out.write("</html>");
     } catch (java.lang.Throwable t) {
       if (!(t instanceof javax.servlet.jsp.SkipPageException)){
