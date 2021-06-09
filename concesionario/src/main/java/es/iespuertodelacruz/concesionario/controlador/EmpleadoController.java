@@ -241,7 +241,7 @@ public class EmpleadoController extends Validaciones {
 
         if (empleado != null) {
             if (!empleado.getContrasenia().equals(contrasenia)) {
-                throw new EmpleadoException("La contrasenia es incorrecta");
+                throw new EmpleadoException("La contrasenia es incorrecta " + empleado.getContrasenia() + ", contrasenia: " + contrasenia);
             } 
             return empleado.getRango();
         } else {

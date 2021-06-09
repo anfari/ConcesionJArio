@@ -1,6 +1,6 @@
 <%@ page errorPage = "includes/error/loginError.jsp" %>
 <%@ page import="es.iespuertodelacruz.concesionario.controlador.EmpleadoController" %>
-<%@ page import= "es.iespuertodelacruz.concesionario.exception.PersistenciaException" %>
+<%@ page import= "es.iespuertodelacruz.concesionario.exception.*" %>
 <% try { %>
 <% es.iespuertodelacruz.concesionario.controlador.EmpleadoController empleadoController = new EmpleadoController();  %>
 <% } catch (PersistenciaException e) { System.out.println(e); } %>
@@ -19,8 +19,6 @@
         <%}%>
         <%if(rango.equalsIgnoreCase("Empleado")){%>
             <meta http-equiv = "refresh" content = " 1 ; url = includes/oindex.jsp"/>
-        <%}else{%>
-            Error! El USUARIO es INVALIDO<br/>
-        <%}%>  
+        <%}%> 
     </body>
 </html>

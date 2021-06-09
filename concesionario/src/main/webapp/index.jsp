@@ -26,7 +26,7 @@
         <form action="validarusuario.jsp" method="GET">
             <div id="fade-box">
                 <input type="text" name="usuario" id="usuario" placeholder="Usuario" required>
-                <input type="password" placeholder="Contrasenia" required>
+                <input type="password" name="contrasenia" id="contrasenia" placeholder="Contrasenia" required>
 
                 <button type="submit">Acceder</button>
             </div>
