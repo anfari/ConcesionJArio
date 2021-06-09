@@ -226,5 +226,27 @@ public class EmpleadoController extends Validaciones {
             throw new EmpleadoException("No existe un empleado con ese dni");
         }
     }
+
+    /**
+     * Metodo encargado de validar las credenciales de acceso
+     * @param dni dni del empleado
+     * @param contrasenia contrsenia del empleado
+     * @throws PersistenciaException error controlado
+     * @throws EmpleadoException error controlado
+     */
+    public String comprobarCredenciales(String dni, String contrasenia) throws PersistenciaException, EmpleadoException {
+        Empleado empleado = null;
+
+        empleado = buscar(dni);
+
+        if (empleado != null) {
+            if (!empleado.getContrasenia().equals(contrasenia)) {
+                throw new EmpleadoException("La contrasenia es incorrecta");
+            } 
+            return empleado.getRango();
+        } else {
+            throw new EmpleadoException("No existe un empleado con ese dni");
+        }
+    }
     
 }

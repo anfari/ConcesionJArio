@@ -1,3 +1,8 @@
 <header>
-    <h1>Bienvenido a ConsecionJArio</h1>
+    <ul>
+        <li><a href="http://">Inicio</a></li>
+        <li><a href="http://">Vehiculos</a></li>
+        <li><a href="http://">Top Ventas</a></li>
+        <li><a href="http://">Contacto</a></li>
+    </ul>
 </header>

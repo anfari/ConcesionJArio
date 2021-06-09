@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VehiculoModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">concesionario</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.concesionario.modelo</a> &gt; <span class="el_source">VehiculoModelo.java</span></div><h1>VehiculoModelo.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.concesionario.modelo;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.concesionario.api.Vehiculo;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
+
+/**
+ * Clase VehiculoModelo 
+ */
+public class VehiculoModelo {
+    SqliteBbdd persistencia;
+
+    private static final String TABLA  = &quot;Vehiculo&quot;;
+    private static final String CLAVE  = &quot;bastidor&quot;;
+
+    /**
+     * Constructor de la clase CocheModelo
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L22">    public VehiculoModelo() throws PersistenciaException {</span>
+<span class="fc" id="L23">        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);</span>
+<span class="fc" id="L24">    }</span>
+
+    /**
+     * Constructor para test de la Clase VehiculoModelo
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L31">    public VehiculoModelo(boolean test) throws PersistenciaException {</span>
+<span class="fc" id="L32">        persistencia = new SqliteBbdd(TABLA, CLAVE, &quot;org.sqlite.JDBC&quot;, &quot;jdbc:sqlite:test.db&quot;, null, null);</span>
+
+<span class="fc" id="L34">    }</span>
+
+
+    /**
+     * Metodo que inserta en una lista
+     * @param vehiculo inserta el vehiculo
+     * @throws PersistenciaException error controlado
+     */
+    public void insertar(Vehiculo vehiculo) throws PersistenciaException {
+<span class="fc" id="L43">        String sql =&quot;INSERT INTO Vehiculo (bastidor, matricula, marca, modelo, color, precio, &quot; + </span>
+<span class="fc" id="L44">        &quot;extrasInstalados, motor, potencia, cilindrada, tipo, estado) VALUES ('&quot; + vehiculo.getBastidor() + </span>
+<span class="fc" id="L45">        &quot;', '&quot; + vehiculo.getMatricula() + &quot;', '&quot; + vehiculo.getMarca() + &quot;', '&quot; + vehiculo.getModelo() + </span>
+<span class="fc" id="L46">        &quot;', '&quot; + vehiculo.getColor() + &quot;', '&quot; + vehiculo.getPrecio() + &quot;', '&quot; + vehiculo.getExtrasInstalados() + </span>
+<span class="fc" id="L47">        &quot;', '&quot; + vehiculo.getMotor() + &quot;', '&quot; + vehiculo.getPotencia() + &quot;', '&quot; + vehiculo.getCilindrada() + </span>
+<span class="fc" id="L48">        &quot;', '&quot; + vehiculo.getTipo() + &quot;', '&quot; + vehiculo.getEstado() + &quot;')&quot;;</span>
+<span class="fc" id="L49">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L50">    }</span>
+     /**
+     * Metodo que modifica en una lista
+     * @param vehiculo vehiculo a modificar
+     * @throws PersistenciaException error controlado
+     */
+    public void modificar(Vehiculo vehiculo) throws PersistenciaException {
+<span class="fc" id="L57">        String sql = &quot;UPDATE Vehiculo SET matricula = '&quot; + vehiculo.getMatricula() +</span>
+<span class="fc" id="L58">        &quot;', marca = '&quot; + vehiculo.getMarca() + &quot;', modelo = '&quot; + vehiculo.getModelo() +</span>
+<span class="fc" id="L59">        &quot;', color = '&quot; + vehiculo.getColor() + &quot;', precio = '&quot; + vehiculo.getPrecio() + </span>
+<span class="fc" id="L60">        &quot;', extrasInstalados = '&quot; + vehiculo.getExtrasInstalados() +</span>
+<span class="fc" id="L61">        &quot;', motor = '&quot; + vehiculo.getMotor() + &quot;', potencia = '&quot; + vehiculo.getPotencia() + </span>
+<span class="fc" id="L62">        &quot;', cilindrada = '&quot; + vehiculo.getCilindrada() + &quot;', tipo = '&quot; + vehiculo.getTipo() + </span>
+<span class="fc" id="L63">        &quot;', estado = '&quot; + vehiculo.getEstado() + &quot;' WHERE bastidor = '&quot; + vehiculo.getBastidor() + &quot;'&quot;;</span>
+<span class="fc" id="L64">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L65">    }</span>
+
+    /**
+     * Metodo que elimina un vehiculo de la lista
+     * @param vehiculo vehiculo a eliminar
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminar(Vehiculo vehiculo) throws PersistenciaException {
+<span class="fc" id="L73">        String sql = &quot;DELETE from Vehiculo where bastidor = '&quot; + vehiculo.getBastidor() + &quot;'&quot;;</span>
+<span class="fc" id="L74">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L75">    }</span>
+
+    /**
+     * Funcion que busca un vehiculo especifico
+     * @param bastidor numero de bastidor del vehiculo
+     * @return Vehiculo encontrado
+     * @throws PersistenciaException error controlado
+     */
+    public Vehiculo buscar(String bastidor) throws PersistenciaException  {
+<span class="fc" id="L84">        Vehiculo vehiculo = null;</span>
+<span class="fc" id="L85">        ArrayList&lt;Vehiculo&gt; listaVehiculos = null;</span>
+<span class="fc" id="L86">        String sql = &quot;SELECT * FROM Vehiculo where bastidor = &quot;;</span>
+<span class="fc" id="L87">        sql = sql + &quot;'&quot; + bastidor + &quot;'&quot;;</span>
+<span class="fc" id="L88">        listaVehiculos = convertir(sql);</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        if (!listaVehiculos.isEmpty()) {</span>
+<span class="fc" id="L90">            vehiculo = listaVehiculos.get(0);</span>
+        }
+
+<span class="fc" id="L93">        return vehiculo;</span>
+    }
+
+    /**
+     * Funcion busca todos los vehiculos guardados
+     * @return lista de todos los vehiculos
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Vehiculo&gt; listadoVehiculos() throws PersistenciaException  {
+<span class="fc" id="L102">        String sql = &quot;SELECT * FROM Vehiculo&quot;;</span>
+<span class="fc" id="L103">        return convertir(sql);</span>
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Vehiculo
+     * @param sql a ejecutar
+     * @return lista de resultados
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Vehiculo&gt; convertir(String sql) throws PersistenciaException {
+<span class="fc" id="L113">        ArrayList&lt;Vehiculo&gt; listaVehiculos = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L114">        ResultSet resultSet = null;</span>
+
+        try {
+<span class="fc" id="L117">            resultSet = persistencia.buscarElementos(sql);</span>
+
+<span class="fc bfc" id="L119" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L120">                Vehiculo vehiculo = new Vehiculo();</span>
+<span class="fc" id="L121">                vehiculo.setBastidor(resultSet.getString(&quot;bastidor&quot;));</span>
+<span class="fc" id="L122">                vehiculo.setMatricula(resultSet.getString(&quot;matricula&quot;));</span>
+<span class="fc" id="L123">                vehiculo.setMarca(resultSet.getString(&quot;marca&quot;));</span>
+<span class="fc" id="L124">                vehiculo.setModelo(resultSet.getString(&quot;modelo&quot;));</span>
+<span class="fc" id="L125">                vehiculo.setColor(resultSet.getString(&quot;color&quot;));</span>
+<span class="fc" id="L126">                vehiculo.setPrecio(resultSet.getDouble(&quot;precio&quot;));</span>
+<span class="fc" id="L127">                vehiculo.setExtrasInstalados(resultSet.getString(&quot;extrasInstalados&quot;));</span>
+<span class="fc" id="L128">                vehiculo.setMotor(resultSet.getString(&quot;motor&quot;));</span>
+<span class="fc" id="L129">                vehiculo.setPotencia(resultSet.getInt(&quot;potencia&quot;));</span>
+<span class="fc" id="L130">                vehiculo.setCilindrada(resultSet.getString(&quot;cilindrada&quot;));</span>
+<span class="fc" id="L131">                vehiculo.setTipo(resultSet.getString(&quot;tipo&quot;));</span>
+<span class="fc" id="L132">                vehiculo.setEstado(resultSet.getString(&quot;estado&quot;));</span>
+<span class="fc" id="L133">                listaVehiculos.add(vehiculo);</span>
+<span class="fc" id="L134">            }</span>
+<span class="fc" id="L135">        } catch (Exception exception) {</span>
+<span class="fc" id="L136">            throw new PersistenciaException(&quot;Se ha producido un error realizando la consulta&quot;, exception);</span>
+        } finally {
+<span class="fc" id="L138">            persistencia.closeConnection(null, null, resultSet);</span>
+        }
+<span class="fc" id="L140">        return listaVehiculos;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

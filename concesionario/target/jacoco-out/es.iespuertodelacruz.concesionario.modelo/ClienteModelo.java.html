@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClienteModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">concesionario</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.concesionario.modelo</a> &gt; <span class="el_source">ClienteModelo.java</span></div><h1>ClienteModelo.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.concesionario.modelo;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.concesionario.api.Cliente;
+import es.iespuertodelacruz.concesionario.api.Persona;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
+
+/**
+ * Clase CienteModelo 
+ */
+public class ClienteModelo {
+    SqliteBbdd persistencia;
+    PersonaModelo personaModelo;
+    private static final String TABLA  = &quot;Cliente&quot;;
+    private static final String CLAVE  = &quot;codigoCliente&quot;;
+
+    /**
+     * Constructor de la Clase ClienteModelo
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L23">    public ClienteModelo() throws PersistenciaException {</span>
+<span class="fc" id="L24">        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);</span>
+<span class="fc" id="L25">        personaModelo = new PersonaModelo();</span>
+
+<span class="fc" id="L27">    }</span>
+
+    /**
+     * Constructor para test de la Clase ClienteModelo
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L34">    public ClienteModelo(boolean test) throws PersistenciaException {</span>
+<span class="fc" id="L35">        persistencia = new SqliteBbdd(TABLA, CLAVE, &quot;org.sqlite.JDBC&quot;, &quot;jdbc:sqlite:test.db&quot;, null, null);</span>
+<span class="fc" id="L36">        personaModelo = new PersonaModelo(true);</span>
+<span class="fc" id="L37">    }</span>
+    
+
+    /**
+     * Metodo que inserta un cliente
+     * @param cliente cliente a insertar
+     * @throws PersistenciaException error controlado
+     */
+    public void insertar(Cliente cliente) throws PersistenciaException {
+<span class="fc" id="L46">        String sql =&quot;INSERT INTO Cliente (codigoCliente, dni) VALUES (&quot; + </span>
+<span class="fc" id="L47">        cliente.getCodigoCliente() + &quot;, '&quot; + cliente.getDni() + &quot;')&quot;;</span>
+<span class="fc" id="L48">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L49">    }</span>
+
+    /**
+     * Metodo que modifica un cliente
+     * @param cliente cliente a modificar
+     * @throws PersistenciaException error controlado
+     */
+    public void modificar(Cliente cliente) throws PersistenciaException {
+<span class="fc" id="L57">        String sql = &quot;UPDATE Cliente SET dni = '&quot; + cliente.getDni() +</span>
+<span class="fc" id="L58">        &quot;' WHERE codigoCliente = '&quot; + cliente.getCodigoCliente()  + &quot;'&quot;;</span>
+<span class="fc" id="L59">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L60">    }</span>
+
+    /**
+     * Metodo que elimina un cliente
+     * @param cliente cliente a eliminar
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminar(Cliente cliente) throws PersistenciaException {
+<span class="fc" id="L68">        String sql = &quot;DELETE from Cliente where dni = '&quot; + </span>
+<span class="fc" id="L69">        cliente.getDni() + &quot;'&quot;;</span>
+<span class="fc" id="L70">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L71">    } </span>
+
+    /**
+     * Funcion que busca un cliente especifico
+     * @param dni dni del cliente
+     * @return Cliente encontrado
+     * @throws PersistenciaException error controlado
+     */
+    public Cliente buscar(String dni) throws PersistenciaException  {
+<span class="fc" id="L80">        Cliente cliente = null;</span>
+<span class="fc" id="L81">        ArrayList&lt;Cliente&gt; listaClientes = null;</span>
+<span class="fc" id="L82">        String sql = &quot;SELECT * FROM Cliente where dni = &quot;;</span>
+<span class="fc" id="L83">        sql = sql + &quot;'&quot; + dni + &quot;'&quot;;</span>
+<span class="fc" id="L84">        listaClientes = convertir(sql);</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        if (!listaClientes.isEmpty()) {</span>
+<span class="fc" id="L86">            cliente = listaClientes.get(0);</span>
+        }
+
+<span class="fc" id="L89">        return cliente;</span>
+    }
+
+    /**
+     * Funcion busca todos los clientes guardados
+     * @return lista de todos los clientes
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Cliente&gt; listadoClientes() throws PersistenciaException  {
+<span class="fc" id="L98">        String sql = &quot;SELECT * FROM Cliente&quot;;</span>
+<span class="fc" id="L99">        return convertir(sql);</span>
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Cliente
+     * @param sql a ejecutar
+     * @return lista de resultados
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Cliente&gt; convertir(String sql) throws PersistenciaException {
+<span class="fc" id="L109">        ArrayList&lt;Cliente&gt; listaClientes = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L110">        ResultSet resultSet = null;</span>
+
+        try {
+<span class="fc" id="L113">            resultSet = persistencia.buscarElementos(sql);</span>
+
+<span class="fc bfc" id="L115" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L116">                Cliente cliente = new Cliente();</span>
+<span class="fc" id="L117">                String dni = resultSet.getString(&quot;dni&quot;);</span>
+<span class="fc" id="L118">                cliente.setCodigoCliente(resultSet.getString(&quot;codigoCliente&quot;));</span>
+<span class="fc" id="L119">                cliente.setDni(dni);</span>
+<span class="fc" id="L120">                Persona persona = personaModelo.buscar(dni);</span>
+<span class="fc" id="L121">                cliente.setNombre(persona.getNombre());</span>
+<span class="fc" id="L122">                cliente.setApellidos(persona.getApellidos());</span>
+<span class="fc" id="L123">                cliente.setFechaNacimiento(persona.getFechaNacimiento());</span>
+<span class="fc" id="L124">                cliente.setTelefono(persona.getTelefono());</span>
+<span class="fc" id="L125">                cliente.setDireccion(persona.getDireccion());</span>
+<span class="fc" id="L126">                listaClientes.add(cliente);</span>
+<span class="fc" id="L127">            }</span>
+<span class="fc" id="L128">        } catch (Exception exception) {</span>
+<span class="fc" id="L129">            throw new PersistenciaException(&quot;Se ha producido un error realizando la consulta&quot;, exception);</span>
+        } finally {
+<span class="fc" id="L131">            persistencia.closeConnection(null, null, resultSet);</span>
+        }
+<span class="fc" id="L133">        return listaClientes;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

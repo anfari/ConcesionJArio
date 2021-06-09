@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VentaController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">concesionario</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.concesionario.controlador</a> &gt; <span class="el_source">VentaController.java</span></div><h1>VentaController.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.concesionario.controlador;
+
+
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.concesionario.api.Venta;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
+import es.iespuertodelacruz.concesionario.exception.VentaException;
+import es.iespuertodelacruz.concesionario.modelo.VentaModelo;
+
+/**
+ * Clase VentaController
+ */
+public class VentaController extends Validaciones {
+    VentaModelo ventaModelo;
+
+    /**
+     * Constructor de la clase ClienteController
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L21">    public VentaController() throws PersistenciaException {</span>
+<span class="fc" id="L22">        ventaModelo = new VentaModelo();</span>
+<span class="fc" id="L23">    }</span>
+
+    /**
+     * Constructor para test de la clase VentaController
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L30">    public VentaController(boolean test) throws PersistenciaException {</span>
+<span class="fc" id="L31">        ventaModelo = new VentaModelo(true);</span>
+<span class="fc" id="L32">    }</span>
+    
+
+    /**
+     * Metodo encargado de realizar la validacion del objeto venta
+     * @param venta venta a validar
+     * @throws VentaException error controlado
+     */
+    public void validarVenta(Venta venta) throws VentaException {
+<span class="fc" id="L41">        String mensaje = &quot;&quot;;</span>
+
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (venta == null) {</span>
+<span class="fc" id="L44">            mensaje = &quot;Se esta intentando validar un objeto vacio&quot;;</span>
+<span class="fc" id="L45">            throw new VentaException(mensaje);</span>
+        }
+<span class="fc bfc" id="L47" title="All 6 branches covered.">        if (venta.getBastidor() == null || venta.getBastidor().isEmpty() || !validarBastidor(venta.getBastidor())) {</span>
+<span class="fc" id="L48">            mensaje += &quot;El bastidor de venta es nulo, vacio o invalido\n&quot;;</span>
+        }
+<span class="fc bfc" id="L50" title="All 4 branches covered.">        if (venta.getCodigoCliente() == null || venta.getCodigoCliente().isEmpty()) {</span>
+<span class="fc" id="L51">            mensaje += &quot;El codigo de cliente de la venta es nulo o vacio\n&quot;;</span>
+        }
+<span class="fc bfc" id="L53" title="All 4 branches covered.">        if (venta.getCodigoEmpleado() == null || venta.getCodigoEmpleado().isEmpty()) {</span>
+<span class="fc" id="L54">            mensaje += &quot;El codigo de empleado de venta es nulo o vacio\n&quot;;</span>
+        }
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (!mensaje.isEmpty()) {</span>
+<span class="fc" id="L57">            throw new VentaException(mensaje);</span>
+        }
+<span class="fc" id="L59">    }</span>
+
+    /**
+     * Metodo encargado de insertar
+     * @param venta venta a insertar
+     * @throws VentaException error controlado
+     * @throws PersistenciaException error controlado
+     * 
+     */
+    public void insertar(Venta venta) throws VentaException, PersistenciaException {
+<span class="fc" id="L69">        validarVenta(venta);</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if (existe(venta)) {</span>
+<span class="fc" id="L71">            throw new VentaException(&quot;La venta indicada ya existe&quot;);</span>
+        }
+<span class="fc" id="L73">        ventaModelo.insertar(venta);</span>
+<span class="fc" id="L74">    }</span>
+
+    /**
+     * Metodo encargado de elimianr
+     * @param venta cliente a eliminar
+     * @throws VentaException error controlado
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminar(Venta venta) throws VentaException, PersistenciaException {
+<span class="fc" id="L83">        validarVenta(venta);</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        if (!existe(venta)) {</span>
+<span class="fc" id="L85">            throw new VentaException(&quot;La venta indicada no existe&quot;);</span>
+        }
+<span class="fc" id="L87">        ventaModelo.eliminar(venta);</span>
+<span class="fc" id="L88">    }</span>
+
+    /**
+     * Metodo encargado de eliminar utilizando el codigo de la venta
+     * @param identificador identificador de la venta
+     * @throws VentaException error controlado
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminar(String identificador) throws VentaException, PersistenciaException {
+<span class="fc" id="L97">        ventaModelo.eliminar(identificador);</span>
+<span class="fc" id="L98">    }</span>
+
+    /**
+     * Metodo encargado de modificar
+     * @param venta venta a modificar
+     * @throws VentaException error controlado
+     * @throws PersistenciaException error controlado
+     */
+    public void modificar(Venta venta) throws VentaException, PersistenciaException {
+        Venta ventaAlmacenado;
+<span class="fc" id="L108">        validarVenta(venta);</span>
+<span class="fc" id="L109">        ventaAlmacenado = buscar(venta.getIdentificador());</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        if (ventaAlmacenado == null) {</span>
+<span class="fc" id="L111">            throw new VentaException(&quot;La venta indicada no existe&quot;);</span>
+        }
+<span class="fc" id="L113">        ventaModelo.modificar(venta);</span>
+<span class="fc" id="L114">    }</span>
+
+    /**
+     * Metodo encargado de buscar por identificaor de venta
+     * @param identificador identificador de la venta
+     * @return venta encontrado
+     * @throws PersistenciaException error controlado
+     */
+    public Venta buscar(String identificador) throws PersistenciaException  {
+<span class="fc" id="L123">        Venta venta = null;</span>
+<span class="fc" id="L124">        venta = ventaModelo.buscar(identificador);</span>
+<span class="fc" id="L125">        return venta;</span>
+    }
+
+    /**
+     * Funcion encargada de verificar si existe o no un venta
+     * @param venta venta  a encontrar
+     * @return true/false si existe o no
+     * @throws PersistenciaException error controlado
+     */
+    public boolean existe(Venta venta) throws PersistenciaException  {
+<span class="fc" id="L135">        boolean encontrado = false;</span>
+        Venta ventaEncontrado;
+
+<span class="fc" id="L138">        ventaEncontrado = buscar(venta.getIdentificador());</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">        if (ventaEncontrado != null) {</span>
+<span class="fc" id="L140">            encontrado = true;</span>
+        }
+<span class="fc" id="L142">        return encontrado;</span>
+    }
+
+   /**
+     * Funcion que retorna un listado agrupado de las ventas realizadas
+     * @return listado de ventas agrupado por modelo
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;String&gt; agruparVentas() throws PersistenciaException {
+<span class="fc" id="L151">        return ventaModelo.agruparVentas();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

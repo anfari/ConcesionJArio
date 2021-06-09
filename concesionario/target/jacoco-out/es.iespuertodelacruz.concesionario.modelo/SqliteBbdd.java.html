@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SqliteBbdd.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">concesionario</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.concesionario.modelo</a> &gt; <span class="el_source">SqliteBbdd.java</span></div><h1>SqliteBbdd.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.concesionario.modelo;
+
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
+
+/**
+ * Clase SqliteBbdd
+ */
+public class SqliteBbdd extends Bbdd {
+    private static final String DRIVER = &quot;org.sqlite.JDBC&quot;;
+    private static final String URL = &quot;jdbc:sqlite:concesionjario.db&quot;;
+
+   /**
+     * Constructor con todos los parametros de la clase SqliteBbdd
+     * @param nombreTabla nombre de la tabla a inicializar
+     * @param clave identificador de la tabla
+     * @param driver driver necesario
+     * @param url url de la BBDD
+     * @param usuario usuario de la BBDD
+     * @param password contrasenia del usuario
+     * @throws PersistenciaException error controlado
+     */
+    public SqliteBbdd(String nombreTabla,String clave,String driver, String url, String usuario, String password) throws PersistenciaException {
+<span class="fc" id="L23">        super(nombreTabla, clave, driver, url, usuario, password);</span>
+<span class="fc" id="L24">    }</span>
+
+    /**
+     * Constructor solo con usuario y contrasenia
+     * @param nombreTabla nombre de la tabla a inicializar
+     * @param clave identificador de la tabla
+     * @param usuario usuario de la BBDD
+     * @param password contrasenia del usuario
+     * @throws PersistenciaException error controlado
+     */
+    public SqliteBbdd(String nombreTabla,String clave,String usuario, String password) throws PersistenciaException {
+<span class="fc" id="L35">        super(nombreTabla, clave, DRIVER, URL, usuario, password);</span>
+<span class="fc" id="L36">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

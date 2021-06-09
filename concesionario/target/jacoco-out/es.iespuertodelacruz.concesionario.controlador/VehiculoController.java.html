@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VehiculoController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">concesionario</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.concesionario.controlador</a> &gt; <span class="el_source">VehiculoController.java</span></div><h1>VehiculoController.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.concesionario.controlador;
+
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.concesionario.api.Vehiculo;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
+import es.iespuertodelacruz.concesionario.exception.VehiculoException;
+import es.iespuertodelacruz.concesionario.modelo.VehiculoModelo;
+
+/**
+ * Clase VehiculoController
+ */
+public class VehiculoController extends Validaciones {
+    VehiculoModelo vehiculoModelo;
+
+    /**
+     * Constructor de la clase VehiculoController
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L20">    public VehiculoController() throws PersistenciaException {</span>
+<span class="fc" id="L21">        vehiculoModelo = new VehiculoModelo();</span>
+<span class="fc" id="L22">    }</span>
+
+    /**
+     * Constructor para test de la clase VehiculoController
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L29">    public VehiculoController(boolean test) throws PersistenciaException {</span>
+<span class="fc" id="L30">        vehiculoModelo = new VehiculoModelo(true);</span>
+<span class="fc" id="L31">    }</span>
+
+
+    /**
+     * Metodo encargado de realizar la validacion del objeto Vehiculo
+     * @param vehiculo vehiculo a validar
+     * @throws VehiculoException error controlado
+     */
+    public void validarVehiculo(Vehiculo vehiculo) throws VehiculoException {
+<span class="fc" id="L40">        String mensaje = &quot;&quot;;</span>
+
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (vehiculo == null) {</span>
+<span class="fc" id="L43">            mensaje = &quot;Se esta intentando validar un objeto vacio&quot;;</span>
+<span class="fc" id="L44">            throw new VehiculoException(mensaje);</span>
+        }
+<span class="fc bfc" id="L46" title="All 6 branches covered.">        if (vehiculo.getBastidor() == null || vehiculo.getBastidor().isEmpty() || !validarBastidor(vehiculo.getBastidor())) {</span>
+<span class="fc" id="L47">            mensaje += &quot;El codigo del vehiculo de bastidor es nulo, vacio o invalido\n&quot;;</span>
+        }
+<span class="fc bfc" id="L49" title="All 4 branches covered.">        if (vehiculo.getMarca() == null || vehiculo.getMarca().isEmpty()) {</span>
+<span class="fc" id="L50">            mensaje += &quot;La marca del vehiculo es nula o vacia\n&quot;;</span>
+        }
+<span class="fc bfc" id="L52" title="All 4 branches covered.">        if (vehiculo.getModelo() == null || vehiculo.getModelo().isEmpty()) {</span>
+<span class="fc" id="L53">            mensaje += &quot;El modelo del vehiculo es nulo o vacio\n&quot;;</span>
+        }
+<span class="fc bfc" id="L55" title="All 4 branches covered.">        if (vehiculo.getColor() == null || vehiculo.getColor().isEmpty()) {</span>
+<span class="fc" id="L56">            mensaje += &quot;El color del vehiculo es nulo o vacio\n&quot;;</span>
+        }
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (vehiculo.getPrecio() &lt;= 0) {</span>
+<span class="fc" id="L59">            mensaje += &quot;El precio del vehiculo es 0 o menor\n&quot;;</span>
+        }
+<span class="fc bfc" id="L61" title="All 4 branches covered.">        if (vehiculo.getMotor() == null || vehiculo.getMotor().isEmpty()) {</span>
+<span class="fc" id="L62">            mensaje += &quot;El motor del vehiculo es nulo o vacio\n&quot;;</span>
+        }
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if (vehiculo.getPotencia() &lt;= 0) {</span>
+<span class="fc" id="L65">            mensaje += &quot;La potencia del vehiculo es nula o vacia\n&quot;;</span>
+        }
+<span class="fc bfc" id="L67" title="All 4 branches covered.">        if (vehiculo.getCilindrada() == null || vehiculo.getCilindrada().isEmpty()) {</span>
+<span class="fc" id="L68">            mensaje += &quot;La cilindrada del vehiculo es nula o vacia\n&quot;;</span>
+        }
+<span class="fc bfc" id="L70" title="All 4 branches covered.">        if (vehiculo.getTipo() == null || vehiculo.getTipo().isEmpty()) {</span>
+<span class="fc" id="L71">            mensaje += &quot;El tipo del vehiculo es nulo o vacio\n&quot;;</span>
+        }
+<span class="fc bfc" id="L73" title="All 4 branches covered.">        if (vehiculo.getEstado() == null || vehiculo.getEstado().isEmpty()) {</span>
+<span class="fc" id="L74">            mensaje += &quot;El estado del vehiculo es nulo o vacio\n&quot;;</span>
+        }
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        if (!mensaje.isEmpty()) {</span>
+<span class="fc" id="L77">            throw new VehiculoException(mensaje);</span>
+        }
+<span class="fc" id="L79">    }</span>
+
+    /**
+     * Metodo encargado de insertar
+     * @param vehiculo vehiculo a insertar
+     * @throws VehiculoException error controlado
+     * @throws PersistenciaException error controlado
+     * 
+     */
+    public void insertar(Vehiculo vehiculo) throws VehiculoException, PersistenciaException {
+<span class="fc" id="L89">        validarVehiculo(vehiculo);</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">        if (existe(vehiculo)) {</span>
+<span class="fc" id="L91">            throw new VehiculoException(&quot;El vehiculo indicado ya existe&quot;);</span>
+        }
+<span class="fc" id="L93">        vehiculoModelo.insertar(vehiculo);</span>
+<span class="fc" id="L94">    }</span>
+
+    /**
+     * Metodo encargado de elimianr
+     * @param vehiculo vehiculo a eliminar
+     * @throws VehiculoException error controlado
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminar(Vehiculo vehiculo) throws VehiculoException, PersistenciaException {
+<span class="fc" id="L103">        validarVehiculo(vehiculo);</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        if (!existe(vehiculo)) {</span>
+<span class="fc" id="L105">            throw new VehiculoException(&quot;El vehiculo indicado no existe&quot;);</span>
+        }
+<span class="fc" id="L107">        vehiculoModelo.eliminar(vehiculo);</span>
+<span class="fc" id="L108">    }</span>
+
+    /**
+     * Metodo encargado de eliminar 
+     * @param bastidor numero de bastidor del vehiculo
+     * @throws VehiculoException error controlado
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminar(String bastidor) throws VehiculoException, PersistenciaException {
+        Vehiculo vehiculo;
+<span class="fc" id="L118">        vehiculo = buscar(bastidor);</span>
+<span class="fc" id="L119">        eliminar(vehiculo);</span>
+<span class="fc" id="L120">    }</span>
+
+    /**
+     * Metodo encargado de modificar
+     * @param vehiculo vehiculo a modificar
+     * @throws VehiculoException error controlado
+     * @throws PersistenciaException error controlado
+     */
+    public void modificar(Vehiculo vehiculo) throws VehiculoException, PersistenciaException {
+        Vehiculo vehiculoAlmacenado;
+<span class="fc" id="L130">        validarVehiculo(vehiculo);</span>
+<span class="fc" id="L131">        vehiculoAlmacenado = buscar(vehiculo.getBastidor());</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">        if (vehiculoAlmacenado == null) {</span>
+<span class="fc" id="L133">            throw new VehiculoException(&quot;El vehiculo indicado no existe&quot;);</span>
+        }
+<span class="fc" id="L135">        vehiculoModelo.modificar(vehiculo);</span>
+<span class="fc" id="L136">    }</span>
+
+    /**
+     * Metodo encargado de buscar por numero de bastidor
+     * @param bastidor numero de bastidor del vehiculo
+     * @return vehiculo encontrado
+     * @throws PersistenciaException error controlado
+     */
+    public Vehiculo buscar(String bastidor) throws PersistenciaException  {
+<span class="fc" id="L145">        Vehiculo vehiculo = null;</span>
+<span class="fc" id="L146">        vehiculo = vehiculoModelo.buscar(bastidor);</span>
+<span class="fc" id="L147">        return vehiculo;</span>
+    }
+
+    /**
+     * Funcion encargada de verificar si existe o no un vehiculo
+     * @param vehiculo vehiculo a encontrar
+     * @return true/false si existe o no
+     * @throws PersistenciaException error controlado
+     */
+    public boolean existe(Vehiculo vehiculo) throws PersistenciaException  {
+<span class="fc" id="L157">        boolean encontrado = false;</span>
+        Vehiculo vehiculoEncontrado;
+
+<span class="fc" id="L160">        vehiculoEncontrado = buscar(vehiculo.getBastidor());</span>
+<span class="fc bfc" id="L161" title="All 2 branches covered.">        if (vehiculoEncontrado != null) {</span>
+<span class="fc" id="L162">            encontrado = true;</span>
+        }
+
+<span class="fc" id="L165">        return encontrado;</span>
+    }
+
+    /**
+     * Funcion que retorna una lista con todos los vehiculos
+     * @return listado con todos los vehiculos
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Vehiculo&gt; listadoVehiculos() throws PersistenciaException {
+<span class="fc" id="L174">        return vehiculoModelo.listadoVehiculos();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

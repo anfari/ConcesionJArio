@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Validaciones.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">concesionario</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.concesionario.controlador</a> &gt; <span class="el_source">Validaciones.java</span></div><h1>Validaciones.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.concesionario.controlador;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * Clase Validaciones
+ */
+<span class="fc" id="L9">public class Validaciones {</span>
+<span class="fc" id="L10">    private String patronDni = &quot;^[0-9]{8}[A-Z-a-z]&quot;;</span>
+<span class="fc" id="L11">    private String patronCodigoPostal = &quot;[0-9]{5}$&quot;;</span>
+<span class="fc" id="L12">    private String patronBastidor = &quot;^[A-Z-a-z-0-9]{17}&quot;;</span>
+
+    Pattern pattern;
+    Matcher matcher;
+
+    
+    /**
+     * Funcion que evalua si un dni es valido
+     * @param valor a evaluar
+     * @return true/false en funcion si es correcto o no
+     */
+    public boolean validarDni(String valor) {
+<span class="fc" id="L24">        boolean resultado = false;</span>
+
+<span class="fc" id="L26">        this.pattern = Pattern.compile(patronDni);</span>
+<span class="fc" id="L27">        this.matcher = pattern.matcher(valor);</span>
+<span class="fc" id="L28">        resultado = matcher.find();</span>
+
+<span class="fc" id="L30">        return resultado;</span>
+    }
+
+    /**
+     * Funcion que evalua si un Codigo Postal es valido
+     * @param valor a evaluar
+     * @return true/false en funcion de si es correcto o no
+     */
+    public boolean validarCodigoPostal(String valor) {
+<span class="fc" id="L39">        boolean resultado = false;</span>
+<span class="fc" id="L40">        this.pattern = Pattern.compile(patronCodigoPostal);</span>
+<span class="fc" id="L41">        this.matcher = pattern.matcher(valor);</span>
+<span class="fc" id="L42">        resultado = matcher.find();</span>
+<span class="fc" id="L43">        return resultado;</span>
+    }
+
+    /**
+     * Funcion que evalua si un numero de bastidor es valido
+     * @param valor a evaluar
+     * @return true/false en funcion de si es correcto o no
+     */
+    public boolean validarBastidor(String valor) {
+<span class="fc" id="L52">        boolean resultado = false;</span>
+<span class="fc" id="L53">        this.pattern = Pattern.compile(patronBastidor);</span>
+<span class="fc" id="L54">        this.matcher = pattern.matcher(valor);</span>
+<span class="fc" id="L55">        resultado = matcher.find();</span>
+<span class="fc" id="L56">        return resultado;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
