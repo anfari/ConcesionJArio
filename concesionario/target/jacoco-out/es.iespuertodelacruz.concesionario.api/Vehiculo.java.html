@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Vehiculo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">concesionario</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.concesionario.api</a> &gt; <span class="el_source">Vehiculo.java</span></div><h1>Vehiculo.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.concesionario.api;
+/**
+ * Clase vehiculo contiene las caracteristicas de un vehiculo
+ */
+public class Vehiculo {
+    String bastidor;
+    String matricula;
+    String marca;
+    String modelo;
+    String color;
+    double precio;
+    String extrasInstalados;
+    String motor;
+    int potencia;
+    String cilindrada;
+    String tipo;
+    String estado;
+
+    /**
+     * Constructor por defecto
+     */
+<span class="fc" id="L22">    public Vehiculo() {</span>
+<span class="fc" id="L23">    }</span>
+
+    /**
+     * Constructor con todos los parametros de la clase Vehiculo
+     * @param bastidor numero de bastidor del vehiculo
+     * @param matricula matricula del vehiculo
+     * @param marca marca del vehiculo
+     * @param modelo modelo del vehiculo
+     * @param color color del vehiculo
+     * @param precio precio en euros del vehiculo
+     * @param extrasInstalados extras que tiene el vehiculo
+     * @param motor tipo de motor del vehiculo
+     * @param potencia potencia expresada en CV del vehiculo
+     * @param cilindrada cilindrada expresada en CC del vehiculo
+     * @param tipo tipo de vehiculo
+     * @param estado estado de disponibilidad del vehiculo
+     */
+    public Vehiculo(String bastidor, String matricula, String marca, 
+    String modelo, String color, double precio, String extrasInstalados, 
+<span class="fc" id="L42">    String motor, int potencia, String cilindrada, String tipo, String estado) {</span>
+<span class="fc" id="L43">        this.bastidor = bastidor;</span>
+<span class="fc" id="L44">        this.matricula = matricula;</span>
+<span class="fc" id="L45">        this.marca = marca;</span>
+<span class="fc" id="L46">        this.modelo = modelo;</span>
+<span class="fc" id="L47">        this.color = color;</span>
+<span class="fc" id="L48">        this.precio = precio;</span>
+<span class="fc" id="L49">        this.extrasInstalados = extrasInstalados;</span>
+<span class="fc" id="L50">        this.motor = motor;</span>
+<span class="fc" id="L51">        this.potencia = potencia;</span>
+<span class="fc" id="L52">        this.cilindrada = cilindrada;</span>
+<span class="fc" id="L53">        this.tipo=tipo;</span>
+<span class="fc" id="L54">        this.estado=estado;</span>
+<span class="fc" id="L55">    }</span>
+     /**
+     * Getter de la clase Vehiculo
+     * @return estado del vehiculo
+     */
+    public String getEstado() {
+<span class="fc" id="L61">        return this.estado;</span>
+    }
+    /**
+     * Setter de la clase Vehiculo
+     * @param estado del vehiculo
+     */
+    public void setEstado(String estado) {
+<span class="fc" id="L68">        this.estado = estado;</span>
+<span class="fc" id="L69">    }</span>
+
+    
+    /**
+     * Getter de la clase Vehiculo
+     * @return numero de bastidor del vehiculo
+     */
+    public String getBastidor() {
+<span class="fc" id="L77">        return this.bastidor;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param bastidor numero de bastidor del vehiculo
+     */
+    public void setBastidor(String bastidor) {
+<span class="fc" id="L85">        this.bastidor = bastidor;</span>
+<span class="fc" id="L86">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return matricula del vehiculo
+     */
+    public String getMatricula() {
+<span class="fc" id="L93">        return this.matricula;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param matricula matricula del vehiculo
+     */
+    public void setMatricula(String matricula) {
+<span class="fc" id="L101">        this.matricula = matricula;</span>
+<span class="fc" id="L102">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return marca del vehiculo
+     */
+    public String getMarca() {
+<span class="fc" id="L109">        return this.marca;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param marca marca del vehiculo
+     */
+    public void setMarca(String marca) {
+<span class="fc" id="L117">        this.marca = marca;</span>
+<span class="fc" id="L118">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return modelo del vehiculo
+     */
+    public String getModelo() {
+<span class="fc" id="L125">        return this.modelo;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param modelo modelo del vehiculo
+     */
+    public void setModelo(String modelo) {
+<span class="fc" id="L133">        this.modelo = modelo;</span>
+<span class="fc" id="L134">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return color del vehiculo
+     */
+    public String getColor() {
+<span class="fc" id="L141">        return this.color;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param color color del vehiculo
+     */
+    public void setColor(String color) {
+<span class="fc" id="L149">        this.color = color;</span>
+<span class="fc" id="L150">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return precio del vehiculo
+     */
+    public double getPrecio() {
+<span class="fc" id="L157">        return this.precio;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param precio precio del vehiculo
+     */
+    public void setPrecio(double precio) {
+<span class="fc" id="L165">        this.precio = precio;</span>
+<span class="fc" id="L166">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return extras del vehiculo
+     */
+    public String getExtrasInstalados() {
+<span class="fc" id="L173">        return this.extrasInstalados;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param extrasInstalados extras del vehiculo
+     */
+    public void setExtrasInstalados(String extrasInstalados) {
+<span class="fc" id="L181">        this.extrasInstalados = extrasInstalados;</span>
+<span class="fc" id="L182">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return motor del vehiculo
+     */
+    public String getMotor() {
+<span class="fc" id="L189">        return this.motor;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param motor motor del vehiculo
+     */
+    public void setMotor(String motor) {
+<span class="fc" id="L197">        this.motor = motor;</span>
+<span class="fc" id="L198">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return potencia del vehiculo
+     */
+    public int getPotencia() {
+<span class="fc" id="L205">        return this.potencia;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param potencia potencia del vehiculo
+     */
+    public void setPotencia(int potencia) {
+<span class="fc" id="L213">        this.potencia = potencia;</span>
+<span class="fc" id="L214">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return cilindrada del vehiculo
+     */
+    public String getCilindrada() {
+<span class="fc" id="L221">        return this.cilindrada;</span>
+    }
+
+    /**
+     * Setter de la clase Vehiculo
+     * @param cilindrada cilindrada del vehiculo
+     */
+    public void setCilindrada(String cilindrada) {
+<span class="fc" id="L229">        this.cilindrada = cilindrada;</span>
+<span class="fc" id="L230">    }</span>
+
+    /**
+     * Getter de la clase Vehiculo
+     * @return tipo de vehiculo
+     */
+    public String getTipo() {
+<span class="fc" id="L237">        return this.tipo;</span>
+    }
+    
+     /**
+     * Setter de la clase Vehiculo
+     * @param tipo tipo de vehiculo
+     */
+    public void setTipo(String tipo) {
+<span class="fc" id="L245">        this.tipo = tipo;</span>
+<span class="fc" id="L246">    }</span>
+
+    /**
+     * Funcion toString de la Clase Vehiculo
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L253">        return getBastidor() + &quot;, &quot; + getMatricula() + &quot;, &quot; + getMarca() + &quot;, &quot; + getModelo() + &quot;, &quot; + getColor() + &quot;, &quot; +</span>
+<span class="fc" id="L254">            getPrecio() + &quot;€, Extras:'&quot; + getExtrasInstalados() + &quot;, &quot; + getMotor() + &quot;, &quot; + getPotencia() + &quot; CV, &quot; +</span>
+<span class="fc" id="L255">            getCilindrada() + &quot;, &quot; + getTipo() + &quot; &quot; + getEstado();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

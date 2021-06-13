@@ -251,6 +251,7 @@ public class VistaApp {
                         venta = pedirDatosVenta();
                         vehiculo = vehiculoController.buscar(venta.getBastidor());
                         vehiculo.setEstado("Vendido");
+                        ventaController.insertar(venta);
                         vehiculoController.modificar(vehiculo);
                         System.out.println("Venta completada");
                         break;

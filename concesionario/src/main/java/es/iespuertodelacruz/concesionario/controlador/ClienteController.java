@@ -187,7 +187,7 @@ public class ClienteController extends Validaciones {
      * @param cliente cliente del que generar la persona
      * @return Persona creada
      */
-    private Persona generarPersona(Cliente cliente) {
+    public Persona generarPersona(Cliente cliente) {
         return new Persona(cliente.getNombre(), cliente.getApellidos(), cliente.getDni(), 
         cliente.getFechaNacimiento(), cliente.getTelefono(), cliente.getDireccion());
     }

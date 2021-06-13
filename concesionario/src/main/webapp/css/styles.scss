@@ -5,7 +5,7 @@
 }
 
 html {
-  background: #000;
+  background: #2c2f33;
   background-size: cover;
   font-size: 10px;
   height: 100%;
@@ -35,7 +35,7 @@ h1 {
   font-weight: bold;
   position: absolute;
   text-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 30px #000, 0 0 40px #000, 0 0 50px #000, 0 0 60px #000, 0 0 70px #000;
-  top: 50px;
+  top: 100px;
 }
 h1:before {
   animation: before-glow 2s ease-out infinite alternate;
@@ -162,14 +162,14 @@ Spinner
 ========================================= */
 #circle1 {
   animation: circle1 4s linear infinite, circle-entry 6s ease-in-out;
-  background: #000;
+  background: #2c2f33;
   border-radius: 50%;
   border: 10px solid #00a4a2;
   box-shadow: 0 0 0 2px black, 0 0 0 6px #00fffc;
   height: 500px;
   width: 500px;
   position: absolute;
-  top: 20px;
+  top: 70px;
   left: 50%;
   margin-left: -250px;
   overflow: hidden;
@@ -178,7 +178,7 @@ Spinner
 }
 
 #inner-cirlce1 {
-  background: #000;
+  background: #2c2f33;
   border-radius: 50%;
   border: 36px solid #00fffc;
   height: 460px;
@@ -189,7 +189,7 @@ Spinner
   content: ' ';
   width: 240px;
   height: 480px;
-  background: #000;
+  background: #2c2f3300;
   position: absolute;
   top: 0;
   left: 0;
@@ -198,7 +198,7 @@ Spinner
   content: ' ';
   width: 480px;
   height: 240px;
-  background: #000;
+  background: #2c2f33;
   position: absolute;
   top: 0;
   left: 0;
@@ -209,14 +209,14 @@ Hexagon Mesh
 ========================================= */
 .hexagons {
   animation: logo-entry 4s ease-in;
-  color: #000;
+  color: #2c2f33;
   font-size: 52px;
   font-size: 5.1rem;
   letter-spacing: -0.2em;
   line-height: 0.7;
   position: absolute;
   text-shadow: 0 0 6px #00fffc;
-  top: 310px;
+  top: 350px;
   width: 100%;
   transform: perspective(600px) rotateX(60deg) scale(1.4);
   z-index: -3;

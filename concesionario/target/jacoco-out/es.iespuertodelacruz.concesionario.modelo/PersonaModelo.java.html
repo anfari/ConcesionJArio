@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PersonaModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">concesionario</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.concesionario.modelo</a> &gt; <span class="el_source">PersonaModelo.java</span></div><h1>PersonaModelo.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.concesionario.modelo;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.concesionario.api.Persona;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
+
+/**
+ * Clase PersonaModelo
+ */
+public class PersonaModelo {
+    SqliteBbdd persistencia;
+    DireccionModelo direccionModelo;
+    private static final String TABLA  = &quot;Persona&quot;;
+    private static final String CLAVE  = &quot;dni&quot;;
+
+   
+    /**
+     * Constructor de la clase PersonaModelo
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L23">    public PersonaModelo() throws PersistenciaException  {</span>
+<span class="fc" id="L24">        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);</span>
+<span class="fc" id="L25">        direccionModelo = new DireccionModelo();</span>
+<span class="fc" id="L26">    }</span>
+
+    /**
+     * Constructor para test de la Clase PersonaModelo
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L33">    public PersonaModelo(boolean test) throws PersistenciaException {</span>
+<span class="fc" id="L34">        persistencia = new SqliteBbdd(TABLA, CLAVE, &quot;org.sqlite.JDBC&quot;, &quot;jdbc:sqlite:test.db&quot;, null, null);</span>
+<span class="fc" id="L35">        direccionModelo = new DireccionModelo(true);</span>
+<span class="fc" id="L36">    }</span>
+
+
+    /**
+     * Metodo que inserta una persona
+     * @param persona persona a insertar
+     * @throws PersistenciaException error controlado
+     */
+    public void insertar(Persona persona) throws PersistenciaException {
+<span class="fc" id="L45">        String sql =&quot;INSERT INTO Persona (nombre, apellidos, dni, &quot; + </span>
+<span class="fc" id="L46">        &quot;fechaNacimiento, telefono) VALUES ('&quot; + persona.getNombre() + </span>
+<span class="fc" id="L47">        &quot;', '&quot; + persona.getApellidos() + &quot;', '&quot; + persona.getDni() +</span>
+<span class="fc" id="L48">         &quot;', '&quot; + persona.getFechaNacimiento() + &quot;', '&quot; + </span>
+<span class="fc" id="L49">        persona.getTelefono() + &quot;')&quot;;</span>
+<span class="fc" id="L50">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L51">    }</span>
+
+    /**
+     * Metodo que modifica una persona
+     * @param persona persona a modificar
+     * @throws PersistenciaException error controlado
+     */
+    public void modificar(Persona persona) throws PersistenciaException {
+<span class="fc" id="L59">        String sql = &quot;UPDATE Persona SET nombre = '&quot; + persona.getNombre() +</span>
+<span class="fc" id="L60">        &quot;', apellidos = '&quot; + persona.getApellidos() +</span>
+<span class="fc" id="L61">        &quot;', fechaNacimiento = '&quot; + persona.getFechaNacimiento() + </span>
+<span class="fc" id="L62">        &quot;', telefono = '&quot; + persona.getTelefono() + </span>
+<span class="fc" id="L63">        &quot;' WHERE dni = '&quot; + persona.getDni()  + &quot;'&quot;;</span>
+<span class="fc" id="L64">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L65">    }</span>
+
+    /**
+     * Metodo que elimina una persona
+     * @param persona persona a eliminar
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminar(Persona persona) throws PersistenciaException {
+<span class="fc" id="L73">        String sql = &quot;DELETE from Persona where dni = '&quot; + persona.getDni() + &quot;'&quot;;</span>
+<span class="fc" id="L74">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L75">    }  </span>
+
+    /**
+     * Funcion que busca una persona especifica
+     * @param dni dni de la persona
+     * @return Persona encontrada
+     * @throws PersistenciaException error controlado
+     */
+    public Persona buscar(String dni) throws PersistenciaException  {
+<span class="fc" id="L84">        Persona persona = null;</span>
+<span class="fc" id="L85">        ArrayList&lt;Persona&gt; listaPersonas = null;</span>
+<span class="fc" id="L86">        String sql = &quot;SELECT * FROM Persona where dni = &quot;;</span>
+<span class="fc" id="L87">        sql = sql + &quot;'&quot; + dni + &quot;'&quot;;</span>
+<span class="fc" id="L88">        listaPersonas = convertir(sql);</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        if (!listaPersonas.isEmpty()) {</span>
+<span class="fc" id="L90">            persona = listaPersonas.get(0);</span>
+        }
+
+<span class="fc" id="L93">        return persona;</span>
+    }
+
+    /**
+     * Funcion busca todas las personas guardados
+     * @return lista de todas las personas
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Persona&gt; listadoPersonas() throws PersistenciaException  {
+<span class="fc" id="L102">        String sql = &quot;SELECT * FROM Persona&quot;;</span>
+<span class="fc" id="L103">        return convertir(sql);</span>
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Persona
+     * @param sql a ejecutar
+     * @return lista de resultados
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Persona&gt; convertir(String sql) throws PersistenciaException {
+<span class="fc" id="L113">        ArrayList&lt;Persona&gt; listaPersonas = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L114">        ResultSet resultSet = null;</span>
+
+        try {
+<span class="fc" id="L117">            resultSet = persistencia.buscarElementos(sql);</span>
+
+<span class="fc bfc" id="L119" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L120">                Persona persona = new Persona();</span>
+<span class="fc" id="L121">                String dni = resultSet.getString(&quot;dni&quot;);</span>
+<span class="fc" id="L122">                persona.setApellidos(resultSet.getString(&quot;apellidos&quot;));</span>
+<span class="fc" id="L123">                persona.setNombre(resultSet.getString(&quot;nombre&quot;));</span>
+<span class="fc" id="L124">                persona.setDni(dni);</span>
+<span class="fc" id="L125">                persona.setTelefono(resultSet.getString(&quot;telefono&quot;));</span>
+<span class="fc" id="L126">                persona.setFechaNacimiento(resultSet.getString(&quot;fechaNacimiento&quot;));</span>
+<span class="fc" id="L127">                persona.setDireccion(direccionModelo.buscar(dni));</span>
+<span class="fc" id="L128">                listaPersonas.add(persona);</span>
+<span class="fc" id="L129">            }</span>
+<span class="fc" id="L130">        } catch (Exception exception) {</span>
+<span class="fc" id="L131">            throw new PersistenciaException(&quot;Se ha producido un error realizando la consulta&quot;, exception);</span>
+        } finally {
+<span class="fc" id="L133">            persistencia.closeConnection(null, null, resultSet);</span>
+        }
+<span class="fc" id="L135">        return listaPersonas;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

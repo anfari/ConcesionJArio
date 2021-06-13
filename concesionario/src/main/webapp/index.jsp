@@ -1,29 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Login Form</title>
-
-    <link rel="stylesheet" href="css/styles.scss">
-    <link rel="stylesheet" href="css/estilos.css">
-
-
-    
-
+    <title>Login</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-
+    <link rel="stylesheet" href="css/styles.scss">
 </head>
 
 <body>
     <%@include file="includes/header.jsp" %>
     
     <div id="logo">
-        <h1><i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ConcesionJArio</i></h1>
+        <h1><i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ConcesionJArio</i></h1>
     </div>
     <section class="stark-login">
-
-        <form action="validarusuario.jsp" method="GET">
+        <br><br><br>
+        <form action="includes/validarusuario.jsp" method="GET">
             <div id="fade-box">
                 <input type="text" name="usuario" id="usuario" placeholder="Usuario" required>
                 <input type="password" name="contrasenia" id="contrasenia" placeholder="Contrasenia" required>
@@ -106,13 +97,7 @@
 
 
 
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
+    
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
 

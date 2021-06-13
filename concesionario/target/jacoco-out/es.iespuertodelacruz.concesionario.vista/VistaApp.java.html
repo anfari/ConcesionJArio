@@ -1,0 +1,728 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VistaApp.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">concesionario</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.concesionario.vista</a> &gt; <span class="el_source">VistaApp.java</span></div><h1>VistaApp.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.concesionario.vista;
+
+
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import es.iespuertodelacruz.concesionario.api.*;
+import es.iespuertodelacruz.concesionario.controlador.*;
+import es.iespuertodelacruz.concesionario.exception.*;
+import es.iespuertodelacruz.concesionario.modelo.Bbdd;
+/**
+ * Clase principal que contiene el menu de opciones de la app
+ */
+public class VistaApp {
+<span class="fc" id="L16">    static Scanner teclado = new Scanner(System.in);</span>
+    static Bbdd bd;
+    static ClienteController clienteController;
+    static EmpleadoController empleadoController;
+    static VehiculoController vehiculoController;
+    static PersonaController personaController;
+    static DireccionController direccionController;
+    static VentaController ventaController;
+    
+
+    /**
+     * Constructor de VistaApp
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L30">    public VistaApp() throws PersistenciaException {</span>
+<span class="fc" id="L31">        clienteController = new ClienteController();</span>
+<span class="fc" id="L32">        empleadoController = new EmpleadoController();</span>
+<span class="fc" id="L33">        vehiculoController = new VehiculoController();</span>
+<span class="fc" id="L34">        personaController = new PersonaController();</span>
+<span class="fc" id="L35">        direccionController = new DireccionController();</span>
+<span class="fc" id="L36">        ventaController= new VentaController();</span>
+<span class="fc" id="L37">    }</span>
+
+    /**
+     * constructor para test de la clase VistaApp
+     * @param test parametro que recibe de los test
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L44">    public VistaApp(boolean test) throws PersistenciaException {</span>
+<span class="fc" id="L45">        clienteController = new ClienteController(true);</span>
+<span class="fc" id="L46">        empleadoController = new EmpleadoController(true);</span>
+<span class="fc" id="L47">        vehiculoController = new VehiculoController(true);</span>
+<span class="fc" id="L48">        personaController = new PersonaController(true);</span>
+<span class="fc" id="L49">        direccionController = new DireccionController(true);</span>
+<span class="fc" id="L50">        ventaController= new VentaController(true);</span>
+<span class="fc" id="L51">    }</span>
+
+
+    /**
+     * Metodo main de la clase VistaApp
+     * @param args argumentos
+     * @throws ClienteException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws DniException error controlado
+     * @throws EmpleadoException error controlado
+     * @throws VehiculoException error controlado
+     * @throws BastidorException error controlado
+     * @throws DireccionException error controlado
+     * @throws VentaException error controlado
+     * @throws PersonaException error controlado
+     */
+    public static void main(String[] args) throws ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
+
+<span class="fc" id="L69">        new VistaApp();</span>
+<span class="fc" id="L70">        menuPrincipal();</span>
+
+<span class="fc" id="L72">    }</span>
+    /**
+     * Metodo estatico privado que contiene el menu principal 
+     * @throws DniException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws ClienteException error controlado
+     * @throws BastidorException error controlado
+     * @throws VehiculoException error controlado
+     * @throws EmpleadoException error controlado
+     * @throws DireccionException error controlado
+     * @throws VentaException error controlado
+     * @throws PersonaException error controlado
+     */
+    public static void menuPrincipal() throws ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
+<span class="fc" id="L86">        teclado = new Scanner(System.in);</span>
+<span class="fc" id="L87">        boolean salir = false;</span>
+        int opcion;
+
+<span class="fc bfc" id="L90" title="All 2 branches covered.">        while (!salir) {</span>
+<span class="fc" id="L91">            System.out.println(&quot;\n1. Acceso Gerente&quot;);</span>
+<span class="fc" id="L92">            System.out.println(&quot;2. Acceso Empleado&quot;);</span>
+<span class="fc" id="L93">            System.out.println(&quot;3. Salir\n&quot;);</span>
+
+            try {
+<span class="fc" id="L96">                System.out.print(&quot;Introduzca una de las opciones: &quot;);</span>
+<span class="fc" id="L97">                opcion = teclado.nextInt();</span>
+<span class="fc" id="L98">                teclado.nextLine();</span>
+<span class="fc" id="L99">                System.out.println(&quot;&quot;);</span>
+
+<span class="pc bpc" id="L101" title="2 of 4 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L103">                        pedirCredenciales(1);</span>
+<span class="nc" id="L104">                        menuGerente();</span>
+<span class="nc" id="L105">                        break;</span>
+                    case 2:
+<span class="nc" id="L107">                        pedirCredenciales(2);</span>
+<span class="nc" id="L108">                        menuEmpleado();</span>
+<span class="nc" id="L109">                        break;</span>
+                    case 3:
+<span class="fc" id="L111">                        salir = true;</span>
+<span class="fc" id="L112">                        System.out.println(&quot;Usted a salido correctamente del programa&quot;);</span>
+<span class="fc" id="L113">                        break;</span>
+                    default:
+<span class="fc" id="L115">                        System.out.println(&quot;Solo numeros entre 1 y 3&quot;);</span>
+                }
+<span class="fc" id="L117">            } catch (InputMismatchException e) {</span>
+<span class="fc" id="L118">                System.out.println(&quot;Debe insertar una opcion correcta&quot;);</span>
+<span class="fc" id="L119">                teclado.next();</span>
+<span class="fc" id="L120">            }</span>
+        }
+<span class="fc" id="L122">    }</span>
+
+    /**
+     * Metodo estatico privado que contiene el menu de empleado
+     * @throws DniException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws ClienteException error controlado
+     * @throws VehiculoException error controlado
+     * @throws DireccionException error controlado
+     * @throws VentaException error controlado
+     * @throws PersonaException error controlado
+     */
+    public static void menuEmpleado() throws ClienteException, PersistenciaException, DniException, VehiculoException, DireccionException, VentaException, PersonaException {
+<span class="nc" id="L135">        boolean salir = false;</span>
+        int opcion;
+
+<span class="nc bnc" id="L138" title="All 2 branches missed.">        while (!salir) {</span>
+<span class="nc" id="L139">            System.out.println(&quot;\n1. Realizar ventas&quot;);</span>
+<span class="nc" id="L140">            System.out.println(&quot;2. Gestionar clientes&quot;);</span>
+<span class="nc" id="L141">            System.out.println(&quot;3. Salir\n&quot;);</span>
+
+            try {
+<span class="nc" id="L144">                System.out.print(&quot;Introduzca una de las opciones: &quot;);</span>
+<span class="nc" id="L145">                opcion = teclado.nextInt();</span>
+<span class="nc" id="L146">                teclado.nextLine();</span>
+<span class="nc" id="L147">                System.out.println(&quot;&quot;);</span>
+
+<span class="nc bnc" id="L149" title="All 4 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L151">                        menuVentas();</span>
+<span class="nc" id="L152">                        break;</span>
+                    case 2:
+<span class="nc" id="L154">                        menuClientes();</span>
+<span class="nc" id="L155">                        break;</span>
+                    case 3:
+<span class="nc" id="L157">                        salir = true;</span>
+<span class="nc" id="L158">                        break;</span>
+                    default:
+<span class="nc" id="L160">                        System.out.println(&quot;Solo numeros entre 1 y 3&quot;);</span>
+                }
+<span class="nc" id="L162">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L163">                System.out.println(&quot;Debe insertar una opcion correcta&quot;);</span>
+<span class="nc" id="L164">                teclado.next();</span>
+<span class="nc" id="L165">            }</span>
+        }
+<span class="nc" id="L167">    }</span>
+
+    /**
+     * Metodo estatico privado que contiene el menu de gerente
+     * @throws DniException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws ClienteException error controlado
+     * @throws EmpleadoException error controlado
+     * @throws BastidorException error controlado
+     * @throws VehiculoException error controlado
+     * @throws DireccionException error controlado
+     * @throws VentaException error controlado
+     * @throws PersonaException error controlado
+     */
+    public static void menuGerente() throws ClienteException, PersistenciaException, DniException, EmpleadoException, VehiculoException, BastidorException, DireccionException, VentaException, PersonaException {
+<span class="nc" id="L182">        boolean salir = false;</span>
+        int opcion;
+
+<span class="nc bnc" id="L185" title="All 2 branches missed.">        while (!salir) {</span>
+<span class="nc" id="L186">            System.out.println(&quot;\n1. Realizar ventas&quot;);</span>
+<span class="nc" id="L187">            System.out.println(&quot;2. Gestionar clientes&quot;);</span>
+<span class="nc" id="L188">            System.out.println(&quot;3. Gestionar empleados&quot;);</span>
+<span class="nc" id="L189">            System.out.println(&quot;4. Gestionar vehiculos&quot;);</span>
+<span class="nc" id="L190">            System.out.println(&quot;5. Salir\n&quot;);</span>
+
+            try {
+<span class="nc" id="L193">                System.out.print(&quot;Introduzca una de las opciones: &quot;);</span>
+<span class="nc" id="L194">                opcion = teclado.nextInt();</span>
+<span class="nc" id="L195">                teclado.nextLine();</span>
+<span class="nc" id="L196">                System.out.println(&quot;&quot;);</span>
+
+<span class="nc bnc" id="L198" title="All 6 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L200">                        menuVentas();</span>
+<span class="nc" id="L201">                        break;</span>
+                    case 2:
+<span class="nc" id="L203">                        menuClientes();</span>
+<span class="nc" id="L204">                        break;</span>
+                    case 3:
+<span class="nc" id="L206">                        menuEmpleados();</span>
+<span class="nc" id="L207">                        break;</span>
+                    case 4:
+<span class="nc" id="L209">                        menuVehiculos();</span>
+<span class="nc" id="L210">                        break;</span>
+                    case 5:
+<span class="nc" id="L212">                        salir = true;</span>
+<span class="nc" id="L213">                        break;</span>
+                    default:
+<span class="nc" id="L215">                        System.out.println(&quot;Solo numeros entre 1 y 5&quot;);</span>
+                }
+<span class="nc" id="L217">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L218">                System.out.println(&quot;Debe insertar una opcion correcta&quot;);</span>
+<span class="nc" id="L219">                teclado.next();</span>
+<span class="nc" id="L220">            }</span>
+        }
+<span class="nc" id="L222">    }</span>
+    
+    /**
+     * Metodo estatico privado que contiene el menu de ventas
+     * @throws PersistenciaException error controlado
+     * @throws VehiculoException error controlado
+     * @throws VentaException error controlado
+    */
+    public static void menuVentas() throws PersistenciaException, VehiculoException, VentaException {
+<span class="nc" id="L231">        boolean salir = false;</span>
+        int opcion;
+        Vehiculo vehiculo;
+        Venta venta;
+
+<span class="nc bnc" id="L236" title="All 2 branches missed.">        while (!salir) {</span>
+<span class="nc" id="L237">            System.out.println(&quot;\n1. Vender Vehiculo&quot;);</span>
+<span class="nc" id="L238">            System.out.println(&quot;2. Vehiculos vendidos&quot;);</span>
+<span class="nc" id="L239">            System.out.println(&quot;3. Listado de vehiculos&quot;);</span>
+<span class="nc" id="L240">            System.out.println(&quot;4. Salir\n&quot;);</span>
+<span class="nc" id="L241">            venta=null;</span>
+<span class="nc" id="L242">            vehiculo = null;</span>
+            try {
+<span class="nc" id="L244">                System.out.print(&quot;Introduzca una de las opciones: &quot;);</span>
+<span class="nc" id="L245">                opcion = teclado.nextInt();</span>
+<span class="nc" id="L246">                teclado.nextLine();</span>
+<span class="nc" id="L247">                System.out.println(&quot;&quot;);</span>
+
+<span class="nc bnc" id="L249" title="All 5 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L251">                        venta = pedirDatosVenta();</span>
+<span class="nc" id="L252">                        vehiculo = vehiculoController.buscar(venta.getBastidor());</span>
+<span class="nc" id="L253">                        vehiculo.setEstado(&quot;Vendido&quot;);</span>
+<span class="nc" id="L254">                        vehiculoController.modificar(vehiculo);</span>
+<span class="nc" id="L255">                        System.out.println(&quot;Venta completada&quot;);</span>
+<span class="nc" id="L256">                        break;</span>
+                    case 2:
+<span class="nc" id="L258">                        System.out.println(&quot;Lista vehiculos vendidos&quot;);</span>
+<span class="nc" id="L259">                        ArrayList&lt;String&gt; ventasAgrupadas = ventaController.agruparVentas();</span>
+<span class="nc bnc" id="L260" title="All 2 branches missed.">                        for (String grupo : ventasAgrupadas) {</span>
+<span class="nc" id="L261">                            System.out.println(grupo);</span>
+<span class="nc" id="L262">                        }</span>
+<span class="nc" id="L263">                        break;</span>
+                    case 3:
+<span class="nc" id="L265">                        System.out.println(&quot;Lista de vehiculos: &quot;);</span>
+<span class="nc" id="L266">                        ArrayList&lt;Vehiculo&gt; vehiculos = vehiculoController.listadoVehiculos();</span>
+<span class="nc bnc" id="L267" title="All 2 branches missed.">                        for (Vehiculo vehiculo2 : vehiculos) {</span>
+<span class="nc" id="L268">                            System.out.println(vehiculo2.toString());</span>
+<span class="nc" id="L269">                        }</span>
+<span class="nc" id="L270">                        break;</span>
+                    case 4:
+<span class="nc" id="L272">                        salir = true;</span>
+<span class="nc" id="L273">                        break;</span>
+                    default:
+<span class="nc" id="L275">                        System.out.println(&quot;Solo numeros entre 1 y 4&quot;);</span>
+                }
+<span class="nc" id="L277">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L278">                System.out.println(&quot;Debe insertar una opcion correcta&quot;);</span>
+<span class="nc" id="L279">                teclado.next();</span>
+<span class="nc" id="L280">            }</span>
+        }
+<span class="nc" id="L282">    }</span>
+
+
+    /**
+     * Metodo estatico privado que contiene el menu de gestion de clientes
+     * @throws PersistenciaException error controlado
+     * @throws ClienteException error controlado
+     * @throws DniException error controlado
+     * @throws DireccionException error controlado
+     * @throws PersonaException error controlado
+     */
+    public static void menuClientes() throws ClienteException, PersistenciaException, DniException, DireccionException, PersonaException {
+<span class="nc" id="L294">        boolean salir = false;</span>
+        int opcion;
+        Cliente cliente;
+
+<span class="nc bnc" id="L298" title="All 2 branches missed.">        while (!salir) {</span>
+<span class="nc" id="L299">            System.out.println(&quot;\n1. Insertar nuevo cliente&quot;);</span>
+<span class="nc" id="L300">            System.out.println(&quot;2. Modificar cliente&quot;);</span>
+<span class="nc" id="L301">            System.out.println(&quot;3. Eliminar cliente&quot;);</span>
+<span class="nc" id="L302">            System.out.println(&quot;4. Listado de clientes&quot;);</span>
+<span class="nc" id="L303">            System.out.println(&quot;5. Buscar cliente&quot;);</span>
+<span class="nc" id="L304">            System.out.println(&quot;6. Salir\n&quot;);</span>
+<span class="nc" id="L305">            cliente = null;</span>
+<span class="nc" id="L306">            String dni = null;</span>
+
+            try {
+<span class="nc" id="L309">                System.out.print(&quot;Intrduzca una de las opciones: &quot;);</span>
+<span class="nc" id="L310">                opcion = teclado.nextInt();</span>
+<span class="nc" id="L311">                teclado.nextLine();</span>
+<span class="nc" id="L312">                System.out.println(&quot;&quot;);</span>
+
+<span class="nc bnc" id="L314" title="All 7 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L316">                        cliente = generarDatosCliente(true);</span>
+<span class="nc" id="L317">                        clienteController.insertar(cliente);</span>
+<span class="nc" id="L318">                        System.out.println(&quot;\nCliente insertado&quot;);</span>
+<span class="nc" id="L319">                        break;</span>
+                    case 2:
+<span class="nc" id="L321">                        System.out.println(&quot;Proceda a introducir los datos, el DNI debe mantenerse igual&quot;);</span>
+<span class="nc" id="L322">                        cliente = generarDatosCliente(false);</span>
+<span class="nc" id="L323">                        clienteController.modificar(cliente);</span>
+<span class="nc" id="L324">                        System.out.println(&quot;\nCliente modificado&quot;);</span>
+<span class="nc" id="L325">                        break;</span>
+                    case 3:
+<span class="nc" id="L327">                        System.out.print(&quot;Introduzca el dni del cliente: &quot;);</span>
+<span class="nc" id="L328">                        dni = teclado.nextLine();</span>
+<span class="nc" id="L329">                        validarDni(dni);</span>
+<span class="nc" id="L330">                        clienteController.eliminar(clienteController.buscar(dni));</span>
+<span class="nc" id="L331">                        System.out.println(&quot;\nCliente eliminado&quot;);</span>
+<span class="nc" id="L332">                        break;</span>
+                    case 4:
+<span class="nc" id="L334">                        System.out.println(&quot;Lista de clientes: &quot;);</span>
+<span class="nc" id="L335">                        ArrayList&lt;Cliente&gt; clientes = clienteController.listadoClientes();</span>
+<span class="nc bnc" id="L336" title="All 2 branches missed.">                        for (Cliente cliente2 : clientes) {</span>
+<span class="nc" id="L337">                            System.out.println(cliente2.toString());</span>
+<span class="nc" id="L338">                        }</span>
+<span class="nc" id="L339">                        break;</span>
+                    case 5:
+<span class="nc" id="L341">                        System.out.print(&quot;Introduzca el dni del cliente: &quot;);</span>
+<span class="nc" id="L342">                        dni = teclado.next();</span>
+<span class="nc" id="L343">                        validarDni(dni);</span>
+<span class="nc" id="L344">                        cliente = clienteController.buscar(dni);</span>
+<span class="nc" id="L345">                        System.out.println(cliente.toString());</span>
+<span class="nc" id="L346">                        break;</span>
+                    case 6:
+<span class="nc" id="L348">                        salir = true;</span>
+<span class="nc" id="L349">                        break;</span>
+                    default:
+<span class="nc" id="L351">                        System.out.println(&quot;Solo numeros entre 1 y 6&quot;);</span>
+                }
+<span class="nc" id="L353">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L354">                System.out.println(&quot;Debe insertar una opcion correcta&quot;);</span>
+<span class="nc" id="L355">                teclado.next();</span>
+<span class="nc" id="L356">            }</span>
+<span class="nc" id="L357">        }</span>
+<span class="nc" id="L358">    }</span>
+
+
+    /**
+     * Metodo estatico que contiene el menu de gestion de empleados
+     * @throws PersistenciaException error controlado
+     * @throws EmpleadoException error controlado
+     * @throws DniException error controlado
+     * @throws DireccionException error controlado
+     * @throws PersonaException error controlado
+     */
+    public static void menuEmpleados() throws EmpleadoException, PersistenciaException, DniException, DireccionException, PersonaException {
+<span class="nc" id="L370">        boolean salir = false;</span>
+        int opcion;
+        Empleado empleado;
+<span class="nc" id="L373">        String dni=null;</span>
+
+<span class="nc bnc" id="L375" title="All 2 branches missed.">        while (!salir) {</span>
+<span class="nc" id="L376">            System.out.println(&quot;\n1. Insertar empleado&quot;);</span>
+<span class="nc" id="L377">            System.out.println(&quot;2. Modificar empleado&quot;);</span>
+<span class="nc" id="L378">            System.out.println(&quot;3. Eliminar empleado&quot;);</span>
+<span class="nc" id="L379">            System.out.println(&quot;4. Listado de empleados&quot;);</span>
+<span class="nc" id="L380">            System.out.println(&quot;5. Obtener datos empleado&quot;);</span>
+<span class="nc" id="L381">            System.out.println(&quot;6. Salir\n&quot;);</span>
+<span class="nc" id="L382">            empleado = null;</span>
+
+            try {
+
+<span class="nc" id="L386">                System.out.print(&quot;Introduzca una de las opciones: &quot;);</span>
+<span class="nc" id="L387">                opcion = teclado.nextInt();</span>
+<span class="nc" id="L388">                teclado.nextLine();</span>
+<span class="nc" id="L389">                System.out.println(&quot;&quot;);</span>
+
+<span class="nc bnc" id="L391" title="All 7 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L393">                        empleado = generarDatosEmpleado(true);</span>
+<span class="nc" id="L394">                        empleadoController.insertar(empleado);</span>
+<span class="nc" id="L395">                        System.out.println(&quot;\nEmpleado insertado&quot;);</span>
+<span class="nc" id="L396">                        break;</span>
+                    case 2:
+<span class="nc" id="L398">                        System.out.println(&quot;Proceda a introducir los datos, el DNI debe mantenerse igual&quot;);</span>
+<span class="nc" id="L399">                        empleado = generarDatosEmpleado(false);</span>
+<span class="nc" id="L400">                        empleadoController.modificar(empleado);</span>
+<span class="nc" id="L401">                        System.out.println(&quot;\nCliente modificado&quot;);</span>
+<span class="nc" id="L402">                        break;</span>
+                    case 3:
+<span class="nc" id="L404">                        System.out.print(&quot;Introduzca el dni del empleado: &quot;);</span>
+<span class="nc" id="L405">                        dni = teclado.next();</span>
+<span class="nc" id="L406">                        validarDni(dni);</span>
+<span class="nc" id="L407">                        empleadoController.eliminar(empleadoController.buscar(dni));</span>
+<span class="nc" id="L408">                        System.out.println(&quot;\nEmpleado eliminado&quot;);</span>
+<span class="nc" id="L409">                        break;</span>
+                    case 4:
+<span class="nc" id="L411">                        System.out.println(&quot;Lista de empleados: &quot;);</span>
+<span class="nc" id="L412">                        ArrayList&lt;Empleado&gt; empleados = empleadoController.listadoEmpleados();</span>
+<span class="nc bnc" id="L413" title="All 2 branches missed.">                        for (Empleado empleado2 : empleados) {</span>
+<span class="nc" id="L414">                            System.out.println(empleado2.toString());</span>
+<span class="nc" id="L415">                        }</span>
+<span class="nc" id="L416">                        break;</span>
+                    case 5:
+<span class="nc" id="L418">                        System.out.print(&quot;Introduzca el dni del empleado: &quot;);</span>
+<span class="nc" id="L419">                        dni = teclado.next();</span>
+<span class="nc" id="L420">                        validarDni(dni);</span>
+<span class="nc" id="L421">                        empleado = empleadoController.buscar(dni);</span>
+<span class="nc" id="L422">                        System.out.println(empleado.toString());</span>
+<span class="nc" id="L423">                        break;</span>
+                    case 6:
+<span class="nc" id="L425">                        salir = true;</span>
+<span class="nc" id="L426">                        break;</span>
+                    default:
+<span class="nc" id="L428">                        System.out.println(&quot;Solo numeros entre 1 y 6&quot;);</span>
+                }
+<span class="nc" id="L430">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L431">                System.out.println(&quot;Debe insertar una opcion correcta&quot;);</span>
+<span class="nc" id="L432">                teclado.next();</span>
+<span class="nc" id="L433">            }</span>
+        }
+<span class="nc" id="L435">    }    </span>
+
+    /**
+     * Metodo estatico privado que contiene el menu
+     * @throws PersistenciaException error controlado
+     * @throws VehiculoException error controlado
+     * @throws BastidorException error controlado
+     * @throws DniException error controlado
+     */
+    public static void menuVehiculos() throws VehiculoException, PersistenciaException, DniException, BastidorException {
+<span class="nc" id="L445">        boolean salir = false;</span>
+        int opcion;
+        Vehiculo vehiculo;
+
+<span class="nc bnc" id="L449" title="All 2 branches missed.">        while (!salir) {</span>
+<span class="nc" id="L450">            System.out.println(&quot;\n1. Insertar vehiculo nuevo&quot;);</span>
+<span class="nc" id="L451">            System.out.println(&quot;2. Modificar vehiculo&quot;);</span>
+<span class="nc" id="L452">            System.out.println(&quot;3. Elimininar vehiculo&quot;);</span>
+<span class="nc" id="L453">            System.out.println(&quot;4. Listado de vehiculos&quot;);</span>
+<span class="nc" id="L454">            System.out.println(&quot;5. Salir\n&quot;);</span>
+<span class="nc" id="L455">            vehiculo = null;</span>
+<span class="nc" id="L456">            String bastidor=null;</span>
+
+            try {
+<span class="nc" id="L459">                System.out.print(&quot;Introduzca una de las opciones: &quot;);</span>
+<span class="nc" id="L460">                opcion = teclado.nextInt();</span>
+<span class="nc" id="L461">                teclado.nextLine();</span>
+<span class="nc" id="L462">                System.out.println(&quot;&quot;);</span>
+ 
+<span class="nc bnc" id="L464" title="All 6 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L466">                        vehiculo = generarDatosVehiculo();</span>
+<span class="nc" id="L467">                        vehiculoController.insertar(vehiculo);</span>
+<span class="nc" id="L468">                        System.out.println(&quot;\nVehiculo insertado&quot;);</span>
+<span class="nc" id="L469">                        break;</span>
+                    case 2:
+<span class="nc" id="L471">                        System.out.println(&quot;Proceda a introducir los datos, el numero de bastidor debe mantenerse igual&quot;);</span>
+<span class="nc" id="L472">                        vehiculo = generarDatosVehiculo();</span>
+<span class="nc" id="L473">                        vehiculoController.modificar(vehiculo);</span>
+<span class="nc" id="L474">                        System.out.println(&quot;\nVehiculo modificado&quot;);</span>
+<span class="nc" id="L475">                        break;</span>
+                    case 3:
+<span class="nc" id="L477">                        System.out.print(&quot;Introduzca el numero de bastidor del vehiculo: &quot;);</span>
+<span class="nc" id="L478">                        bastidor = teclado.next();</span>
+<span class="nc" id="L479">                        validarBastidor(bastidor);</span>
+<span class="nc" id="L480">                        vehiculoController.eliminar(vehiculoController.buscar(bastidor));</span>
+<span class="nc" id="L481">                        System.out.println(&quot;\nVehiculo eliminado&quot;);</span>
+<span class="nc" id="L482">                        break;</span>
+                    case 4:
+<span class="nc" id="L484">                        System.out.println(&quot;Lista de vehiculos: &quot;);</span>
+<span class="nc" id="L485">                        ArrayList&lt;Vehiculo&gt; vehiculos = vehiculoController.listadoVehiculos();</span>
+<span class="nc bnc" id="L486" title="All 2 branches missed.">                        for (Vehiculo vehiculo2 : vehiculos) {</span>
+<span class="nc" id="L487">                            System.out.println(vehiculo2.toString());</span>
+<span class="nc" id="L488">                        }</span>
+<span class="nc" id="L489">                        break;</span>
+                    case 5:
+<span class="nc" id="L491">                        salir = true;</span>
+<span class="nc" id="L492">                        break;</span>
+                    default:
+<span class="nc" id="L494">                        System.out.println(&quot;Solo numeros entre 1 y 5&quot;);</span>
+                }
+<span class="nc" id="L496">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L497">                System.out.println(&quot;Debe insertar una opcion correcta&quot;);</span>
+<span class="nc" id="L498">                teclado.next();</span>
+<span class="nc" id="L499">            }</span>
+<span class="nc" id="L500">        }</span>
+<span class="nc" id="L501">    }</span>
+
+
+    /**
+     * Funcion privada encarga de generar vehiculos
+     * @return devuelve un objeto de tipo vehiculo
+     * @throws VehiculoException error controlado
+     */
+    private static Vehiculo generarDatosVehiculo() throws VehiculoException{
+        
+<span class="nc" id="L511">        System.out.print(&quot;Introduzca el numero de bastidor: &quot;);</span>
+<span class="nc" id="L512">        String bastidor = teclado.nextLine();</span>
+
+<span class="nc" id="L514">        System.out.print(&quot;Introduzca el valor de matricula: &quot;);</span>
+<span class="nc" id="L515">        String matricula = teclado.nextLine();</span>
+
+<span class="nc" id="L517">        System.out.print(&quot;Introduzca la marca: &quot;);</span>
+<span class="nc" id="L518">        String marca = teclado.nextLine();</span>
+
+<span class="nc" id="L520">        System.out.print(&quot;Introduzca el modelo: &quot;);</span>
+<span class="nc" id="L521">        String modelo = teclado.nextLine();</span>
+
+<span class="nc" id="L523">        System.out.print(&quot;Introduzca el color: &quot;);</span>
+<span class="nc" id="L524">        String color = teclado.nextLine();</span>
+
+<span class="nc" id="L526">        System.out.print(&quot;Introduzca la cilindrada: &quot;);</span>
+<span class="nc" id="L527">        String cilindrada = teclado.nextLine();</span>
+
+<span class="nc" id="L529">        System.out.print(&quot;Introduzca el tipo de motor: &quot;);</span>
+<span class="nc" id="L530">        String motor = teclado.nextLine();</span>
+
+<span class="nc" id="L532">        System.out.print(&quot;Introduzca la potencia: &quot;);</span>
+<span class="nc" id="L533">        int potencia = Integer.parseInt(teclado.nextLine());</span>
+
+<span class="nc" id="L535">        System.out.print(&quot;Introduzca los extras instalados: &quot;);</span>
+<span class="nc" id="L536">        String extras = teclado.nextLine();</span>
+
+<span class="nc" id="L538">        System.out.print(&quot;Introduzca el precio: &quot;);</span>
+<span class="nc" id="L539">        double precio = teclado.nextDouble();</span>
+
+<span class="nc" id="L541">        System.out.print(&quot;Introduzca el tipo de vehiculo: &quot;);</span>
+<span class="nc" id="L542">        String tipo = teclado.nextLine();</span>
+
+<span class="nc" id="L544">        System.out.print(&quot;Introduzca el estado del vehiculo: &quot;);</span>
+<span class="nc" id="L545">        String estado = teclado.nextLine();</span>
+
+<span class="nc" id="L547">        Vehiculo vehiculo = new Vehiculo(bastidor, matricula, marca, modelo, color, precio, extras, motor, potencia, cilindrada, tipo, estado);</span>
+<span class="nc" id="L548">        vehiculoController.validarVehiculo(vehiculo);</span>
+
+<span class="nc" id="L550">        return vehiculo;</span>
+    }
+
+    /**
+     * Funcion privada encarga de generar clientes
+     * @return un cliente
+     * @throws ClienteException error controlado
+     * @throws DireccionException error controlado
+     */
+    private static Cliente generarDatosCliente(boolean nuevo) throws ClienteException, DireccionException {
+<span class="nc" id="L560">        String codigoCliente = null;</span>
+
+<span class="nc bnc" id="L562" title="All 2 branches missed.">        if (!nuevo) {</span>
+<span class="nc" id="L563">            System.out.print(&quot;Introduzca el valor de el codigo de cliente: &quot;);</span>
+<span class="nc" id="L564">            codigoCliente = teclado.nextLine();</span>
+        }
+
+<span class="nc" id="L567">        System.out.print(&quot;Introduzca el valor de dni: &quot;);</span>
+<span class="nc" id="L568">        String dni = teclado.nextLine();</span>
+
+<span class="nc" id="L570">        System.out.print(&quot;Introduzca el valor de nombre: &quot;);</span>
+<span class="nc" id="L571">        String nombre = teclado.nextLine();</span>
+
+<span class="nc" id="L573">        System.out.print(&quot;Introduzca el valor de apellidos: &quot;);</span>
+<span class="nc" id="L574">        String apellidos = teclado.nextLine();</span>
+
+<span class="nc" id="L576">        System.out.print(&quot;Introduzca el valor de fechaNacimiento: &quot;);</span>
+<span class="nc" id="L577">        String fechaNacimiento = teclado.nextLine();</span>
+
+<span class="nc" id="L579">        System.out.print(&quot;Introduzca el valor de telefono: &quot;);</span>
+<span class="nc" id="L580">        String telefono = teclado.nextLine();</span>
+
+<span class="nc" id="L582">        Cliente cliente = new Cliente(codigoCliente, nombre, apellidos, dni, fechaNacimiento, telefono, generarDatosDireccion(dni));</span>
+<span class="nc" id="L583">        clienteController.validarCliente(cliente);</span>
+
+<span class="nc" id="L585">        return cliente;</span>
+    }
+    
+
+    /**
+     * Funcion privada encarga de generar empleados
+     * @return un empleado
+     * @throws EmpleadoException error controlado
+     * @throws DireccionException error controlado
+     */
+    private static Empleado generarDatosEmpleado(boolean nuevo) throws EmpleadoException, DireccionException {
+<span class="nc" id="L596">        String codigoEmpleado = null;</span>
+
+<span class="nc bnc" id="L598" title="All 2 branches missed.">        if (!nuevo) {</span>
+<span class="nc" id="L599">            System.out.print(&quot;Introduzca el valor de el codigo del empleado &quot;);</span>
+<span class="nc" id="L600">            codigoEmpleado = teclado.nextLine();</span>
+        }
+
+<span class="nc" id="L603">        System.out.print(&quot;Introduzca el valor de dni: &quot;);</span>
+<span class="nc" id="L604">        String dni = teclado.nextLine();</span>
+
+<span class="nc" id="L606">        System.out.print(&quot;Introduzca el valor de nombre: &quot;);</span>
+<span class="nc" id="L607">        String nombre = teclado.nextLine();</span>
+
+<span class="nc" id="L609">        System.out.print(&quot;Introduzca el valor de apellidos: &quot;);</span>
+<span class="nc" id="L610">        String apellidos = teclado.nextLine();</span>
+
+<span class="nc" id="L612">        System.out.print(&quot;Introduzca el valor de fechaNacimiento: &quot;);</span>
+<span class="nc" id="L613">        String fechaNacimiento = teclado.nextLine();</span>
+
+<span class="nc" id="L615">        System.out.print(&quot;Introduzca el valor de telefono: &quot;);</span>
+<span class="nc" id="L616">        String telefono = teclado.nextLine();</span>
+
+<span class="nc" id="L618">        System.out.print(&quot;Introduzca el rango del empleado: &quot;);</span>
+<span class="nc" id="L619">        String rango = teclado.nextLine();</span>
+
+<span class="nc" id="L621">        System.out.print(&quot;Introduzca el valor de contraseña: &quot;);</span>
+<span class="nc" id="L622">        String contrasenia = teclado.nextLine();</span>
+
+<span class="nc" id="L624">        Empleado empleado = new Empleado(codigoEmpleado, nombre, apellidos, dni, fechaNacimiento, telefono, generarDatosDireccion(dni), rango, contrasenia);</span>
+<span class="nc" id="L625">        empleadoController.validarEmpleado(empleado);</span>
+
+<span class="nc" id="L627">        return empleado;</span>
+    }
+
+    /**
+     * Funcion privada encarga de generar nuevas direcciones
+     * @return una direccion
+     * @throws DireccionException error controlado
+     */
+    private static Direccion generarDatosDireccion(String identificador) throws DireccionException{
+
+<span class="nc" id="L637">        System.out.print(&quot;Introduzca el pais: &quot;);</span>
+<span class="nc" id="L638">        String pais = teclado.nextLine();</span>
+
+<span class="nc" id="L640">        System.out.print(&quot;Introduzca la provincia: &quot;);</span>
+<span class="nc" id="L641">        String provincia = teclado.nextLine();</span>
+
+<span class="nc" id="L643">        System.out.print(&quot;Introduzca la ciudad: &quot;);</span>
+<span class="nc" id="L644">        String ciudad = teclado.nextLine();</span>
+
+<span class="nc" id="L646">        System.out.print(&quot;Introduzca la calle: &quot;);</span>
+<span class="nc" id="L647">        String calle = teclado.nextLine();</span>
+
+<span class="nc" id="L649">        System.out.print(&quot;Introduzca el numero de la vivienda: &quot;);</span>
+<span class="nc" id="L650">        int numero = Integer.parseInt(teclado.nextLine());</span>
+
+<span class="nc" id="L652">        System.out.print(&quot;Introduzca el codigo postal: &quot;);</span>
+<span class="nc" id="L653">        String codigoPostal = teclado.nextLine();</span>
+
+<span class="nc" id="L655">        Direccion direccion = new Direccion(identificador, calle, numero, codigoPostal, provincia, ciudad, pais);</span>
+<span class="nc" id="L656">        direccionController.validarDireccion(direccion);</span>
+
+<span class="nc" id="L658">        return direccion;</span>
+    }
+
+    /**
+     * Metodo que pide los datos para generar una venta
+     * @return venta creada
+     * @throws VentaException error controlado
+     */
+    public static Venta pedirDatosVenta() throws VentaException {
+
+<span class="nc" id="L668">        System.out.print(&quot;Introduzca el dni del empleado: &quot;);</span>
+<span class="nc" id="L669">        String dniEmpleado = teclado.nextLine();</span>
+
+<span class="nc" id="L671">        System.out.print(&quot;Introduzca el dni del cliente: &quot;);</span>
+<span class="nc" id="L672">        String dniCliente = teclado.nextLine();</span>
+
+<span class="nc" id="L674">        System.out.print(&quot;Introduzca el numero de bastidor del vehiculo: &quot;);</span>
+<span class="nc" id="L675">        String bastidor = teclado.nextLine();</span>
+
+<span class="nc" id="L677">        Venta venta = new Venta(null, dniEmpleado, dniCliente, bastidor);</span>
+<span class="nc" id="L678">        ventaController.validarVenta(venta);</span>
+
+<span class="nc" id="L680">        return venta;</span>
+
+    }
+
+    /**
+     * Metodo que pide las credenciales de acceso
+     * @param rango rango necesario para acceder al menu
+     * @throws PersistenciaException error controlado
+     * @throws EmpleadoException error controlado
+     */
+    public static void pedirCredenciales(int rango) throws PersistenciaException, EmpleadoException {
+
+<span class="nc" id="L692">        System.out.print(&quot;Introduzca su dni: &quot;);</span>
+<span class="nc" id="L693">        String dni = teclado.nextLine();</span>
+
+<span class="nc" id="L695">        System.out.print(&quot;Introduzca su contrsenia: &quot;);</span>
+<span class="nc" id="L696">        String contrasenia = teclado.nextLine();</span>
+
+<span class="nc" id="L698">        empleadoController.comprobarCredenciales(rango, dni, contrasenia);</span>
+<span class="nc" id="L699">    }</span>
+
+    /**
+     * Metodo privado que valida un dni
+     * @param dni dni a validar 
+     * @throws DniException error controlado
+     */
+    public static void validarDni(String dni) throws DniException {
+<span class="pc bpc" id="L707" title="1 of 4 branches missed.">        if (dni == null || dni.isEmpty()) {</span>
+<span class="fc" id="L708">            throw new DniException(&quot;Debe introducir un DNI&quot;);</span>
+        }
+<span class="fc" id="L710">    }</span>
+    
+    /**
+     * Metodo privado que valida un bastidor 
+     * @param bastidor a validar 
+     * @throws BastidorException error controlado
+     */
+    public static void validarBastidor(String bastidor) throws BastidorException {
+<span class="pc bpc" id="L718" title="1 of 4 branches missed.">        if (bastidor == null || bastidor.isEmpty()) {</span>
+<span class="fc" id="L719">            throw new BastidorException(&quot;Debe introducir un numero de bastidor&quot;);</span>
+        }
+<span class="fc" id="L721">    }</span>
+
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -188,7 +188,7 @@ public class EmpleadoController extends Validaciones {
      * @param empleado empleado del que generar la persona
      * @return Persona creada
      */
-    private Persona generarPersona(Empleado empleado) {
+    public Persona generarPersona(Empleado empleado) {
         return new Persona(empleado.getNombre(), empleado.getApellidos(), empleado.getDni(), 
         empleado.getFechaNacimiento(), empleado.getTelefono(), empleado.getDireccion());
     }
@@ -241,7 +241,7 @@ public class EmpleadoController extends Validaciones {
 
         if (empleado != null) {
             if (!empleado.getContrasenia().equals(contrasenia)) {
-                throw new EmpleadoException("La contrasenia es incorrecta " + empleado.getContrasenia() + ", contrasenia: " + contrasenia);
+                throw new EmpleadoException("La contrasenia es incorrecta");
             } 
             return empleado.getRango();
         } else {

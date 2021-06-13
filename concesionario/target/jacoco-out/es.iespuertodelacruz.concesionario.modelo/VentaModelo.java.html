@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VentaModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">concesionario</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.concesionario.modelo</a> &gt; <span class="el_source">VentaModelo.java</span></div><h1>VentaModelo.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.concesionario.modelo;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.concesionario.api.Venta;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
+
+/**
+ * Clase VentaModelo
+ */
+public class VentaModelo {
+    SqliteBbdd persistencia;
+
+    private static final String TABLA  = &quot;Venta&quot;;
+    private static final String CLAVE  = &quot;identificador&quot;;
+
+    /**
+     * Constructor de la Clase ClienteModelo
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L22">    public VentaModelo() throws PersistenciaException {</span>
+<span class="fc" id="L23">        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);</span>
+
+<span class="fc" id="L25">    }</span>
+
+    /**
+     * Constructor para test de la Clase VentaModelo
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L32">    public VentaModelo(boolean test) throws PersistenciaException {</span>
+<span class="fc" id="L33">        persistencia = new SqliteBbdd(TABLA, CLAVE, &quot;org.sqlite.JDBC&quot;, &quot;jdbc:sqlite:test.db&quot;, null, null);</span>
+
+<span class="fc" id="L35">    }</span>
+
+    /**
+     * Metodo que inserta una venta
+     * @param venta venta a insertar
+     * @throws PersistenciaException error controlado
+     */
+    public void insertar(Venta venta) throws PersistenciaException {
+<span class="fc" id="L43">        String sql =&quot;INSERT INTO Venta (identificador, codigoEmpleado, codigoCliente, bastidor)&quot; + </span>
+<span class="fc" id="L44">        &quot;VALUES (&quot; + venta.getIdentificador() + &quot;, '&quot; + venta.getCodigoEmpleado() + </span>
+<span class="fc" id="L45">        &quot;', '&quot; + venta.getCodigoCliente() + &quot;', '&quot; + venta.getBastidor() + &quot;')&quot;;</span>
+<span class="fc" id="L46">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L47">    }</span>
+
+    /**
+     * Metodo que modifica una venta
+     * @param venta venta a modificar
+     * @throws PersistenciaException error controlado
+     */
+    public void modificar(Venta venta) throws PersistenciaException {
+<span class="fc" id="L55">        String sql = &quot;UPDATE Venta SET codigoEmpleado = '&quot; + venta.getCodigoEmpleado() +</span>
+<span class="fc" id="L56">        &quot;', codigoCliente = '&quot; + venta.getCodigoCliente() + &quot;', bastidor = '&quot; + venta.getIdentificador() + </span>
+<span class="fc" id="L57">        &quot;' WHERE identificador = '&quot; + venta.getIdentificador()  + &quot;'&quot;;</span>
+<span class="fc" id="L58">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L59">    }</span>
+    
+    /**
+     * Metodo que elimina una venta
+     * @param venta venta a eliminar
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminar(Venta venta) throws PersistenciaException {
+<span class="fc" id="L67">        String sql = &quot;DELETE from Venta where identificador = '&quot; + </span>
+<span class="fc" id="L68">        venta.getIdentificador() + &quot;'&quot;;</span>
+<span class="fc" id="L69">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L70">    }</span>
+
+    /**
+     * Metodo que elimina una venta por identificador
+     * @param identificador identificador de la venta a eliminar
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminar(String identificador) throws PersistenciaException {
+<span class="fc" id="L78">        String sql = &quot;DELETE from Venta where identificador = '&quot; + </span>
+        identificador + &quot;'&quot;;
+<span class="fc" id="L80">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L81">    }</span>
+
+    /**
+     * Funcion que busca una venta especifica
+     * @param identificador identificador de la venta
+     * @return Venta encontrado
+     * @throws PersistenciaException error controlado
+     */
+    public Venta buscar(String identificador) throws PersistenciaException  {
+<span class="fc" id="L90">        Venta venta = null;</span>
+<span class="fc" id="L91">        ArrayList&lt;Venta&gt; listaVentas = null;</span>
+<span class="fc" id="L92">        String sql = &quot;SELECT * FROM Venta where identificador = &quot;;</span>
+<span class="fc" id="L93">        sql = sql + &quot;'&quot; + identificador + &quot;'&quot;;</span>
+<span class="fc" id="L94">        listaVentas = convertir(sql);</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">        if (!listaVentas.isEmpty()) {</span>
+<span class="fc" id="L96">            venta = listaVentas.get(0);</span>
+        }
+
+<span class="fc" id="L99">        return venta;</span>
+    }
+
+    /**
+     * Funcion busca todas las ventas guardados
+     * @return lista de todas las ventas
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Venta&gt; listadoVentas() throws PersistenciaException  {
+<span class="fc" id="L108">        String sql = &quot;SELECT * FROM Venta&quot;;</span>
+<span class="fc" id="L109">        return convertir(sql);</span>
+    }
+
+    /**
+     * Funcion que retorna un listado agrupado de las ventas realizadas
+     * @return listado de ventas agrupado por modelo
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;String&gt; agruparVentas() throws PersistenciaException  {
+<span class="fc" id="L118">        String sql = &quot;SELECT COUNT(bastidor), Marca, Modelo FROM Vehiculo WHERE estado = 'Vendido' GROUP BY Modelo ORDER BY COUNT(bastidor) DESC;&quot;;</span>
+<span class="fc" id="L119">        ArrayList&lt;String&gt; ventasAgrupadas = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L120">        ResultSet resultSet = null;</span>
+        
+        try {
+<span class="fc" id="L123">            resultSet = persistencia.buscarElementos(sql);</span>
+
+<span class="fc bfc" id="L125" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L126">                String cantidad = resultSet.getString(&quot;COUNT(bastidor)&quot;);</span>
+<span class="fc" id="L127">                String marca = resultSet.getString(&quot;marca&quot;);</span>
+<span class="fc" id="L128">                String modelo = resultSet.getString(&quot;modelo&quot;);</span>
+<span class="fc" id="L129">                String resultado = marca + &quot; &quot; + modelo + &quot;: &quot; + cantidad;</span>
+<span class="fc" id="L130">                ventasAgrupadas.add(resultado);</span>
+<span class="fc" id="L131">            }</span>
+<span class="nc" id="L132">        } catch (Exception exception) {</span>
+<span class="nc" id="L133">            throw new PersistenciaException(&quot;Se ha producido un error realizando la consulta&quot;, exception);</span>
+        } finally {
+<span class="fc" id="L135">            persistencia.closeConnection(null, null, resultSet);</span>
+        }
+<span class="fc" id="L137">        return ventasAgrupadas;</span>
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Venta
+     * @param sql a ejecutar
+     * @return lista de resultados
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Venta&gt; convertir(String sql) throws PersistenciaException {
+<span class="fc" id="L147">        ArrayList&lt;Venta&gt; listaVentas = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L148">        ResultSet resultSet = null;</span>
+
+        try {
+<span class="fc" id="L151">            resultSet = persistencia.buscarElementos(sql);</span>
+
+<span class="fc bfc" id="L153" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L154">                Venta venta = new Venta();</span>
+<span class="fc" id="L155">                venta.setBastidor(&quot;bastidor&quot;);</span>
+<span class="fc" id="L156">                venta.setCodigoCliente(&quot;codigoCliente&quot;);</span>
+<span class="fc" id="L157">                venta.setCodigoEmpleado(&quot;codigoEmpleado&quot;);</span>
+<span class="fc" id="L158">                venta.setIdentificador(&quot;identificador&quot;);</span>
+<span class="fc" id="L159">                listaVentas.add(venta);</span>
+<span class="fc" id="L160">            }</span>
+<span class="fc" id="L161">        } catch (Exception exception) {</span>
+<span class="fc" id="L162">            throw new PersistenciaException(&quot;Se ha producido un error realizando la consulta&quot;, exception);</span>
+        } finally {
+<span class="fc" id="L164">            persistencia.closeConnection(null, null, resultSet);</span>
+        }
+<span class="fc" id="L166">        return listaVentas;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

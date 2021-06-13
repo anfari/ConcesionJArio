@@ -115,7 +115,7 @@ public class VentaModelo {
      * @throws PersistenciaException error controlado
      */
     public ArrayList<String> agruparVentas() throws PersistenciaException  {
-        String sql = "SELECT COUNT(bastidor), Marca, Modelo FROM Vehiculo WHERE estado = 'Vendido' GROUP BY Modelo;";
+        String sql = "SELECT COUNT(bastidor), Marca, Modelo FROM Vehiculo WHERE estado = 'Vendido' GROUP BY Modelo ORDER BY COUNT(bastidor) DESC;";
         ArrayList<String> ventasAgrupadas = new ArrayList<>();
         ResultSet resultSet = null;
         

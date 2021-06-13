@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmpleadoController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">concesionario</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.concesionario.controlador</a> &gt; <span class="el_source">EmpleadoController.java</span></div><h1>EmpleadoController.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.concesionario.controlador;
+
+
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.concesionario.api.Empleado;
+import es.iespuertodelacruz.concesionario.api.Persona;
+import es.iespuertodelacruz.concesionario.exception.DireccionException;
+import es.iespuertodelacruz.concesionario.exception.EmpleadoException;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
+import es.iespuertodelacruz.concesionario.exception.PersonaException;
+import es.iespuertodelacruz.concesionario.modelo.EmpleadoModelo;
+
+/**
+ * Clase EmpleadoController
+ */
+public class EmpleadoController extends Validaciones {
+    EmpleadoModelo empleadoModelo;
+    PersonaController personaController;
+
+    /**
+     * Constructor de la clase EmpleadoModelo
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L25">    public EmpleadoController() throws PersistenciaException {</span>
+<span class="fc" id="L26">        empleadoModelo = new EmpleadoModelo();</span>
+<span class="fc" id="L27">        personaController = new PersonaController();</span>
+<span class="fc" id="L28">    }</span>
+
+    /**
+     * Constructor para test de la clase EmpleadoController
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L35">    public EmpleadoController(boolean test) throws PersistenciaException {</span>
+<span class="fc" id="L36">        empleadoModelo = new EmpleadoModelo(true);</span>
+<span class="fc" id="L37">        personaController = new PersonaController(true);</span>
+<span class="fc" id="L38">    }</span>
+
+    /**
+     * Metodo encargado de realizar la validacion del objeto Empleado
+     * @param empleado empleado a validar
+     * @throws EmpleadoException error controlado
+     */
+    public void validarEmpleado(Empleado empleado) throws EmpleadoException {
+<span class="fc" id="L46">        String mensaje = &quot;&quot;;</span>
+
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (empleado == null) {</span>
+<span class="fc" id="L49">            mensaje = &quot;Se esta intentando validar un objeto vacio&quot;;</span>
+<span class="fc" id="L50">            throw new EmpleadoException(mensaje);</span>
+        }
+<span class="fc bfc" id="L52" title="All 4 branches covered.">        if (empleado.getNombre() == null || empleado.getNombre().isEmpty()) {</span>
+<span class="fc" id="L53">            mensaje += &quot;El nombre del empleado es nulo o vacio\n&quot;;</span>
+        }
+<span class="fc bfc" id="L55" title="All 4 branches covered.">        if (empleado.getApellidos() == null || empleado.getApellidos().isEmpty()) {</span>
+<span class="fc" id="L56">            mensaje += &quot;Los apellidos del empleado son nulos o vacios\n&quot;;</span>
+        }
+<span class="fc bfc" id="L58" title="All 6 branches covered.">        if (empleado.getDni() == null || empleado.getDni().isEmpty() || !validarDni(empleado.getDni())) {</span>
+<span class="fc" id="L59">            mensaje += &quot;El dni del empleado es nulo, vacio o invalido\n&quot;;</span>
+        }
+<span class="fc bfc" id="L61" title="All 4 branches covered.">        if (empleado.getFechaNacimiento() == null || empleado.getFechaNacimiento().isEmpty()) {</span>
+<span class="fc" id="L62">            mensaje += &quot;La fecha de nacimiento del empleado es nula o vacia\n&quot;;</span>
+        }
+<span class="fc bfc" id="L64" title="All 4 branches covered.">        if (empleado.getTelefono() == null || empleado.getTelefono().isEmpty()) {</span>
+<span class="fc" id="L65">            mensaje += &quot;El telefono del empleado es nulo o vacio&quot;;</span>
+        }
+<span class="fc bfc" id="L67" title="All 4 branches covered.">        if (empleado.getRango() == null || empleado.getRango().isEmpty()) {</span>
+<span class="fc" id="L68">            mensaje += &quot;El rango del empleado es nulo o vacio\n&quot;;</span>
+        }
+<span class="fc bfc" id="L70" title="All 4 branches covered.">        if (empleado.getContrasenia() == null || empleado.getContrasenia().isEmpty()) {</span>
+<span class="fc" id="L71">            mensaje += &quot;La contraseña del empleado es nulo o vacio\n&quot;;</span>
+        }
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if (!mensaje.isEmpty()) {</span>
+<span class="fc" id="L74">            throw new EmpleadoException(mensaje);</span>
+        }
+<span class="fc" id="L76">    }</span>
+    
+    /**
+     * Metodo encargado de insertar
+     * @param empleado empleado a insertar
+     * @throws EmpleadoException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws DireccionException error controlado
+     * @throws PersonaException error controlado
+     */
+    public void insertar(Empleado empleado) throws  EmpleadoException, PersistenciaException, PersonaException, DireccionException {
+<span class="fc" id="L87">        validarEmpleado(empleado);</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        if (existe(empleado)) {</span>
+<span class="fc" id="L89">            throw new EmpleadoException(&quot;El empleado indicado ya existe&quot;);</span>
+        }
+<span class="fc" id="L91">        Persona persona = generarPersona(empleado);</span>
+<span class="fc" id="L92">        personaController.insertar(persona);</span>
+<span class="fc" id="L93">        empleadoModelo.insertar(empleado);</span>
+<span class="fc" id="L94">    }</span>
+
+    /**
+     * Metodo encargado de elimianr
+     * @param empleado empleado a eliminar
+     * @throws EmpleadoException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws DireccionException error controlado
+     * @throws PersonaException error controlado
+     */
+    public void eliminar(Empleado empleado) throws EmpleadoException, PersistenciaException, PersonaException, DireccionException {
+<span class="fc" id="L105">        validarEmpleado(empleado);</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        if (!existe(empleado)) {</span>
+<span class="fc" id="L107">            throw new EmpleadoException(&quot;El empleado indicado no existe&quot;);</span>
+        }
+<span class="fc" id="L109">        Persona persona = generarPersona(empleado);</span>
+<span class="fc" id="L110">        personaController.eliminar(persona);</span>
+<span class="fc" id="L111">        empleadoModelo.eliminar(empleado);</span>
+<span class="fc" id="L112">    }</span>
+
+    /**
+     * Metodo encargado de eliminar utilizando el codigo de empleado
+     * @param dni dni del empleado
+     * @throws EmpleadoException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws DireccionException error controlado
+     * @throws PersonaException error controlado
+     */
+    public void eliminar(String dni) throws EmpleadoException, PersistenciaException, PersonaException, DireccionException {
+        Empleado empleado;
+<span class="fc" id="L124">        empleado = buscar(dni);</span>
+<span class="fc" id="L125">        eliminar(empleado);</span>
+<span class="fc" id="L126">    }</span>
+
+    /**
+     * Metodo encargado de modificar
+     * @param empleado empleado a modificar
+     * @throws EmpleadoException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws DireccionException error controlado
+     * @throws PersonaException error controlado
+     */
+    public void modificar(Empleado empleado) throws EmpleadoException, PersistenciaException, PersonaException, DireccionException {
+        Empleado empleadoAlmacenado;
+<span class="fc" id="L138">        validarEmpleado(empleado);</span>
+<span class="fc" id="L139">        empleadoAlmacenado = buscar(empleado.getDni());</span>
+<span class="fc bfc" id="L140" title="All 2 branches covered.">        if (empleadoAlmacenado == null) {</span>
+<span class="fc" id="L141">            throw new EmpleadoException(&quot;El empleado indicado no existe&quot;);</span>
+        }
+<span class="fc" id="L143">        Persona persona = generarPersona(empleado);</span>
+<span class="fc" id="L144">        personaController.modificar(persona);</span>
+<span class="fc" id="L145">        empleadoModelo.modificar(empleado);</span>
+<span class="fc" id="L146">    }</span>
+
+    /**
+     * Metodo encargado de buscar por codigo de empleado
+     * @param dni dni del empleado
+     * @return empleado encontrado
+     * @throws PersistenciaException error controlado
+     */
+    public Empleado buscar(String dni) throws PersistenciaException  {
+<span class="fc" id="L155">        Empleado empleado = null;</span>
+<span class="fc" id="L156">        empleado = empleadoModelo.buscar(dni);</span>
+<span class="fc" id="L157">        return empleado;</span>
+    }
+    
+     /**
+     * Funcion que retorna una lista con todos los empleados
+     * @return listado con todos los empleados
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Empleado&gt; listadoEmpleados() throws PersistenciaException {
+<span class="fc" id="L166">        return empleadoModelo.listadoEmpleados();</span>
+    }
+    /**
+     * Funcion encargada de verificar si existe o no un empleado
+     * @param empleado empleado a encontrar
+     * @return true/false si existe o no
+     * @throws PersistenciaException error controlado
+     */
+    public boolean existe(Empleado empleado) throws PersistenciaException  {
+<span class="fc" id="L175">        boolean encontrado = false;</span>
+        Empleado empleadoEncontrado;
+
+<span class="fc" id="L178">        empleadoEncontrado = buscar(empleado.getDni());</span>
+<span class="fc bfc" id="L179" title="All 2 branches covered.">        if (empleadoEncontrado != null) {</span>
+<span class="fc" id="L180">            encontrado = true;</span>
+        }
+
+<span class="fc" id="L183">        return encontrado;</span>
+    }
+
+    /**
+     * Funcion encargada de generar una Persona a partir de los datos del empleado
+     * @param empleado empleado del que generar la persona
+     * @return Persona creada
+     */
+    private Persona generarPersona(Empleado empleado) {
+<span class="fc" id="L192">        return new Persona(empleado.getNombre(), empleado.getApellidos(), empleado.getDni(), </span>
+<span class="fc" id="L193">        empleado.getFechaNacimiento(), empleado.getTelefono(), empleado.getDireccion());</span>
+    }
+
+    /**
+     * Metodo encargado de validar las credenciales de acceso
+     * @param rango rango necesario para acceder al menu
+     * @param dni dni del empleado
+     * @param contrasenia contrsenia del empleado
+     * @throws PersistenciaException error controlado
+     * @throws EmpleadoException error controlado
+     */
+    public void comprobarCredenciales(int rango, String dni, String contrasenia) throws PersistenciaException, EmpleadoException {
+<span class="fc" id="L205">        Empleado empleado = null;</span>
+
+<span class="fc" id="L207">        empleado = buscar(dni);</span>
+
+<span class="fc bfc" id="L209" title="All 2 branches covered.">        if (empleado != null) {</span>
+<span class="fc bfc" id="L210" title="All 3 branches covered.">            switch (rango) {</span>
+                case 1:
+<span class="fc bfc" id="L212" title="All 2 branches covered.">                    if (!empleado.getRango().equalsIgnoreCase(&quot;Gerente&quot;)) {</span>
+<span class="fc" id="L213">                        throw new EmpleadoException(&quot;Tu rango no es suficiente&quot;);</span>
+                    }               
+                    break;
+                case 2:
+<span class="fc bfc" id="L217" title="All 2 branches covered.">                    if (!empleado.getRango().equalsIgnoreCase(&quot;Empleado&quot;)) {</span>
+<span class="fc" id="L218">                        throw new EmpleadoException(&quot;Tu rango no es suficiente&quot;);</span>
+                    }   
+                    break;
+            }
+<span class="fc bfc" id="L222" title="All 2 branches covered.">            if (!empleado.getContrasenia().equals(contrasenia)) {</span>
+<span class="fc" id="L223">                throw new EmpleadoException(&quot;La contrasenia es incorrecta&quot;);</span>
+            } 
+        } else {
+<span class="fc" id="L226">            throw new EmpleadoException(&quot;No existe un empleado con ese dni&quot;);</span>
+        }
+<span class="fc" id="L228">    }</span>
+
+    /**
+     * Metodo encargado de validar las credenciales de acceso
+     * @param dni dni del empleado
+     * @param contrasenia contrsenia del empleado
+     * @throws PersistenciaException error controlado
+     * @throws EmpleadoException error controlado
+     */
+    public String comprobarCredenciales(String dni, String contrasenia) throws PersistenciaException, EmpleadoException {
+<span class="nc" id="L238">        Empleado empleado = null;</span>
+
+<span class="nc" id="L240">        empleado = buscar(dni);</span>
+
+<span class="nc bnc" id="L242" title="All 2 branches missed.">        if (empleado != null) {</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            if (!empleado.getContrasenia().equals(contrasenia)) {</span>
+<span class="nc" id="L244">                throw new EmpleadoException(&quot;La contrasenia es incorrecta &quot; + empleado.getContrasenia() + &quot;, contrasenia: &quot; + contrasenia);</span>
+            } 
+<span class="nc" id="L246">            return empleado.getRango();</span>
+        } else {
+<span class="nc" id="L248">            throw new EmpleadoException(&quot;No existe un empleado con ese dni&quot;);</span>
+        }
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

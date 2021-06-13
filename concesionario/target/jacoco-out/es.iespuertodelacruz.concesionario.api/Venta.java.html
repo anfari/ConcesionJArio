@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Venta.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">concesionario</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.concesionario.api</a> &gt; <span class="el_source">Venta.java</span></div><h1>Venta.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.concesionario.api;
+
+/**
+ * Clase Venta
+ */
+public class Venta {
+    String identificador;
+    String codigoEmpleado;
+    String codigoCliente;
+    String bastidor;
+
+
+    /**
+     * Constructor vacio de la clase Venta
+     */
+<span class="fc" id="L16">    public Venta() {</span>
+<span class="fc" id="L17">    }</span>
+
+    /**
+     * Constructor de la clase Venta
+     * @param codigoEmpleado codigo del empleado que realiza la venta
+     * @param codigoCliente codigo del cliente que realiza la compra
+     * @param bastidor numero de bastidor del vehiculo vendido
+     * @param identificador identificador de venta
+     */
+<span class="fc" id="L26">    public Venta(String identificador,String codigoEmpleado, String codigoCliente, String bastidor) {</span>
+<span class="fc" id="L27">        this.codigoEmpleado = codigoEmpleado;</span>
+<span class="fc" id="L28">        this.codigoCliente = codigoCliente;</span>
+<span class="fc" id="L29">        this.bastidor = bastidor;</span>
+<span class="fc" id="L30">        this.identificador=identificador;</span>
+<span class="fc" id="L31">    }</span>
+
+
+    /**
+     * Getter de la clase Venta
+     * @return identificador del empleado
+     */
+    public String getIdentificador() {
+<span class="fc" id="L39">        return this.identificador;</span>
+    }
+    /**
+     * Setter de la clase Venta
+     * @param identificador identificador del empleado
+     */
+    public void setIdentificador(String identificador) {
+<span class="fc" id="L46">        this.identificador = identificador;</span>
+<span class="fc" id="L47">    }</span>
+
+     /**
+     * Getter de la clase Venta
+     * @return codigo del empleado
+     */
+    public String getCodigoEmpleado() {
+<span class="fc" id="L54">        return this.codigoEmpleado;</span>
+    }
+
+    /**
+     * Setter de la clase Venta
+     * @param codigoEmpleado codigo del empleado
+     */
+    public void setCodigoEmpleado(String codigoEmpleado) {
+<span class="fc" id="L62">        this.codigoEmpleado = codigoEmpleado;</span>
+<span class="fc" id="L63">    }</span>
+    
+    /**
+     * Getter de la clase Venta
+     * @return codigo del cliente
+     */
+    public String getCodigoCliente() {
+<span class="fc" id="L70">        return this.codigoCliente;</span>
+    }
+    
+     /**
+     * Setter de la clase Venta
+     * @param codigoCliente codigo del cliente
+     */
+    public void setCodigoCliente(String codigoCliente) {
+<span class="fc" id="L78">        this.codigoCliente = codigoCliente;</span>
+<span class="fc" id="L79">    }</span>
+
+    /**
+     * Getter de la clase Venta
+     * @return numero de bastidor del vehiculo
+     */
+    public String getBastidor() {
+<span class="fc" id="L86">        return this.bastidor;</span>
+    }
+
+    /**
+     * Setter de la clase Venta
+     * @param bastidor numero de bastidor del vehiculo
+     */
+    public void setBastidor(String bastidor) {
+<span class="fc" id="L94">        this.bastidor = bastidor;</span>
+<span class="fc" id="L95">    }</span>
+
+
+    /**
+     * Funcion toString de la clase Venta
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L103">        return getIdentificador() + &quot;,&quot; +getCodigoEmpleado() + &quot;,&quot; +</span>
+<span class="fc" id="L104">            getCodigoCliente() + &quot;,&quot; +getBastidor();</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

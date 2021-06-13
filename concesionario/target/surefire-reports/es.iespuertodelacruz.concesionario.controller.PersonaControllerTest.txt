@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: es.iespuertodelacruz.concesionario.controller.PersonaControllerTest
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.042 s - in es.iespuertodelacruz.concesionario.controller.PersonaControllerTest

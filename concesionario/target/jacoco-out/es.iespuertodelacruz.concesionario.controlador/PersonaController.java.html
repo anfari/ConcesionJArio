@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PersonaController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">concesionario</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.concesionario.controlador</a> &gt; <span class="el_source">PersonaController.java</span></div><h1>PersonaController.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.concesionario.controlador;
+
+import es.iespuertodelacruz.concesionario.api.Direccion;
+import es.iespuertodelacruz.concesionario.api.Persona;
+import es.iespuertodelacruz.concesionario.exception.*;
+import es.iespuertodelacruz.concesionario.modelo.PersonaModelo;
+
+/**
+ * Clase PersonaController
+ */
+public class PersonaController extends Validaciones {
+    PersonaModelo personaModelo;
+    DireccionController direccionController;
+
+    /**
+     * Constructor de la clase PersonaController
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L19">    public PersonaController() throws PersistenciaException {</span>
+<span class="fc" id="L20">        personaModelo = new PersonaModelo();</span>
+<span class="fc" id="L21">        direccionController = new DireccionController();</span>
+<span class="fc" id="L22">    }</span>
+
+    /**
+     * Constructor para test de la clase PersonaController
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L29">    public PersonaController(boolean test) throws PersistenciaException {</span>
+<span class="fc" id="L30">        personaModelo = new PersonaModelo(true);</span>
+<span class="fc" id="L31">        direccionController = new DireccionController(true);</span>
+<span class="fc" id="L32">    }</span>
+    
+
+    /**
+     * Metodo encargado de realizar la validacion del objeto Persona
+     * @param persona persona a validar
+     * @throws PersonaException error controlado
+     */
+    public void validarPersona(Persona persona) throws PersonaException {
+<span class="fc" id="L41">        String mensaje = &quot;&quot;;</span>
+
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (persona == null) {</span>
+<span class="fc" id="L44">            mensaje = &quot;Se esta intentando validar un objeto vacio&quot;;</span>
+<span class="fc" id="L45">            throw new PersonaException(mensaje);</span>
+        }
+<span class="fc bfc" id="L47" title="All 4 branches covered.">        if (persona.getNombre() == null || persona.getNombre().isEmpty()) {</span>
+<span class="fc" id="L48">            mensaje += &quot;El nombre de la persona es nulo o vacio\n&quot;;</span>
+        }
+<span class="fc bfc" id="L50" title="All 4 branches covered.">        if (persona.getApellidos() == null || persona.getApellidos().isEmpty()) {</span>
+<span class="fc" id="L51">            mensaje += &quot;Los apellidos de la persona son nulos o vacios\n&quot;;</span>
+        }
+<span class="fc bfc" id="L53" title="All 6 branches covered.">        if (persona.getDni() == null || persona.getDni().isEmpty() || !validarDni(persona.getDni())) {</span>
+<span class="fc" id="L54">            mensaje += &quot;El dni de la persona es nulo, vacio o invalido\n&quot;;</span>
+        }
+<span class="fc bfc" id="L56" title="All 4 branches covered.">        if (persona.getFechaNacimiento() == null || persona.getFechaNacimiento().isEmpty()) {</span>
+<span class="fc" id="L57">            mensaje += &quot;La fecha de nacimiento de la persona es nula o vacia\n&quot;;</span>
+        }
+<span class="fc bfc" id="L59" title="All 4 branches covered.">        if (persona.getTelefono() == null || persona.getTelefono().isEmpty()) {</span>
+<span class="fc" id="L60">            mensaje += &quot;El telefono de la persona es nulo o vacio&quot;;</span>
+        }
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        if (!mensaje.isEmpty()) {</span>
+<span class="fc" id="L63">            throw new PersonaException(mensaje);</span>
+        }
+<span class="fc" id="L65">    }</span>
+
+
+    /**
+     * Metodo encargado de insertar
+     * @param persona persona a insertar
+     * @throws PersonaException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws DireccionException error controlado
+     */
+    public void insertar(Persona persona) throws PersonaException, PersistenciaException, DireccionException {
+<span class="fc" id="L76">        validarPersona(persona);</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        if (existe(persona)) {</span>
+<span class="fc" id="L78">            throw new PersonaException(&quot;La persona indicada ya existe&quot;);</span>
+        }
+<span class="fc" id="L80">        Direccion direccion = persona.getDireccion();</span>
+<span class="fc" id="L81">        direccionController.insertar(direccion);</span>
+<span class="fc" id="L82">        personaModelo.insertar(persona);</span>
+<span class="fc" id="L83">    }</span>
+
+    /**
+     * Metodo encargado de eliminar
+     * @param persona persona a eliminar
+     * @throws PersonaException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws DireccionException error controlado
+     */
+    public void eliminar(Persona persona) throws PersonaException, PersistenciaException, DireccionException {        
+<span class="fc" id="L93">        validarPersona(persona);</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        if (!existe(persona)) {</span>
+<span class="fc" id="L95">            throw new PersonaException(&quot;La persona indicada no existe&quot;);</span>
+        }
+<span class="fc" id="L97">        Direccion direccion = persona.getDireccion();</span>
+<span class="fc" id="L98">        direccionController.eliminar(direccion);</span>
+<span class="fc" id="L99">        personaModelo.eliminar(persona);</span>
+<span class="fc" id="L100">    }</span>
+
+    /**
+     * Metodo encargado de eliminar
+     * @param dni dni de la persona
+     * @throws PersonaException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws DireccionException error controlado
+     */
+    public void eliminar(String dni) throws PersonaException, PersistenciaException, DireccionException {
+        Persona persona;
+<span class="fc" id="L111">        persona = buscar(dni);</span>
+<span class="fc" id="L112">        eliminar(persona);</span>
+<span class="fc" id="L113">    }</span>
+
+    /**
+     * Metodo encargado de modificar
+     * @param persona persona a modificar
+     * @throws PersonaException error controlado
+     * @throws PersistenciaException error controlado
+     * @throws DireccionException error controlado
+     */
+    public void modificar(Persona persona) throws PersonaException, PersistenciaException, DireccionException {
+        Persona personaAlmacenada;
+<span class="fc" id="L124">        validarPersona(persona);</span>
+<span class="fc" id="L125">        personaAlmacenada = buscar(persona.getDni());</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">        if (personaAlmacenada == null) {</span>
+<span class="fc" id="L127">            throw new PersonaException(&quot;La persona indicada no existe&quot;);</span>
+        }
+<span class="fc" id="L129">        Direccion direccion = persona.getDireccion();</span>
+<span class="fc" id="L130">        direccionController.modificar(direccion);</span>
+<span class="fc" id="L131">        personaModelo.modificar(persona);</span>
+<span class="fc" id="L132">    }</span>
+
+    /**
+     * Metodo encargado de buscar
+     * @param dni dni de la persona
+     * @return persona encontrada
+     * @throws PersistenciaException error controlado
+     */
+    public Persona buscar(String dni) throws PersistenciaException  {
+<span class="fc" id="L141">        Persona persona = null;</span>
+<span class="fc" id="L142">        persona = personaModelo.buscar(dni);</span>
+<span class="fc" id="L143">        return persona;</span>
+    }
+
+    /**
+     * Funcion encargada de verificar si existe o no una persona
+     * @param persona persona a encontrar
+     * @return true/false si existe o no
+     * @throws PersistenciaException error controlado
+     */
+    public boolean existe(Persona persona) throws PersistenciaException  {
+<span class="fc" id="L153">        boolean encontrado = false;</span>
+        Persona personaeEncontrada;
+
+<span class="fc" id="L156">        personaeEncontrada = buscar(persona.getDni());</span>
+<span class="fc bfc" id="L157" title="All 2 branches covered.">        if (personaeEncontrada != null) {</span>
+<span class="fc" id="L158">            encontrado = true;</span>
+        }
+
+<span class="fc" id="L161">        return encontrado;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

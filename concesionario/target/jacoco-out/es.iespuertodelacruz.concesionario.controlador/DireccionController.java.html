@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DireccionController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">concesionario</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.concesionario.controlador</a> &gt; <span class="el_source">DireccionController.java</span></div><h1>DireccionController.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.concesionario.controlador;
+
+import es.iespuertodelacruz.concesionario.api.Direccion;
+import es.iespuertodelacruz.concesionario.exception.DireccionException;
+import es.iespuertodelacruz.concesionario.exception.PersistenciaException;
+import es.iespuertodelacruz.concesionario.modelo.DireccionModelo;
+
+/**
+ * Clase DireccionController
+ */
+public class DireccionController extends Validaciones {
+    DireccionModelo direccionModelo;
+
+    /**
+     * Constructor de la clase DireccionController
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L18">    public DireccionController() throws PersistenciaException {</span>
+<span class="fc" id="L19">        direccionModelo = new DireccionModelo();</span>
+<span class="fc" id="L20">    }</span>
+
+    /**
+     * Constructor para test de la clase DireccionController
+     * @param test parametro que recibe de la llamada en los test
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L27">    public DireccionController(boolean test) throws PersistenciaException {</span>
+<span class="fc" id="L28">        direccionModelo = new DireccionModelo(true);</span>
+<span class="fc" id="L29">    }</span>
+
+
+    /**
+     * Metodo encargado de realizar la validacion del objeto Direccion
+     * @param direccion direccion a validar
+     * @throws DireccionException error controlado
+     */
+    public void validarDireccion(Direccion direccion) throws DireccionException {
+<span class="fc" id="L38">        String mensaje = &quot;&quot;;</span>
+
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (direccion == null) {</span>
+<span class="fc" id="L41">            mensaje = &quot;Se esta intentando validar un objeto vacio&quot;;</span>
+<span class="fc" id="L42">            throw new DireccionException(mensaje);</span>
+        }
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (direccion.getNumero() &lt;= 0) {</span>
+<span class="fc" id="L45">            mensaje = &quot;El numero de direccion de domicilio es 0 o menor\n&quot;;</span>
+        }
+<span class="fc bfc" id="L47" title="All 4 branches covered.">        if (direccion.getCalle() == null || direccion.getCalle().isEmpty()) {</span>
+<span class="fc" id="L48">            mensaje += &quot;La calle de direccion es nula o vacia\n&quot;;</span>
+        }
+<span class="fc bfc" id="L50" title="All 6 branches covered.">        if (direccion.getCodigoPostal() == null || direccion.getCodigoPostal().isEmpty() || !validarCodigoPostal(direccion.getCodigoPostal())) {</span>
+<span class="fc" id="L51">            mensaje += &quot;El codigo postal de direccion es nulo, vacio o invalido\n&quot;;</span>
+        }
+<span class="fc bfc" id="L53" title="All 4 branches covered.">        if (direccion.getCiudad() == null || direccion.getCiudad().isEmpty()) {</span>
+<span class="fc" id="L54">            mensaje += &quot;La ciudad de direccion es nula o vacia\n&quot;;</span>
+        }
+<span class="fc bfc" id="L56" title="All 4 branches covered.">        if (direccion.getProvincia() == null || direccion.getProvincia().isEmpty()) {</span>
+<span class="fc" id="L57">            mensaje += &quot;La provincia de direccion es nula o vacia&quot;;</span>
+        }
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if (!mensaje.isEmpty()) {</span>
+<span class="fc" id="L60">            throw new DireccionException(mensaje);</span>
+        }
+<span class="fc" id="L62">    }</span>
+
+    /**
+     * Metodo encargado de insertar
+     * @param direccion direccion a insertar
+     * @throws DireccionException error controlado
+     * @throws PersistenciaException error controlado
+     */
+    public void insertar(Direccion direccion) throws DireccionException, PersistenciaException {
+<span class="fc" id="L71">        validarDireccion(direccion);</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        if (existe(direccion)) {</span>
+<span class="fc" id="L73">            throw new DireccionException(&quot;La direccion indicada ya existe&quot;);</span>
+        }
+<span class="fc" id="L75">        direccionModelo.insertar(direccion);</span>
+<span class="fc" id="L76">    }</span>
+
+    /**
+     * Metodo encargado de eliminar
+     * @param direccion direccion a eliminar
+     * @throws DireccionException error controlado
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminar(Direccion direccion) throws DireccionException, PersistenciaException {
+<span class="fc" id="L85">        validarDireccion(direccion);</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        if (!existe(direccion)) {</span>
+<span class="fc" id="L87">            throw new DireccionException(&quot;La direccion indicada no existe&quot;);</span>
+        }
+<span class="fc" id="L89">        direccionModelo.eliminar(direccion);</span>
+<span class="fc" id="L90">    }</span>
+
+    /**
+     * Metodo encargado de eliminar utilizando el identificador de la direccion
+     * @param identificador identificadorde la direccion
+     * @throws DireccionException error controlado
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminar(String identificador) throws  DireccionException, PersistenciaException {
+        Direccion direccion;
+<span class="fc" id="L100">        direccion = buscar(identificador);</span>
+<span class="fc" id="L101">        eliminar(direccion);</span>
+<span class="fc" id="L102">    }</span>
+
+    /**
+     * Metodo encargado de modificar
+     * @param direccion direccion a modificar
+     * @throws DireccionException error controlado
+     * @throws PersistenciaException error controlado
+     */
+    public void modificar(Direccion direccion) throws DireccionException, PersistenciaException {
+        Direccion direccionAlmacenada;
+<span class="fc" id="L112">        validarDireccion(direccion);</span>
+<span class="fc" id="L113">        direccionAlmacenada = buscar(direccion.getIdentificador());</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">        if (direccionAlmacenada == null) {</span>
+<span class="fc" id="L115">            throw new DireccionException(&quot;La direccion indicada no existe&quot;);</span>
+        }
+<span class="fc" id="L117">        direccionModelo.modificar(direccion);</span>
+<span class="fc" id="L118">    }</span>
+
+    /**
+     * Metodo encargado de buscar por identificador de la direccion
+     * @param identificador identificadorde la direccion
+     * @return Direccion encontrada
+     * @throws PersistenciaException error controlado
+     */
+    public Direccion buscar(String identificador) throws PersistenciaException  {
+<span class="fc" id="L127">        Direccion direccion = null;</span>
+<span class="fc" id="L128">        direccion = direccionModelo.buscar(identificador);</span>
+<span class="fc" id="L129">        return direccion;</span>
+    }
+
+    /**
+     * Funcion encargada de verificar si existe o no una direccion
+     * @param direccion direccion a encontrar
+     * @return true/false si existe o no
+     * @throws PersistenciaException error controlado
+     */
+    public boolean existe(Direccion direccion) throws PersistenciaException {
+<span class="fc" id="L139">        boolean encontrado = false;</span>
+        Direccion direccionEncontrada;
+
+<span class="fc" id="L142">        direccionEncontrada = buscar(direccion.getIdentificador());</span>
+<span class="fc bfc" id="L143" title="All 2 branches covered.">        if (direccionEncontrada != null) {</span>
+<span class="fc" id="L144">            encontrado = true;</span>
+        }
+
+<span class="fc" id="L147">        return encontrado;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
