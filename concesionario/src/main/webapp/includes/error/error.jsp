@@ -18,7 +18,7 @@
             %>
             <h1>Error <span class="errorcode">:(</span></h1>
             <p class="output"><%=message %>.</p>
-            <p class="output">Por favor prueba <a style="color: red;" href="#1">este link</a> o <a style="color: blue;" href="#2">este link</a>.</p>
+            <p class="output">Por favor prueba <a style="color: red;" href="javascript: history.go(-1)">vuelve</a> o <a style="color: blue;" href="http://localhost:8080/index.jsp">ve al inicio</a>.</p>
             <p class="output">Buena suerte.</p>
         </div>
         <%@include file="../footer.jsp" %>
