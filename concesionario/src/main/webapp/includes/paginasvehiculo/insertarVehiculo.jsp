@@ -3,6 +3,9 @@
 <%@ page errorPage = "../error/error.jsp" %>
 
 <html>
+    <head>
+        <link rel="stylesheet" href="../css/estilos.css">
+    </head>
     <body>
         <jsp:useBean id="vehiculoController" class="es.iespuertodelacruz.concesionario.controlador.VehiculoController" />
 

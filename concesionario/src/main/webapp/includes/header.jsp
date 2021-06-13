@@ -12,8 +12,12 @@
  </head>
 <header>
     <ul>
+        
+    </ul>
+    <ul>
         <li><a href="http://localhost:8080/includes/paginasvehiculo/listadoVehiculos.jsp">Vehiculos</a></li>
         <li><a href="http://localhost:8080/includes/paginasventa/topVentas.jsp">Top Ventas</a></li>
         <li><a class="salir" href="javascript: history.go(-1)">Volver</a></li>
+        <li><a class="salir" href="http://localhost:8080/index.jsp">Salir</a></li>
     </ul>
 </header>
